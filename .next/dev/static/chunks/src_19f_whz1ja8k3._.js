@@ -1300,11 +1300,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/shared/lib/app-dynamic.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$left$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowLeft$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-left.mjs [app-client] (ecmascript) <export default as ArrowLeft>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$share$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Share2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/share-2.mjs [app-client] (ecmascript) <export default as Share2>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/download.mjs [app-client] (ecmascript) <export default as Download>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.mjs [app-client] (ecmascript) <export default as ShieldCheck>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.mjs [app-client] (ecmascript) <export default as Check>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rotate$2d$cw$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RotateCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs [app-client] (ecmascript) <export default as RotateCw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layers$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Layers$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layers.mjs [app-client] (ecmascript) <export default as Layers>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sun.mjs [app-client] (ecmascript) <export default as Sun>");
@@ -1371,7 +1366,7 @@ const ModelViewer3D = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_m
         }, ("TURBOPACK compile-time value", void 0))
 });
 _c = ModelViewer3D;
-function DossierView({ asset, onClose, isStandalonePage = false }) {
+function DossierView({ asset, onClose, isStandalonePage = false, hideHeroBanner = false }) {
     _s();
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('3D_MODEL');
     const [isWireframe, setIsWireframe] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -1478,202 +1473,33 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                         className: "absolute top-0 right-1/4 w-[700px] h-[500px] bg-[radial-gradient(circle,_rgba(212,175,55,0.08)_0%,_transparent_70%)] blur-3xl"
                     }, void 0, false, {
                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                        lineNumber: 161,
+                        lineNumber: 163,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute bottom-1/3 left-10 w-[500px] h-[500px] bg-[radial-gradient(circle,_rgba(200,125,85,0.06)_0%,_transparent_70%)] blur-3xl"
                     }, void 0, false, {
                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                        lineNumber: 162,
+                        lineNumber: 164,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                lineNumber: 160,
+                lineNumber: 162,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-wrap items-center gap-2 text-xs font-mono text-neutral-400",
-                                children: [
-                                    isStandalonePage ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/#collection",
-                                        className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-neutral-300 hover:text-amber-300 transition-all font-sans mr-2",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$left$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowLeft$3e$__["ArrowLeft"], {
-                                                className: "w-3.5 h-3.5"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 177,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: "Return to Collection"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 178,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 173,
-                                        columnNumber: 15
-                                    }, this) : null,
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-amber-400/80",
-                                        children: "IAIMS Digital Museum"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 181,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: ">"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 182,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-neutral-300",
-                                        children: "Curated Heritage Holdings"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 183,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: ">"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 184,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-white font-medium truncate max-w-[200px] sm:max-w-none",
-                                        children: asset.title
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 185,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 171,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-wrap items-center gap-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-[10px]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"], {
-                                                className: "w-3.5 h-3.5 text-amber-400"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 194,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: "USPTO / Smithsonian Standards"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 195,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 193,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: handleShare,
-                                        className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-neutral-300 hover:text-white text-xs font-mono transition-all cursor-pointer",
-                                        children: [
-                                            copiedLink ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
-                                                className: "w-3.5 h-3.5 text-emerald-400"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 203,
-                                                columnNumber: 29
-                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$share$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Share2$3e$__["Share2"], {
-                                                className: "w-3.5 h-3.5"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 203,
-                                                columnNumber: 82
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: copiedLink ? 'Link Copied' : 'Share'
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 204,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 199,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: handleDownloadPlate,
-                                        className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 text-xs font-mono transition-all cursor-pointer",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
-                                                className: "w-3.5 h-3.5"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 212,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: "Technical Plate (PDF)"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 213,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 208,
-                                        columnNumber: 13
-                                    }, this),
-                                    onClose ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: onClose,
-                                        className: "w-8 h-8 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white transition cursor-pointer",
-                                        "aria-label": "Close",
-                                        children: "✕"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 217,
-                                        columnNumber: 15
-                                    }, this) : null
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 191,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                        className: "flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10"
+                    }, void 0, false, {
                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                        lineNumber: 168,
+                        lineNumber: 170,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    !hideHeroBanner && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "mb-10 bg-[#0e0e13]/85 rounded-3xl border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "grid grid-cols-1 lg:grid-cols-12 gap-8 items-start",
@@ -1689,8 +1515,8 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: asset.categoryLabel
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 236,
-                                                    columnNumber: 17
+                                                    lineNumber: 183,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-xs font-mono text-neutral-400",
@@ -1700,52 +1526,52 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 239,
-                                                    columnNumber: 17
+                                                    lineNumber: 186,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-neutral-600",
                                                     children: "•"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 242,
-                                                    columnNumber: 17
+                                                    lineNumber: 189,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-xs font-mono text-neutral-400",
                                                     children: asset.era
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 243,
-                                                    columnNumber: 17
+                                                    lineNumber: 190,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 235,
-                                            columnNumber: 15
+                                            lineNumber: 182,
+                                            columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                             className: "font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight",
                                             children: asset.officialTitle || asset.title
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 249,
-                                            columnNumber: 15
+                                            lineNumber: 196,
+                                            columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "font-sans text-neutral-300 text-sm sm:text-base leading-relaxed max-w-3xl",
                                             children: asset.desc
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 254,
-                                            columnNumber: 15
+                                            lineNumber: 201,
+                                            columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                    lineNumber: 234,
-                                    columnNumber: 13
+                                    lineNumber: 181,
+                                    columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "lg:col-span-4 w-full bg-[#14141c]/90 rounded-2xl border border-white/10 p-5 font-mono text-xs divide-y divide-white/10",
@@ -1758,22 +1584,22 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Inventor:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 262,
-                                                    columnNumber: 17
+                                                    lineNumber: 209,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-white font-medium text-right",
                                                     children: asset.inventor
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 263,
-                                                    columnNumber: 17
+                                                    lineNumber: 210,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 261,
-                                            columnNumber: 15
+                                            lineNumber: 208,
+                                            columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "py-2.5 flex items-center justify-between",
@@ -1783,22 +1609,22 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Workshop / Lab:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 266,
-                                                    columnNumber: 17
+                                                    lineNumber: 213,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-neutral-200 text-right",
                                                     children: asset.location
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 267,
-                                                    columnNumber: 17
+                                                    lineNumber: 214,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 265,
-                                            columnNumber: 15
+                                            lineNumber: 212,
+                                            columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "py-2.5 flex items-center justify-between",
@@ -1808,22 +1634,22 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Patent Gazette:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 270,
-                                                    columnNumber: 17
+                                                    lineNumber: 217,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-amber-400 font-medium text-right",
                                                     children: asset.patent
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 271,
-                                                    columnNumber: 17
+                                                    lineNumber: 218,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 269,
-                                            columnNumber: 15
+                                            lineNumber: 216,
+                                            columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "py-2.5 flex items-center justify-between",
@@ -1833,22 +1659,22 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Fabrication Materials:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 274,
-                                                    columnNumber: 17
+                                                    lineNumber: 221,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-neutral-200 text-right",
                                                     children: asset.medium
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 275,
-                                                    columnNumber: 17
+                                                    lineNumber: 222,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 273,
-                                            columnNumber: 15
+                                            lineNumber: 220,
+                                            columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "pt-2.5 flex items-center justify-between",
@@ -1858,8 +1684,8 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Digital Twin:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 278,
-                                                    columnNumber: 17
+                                                    lineNumber: 225,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-emerald-400 flex items-center gap-1 font-semibold",
@@ -1868,38 +1694,38 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                             className: "w-3.5 h-3.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 280,
-                                                            columnNumber: 19
+                                                            lineNumber: 227,
+                                                            columnNumber: 21
                                                         }, this),
                                                         " 100% Curatorial Geometry"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 279,
-                                                    columnNumber: 17
+                                                    lineNumber: 226,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 277,
-                                            columnNumber: 15
+                                            lineNumber: 224,
+                                            columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                    lineNumber: 260,
-                                    columnNumber: 13
+                                    lineNumber: 207,
+                                    columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                            lineNumber: 231,
-                            columnNumber: 11
+                            lineNumber: 178,
+                            columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                        lineNumber: 230,
-                        columnNumber: 9
+                        lineNumber: 177,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "mb-14",
@@ -1915,20 +1741,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 className: "w-4 h-4 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 301,
+                                                lineNumber: 249,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "1. Interactive 3D Spatial Model"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 302,
+                                                lineNumber: 250,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 293,
+                                        lineNumber: 241,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1939,20 +1765,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 className: "w-4 h-4 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 313,
+                                                lineNumber: 261,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "2. 3-Scene Narration Video (30s)"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 314,
+                                                lineNumber: 262,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 253,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1963,20 +1789,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 className: "w-4 h-4 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 325,
+                                                lineNumber: 273,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "3. Patent Blueprints & Schematics"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 326,
+                                                lineNumber: 274,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 317,
+                                        lineNumber: 265,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1987,26 +1813,26 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 className: "w-4 h-4 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 337,
+                                                lineNumber: 285,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "4. Binaural Curatorial Audio Guide"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 338,
+                                                lineNumber: 286,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 329,
+                                        lineNumber: 277,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 292,
+                                lineNumber: 240,
                                 columnNumber: 11
                             }, this),
                             activeTab === '3D_MODEL' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2023,7 +1849,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         className: "w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 351,
+                                                        lineNumber: 299,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2031,7 +1857,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: asset.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 352,
+                                                        lineNumber: 300,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2039,7 +1865,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "•"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 353,
+                                                        lineNumber: 301,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2047,13 +1873,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: asset.polyCount
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 354,
+                                                        lineNumber: 302,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 350,
+                                                lineNumber: 298,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2067,20 +1893,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 364,
+                                                                lineNumber: 312,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: dismantleAmount > 0.1 ? 'LEVITATE' : 'ASSEMBLE'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 365,
+                                                                lineNumber: 313,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 360,
+                                                        lineNumber: 308,
                                                         columnNumber: 21
                                                     }, this) : null,
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2091,20 +1917,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 378,
+                                                                lineNumber: 326,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: isWireframe ? 'WIREFRAME' : 'MESH'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 379,
+                                                                lineNumber: 327,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 370,
+                                                        lineNumber: 318,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2115,20 +1941,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-3.5 h-3.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 391,
+                                                                lineNumber: 339,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: isAutoRotating ? 'ORBIT' : 'PAUSED'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 392,
+                                                                lineNumber: 340,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 383,
+                                                        lineNumber: 331,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2139,12 +1965,12 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                             className: "w-4 h-4 text-amber-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 401,
+                                                            lineNumber: 349,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 396,
+                                                        lineNumber: 344,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2160,12 +1986,12 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 415,
+                                                            lineNumber: 363,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 405,
+                                                        lineNumber: 353,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2176,24 +2002,24 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 424,
+                                                            lineNumber: 372,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 419,
+                                                        lineNumber: 367,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 357,
+                                                lineNumber: 305,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 349,
+                                        lineNumber: 297,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2208,7 +2034,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 dismantleFactor: dismantleAmount
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 431,
+                                                lineNumber: 379,
                                                 columnNumber: 17
                                             }, this),
                                             asset.hotspots && asset.hotspots.length > 0 ? asset.hotspots.map((hs)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2226,7 +2052,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                     className: "w-6 h-6 rounded-full bg-amber-400/30 animate-ping absolute"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                    lineNumber: 450,
+                                                                    lineNumber: 398,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2234,13 +2060,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                     children: hs.id
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                    lineNumber: 451,
+                                                                    lineNumber: 399,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 449,
+                                                            lineNumber: 397,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2251,7 +2077,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                     children: hs.title
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                    lineNumber: 456,
+                                                                    lineNumber: 404,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2259,19 +2085,19 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                     children: hs.desc
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                    lineNumber: 457,
+                                                                    lineNumber: 405,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 455,
+                                                            lineNumber: 403,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, hs.id, true, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 443,
+                                                    lineNumber: 391,
                                                     columnNumber: 23
                                                 }, this)) : null,
                                             activeHotspot && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2284,20 +2110,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-4 h-4 text-amber-400 shrink-0"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 469,
+                                                                lineNumber: 417,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: activeHotspot
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 470,
+                                                                lineNumber: 418,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 468,
+                                                        lineNumber: 416,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2306,13 +2132,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "✕"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 472,
+                                                        lineNumber: 420,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 467,
+                                                lineNumber: 415,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2324,7 +2150,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "+"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 480,
+                                                        lineNumber: 428,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2333,7 +2159,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "−"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 486,
+                                                        lineNumber: 434,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2344,13 +2170,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 492,
+                                                        lineNumber: 440,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 479,
+                                                lineNumber: 427,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2360,39 +2186,39 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "Left-click + drag to orbit"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 499,
+                                                        lineNumber: 447,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "•"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 500,
+                                                        lineNumber: 448,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "Pinch / wheel to zoom"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 501,
+                                                        lineNumber: 449,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 498,
+                                                lineNumber: 446,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 430,
+                                        lineNumber: 378,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 344,
+                                lineNumber: 292,
                                 columnNumber: 13
                             }, this),
                             activeTab === 'WATCH_STORY' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2407,14 +2233,14 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 className: `w-full h-full object-cover transition-opacity duration-700 ${isPlayingVideo ? 'opacity-85' : 'opacity-40'}`
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 513,
+                                                lineNumber: 461,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 520,
+                                                lineNumber: 468,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2424,18 +2250,18 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     className: "w-6 h-6 sm:w-8 sm:h-8 fill-current"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 528,
+                                                    lineNumber: 476,
                                                     columnNumber: 21
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$play$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Play$3e$__["Play"], {
                                                     className: "w-6 h-6 sm:w-8 sm:h-8 fill-current ml-0.5 sm:ml-1"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 530,
+                                                    lineNumber: 478,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 523,
+                                                lineNumber: 471,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2446,7 +2272,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "AI NARRATION DOC"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 536,
+                                                        lineNumber: 484,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2457,13 +2283,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 539,
+                                                        lineNumber: 487,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 535,
+                                                lineNumber: 483,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2489,18 +2315,18 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                     }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                    lineNumber: 562,
+                                                                    lineNumber: 510,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, idx, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 557,
+                                                                lineNumber: 505,
                                                                 columnNumber: 25
                                                             }, this);
                                                         })
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 547,
+                                                        lineNumber: 495,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2516,18 +2342,18 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                            lineNumber: 578,
+                                                                            lineNumber: 526,
                                                                             columnNumber: 43
                                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$play$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Play$3e$__["Play"], {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                            lineNumber: 578,
+                                                                            lineNumber: 526,
                                                                             columnNumber: 75
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                        lineNumber: 574,
+                                                                        lineNumber: 522,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2539,7 +2365,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                        lineNumber: 580,
+                                                                        lineNumber: 528,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2550,13 +2376,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                        lineNumber: 583,
+                                                                        lineNumber: 531,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 573,
+                                                                lineNumber: 521,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2569,18 +2395,18 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                            lineNumber: 593,
+                                                                            lineNumber: 541,
                                                                             columnNumber: 36
                                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$volume$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Volume2$3e$__["Volume2"], {
                                                                             className: "w-4 h-4"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                            lineNumber: 593,
+                                                                            lineNumber: 541,
                                                                             columnNumber: 70
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                        lineNumber: 589,
+                                                                        lineNumber: 537,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2589,31 +2415,31 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                         children: "REPLAY"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                        lineNumber: 595,
+                                                                        lineNumber: 543,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 588,
+                                                                lineNumber: 536,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 572,
+                                                        lineNumber: 520,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 545,
+                                                lineNumber: 493,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 512,
+                                        lineNumber: 460,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2633,7 +2459,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 619,
+                                                                lineNumber: 567,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2641,13 +2467,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: scene.timeRange
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 622,
+                                                                lineNumber: 570,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 618,
+                                                        lineNumber: 566,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2655,7 +2481,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: scene.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 626,
+                                                        lineNumber: 574,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2663,18 +2489,18 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: scene.description
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 629,
+                                                        lineNumber: 577,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, idx, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 609,
+                                                lineNumber: 557,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 607,
+                                        lineNumber: 555,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2691,7 +2517,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-4 h-4 text-amber-400"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 643,
+                                                                lineNumber: 591,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2699,32 +2525,32 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Curatorial Voice-Over Transcript"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 644,
+                                                                lineNumber: 592,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 642,
+                                                        lineNumber: 590,
                                                         columnNumber: 19
                                                     }, this),
                                                     showTranscript ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$up$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronUp$3e$__["ChevronUp"], {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 648,
+                                                        lineNumber: 596,
                                                         columnNumber: 37
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 648,
+                                                        lineNumber: 596,
                                                         columnNumber: 73
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 638,
+                                                lineNumber: 586,
                                                 columnNumber: 17
                                             }, this),
                                             showTranscript ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2739,7 +2565,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 652,
+                                                        lineNumber: 600,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2748,7 +2574,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Scene 1 [00:00]:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 656,
+                                                                lineNumber: 604,
                                                                 columnNumber: 23
                                                             }, this),
                                                             " ",
@@ -2759,7 +2585,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 655,
+                                                        lineNumber: 603,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2768,7 +2594,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Scene 2 [00:10]:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 661,
+                                                                lineNumber: 609,
                                                                 columnNumber: 23
                                                             }, this),
                                                             " ",
@@ -2777,7 +2603,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 660,
+                                                        lineNumber: 608,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2786,7 +2612,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Scene 3 [00:20]:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 665,
+                                                                lineNumber: 613,
                                                                 columnNumber: 23
                                                             }, this),
                                                             " ",
@@ -2795,25 +2621,25 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 664,
+                                                        lineNumber: 612,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 651,
+                                                lineNumber: 599,
                                                 columnNumber: 19
                                             }, this) : null
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 637,
+                                        lineNumber: 585,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 509,
+                                lineNumber: 457,
                                 columnNumber: 13
                             }, this),
                             activeTab === 'BLUEPRINTS' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2830,14 +2656,14 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     className: "w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 682,
+                                                    lineNumber: 630,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 687,
+                                                    lineNumber: 635,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2845,7 +2671,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "CYANOTYPE ARCHIVAL PLATE • USPTO GAZETTE"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 690,
+                                                    lineNumber: 638,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2867,7 +2693,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-3.5 h-3.5 shrink-0"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 711,
+                                                                lineNumber: 659,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2875,7 +2701,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Inspect High-Resolution Plate"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 712,
+                                                                lineNumber: 660,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2883,24 +2709,24 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Inspect Plate"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 713,
+                                                                lineNumber: 661,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 696,
+                                                        lineNumber: 644,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 695,
+                                                    lineNumber: 643,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 681,
+                                            lineNumber: 629,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2911,7 +2737,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Numbered Parts & Assembly Ledger"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 720,
+                                                    lineNumber: 668,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2919,7 +2745,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Verified technical draughtsmanship details transcribed from original patent office drawings:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 723,
+                                                    lineNumber: 671,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2954,7 +2780,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                    lineNumber: 741,
+                                                                    lineNumber: 689,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2962,18 +2788,18 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                     children: entry.spec
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                    lineNumber: 744,
+                                                                    lineNumber: 692,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, idx, true, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 737,
+                                                            lineNumber: 685,
                                                             columnNumber: 23
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 727,
+                                                    lineNumber: 675,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2981,24 +2807,24 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Draughtsman Certification: Verified by International Archive for Mechanical Standards (IAMS)."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 749,
+                                                    lineNumber: 697,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 719,
+                                            lineNumber: 667,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                    lineNumber: 678,
+                                    lineNumber: 626,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 677,
+                                lineNumber: 625,
                                 columnNumber: 13
                             }, this),
                             activeTab === 'AUDIO_GUIDE' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3012,12 +2838,12 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 className: "w-9 h-9"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 765,
+                                                lineNumber: 713,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 764,
+                                            lineNumber: 712,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3027,7 +2853,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "Binaural Curatorial Commentary"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 769,
+                                                    lineNumber: 717,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3038,7 +2864,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 772,
+                                                    lineNumber: 720,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3049,13 +2875,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 775,
+                                                    lineNumber: 723,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 768,
+                                            lineNumber: 716,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3084,12 +2910,12 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     }
                                                 }, i, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 783,
+                                                    lineNumber: 731,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 781,
+                                            lineNumber: 729,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3104,12 +2930,12 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 796,
+                                                        lineNumber: 744,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 795,
+                                                    lineNumber: 743,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3123,26 +2949,26 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 802,
+                                                            lineNumber: 750,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: "0:45"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                            lineNumber: 803,
+                                                            lineNumber: 751,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 801,
+                                                    lineNumber: 749,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 794,
+                                            lineNumber: 742,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3157,7 +2983,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 810,
+                                                    lineNumber: 758,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3167,18 +2993,18 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         className: "w-6 h-6 fill-current"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 823,
+                                                        lineNumber: 771,
                                                         columnNumber: 23
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$play$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Play$3e$__["Play"], {
                                                         className: "w-6 h-6 fill-current ml-0.5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 825,
+                                                        lineNumber: 773,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 818,
+                                                    lineNumber: 766,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3187,30 +3013,30 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                     children: "REPLAY"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                    lineNumber: 829,
+                                                    lineNumber: 777,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/sections/DossierView.tsx",
-                                            lineNumber: 808,
+                                            lineNumber: 756,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/sections/DossierView.tsx",
-                                    lineNumber: 761,
+                                    lineNumber: 709,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 760,
+                                lineNumber: 708,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                        lineNumber: 289,
+                        lineNumber: 237,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3229,20 +3055,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 852,
+                                                        lineNumber: 800,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "01 // Historical Context & Genesis"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 853,
+                                                        lineNumber: 801,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 851,
+                                                lineNumber: 799,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -3250,7 +3076,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: "The Societal Conditions & Necessity"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 855,
+                                                lineNumber: 803,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3258,13 +3084,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: asset.story || asset.desc
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 858,
+                                                lineNumber: 806,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 850,
+                                        lineNumber: 798,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3277,20 +3103,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 866,
+                                                        lineNumber: 814,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "02 // How the Invention Works"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 867,
+                                                        lineNumber: 815,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 865,
+                                                lineNumber: 813,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -3298,7 +3124,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: "Mechanical Breakdown & Kinematic Principles"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 869,
+                                                lineNumber: 817,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3306,13 +3132,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: asset.mechanics || asset.desc
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 872,
+                                                lineNumber: 820,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 864,
+                                        lineNumber: 812,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3325,20 +3151,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 880,
+                                                        lineNumber: 828,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "03 // Societal Impact & Modern Legacy"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 881,
+                                                        lineNumber: 829,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 879,
+                                                lineNumber: 827,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -3346,7 +3172,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: "Global Impact & Modern Industrial Descendants"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 883,
+                                                lineNumber: 831,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3354,19 +3180,19 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: asset.legacy || asset.desc
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 886,
+                                                lineNumber: 834,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 878,
+                                        lineNumber: 826,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 847,
+                                lineNumber: 795,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3384,20 +3210,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 900,
+                                                                lineNumber: 848,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: "Curator's Reflection"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 901,
+                                                                lineNumber: 849,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 899,
+                                                        lineNumber: 847,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("blockquote", {
@@ -3409,13 +3235,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 903,
+                                                        lineNumber: 851,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 898,
+                                                lineNumber: 846,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3426,7 +3252,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: asset.curatorAuthor || 'Chief Archivist, IAIMS Museum'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 908,
+                                                        lineNumber: 856,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3434,19 +3260,19 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "Department of Historical Kinematics"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 911,
+                                                        lineNumber: 859,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 907,
+                                                lineNumber: 855,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 897,
+                                        lineNumber: 845,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3457,7 +3283,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: "Archival Certification"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 919,
+                                                lineNumber: 867,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3470,7 +3296,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "IAMS Classification:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 924,
+                                                                lineNumber: 872,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3478,13 +3304,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "CLASS 4-ENG"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 925,
+                                                                lineNumber: 873,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 923,
+                                                        lineNumber: 871,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3494,20 +3320,20 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Digitization Standard:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 928,
+                                                                lineNumber: 876,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: "ISO-IAMS-2024"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 929,
+                                                                lineNumber: 877,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 927,
+                                                        lineNumber: 875,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3517,7 +3343,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Photogrammetry Mesh:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 932,
+                                                                lineNumber: 880,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3525,13 +3351,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: asset.polyCount
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 933,
+                                                                lineNumber: 881,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 931,
+                                                        lineNumber: 879,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3541,7 +3367,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: "Resonance Profile:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 936,
+                                                                lineNumber: 884,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3549,37 +3375,37 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: asset.resonance
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 937,
+                                                                lineNumber: 885,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 935,
+                                                        lineNumber: 883,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 922,
+                                                lineNumber: 870,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 918,
+                                        lineNumber: 866,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 894,
+                                lineNumber: 842,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                        lineNumber: 844,
+                        lineNumber: 792,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3595,7 +3421,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: "Comparative Historical Holdings"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 950,
+                                                lineNumber: 898,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3603,13 +3429,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: "Related Inventions from This Era"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 953,
+                                                lineNumber: 901,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 949,
+                                        lineNumber: 897,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3620,26 +3446,26 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                 children: "View Full Registry (500+ Assets)"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 961,
+                                                lineNumber: 909,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
                                                 className: "w-3.5 h-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 962,
+                                                lineNumber: 910,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 957,
+                                        lineNumber: 905,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 948,
+                                lineNumber: 896,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3659,14 +3485,14 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 975,
+                                                                lineNumber: 923,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 980,
+                                                                lineNumber: 928,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3674,13 +3500,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                                 children: rel.categoryLabel
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                                lineNumber: 981,
+                                                                lineNumber: 929,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 974,
+                                                        lineNumber: 922,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -3688,7 +3514,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: rel.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 985,
+                                                        lineNumber: 933,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3700,7 +3526,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 988,
+                                                        lineNumber: 936,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3708,13 +3534,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: rel.desc
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 991,
+                                                        lineNumber: 939,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 973,
+                                                lineNumber: 921,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3724,7 +3550,7 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "INSPECT DOSSIER"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 997,
+                                                        lineNumber: 945,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3732,36 +3558,36 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                                                         children: "→"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                        lineNumber: 998,
+                                                        lineNumber: 946,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                                lineNumber: 996,
+                                                lineNumber: 944,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, rel.id, true, {
                                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                                        lineNumber: 968,
+                                        lineNumber: 916,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                                lineNumber: 966,
+                                lineNumber: 914,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/DossierView.tsx",
-                        lineNumber: 947,
+                        lineNumber: 895,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                lineNumber: 165,
+                lineNumber: 167,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$common$2f$LightboxModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3770,13 +3596,13 @@ function DossierView({ asset, onClose, isStandalonePage = false }) {
                 onClose: ()=>setBlueprintLightbox(null)
             }, void 0, false, {
                 fileName: "[project]/src/components/sections/DossierView.tsx",
-                lineNumber: 1008,
+                lineNumber: 956,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/sections/DossierView.tsx",
-        lineNumber: 151,
+        lineNumber: 153,
         columnNumber: 5
     }, this);
 }

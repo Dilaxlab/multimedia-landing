@@ -292,3 +292,33 @@
 {"timestamp":"02:31:06.115","source":"Server","level":"LOG","message":"✓ Compiled in 1919ms"}
 {"timestamp":"02:31:14.777","source":"Server","level":"LOG","message":"✓ Compiled in 406ms"}
 {"timestamp":"02:37:15.516","source":"Server","level":"LOG","message":"✓ Compiled in 5.2s"}
+{"timestamp":"02:41:36.904","source":"Server","level":"LOG","message":"✓ Compiled in 233ms"}
+{"timestamp":"02:41:58.868","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"02:41:58.869","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"02:48:23.743","source":"Server","level":"LOG","message":"✓ Compiled in 993ms"}
+{"timestamp":"02:52:23.717","source":"Server","level":"LOG","message":"✓ Compiled in 5.4s"}
+{"timestamp":"02:52:55.207","source":"Server","level":"LOG","message":"✓ Compiled in 482ms"}
+{"timestamp":"02:54:24.017","source":"Server","level":"LOG","message":"✓ Compiled in 584ms"}
+{"timestamp":"02:55:03.652","source":"Server","level":"LOG","message":"✓ Compiled in 435ms"}
+{"timestamp":"02:55:22.595","source":"Server","level":"LOG","message":"✓ Compiled in 323ms"}
+{"timestamp":"02:55:26.590","source":"Server","level":"LOG","message":"✓ Compiled in 370ms"}
+{"timestamp":"02:55:27.644","source":"Server","level":"LOG","message":"✓ Compiled in 503ms"}
+{"timestamp":"02:56:42.237","source":"Server","level":"LOG","message":"✓ Compiled in 1182ms"}
+{"timestamp":"02:57:05.606","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"02:57:55.804","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"02:58:31.237","source":"Server","level":"LOG","message":"✓ Compiled in 566ms"}
+{"timestamp":"02:59:34.949","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"02:59:38.611","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"02:59:38.613","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"02:59:38.748","source":"Browser","level":"WARN","message":"Image with src \"/images/character_bell_stage.png\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"02:59:38.748","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/images/character_bell_stage.png\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"02:59:42.983","source":"Browser","level":"WARN","message":"Image with src \"/images/character_fleming_stage.png\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"02:59:42.983","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/images/character_fleming_stage.png\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"02:59:47.881","source":"Browser","level":"WARN","message":"Image with src \"/images/character_beville_stage.png\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"02:59:47.881","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/images/character_beville_stage.png\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"02:59:53.029","source":"Browser","level":"WARN","message":"Image with src \"/images/character_tesla_stage.png\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"02:59:53.030","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/images/character_tesla_stage.png\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"02:59:57.899","source":"Browser","level":"WARN","message":"Image with src \"/images/character_edison_stage.png\" has \"fill\" but is missing \"sizes\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes"}
+{"timestamp":"02:59:57.900","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mImage with src \\\"/images/character_edison_stage.png\\\" has \\\"fill\\\" but is missing \\\"sizes\\\" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes\\u001b[39m\""}
+{"timestamp":"03:08:57.512","source":"Server","level":"LOG","message":"✓ Compiled in 6.5s"}
+{"timestamp":"03:09:10.933","source":"Server","level":"LOG","message":"✓ Compiled in 2.2s"}

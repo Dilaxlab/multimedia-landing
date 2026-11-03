@@ -77,7 +77,19 @@ export default function HomePage() {
 
 
 
-     
+      {/* SECTION 6: Explore an Invention Detailed Experience */}
+      <DossierView
+        asset={selectedAsset}
+        onClose={
+          showDossierModal
+            ? () => {
+                setShowDossierModal(false);
+                const colEl = document.getElementById('collection');
+                if (colEl) colEl.scrollIntoView({ behavior: 'smooth' });
+              }
+            : undefined
+        }
+      />
     </div>
   );
 }

@@ -51,6 +51,7 @@ interface DossierViewProps {
   asset: HistoricalAsset;
   onClose?: () => void;
   isStandalonePage?: boolean;
+  hideHeroBanner?: boolean;
 }
 
 type TabType = '3D_MODEL' | 'WATCH_STORY' | 'BLUEPRINTS' | 'AUDIO_GUIDE';
@@ -59,6 +60,7 @@ export default function DossierView({
   asset,
   onClose,
   isStandalonePage = false,
+  hideHeroBanner = false,
 }: DossierViewProps) {
   const [activeTab, setActiveTab] = useState<TabType>('3D_MODEL');
   const [isWireframe, setIsWireframe] = useState<boolean>(false);
@@ -163,131 +165,77 @@ export default function DossierView({
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ==================== 2. HEADER & BREADCRUMB NAVIGATION ==================== */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
-          
-          {/* Breadcrumb path */}
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-neutral-400">
-            {isStandalonePage ? (
-              <Link
-                href="/#collection"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-neutral-300 hover:text-amber-300 transition-all font-sans mr-2"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Return to Collection</span>
-              </Link>
-            ) : null}
-            <span className="text-amber-400/80">IAIMS Digital Museum</span>
-            <span>&gt;</span>
-            <span className="text-neutral-300">Curated Heritage Holdings</span>
-            <span>&gt;</span>
-            <span className="text-white font-medium truncate max-w-[200px] sm:max-w-none">
-              {asset.title}
-            </span>
-          </div>
 
-          {/* Action Tools */}
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Standards Badge */}
-            <div className="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-[10px]">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>USPTO / Smithsonian Standards</span>
-            </div>
-
-            {/* Share Link */}
-            <button
-              onClick={handleShare}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-neutral-300 hover:text-white text-xs font-mono transition-all cursor-pointer"
-            >
-              {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span>{copiedLink ? 'Link Copied' : 'Share'}</span>
-            </button>
-
-            {/* Download Technical Plate */}
-            <button
-              onClick={handleDownloadPlate}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 text-xs font-mono transition-all cursor-pointer"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Technical Plate (PDF)</span>
-            </button>
-
-            {onClose ? (
-              <button
-                onClick={onClose}
-                className="w-8 h-8 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white transition cursor-pointer"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-            ) : null}
-          </div>
-
+         
         </div>
 
         {/* ==================== 3. HERO DOSSIER BANNER ==================== */}
-        <div className="mb-10 bg-[#0e0e13]/85 rounded-3xl border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left: Titles & Curatorial Summary */}
-            <div className="lg:col-span-8 flex flex-col gap-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 font-mono text-[10px] uppercase tracking-wider font-semibold">
-                  {asset.categoryLabel}
-                </span>
-                <span className="text-xs font-mono text-neutral-400">
-                  REF: {asset.id}
-                </span>
-                <span className="text-neutral-600">•</span>
-                <span className="text-xs font-mono text-neutral-400">
-                  {asset.era}
-                </span>
+        {!hideHeroBanner && (
+          <div className="mb-10 bg-[#0e0e13]/85 rounded-3xl border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+              {/* Left: Titles & Curatorial Summary */}
+              <div className="lg:col-span-8 flex flex-col gap-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 font-mono text-[10px] uppercase tracking-wider font-semibold">
+                    {asset.categoryLabel}
+                  </span>
+                  <span className="text-xs font-mono text-neutral-400">
+                    REF: {asset.id}
+                  </span>
+                  <span className="text-neutral-600">•</span>
+                  <span className="text-xs font-mono text-neutral-400">
+                    {asset.era}
+                  </span>
+                </div>
+
+                {/* Official Registered Title */}
+                <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+                  {asset.officialTitle || asset.title}
+                </h1>
+
+                {/* Short Description */}
+                <p className="font-sans text-neutral-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                  {asset.desc}
+                </p>
               </div>
 
-              {/* Official Registered Title */}
-              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
-                {asset.officialTitle || asset.title}
-              </h1>
+              {/* Right: Metadata Quick Grid */}
+              <div className="lg:col-span-4 w-full bg-[#14141c]/90 rounded-2xl border border-white/10 p-5 font-mono text-xs divide-y divide-white/10">
+                <div className="pb-2.5 flex items-center justify-between">
+                  <span className="text-neutral-400">Inventor:</span>
+                  <span className="text-white font-medium text-right">{asset.inventor}</span>
+                </div>
+                <div className="py-2.5 flex items-center justify-between">
+                  <span className="text-neutral-400">Workshop / Lab:</span>
+                  <span className="text-neutral-200 text-right">{asset.location}</span>
+                </div>
+                <div className="py-2.5 flex items-center justify-between">
+                  <span className="text-neutral-400">Patent Gazette:</span>
+                  <span className="text-amber-400 font-medium text-right">{asset.patent}</span>
+                </div>
+                <div className="py-2.5 flex items-center justify-between">
+                  <span className="text-neutral-400">Fabrication Materials:</span>
+                  <span className="text-neutral-200 text-right">{asset.medium}</span>
+                </div>
+                <div className="pt-2.5 flex items-center justify-between">
+                  <span className="text-neutral-400">Digital Twin:</span>
+                  <span className="text-emerald-400 flex items-center gap-1 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> 100% Curatorial Geometry
+                  </span>
+                </div>
+              </div>
 
-              {/* Short Description */}
-              <p className="font-sans text-neutral-300 text-sm sm:text-base leading-relaxed max-w-3xl">
-                {asset.desc}
-              </p>
             </div>
-
-            {/* Right: Metadata Quick Grid */}
-            <div className="lg:col-span-4 w-full bg-[#14141c]/90 rounded-2xl border border-white/10 p-5 font-mono text-xs divide-y divide-white/10">
-              <div className="pb-2.5 flex items-center justify-between">
-                <span className="text-neutral-400">Inventor:</span>
-                <span className="text-white font-medium text-right">{asset.inventor}</span>
-              </div>
-              <div className="py-2.5 flex items-center justify-between">
-                <span className="text-neutral-400">Workshop / Lab:</span>
-                <span className="text-neutral-200 text-right">{asset.location}</span>
-              </div>
-              <div className="py-2.5 flex items-center justify-between">
-                <span className="text-neutral-400">Patent Gazette:</span>
-                <span className="text-amber-400 font-medium text-right">{asset.patent}</span>
-              </div>
-              <div className="py-2.5 flex items-center justify-between">
-                <span className="text-neutral-400">Fabrication Materials:</span>
-                <span className="text-neutral-200 text-right">{asset.medium}</span>
-              </div>
-              <div className="pt-2.5 flex items-center justify-between">
-                <span className="text-neutral-400">Digital Twin:</span>
-                <span className="text-emerald-400 flex items-center gap-1 font-semibold">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> 100% Curatorial Geometry
-                </span>
-              </div>
-            </div>
-
           </div>
-        </div>
+        )}
 
         {/* ==================== 4. PRIMARY INTERACTIVE MEDIA WORKSPACE ==================== */}
         <div className="mb-14">
-          
+
           {/* Tab Navigation Pill Header */}
           <div className="flex items-center gap-1.5 p-1.5 bg-[#0e0e13]/90 rounded-2xl border border-white/10 backdrop-blur-xl mb-6 overflow-x-auto max-w-full scrollbar-none -mx-1 px-1 scroll-smooth">
             <button
@@ -507,7 +455,7 @@ export default function DossierView({
           {/* TAB 2: 3-SCENE HISTORICAL NARRATION VIDEO (30s) */}
           {activeTab === 'WATCH_STORY' && (
             <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-4 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-6">
-              
+
               {/* Cinematic Video Player Stage */}
               <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black flex items-center justify-center shadow-2xl border border-amber-500/25">
                 <img
@@ -676,7 +624,7 @@ export default function DossierView({
           {activeTab === 'BLUEPRINTS' && (
             <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-6">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
+
                 {/* Blueprint Drawing Viewport */}
                 <div className="lg:col-span-8 rounded-2xl bg-black border border-white/15 overflow-hidden relative group">
                   <img
@@ -685,7 +633,7 @@ export default function DossierView({
                     className="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
-                  
+
                   {/* Floating Action Badge */}
                   <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/80 border border-amber-500/30 text-amber-300 font-mono text-[10px] uppercase font-bold">
                     CYANOTYPE ARCHIVAL PLATE • USPTO GAZETTE
@@ -759,7 +707,7 @@ export default function DossierView({
           {activeTab === 'AUDIO_GUIDE' && (
             <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-6">
               <div className="max-w-2xl mx-auto w-full flex flex-col items-center text-center gap-5">
-                
+
                 {/* Audio Crest Icon */}
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/25 to-amber-600/10 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-glow-gold">
                   <Headphones className="w-9 h-9" />
@@ -842,10 +790,10 @@ export default function DossierView({
 
         {/* ==================== 5. CURATORIAL IN-DEPTH DOSSIER SECTIONS ==================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-          
+
           {/* Main 3 Narrative Blocks */}
           <div className="lg:col-span-8 flex flex-col gap-8">
-            
+
             {/* 1. Historical Context & Background */}
             <div className="p-6 sm:p-8 rounded-3xl bg-[#0e0e13]/85 border border-white/10 flex flex-col gap-3">
               <div className="flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-widest">
@@ -892,7 +840,7 @@ export default function DossierView({
 
           {/* Right Column: Curator's Reflection & Archival Seals */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            
+
             {/* 4. Curator's Reflection Highlight Quote */}
             <div className="p-6 rounded-3xl bg-gradient-to-br from-amber-500/10 via-[#0e0e13] to-black border border-amber-500/40 shadow-glow-gold flex flex-col justify-between">
               <div>

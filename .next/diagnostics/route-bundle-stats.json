@@ -1,13 +1,13 @@
 [
   {
     "route": "/",
-    "firstLoadUncompressedJsBytes": 642601,
+    "firstLoadUncompressedJsBytes": 641306,
     "firstLoadChunkPaths": [
       ".next/static/chunks/3qfy96eoyh-ek.js",
       ".next/static/chunks/34_9b0o541mhx.js",
       ".next/static/chunks/1ye6am5pu2_wp.js",
-      ".next/static/chunks/3-2o6vkhlo_56.js",
-      ".next/static/chunks/21-ibl79tnl__.js",
+      ".next/static/chunks/1edrnjuojf1m3.js",
+      ".next/static/chunks/3oelbz1awoaub.js",
       ".next/static/chunks/1pcw6gskne7pf.js",
       ".next/static/chunks/1wnov70f88xjy.js",
       ".next/static/chunks/3nsrkuia_9cbr.js",
@@ -17,12 +17,12 @@
   },
   {
     "route": "/inventions/[id]",
-    "firstLoadUncompressedJsBytes": 556151,
+    "firstLoadUncompressedJsBytes": 554911,
     "firstLoadChunkPaths": [
       ".next/static/chunks/3qfy96eoyh-ek.js",
       ".next/static/chunks/34_9b0o541mhx.js",
       ".next/static/chunks/1ye6am5pu2_wp.js",
-      ".next/static/chunks/21-ibl79tnl__.js",
+      ".next/static/chunks/3oelbz1awoaub.js",
       ".next/static/chunks/1pcw6gskne7pf.js",
       ".next/static/chunks/1wnov70f88xjy.js",
       ".next/static/chunks/3nsrkuia_9cbr.js",
