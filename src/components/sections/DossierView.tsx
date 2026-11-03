@@ -169,69 +169,10 @@ export default function DossierView({
         {/* ==================== 2. HEADER & BREADCRUMB NAVIGATION ==================== */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
 
-         
+
         </div>
 
-        {/* ==================== 3. HERO DOSSIER BANNER ==================== */}
-        {!hideHeroBanner && (
-          <div className="mb-10 bg-[#0e0e13]/85 rounded-3xl border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-              {/* Left: Titles & Curatorial Summary */}
-              <div className="lg:col-span-8 flex flex-col gap-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 font-mono text-[10px] uppercase tracking-wider font-semibold">
-                    {asset.categoryLabel}
-                  </span>
-                  <span className="text-xs font-mono text-neutral-400">
-                    REF: {asset.id}
-                  </span>
-                  <span className="text-neutral-600">•</span>
-                  <span className="text-xs font-mono text-neutral-400">
-                    {asset.era}
-                  </span>
-                </div>
-
-                {/* Official Registered Title */}
-                <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
-                  {asset.officialTitle || asset.title}
-                </h1>
-
-                {/* Short Description */}
-                <p className="font-sans text-neutral-300 text-sm sm:text-base leading-relaxed max-w-3xl">
-                  {asset.desc}
-                </p>
-              </div>
-
-              {/* Right: Metadata Quick Grid */}
-              <div className="lg:col-span-4 w-full bg-[#14141c]/90 rounded-2xl border border-white/10 p-5 font-mono text-xs divide-y divide-white/10">
-                <div className="pb-2.5 flex items-center justify-between">
-                  <span className="text-neutral-400">Inventor:</span>
-                  <span className="text-white font-medium text-right">{asset.inventor}</span>
-                </div>
-                <div className="py-2.5 flex items-center justify-between">
-                  <span className="text-neutral-400">Workshop / Lab:</span>
-                  <span className="text-neutral-200 text-right">{asset.location}</span>
-                </div>
-                <div className="py-2.5 flex items-center justify-between">
-                  <span className="text-neutral-400">Patent Gazette:</span>
-                  <span className="text-amber-400 font-medium text-right">{asset.patent}</span>
-                </div>
-                <div className="py-2.5 flex items-center justify-between">
-                  <span className="text-neutral-400">Fabrication Materials:</span>
-                  <span className="text-neutral-200 text-right">{asset.medium}</span>
-                </div>
-                <div className="pt-2.5 flex items-center justify-between">
-                  <span className="text-neutral-400">Digital Twin:</span>
-                  <span className="text-emerald-400 flex items-center gap-1 font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> 100% Curatorial Geometry
-                  </span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        )}
+      
 
         {/* ==================== 4. PRIMARY INTERACTIVE MEDIA WORKSPACE ==================== */}
         <div className="mb-14">

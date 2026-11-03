@@ -1,5 +1,3 @@
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -10,10 +8,6 @@ const nextConfig = {
     '192.168.43.246:3000',
     '192.168.*',
   ],
-  webpack: (config) => {
-    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
-    return config;
-  },
   images: {
     remotePatterns: [
       {
