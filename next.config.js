@@ -10,7 +10,6 @@ const nextConfig = {
     '192.168.43.246:3000',
     '192.168.*',
   ],
-  turbopack: {},
   webpack: (config) => {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
