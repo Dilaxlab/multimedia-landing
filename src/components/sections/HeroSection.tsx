@@ -34,48 +34,48 @@ export interface HistoricalAssetItem {
 const HERO_ASSETS: HistoricalAssetItem[] = [
   {
     id: 'HA-109',
-    name: "Alexander Graham Bell",
-    inventor: 'Inventor of the Speaking Telephone (1876)',
+    name: 'Character A',
+    inventor: 'Test Role A (1876)',
     year: '1876',
     image: '/images/character_bell_stage.png',
-    tag: 'Animated Character • Bell',
-    desc: '3D animated cartoon inventor testing acoustic voice transmitters across telegraph wires.',
+    tag: 'Animated Character • A',
+    desc: 'Test description for Character A.',
   },
   {
     id: 'HA-102',
-    name: 'Caroline F. Fleming',
-    inventor: 'Inventor of Improved Washing-Machine (1880)',
+    name: 'Character B',
+    inventor: 'Test Role B (1880)',
     year: '1884',
     image: '/images/character_fleming_stage.png',
-    tag: 'Animated Character • Fleming',
-    desc: '3D animated cartoon engineer pioneering mechanical gear agitation and domestic labor automation.',
+    tag: 'Animated Character • B',
+    desc: 'Test description for Character B.',
   },
   {
     id: 'HA-103',
-    name: 'Henry H. Beville',
-    inventor: 'Inventor of Iron Duke Wind Mill (1882)',
+    name: 'Character C',
+    inventor: 'Test Role C (1882)',
     year: '1887',
     image: '/images/character_beville_stage.png',
-    tag: 'Animated Character • Beville',
-    desc: '3D animated cartoon prairie engineer designing self-governing radial wind engines.',
+    tag: 'Animated Character • C',
+    desc: 'Test description for Character C.',
   },
   {
     id: 'HA-107',
-    name: 'Nikola Tesla',
-    inventor: 'Inventor of AC Induction Dynamo (1888)',
+    name: 'Character D',
+    inventor: 'Test Role D (1888)',
     year: '1888',
     image: '/images/character_tesla_stage.png',
-    tag: 'Animated Character • Tesla',
-    desc: '3D animated cartoon visionary scientist experimenting with wireless energy and polyphase currents.',
+    tag: 'Animated Character • D',
+    desc: 'Test description for Character D.',
   },
   {
     id: 'HA-105',
-    name: 'Thomas Alva Edison',
-    inventor: 'Inventor of Incandescent Lamp (1880)',
+    name: 'Character E',
+    inventor: 'Test Role E (1880)',
     year: '1880',
     image: '/images/character_edison_stage.png',
-    tag: 'Animated Character • Edison',
-    desc: '3D animated cartoon pioneer holding a glowing warm incandescent filament lightbulb.',
+    tag: 'Animated Character • E',
+    desc: 'Test description for Character E.',
   },
 ];
 
@@ -128,7 +128,7 @@ export default function HeroSection({
   return (
     <section
       id="hero"
-      className="relative w-full bg-[#0a0a0c] text-[#e2e8f0] overflow-hidden pt-4 pb-10 sm:pt-8 sm:pb-16 lg:pt-14 lg:pb-24"
+      className="relative w-full bg-[#0a0a0c] text-[#e2e8f0] overflow-hidden pt-16 pb-10 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-24"
     >
       {/* Warm Ambient Bronze & Amber Spotlight Glow Radiating from Center Stage */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

@@ -29,16 +29,10 @@ export default function VideoGallery() {
             <h2 className="font-serif text-3xl md:text-5xl tracking-tight text-on-surface font-normal">
               Historical Narration Video Gallery
             </h2>
-            <p className="mt-3 text-sm md:text-base text-on-surface-variant max-w-2xl font-sans leading-relaxed">
-              Cinematic AI-narrated invention documentaries crafted in disciplined 30-second vignettes.
-              Each documentary follows a strict 3-scene tripartite structure: The Problem (10s), The Breakthrough (10s), and The Global Legacy (10s).
-            </p>
+
           </div>
 
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-surface-container-high border border-outline-variant/30 text-xs font-mono text-on-surface-variant self-start md:self-auto">
-            <Clock className="w-4 h-4 text-primary" />
-            <span>3 SCENES • 10s EACH • 30s TOTAL</span>
-          </div>
+          
         </div>
 
         {/* Featured Documentary Spotlight Box */}

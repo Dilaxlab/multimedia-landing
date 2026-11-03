@@ -1,13 +1,30 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { Box, RotateCw, Sun, Moon, Maximize2, MousePointer, ZoomIn, Info, X, ArrowRight } from 'lucide-react';
+import {
+  Box,
+  RotateCw,
+  Sun,
+  Moon,
+  Maximize2,
+  MousePointer,
+  ZoomIn,
+  Info,
+  X,
+  ArrowRight,
+  Layers,
+  Sparkles,
+  Compass,
+  Award,
+  Search,
+  Grid2x2,
+  Check,
+} from 'lucide-react';
 import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import { HistoricalAsset } from '@/types/asset';
 
-// Dynamically import Three.js viewer with SSR disabled
 const ModelViewer3D = dynamic(() => import('@/components/viewers/ModelViewer3D'), {
   ssr: false,
   loading: () => (
@@ -24,6 +41,16 @@ interface SpatialGalleryProps {
   onSelectAssetId?: (id: string) => void;
 }
 
+const SPATIAL_CATEGORIES: { key: string; label: string }[] = [
+  { key: 'ALL', label: 'All 3D Models' },
+  { key: 'TELECOM', label: 'Telephony & Acoustic' },
+  { key: 'AERO', label: 'Aeronautics' },
+  { key: 'DOMESTIC', label: 'Domestic Mechanics' },
+  { key: 'WIND', label: 'Wind & Rotary' },
+  { key: 'COMPUTING', label: 'Computing Engines' },
+  { key: 'TIME', label: 'Horology & Clocks' },
+];
+
 export default function SpatialGallery({
   onSelectAssetForDossier,
   selectedAssetId: externalAssetId,
@@ -32,17 +59,37 @@ export default function SpatialGallery({
   const [internalAssetId, setInternalAssetId] = useState<string>('HA-101');
   const selectedAssetId = externalAssetId || internalAssetId;
 
+  // Search & Filter State
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [activeCategory, setActiveCategory] = useState<string>('ALL');
+  const [isBrowserModalOpen, setIsBrowserModalOpen] = useState<boolean>(false);
+
   const handleSelectAssetId = (id: string) => {
     setInternalAssetId(id);
     if (onSelectAssetId) onSelectAssetId(id);
   };
 
   const featuredAssets = MOCK_HISTORICAL_ASSETS;
-  const [isWireframe, setIsWireframe] = useState<boolean>(false);
-  const [isAutoRotating, setIsAutoRotating] = useState<boolean>(true);
+
+  // Filter 3D Models based on active category and search query
+  const filteredAssets = featuredAssets.filter((asset) => {
+    const matchesCategory =
+      activeCategory === 'ALL' || asset.category === activeCategory;
+    const matchesSearch =
+      !searchQuery.trim() ||
+      asset.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      asset.inventor.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      asset.patent.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      asset.id.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const [isWireframe, setIsWireframe] = useState(false);
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [lightingMode, setLightingMode] = useState<'spotlight' | 'ambient'>('spotlight');
-  const [zoomLevel, setZoomLevel] = useState<number>(4.8);
+  const [zoomLevel, setZoomLevel] = useState(4.8);
   const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const viewerContainerRef = useRef<HTMLDivElement>(null);
 
   const currentAsset =
@@ -58,129 +105,215 @@ export default function SpatialGallery({
   const handleToggleFullscreen = () => {
     if (!viewerContainerRef.current) return;
     if (!document.fullscreenElement) {
-      viewerContainerRef.current.requestFullscreen().catch((err) => {
-        console.error('Error attempting to enable fullscreen:', err);
-      });
+      viewerContainerRef.current
+        .requestFullscreen()
+        .catch((err) => console.error('Fullscreen error:', err));
     } else {
       document.exitFullscreen();
     }
   };
 
+  useEffect(() => {
+    const onFsChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', onFsChange);
+    return () => document.removeEventListener('fullscreenchange', onFsChange);
+  }, []);
+
   return (
-    <section id="gallery3d" className="relative py-24 bg-surface-container-lowest text-on-surface border-t border-outline-variant/20 scroll-mt-20">
-      {/* Decorative Museum Floor Grid */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+    <section
+      id="gallery3d"
+      className="relative py-16 sm:py-24 bg-surface-container-lowest text-on-surface border-t border-outline-variant/20 scroll-mt-20 overflow-hidden"
+    >
+      {/* Blueprint grid */}
+      <div
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
+          backgroundImage:
+            'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
         }}
       />
+      {/* Radial museum glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Box className="w-4 h-4 text-primary" />
-              <span className="text-xs font-mono tracking-widest text-primary uppercase">
-                Section 03 // Spatial Exploration Workbench
-              </span>
+        {/* ================= HEADER ================= */}
+        <div className="flex flex-col gap-5 mb-8 sm:mb-10">
+          {/* --- Row 1: Title + Search (desktop) --- */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6">
+            {/* Left: Title block */}
+            <div className="min-w-0 shrink-0">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">
+                  <Sparkles className="w-3 h-3 text-primary" />
+                  <span className="text-[10px] font-mono tracking-widest text-primary uppercase">
+                    Spatial Workbench
+                  </span>
+                </span>
+              </div>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight text-on-surface font-normal leading-tight">
+                Interactive <span className="italic text-primary/90">3D</span> Model Gallery
+              </h2>
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl tracking-tight text-on-surface font-normal">
-              Interactive 3D Model Gallery
-            </h2>
-            <p className="mt-3 text-sm md:text-base text-on-surface-variant max-w-2xl font-sans leading-relaxed">
-              Examine historical patents via real-time WebGL rendering. Rotate, zoom, and inspect wireframe topologies reconstructed from original 19th-century mechanical blueprints.
-            </p>
+
+            {/* Right: Search bar (desktop/tablet only — mobile drops below) */}
+            <div className="hidden lg:flex items-center gap-2 w-full max-w-md">
+              {/* Search Input */}
+              <div className="relative flex-1 group">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none transition-colors group-focus-within:text-primary" />
+                <input
+                  type="text"
+                  placeholder="Search model, inventor, patent ID…"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-surface-container border border-outline-variant/40 rounded-xl pl-9 pr-16 py-2.5 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
+                />
+                {searchQuery ? (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high cursor-pointer transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                ) : (
+                  <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-outline-variant/40 bg-surface-container-high text-[9px] font-mono text-on-surface-variant/70 pointer-events-none select-none">
+                    ⌘K
+                  </kbd>
+                )}
+              </div>
+
+              {/* Browse All button — icon-only pill on desktop compactness */}
+              <button
+                onClick={() => setIsBrowserModalOpen(true)}
+                className="inline-flex items-center justify-center gap-1.5 h-[38px] px-3 rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 text-xs font-mono font-medium transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95"
+                title={`Browse all ${featuredAssets.length} models`}
+              >
+                <Grid2x2 className="w-4 h-4" />
+                <span className="hidden xl:inline">{featuredAssets.length}</span>
+              </button>
+            </div>
           </div>
 
-          {/* Model Switcher Tabs */}
-          <div className="flex items-center gap-1.5 p-1.5 bg-surface-container border border-outline-variant/30 rounded-xl overflow-x-auto max-w-full">
-            {featuredAssets.map((asset) => (
-              <button
-                key={asset.id}
-                onClick={() => handleSelectAssetId(asset.id)}
-                className={`px-3.5 py-2 rounded-lg text-xs font-mono transition-all whitespace-nowrap flex items-center gap-2 cursor-pointer ${
-                  selectedAssetId === asset.id
-                    ? 'bg-primary text-surface-container-lowest font-semibold shadow-md'
-                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-                }`}
-              >
-                <span>{asset.title.split(' ')[0]}</span>
-                <span className="text-[10px] opacity-70">({asset.id})</span>
-              </button>
-            ))}
+          {/* --- Row 2 (Mobile only): Search drops below title, full-width --- */}
+          <div className="flex lg:hidden items-center gap-2">
+            <div className="relative flex-1 group">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none transition-colors group-focus-within:text-primary" />
+              <input
+                type="text"
+                placeholder="Search model, inventor, patent…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-surface-container border border-outline-variant/40 rounded-xl pl-9 pr-9 py-2.5 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+
+            <button
+              onClick={() => setIsBrowserModalOpen(true)}
+              className="inline-flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95"
+              title={`Browse all ${featuredAssets.length} models`}
+              aria-label="Browse all models"
+            >
+              <Grid2x2 className="w-4 h-4" />
+            </button>
           </div>
+
+          {/* --- Row 3: Category tabs strip --- */}
+       
         </div>
 
-        {/* 3D Workbench Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Main 3D Viewer Canvas */}
-          <div 
+        {/* ================= WORKBENCH ================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* ---- Main Canvas ---- */}
+          <div
             ref={viewerContainerRef}
-            className="lg:col-span-8 relative bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden shadow-2xl flex flex-col min-h-[380px] sm:min-h-[480px] lg:min-h-[620px]"
+            className={`lg:col-span-8 relative bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-lowest rounded-3xl border border-outline-variant/40 overflow-hidden shadow-2xl flex flex-col min-h-[420px] sm:min-h-[520px] lg:min-h-[640px] ${
+              isFullscreen ? 'rounded-none border-0' : ''
+            }`}
           >
-            {/* Top Viewer Toolbar */}
-            <div className="p-3 sm:p-4 border-b border-outline-variant/20 bg-surface-container/60 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 text-xs font-mono z-10">
-              <div className="flex items-center gap-2 sm:gap-3 truncate">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                <span className="text-on-surface font-medium truncate">{currentAsset.title}</span>
-                <span className="text-on-surface-variant hidden sm:inline">•</span>
-                <span className="text-on-surface-variant hidden sm:inline">{currentAsset.polyCount}</span>
-              </div>
+            {/* Decorative corner accents */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/30 rounded-tl-3xl pointer-events-none z-10" />
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/30 rounded-tr-3xl pointer-events-none z-10" />
 
-              {/* Quick Controls */}
-              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                {/* Wireframe toggle */}
-                <button
-                  onClick={() => setIsWireframe(!isWireframe)}
-                  className={`px-2 py-1 rounded text-[10px] sm:text-[11px] font-mono border transition-all ${
-                    isWireframe
-                      ? 'border-primary bg-primary/20 text-primary'
-                      : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface'
-                  }`}
-                  title="Toggle wireframe topology view"
-                >
-                  {isWireframe ? 'WIREFRAME' : 'SHADED'}
-                </button>
+            {/* ---- Top Toolbar ---- */}
+            <div className="relative z-10 p-2.5 sm:p-4 border-b border-outline-variant/20 bg-surface-container/70 backdrop-blur-xl">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="relative flex w-2 h-2 shrink-0">
+                    <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-60" />
+                    <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
+                  </span>
+                  <div className="flex flex-col min-w-0 leading-tight">
+                    <span className="text-[11px] sm:text-xs text-on-surface font-medium truncate">
+                      {currentAsset.title}
+                    </span>
+                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant font-mono truncate">
+                      {currentAsset.id} • {currentAsset.polyCount}
+                    </span>
+                  </div>
+                </div>
 
-                {/* Auto-rotation toggle */}
-                <button
-                  onClick={() => setIsAutoRotating(!isAutoRotating)}
-                  className={`p-1.5 rounded border border-outline-variant/40 transition-colors ${
-                    isAutoRotating ? 'text-primary border-primary/50' : 'text-on-surface-variant'
-                  }`}
-                  title="Toggle 360° turntable rotation"
-                >
-                  <RotateCw className={`w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`} />
-                </button>
+                <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+                  <button
+                    onClick={() => setIsWireframe(!isWireframe)}
+                    className={`h-8 px-2 sm:px-2.5 rounded-lg text-[10px] sm:text-[11px] font-mono border transition-all flex items-center gap-1 ${
+                      isWireframe
+                        ? 'border-primary bg-primary/15 text-primary'
+                        : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30'
+                    }`}
+                    title="Toggle wireframe"
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">{isWireframe ? 'WIRE' : 'SHADED'}</span>
+                  </button>
 
-                {/* Lighting toggle */}
-                <button
-                  onClick={() => setLightingMode(lightingMode === 'spotlight' ? 'ambient' : 'spotlight')}
-                  className="p-1.5 rounded border border-outline-variant/40 text-on-surface-variant hover:text-on-surface transition-colors"
-                  title="Toggle bronze chiaroscuro vs ambient lighting"
-                >
-                  {lightingMode === 'spotlight' ? (
-                    <Sun className="w-3.5 h-3.5" />
-                  ) : (
-                    <Moon className="w-3.5 h-3.5" />
-                  )}
-                </button>
+                  <button
+                    onClick={() => setIsAutoRotating(!isAutoRotating)}
+                    className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-all ${
+                      isAutoRotating
+                        ? 'border-primary/50 text-primary bg-primary/10'
+                        : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface'
+                    }`}
+                    title="Auto rotate"
+                  >
+                    <RotateCw className={`w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`} />
+                  </button>
 
-                {/* Fullscreen */}
-                <button
-                  onClick={handleToggleFullscreen}
-                  className="p-1.5 rounded border border-outline-variant/40 text-on-surface-variant hover:text-on-surface transition-colors"
-                  title="Full-screen view"
-                >
-                  <Maximize2 className="w-3.5 h-3.5" />
-                </button>
+                  <button
+                    onClick={() =>
+                      setLightingMode(lightingMode === 'spotlight' ? 'ambient' : 'spotlight')
+                    }
+                    className="w-8 h-8 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30 flex items-center justify-center transition-all"
+                    title="Lighting"
+                  >
+                    {lightingMode === 'spotlight' ? (
+                      <Sun className="w-3.5 h-3.5" />
+                    ) : (
+                      <Moon className="w-3.5 h-3.5" />
+                    )}
+                  </button>
+
+                  <button
+                    onClick={handleToggleFullscreen}
+                    className="w-8 h-8 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30 flex items-center justify-center transition-all"
+                    title="Fullscreen"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Three.js Interactive Canvas Container */}
+            {/* ---- Canvas ---- */}
             <div className="relative flex-1 w-full h-full cursor-grab active:cursor-grabbing">
               <ModelViewer3D
                 modelType={currentAsset.modelType}
@@ -188,137 +321,159 @@ export default function SpatialGallery({
                 isAutoRotating={isAutoRotating}
                 lightingMode={lightingMode}
                 zoomLevel={zoomLevel}
-                onHotspotClick={(id) => {
-                  setActiveHotspot(`Component #${id}: Primary mechanical assembly interface`);
-                }}
+                onHotspotClick={(id) =>
+                  setActiveHotspot(`Component #${id}: Primary mechanical assembly interface`)
+                }
               />
 
-              {/* Floating Camera Instructions (Hidden on very small screens to avoid overlap) */}
-              <div className="hidden sm:flex absolute bottom-4 left-4 pointer-events-none items-center gap-3 text-[11px] font-mono text-on-surface-variant/70 bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-outline-variant/20">
+              <div className="hidden sm:flex absolute bottom-4 left-4 pointer-events-none items-center gap-3 text-[10px] font-mono text-on-surface-variant/70 bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-outline-variant/20">
                 <span className="flex items-center gap-1.5">
-                  <MousePointer className="w-3.5 h-3.5 text-primary" /> Left-click + drag to orbit
+                  <MousePointer className="w-3 h-3 text-primary" /> Drag to orbit
                 </span>
-                <span>•</span>
+                <span className="opacity-40">·</span>
                 <span className="flex items-center gap-1.5">
-                  <ZoomIn className="w-3.5 h-3.5 text-primary" /> Scroll / pinch to zoom
+                  <ZoomIn className="w-3 h-3 text-primary" /> Scroll to zoom
                 </span>
               </div>
 
-              {/* Floating Zoom +/- & Reset Controls */}
-              <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 flex items-center gap-1.5 bg-surface-container-lowest/80 backdrop-blur-md p-1.5 rounded-lg border border-outline-variant/20 z-10">
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1 bg-surface-container-lowest/85 backdrop-blur-xl p-1.5 rounded-2xl border border-outline-variant/30 shadow-xl z-10">
                 <button
-                  onClick={() => setZoomLevel((z) => Math.max(2.5, z - 0.5))}
-                  className="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-base font-mono active:scale-95"
-                  title="Zoom In"
+                  onClick={() => setZoomLevel((z) => Math.min(8.0, z + 0.5))}
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90"
+                  title="Zoom in"
                 >
                   +
                 </button>
+                <div className="w-5 h-[1px] bg-outline-variant/40" />
                 <button
-                  onClick={() => setZoomLevel((z) => Math.min(8.0, z + 0.5))}
-                  className="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-base font-mono active:scale-95"
-                  title="Zoom Out"
+                  onClick={() => setZoomLevel((z) => Math.max(2.5, z - 0.5))}
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90"
+                  title="Zoom out"
                 >
                   −
                 </button>
-                <div className="w-[1px] h-4 bg-outline-variant/30 my-auto" />
+                <div className="w-5 h-[1px] bg-outline-variant/40" />
                 <button
                   onClick={handleReset}
-                  className="px-2 py-1 text-[10px] font-mono text-primary hover:underline active:scale-95"
-                  title="Reset view orientation"
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-primary hover:bg-primary/10 transition-colors active:scale-90"
+                  title="Reset view"
                 >
-                  RESET
+                  <Compass className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              {/* Hotspot banner if clicked */}
               {activeHotspot && (
-                <div className="absolute top-4 left-4 right-4 p-3 rounded-lg bg-surface-container/95 border border-primary/40 text-xs font-mono text-on-surface flex items-center justify-between z-10 shadow-lg">
-                  <div className="flex items-center gap-2 truncate">
-                    <Info className="w-4 h-4 text-primary shrink-0" />
-                    <span className="truncate">{activeHotspot}</span>
+                <div className="absolute left-3 right-3 sm:left-auto sm:right-3 sm:top-3 sm:max-w-sm bottom-3 sm:bottom-auto z-20 animate-[slideUp_0.3s_ease-out]">
+                  <div className="p-3 rounded-xl bg-surface-container/95 backdrop-blur-xl border border-primary/40 shadow-2xl flex items-start gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
+                      <Info className="w-3.5 h-3.5 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-[9px] font-mono text-primary uppercase tracking-widest block mb-0.5">
+                        Hotspot Selected
+                      </span>
+                      <span className="text-[11px] font-mono text-on-surface block leading-snug">
+                        {activeHotspot}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => setActiveHotspot(null)}
+                      className="text-on-surface-variant hover:text-on-surface shrink-0"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
                   </div>
-                  <button onClick={() => setActiveHotspot(null)} className="text-on-surface-variant hover:text-on-surface ml-2">
-                    <X className="w-4 h-4" />
-                  </button>
                 </div>
               )}
             </div>
 
-            {/* Bottom Status Ticker */}
-            <div className="px-3 sm:px-4 py-2 border-t border-outline-variant/20 bg-surface-container/40 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-on-surface-variant gap-2 truncate">
-              <span className="shrink-0">{currentAsset.id}</span>
-              <span className="truncate">{currentAsset.patent}</span>
-              <span className="text-primary hidden md:inline shrink-0">Three.js</span>
+            <div className="relative z-10 px-3 sm:px-4 py-2 border-t border-outline-variant/20 bg-surface-container/50 backdrop-blur-md flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-on-surface-variant gap-2">
+              <div className="flex items-center gap-1.5 shrink-0">
+                <Award className="w-3 h-3 text-primary" />
+                <span className="truncate max-w-[120px] sm:max-w-none">{currentAsset.patent}</span>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-primary hidden sm:inline">Three.js</span>
+                <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                <span>LIVE</span>
+              </div>
             </div>
           </div>
 
-          {/* Model Information Sidebar */}
-          <div className="lg:col-span-4 flex flex-col justify-between bg-surface-container-low rounded-2xl border border-outline-variant/30 p-4 sm:p-6 shadow-xl">
-            <div>
-              {/* Header Badge */}
+          {/* ---- Info Sidebar (Museum Plaque) ---- */}
+          <div className="lg:col-span-4 flex flex-col bg-gradient-to-b from-surface-container-low to-surface-container rounded-3xl border border-outline-variant/40 p-5 sm:p-6 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+
+            <div className="flex-1">
               <div className="flex items-center justify-between mb-4">
-                <span className="px-2.5 py-1 rounded bg-primary/10 text-primary border border-primary/20 text-[10px] font-mono uppercase tracking-wider">
+                <span className="px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 text-[10px] font-mono uppercase tracking-widest">
                   {currentAsset.categoryLabel}
                 </span>
-                <span className="text-xs font-mono text-on-surface-variant">{currentAsset.era}</span>
+                <span className="text-[10px] font-mono text-on-surface-variant">
+                  {currentAsset.era}
+                </span>
               </div>
 
-              {/* Title & Inventor */}
-              <h3 className="font-serif text-2xl text-on-surface font-normal mb-1">
+              <h3 className="font-serif text-2xl sm:text-3xl text-on-surface font-normal mb-1 leading-tight">
                 {currentAsset.title}
               </h3>
-              <p className="text-xs font-mono text-primary mb-4">
-                Inventor: {currentAsset.inventor}
-              </p>
+              <p className="text-[11px] font-mono text-primary mb-5">by {currentAsset.inventor}</p>
 
-              {/* Patent metadata card */}
-              <div className="p-3.5 rounded-xl bg-surface-container border border-outline-variant/20 mb-6 space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-on-surface-variant">Patent Registry:</span>
-                  <span className="text-on-surface font-medium">{currentAsset.patent}</span>
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-on-surface-variant">Grant Date:</span>
-                  <span className="text-on-surface">{currentAsset.patentDate}</span>
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-on-surface-variant">Workshop Origin:</span>
-                  <span className="text-on-surface">{currentAsset.location}</span>
-                </div>
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-on-surface-variant">Material Spec:</span>
-                  <span className="text-on-surface">{currentAsset.medium}</span>
-                </div>
+              <div className="relative rounded-2xl bg-surface-container-lowest/60 border border-outline-variant/30 p-4 mb-5 space-y-2.5">
+                <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t border-l border-primary/40" />
+                <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b border-r border-primary/40" />
+
+                {[
+                  ['Patent', currentAsset.patent],
+                  ['Granted', currentAsset.patentDate],
+                  ['Origin', currentAsset.location],
+                  ['Material', currentAsset.medium],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="flex items-center justify-between text-[11px] font-mono gap-2"
+                  >
+                    <span className="text-on-surface-variant uppercase tracking-wider">
+                      {label}
+                    </span>
+                    <span className="text-on-surface font-medium truncate text-right">{value}</span>
+                  </div>
+                ))}
               </div>
 
-              {/* Description */}
-              <div className="mb-6">
-                <h4 className="text-[11px] font-mono text-on-surface-variant uppercase tracking-wider mb-2">
-                  Historical Mechanics
+              <div className="mb-5">
+                <h4 className="text-[10px] font-mono text-on-surface-variant uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                  <Box className="w-3 h-3 text-primary" /> Historical Mechanics
                 </h4>
-                <p className="text-xs font-sans text-on-surface/90 leading-relaxed line-clamp-4">
+                <p className="text-[12px] font-sans text-on-surface/85 leading-relaxed line-clamp-4">
                   {currentAsset.mechanics || currentAsset.desc}
                 </p>
               </div>
 
-              {/* Quick Model Stats */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="p-2.5 rounded-lg bg-surface-container border border-outline-variant/20">
-                  <span className="text-[10px] font-mono text-on-surface-variant block">GEOMETRY</span>
-                  <span className="text-xs font-mono text-on-surface font-medium">{currentAsset.polyCount}</span>
+              <div className="grid grid-cols-2 gap-2.5 mb-5">
+                <div className="rounded-xl bg-surface-container-lowest/60 border border-outline-variant/30 p-3">
+                  <span className="text-[9px] font-mono text-on-surface-variant uppercase tracking-widest block mb-1">
+                    Geometry
+                  </span>
+                  <span className="text-xs font-mono text-on-surface font-semibold">
+                    {currentAsset.polyCount}
+                  </span>
                 </div>
-                <div className="p-2.5 rounded-lg bg-surface-container border border-outline-variant/20">
-                  <span className="text-[10px] font-mono text-on-surface-variant block">RESONANCE</span>
-                  <span className="text-xs font-mono text-on-surface font-medium">{currentAsset.resonance}</span>
+                <div className="rounded-xl bg-surface-container-lowest/60 border border-outline-variant/30 p-3">
+                  <span className="text-[9px] font-mono text-on-surface-variant uppercase tracking-widest block mb-1">
+                    Resonance
+                  </span>
+                  <span className="text-xs font-mono text-on-surface font-semibold">
+                    {currentAsset.resonance}
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="pt-4 border-t border-outline-variant/20 space-y-2">
+            <div className="pt-4 border-t border-outline-variant/30 space-y-2">
               <Link
                 href={`/inventions/${currentAsset.id}`}
-                className="w-full py-3 rounded-xl bg-primary text-surface-container-lowest font-medium font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md group"
+                className="w-full py-3 rounded-xl bg-primary text-surface-container-lowest font-medium font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 group"
               >
                 <span>OPEN FULL MONOGRAPH</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -327,7 +482,7 @@ export default function SpatialGallery({
               {onSelectAssetForDossier && (
                 <button
                   onClick={() => onSelectAssetForDossier(currentAsset)}
-                  className="w-full py-2.5 rounded-xl border border-outline-variant/40 hover:bg-surface-container text-xs font-mono text-on-surface-variant hover:text-on-surface transition-colors"
+                  className="w-full py-2.5 rounded-xl border border-outline-variant/40 hover:bg-surface-container hover:border-primary/40 text-[11px] font-mono text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
                 >
                   Quick Monograph Preview
                 </button>
@@ -336,6 +491,102 @@ export default function SpatialGallery({
           </div>
         </div>
       </div>
+
+      {/* ================= 3D MODEL BROWSER MODAL ================= */}
+      {isBrowserModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 animate-fadeIn"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsBrowserModalOpen(false);
+          }}
+        >
+          <div className="w-full max-w-3xl bg-[#121217] border border-amber-500/40 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4 max-h-[88vh] overflow-hidden">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+                  <Grid2x2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-white leading-tight">
+                    Select 3D Spatial Model
+                  </h3>
+                  <span className="text-[10px] font-mono text-amber-400">
+                    {featuredAssets.length} Photogrammetry & CAD Assets Available
+                  </span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setIsBrowserModalOpen(false)}
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Grid of all 3D models */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-y-auto pr-1">
+              {featuredAssets.map((asset) => {
+                const isCurrent = currentAsset.id === asset.id;
+                return (
+                  <div
+                    key={asset.id}
+                    onClick={() => {
+                      handleSelectAssetId(asset.id);
+                      setIsBrowserModalOpen(false);
+                    }}
+                    className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 active:scale-98 ${
+                      isCurrent
+                        ? 'bg-primary/15 border-primary shadow-lg shadow-primary/20'
+                        : 'bg-white/[0.03] border-white/10 hover:border-amber-400/50 hover:bg-white/[0.06]'
+                    }`}
+                  >
+                    <img
+                      src={asset.image}
+                      alt={asset.title}
+                      className="w-14 h-14 rounded-xl object-cover shrink-0 border border-white/10"
+                    />
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-0.5">
+                        <span className="text-[10px] font-mono text-amber-400 font-semibold truncate">
+                          {asset.id} • {asset.categoryLabel.split(' ')[0]}
+                        </span>
+                        {isCurrent && (
+                          <span className="px-1.5 py-0.5 rounded bg-primary text-surface-container-lowest text-[9px] font-mono font-bold">
+                            ACTIVE
+                          </span>
+                        )}
+                      </div>
+                      <h4 className="font-serif text-sm font-bold text-white truncate">
+                        {asset.title}
+                      </h4>
+                      <p className="text-[11px] font-sans text-neutral-400 truncate">
+                        by {asset.inventor}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* keyframe for slide-in */}
+      <style jsx>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }

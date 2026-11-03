@@ -145,12 +145,12 @@ export default function ModelViewer3D({
     window.addEventListener('touchend', onTouchEnd);
     window.addEventListener('touchmove', onTouchMove);
 
-    // Animation Loop
-    let clock = new THREE.Clock();
+    // Animation Loop using monotonic performance.now() (eliminates THREE.Clock deprecation)
+    const startTime = performance.now();
 
     const animate = () => {
       animFrameIdRef.current = requestAnimationFrame(animate);
-      const elapsed = clock.getElapsedTime();
+      const elapsed = (performance.now() - startTime) * 0.001;
 
       // Main rotation & levitation floating sine wave
       if (meshGroupRef.current) {

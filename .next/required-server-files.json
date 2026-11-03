@@ -114,6 +114,13 @@
       }
     },
     "outputFileTracingRoot": "/home/dilax/Desktop/jen info tech/multimedia/heritage-archive",
+    "allowedDevOrigins": [
+      "localhost",
+      "127.0.0.1",
+      "192.168.43.246",
+      "192.168.43.246:3000",
+      "192.168.*"
+    ],
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
     "cacheLife": {

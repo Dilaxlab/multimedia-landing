@@ -150,12 +150,12 @@ function ModelViewer3D({ modelType = 'antigravity', isWireframe = false, isAutoR
             container.addEventListener('touchstart', onTouchStart);
             window.addEventListener('touchend', onTouchEnd);
             window.addEventListener('touchmove', onTouchMove);
-            // Animation Loop
-            let clock = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Clock"]();
+            // Animation Loop using monotonic performance.now() (eliminates THREE.Clock deprecation)
+            const startTime = performance.now();
             const animate = {
                 "ModelViewer3D.useEffect.animate": ()=>{
                     animFrameIdRef.current = requestAnimationFrame(animate);
-                    const elapsed = clock.getElapsedTime();
+                    const elapsed = (performance.now() - startTime) * 0.001;
                     // Main rotation & levitation floating sine wave
                     if (meshGroupRef.current) {
                         if (isAutoRotatingRef.current) {

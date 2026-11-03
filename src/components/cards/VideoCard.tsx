@@ -15,7 +15,7 @@ export default function VideoCard({ vignette, video, onPlay }: VideoCardProps) {
   if (!item) return null;
 
   return (
-    <div 
+    <div
       onClick={() => onPlay(item)}
       className="p-3.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between gap-3 cursor-pointer group border border-outline-variant/20 hover:border-primary/50 shadow-md"
     >
@@ -48,7 +48,6 @@ export default function VideoCard({ vignette, video, onPlay }: VideoCardProps) {
       </div>
 
       <div className="pt-2 border-t border-outline-variant/15 flex items-center justify-between text-[10px] font-mono text-on-surface-variant">
-        <span>3 SCENES // 30s MASTER</span>
         <span className="text-primary group-hover:translate-x-0.5 transition-transform">PLAY REEL →</span>
       </div>
     </div>

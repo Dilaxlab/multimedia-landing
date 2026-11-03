@@ -59,25 +59,9 @@ export default async function InventionPage({ params }: InventionPageProps) {
         <div className="absolute inset-0 opacity-[0.015] bg-[radial-gradient(#d4af37_1px,_transparent_1px)] [background-size:32px_32px]" />
       </div>
 
-      <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 lg:py-12 pb-24 lg:pb-16">
-        {/* Top Navigation Bar */}
-        <div className="flex items-center justify-between mb-6 lg:mb-12">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-900/60 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 hover:text-white transition-all text-xs sm:text-sm font-medium group active:scale-95"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Archive</span>
-          </Link>
-
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] sm:text-xs font-mono uppercase tracking-widest">
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-            <span>Verified Patent</span>
-          </div>
-        </div>
-
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-24">
         {/* Hero Section - Split Layout (Responsive) */}
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 mb-12 lg:mb-24">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 mb-10 lg:mb-16">
           {/* Left Column: Image (Spans 5 columns on desktop) */}
           <div className="w-full lg:w-5/12 flex flex-col gap-6">
             <div className="relative w-full aspect-square sm:aspect-[4/3] lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-800/50 shadow-2xl group">
@@ -155,7 +139,7 @@ export default async function InventionPage({ params }: InventionPageProps) {
         </div>
 
         {/* Divider - Museum Style */}
-        <div className="flex items-center justify-center gap-4 mb-16 opacity-50">
+        <div className="flex items-center justify-center gap-4 mb-10 opacity-50">
           <div className="h-[1px] w-full max-w-[200px] bg-gradient-to-r from-transparent to-amber-500/50" />
           <ShieldCheck className="w-6 h-6 text-amber-500" />
           <div className="h-[1px] w-full max-w-[200px] bg-gradient-to-l from-transparent to-amber-500/50" />
@@ -163,7 +147,7 @@ export default async function InventionPage({ params }: InventionPageProps) {
 
         {/* Detailed Dossier View (The rest of the page content) */}
         <div className="relative">
-          <DossierView asset={asset} isStandalonePage={true} />
+          <DossierView asset={asset} isStandalonePage={true} hideHeroBanner={true} />
         </div>
       </div>
     </main>

@@ -14,9 +14,8 @@ import {
   Search,
   Headphones,
   Award,
-  Menu,
-  X,
   ArrowRight,
+  ChevronDown,
 } from 'lucide-react';
 import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import TaxonomyModal from '@/components/common/TaxonomyModal';
@@ -32,12 +31,17 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<TabName>('Home');
   const [isAudioTourActive, setIsAudioTourActive] = useState<boolean>(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isTaxonomyOpen, setIsTaxonomyOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Language Dropdown States
+  const [currentLang, setCurrentLang] = useState<string>('EN');
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState<boolean>(false);
+
   const searchInputRef = useRef<HTMLInputElement>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   // Scroll-spy: dynamically reflect active section based on scroll position
   useEffect(() => {
@@ -79,12 +83,23 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
         setIsSearchOpen((prev) => !prev);
       } else if (e.key === 'Escape') {
         setIsSearchOpen(false);
-        setIsMobileMenuOpen(false);
         setIsTaxonomyOpen(false);
+        setIsLangDropdownOpen(false); // Close lang dropdown on ESC
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Click outside to close language dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setIsLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Focus search input when modal opens
@@ -197,15 +212,19 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
       )
     : MOCK_HISTORICAL_ASSETS.slice(0, 4);
 
+  const languages = ['EN', 'ES', 'FR', 'DE', 'TA'];
+
   return (
     <>
       {/* ==================== ICON-FORWARD NAVBAR ==================== */}
       <header className="sticky top-0 z-50 w-full px-3 py-3 md:px-8">
         <div className="max-w-6xl mx-auto backdrop-blur-xl bg-[#0e0e13]/85 border border-white/10 hover:border-amber-500/25 rounded-2xl shadow-2xl transition-all duration-300">
           <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 gap-2">
-
             {/* 1. COMPACT LOGO WITH CLASSICAL TEMPLE CREST */}
-            <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group select-none flex-shrink-0">
+            <Link
+              href="/"
+              className="flex items-center gap-2 sm:gap-2.5 group select-none flex-shrink-0"
+            >
               <div className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-amber-500/25 to-amber-600/10 border border-amber-500/40 group-hover:border-amber-400 group-hover:shadow-glow-gold transition-all duration-300">
                 <Landmark className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
                 <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
@@ -269,8 +288,7 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
             </nav>
 
             {/* 3. ACTIONS */}
-            <div className="flex items-center gap-1.5">
-
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {/* Search */}
               <div className="relative has-tooltip">
                 <button
@@ -286,7 +304,7 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
               </div>
 
               {/* Audio Tour */}
-              <div className="relative has-tooltip">
+              <div className="relative has-tooltip hidden sm:block">
                 <button
                   onClick={toggleAudioTour}
                   aria-label="Audio Commentary"
@@ -306,7 +324,9 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                   ) : null}
                   <span
                     className={`nav-label text-[10px] ${
-                      isAudioTourActive ? 'font-semibold text-amber-300' : 'font-medium text-neutral-300'
+                      isAudioTourActive
+                        ? 'font-semibold text-amber-300'
+                        : 'font-medium text-neutral-300'
                     }`}
                   >
                     {isAudioTourActive ? 'On' : 'Tour'}
@@ -319,65 +339,42 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
 
               <div className="hidden sm:block h-5 w-px bg-white/10 mx-0.5" />
 
-              {/* Prominent Gold 'Explore Archives →' Action Button */}
-              <Link
-                href="/#collection"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold text-[11px] shadow-glow-pill hover:shadow-glow-gold hover:scale-[1.03] transition-all cursor-pointer font-sans whitespace-nowrap"
-              >
-                <span>Explore Archives</span>
-                <span className="text-sm leading-none">→</span>
-              </Link>
-
-              {/* Mobile menu */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Toggle menu"
-                className="md:hidden p-2 rounded-xl bg-white/[0.04] border border-white/10 text-neutral-300 hover:text-white transition-colors cursor-pointer"
-              >
-                {isMobileMenuOpen ? <X className="w-5 h-5 text-amber-400" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-
-          {/* MOBILE DRAWER */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden border-t border-white/10 px-3 py-2.5 bg-black/60 rounded-b-2xl animate-fadeIn">
-              <div className="grid grid-cols-2 gap-1.5 text-xs">
-                {navItems.map((item) => {
-                  const isActive = activeTab === item.name;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => {
-                        setActiveTab(item.name);
-                        setIsMobileMenuOpen(false);
-                        if (item.action) item.action();
-                      }}
-                      className={`flex items-center gap-2.5 p-2 rounded-lg transition-all ${
-                        isActive
-                          ? 'bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold'
-                          : 'text-neutral-300 hover:bg-white/[0.06]'
-                      }`}
-                    >
-                      <span className="text-amber-400">{item.icon}</span>
-                      <span>{item.name}</span>
-                    </Link>
-                  );
-                })}
+              {/* Language Selector Dropdown (Replaced Explore Archives) */}
+              <div className="relative" ref={langDropdownRef}>
                 <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsSearchOpen(true);
-                  }}
-                  className="flex items-center gap-2.5 p-2 rounded-lg text-neutral-300 hover:bg-white/[0.06] col-span-2 text-left cursor-pointer"
+                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                  className="flex items-center gap-1 px-2 sm:px-3 py-2 rounded-xl hover:bg-white/[0.06] text-neutral-300 hover:text-white transition-colors text-[11px] sm:text-xs font-semibold tracking-wide cursor-pointer select-none"
                 >
-                  <Search className="w-4 h-4 text-amber-400" />
-                  <span>Search</span>
+                  <span>{currentLang}</span>
+                  <ChevronDown
+                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`}
+                  />
                 </button>
+
+                {/* Dropdown Menu */}
+                {isLangDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-24 bg-[#121217] border border-white/10 rounded-xl shadow-xl overflow-hidden py-1 z-50 animate-fadeIn">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => {
+                          setCurrentLang(lang);
+                          setIsLangDropdownOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2 text-xs font-mono transition-colors ${
+                          currentLang === lang
+                            ? 'bg-amber-500/10 text-amber-400 font-bold'
+                            : 'text-neutral-400 hover:bg-white/5 hover:text-white'
+                        }`}
+                      >
+                        {lang}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
-          )}
+          </div>
         </div>
       </header>
 
@@ -434,7 +431,9 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
             {/* Quick Result List */}
             <div className="flex flex-col gap-1.5 max-h-60 overflow-y-auto">
               <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 px-1">
-                {searchQuery ? `Matching Inventions (${filteredAssets.length})` : 'Featured Inventions'}
+                {searchQuery
+                  ? `Matching Inventions (${filteredAssets.length})`
+                  : 'Featured Inventions'}
               </span>
               {filteredAssets.length === 0 ? (
                 <div className="py-6 text-center text-xs font-mono text-neutral-500">
@@ -452,7 +451,11 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg overflow-hidden bg-neutral-900 shrink-0">
-                        <img src={asset.image} alt={asset.title} className="w-full h-full object-cover" />
+                        <img
+                          src={asset.image}
+                          alt={asset.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div>
                         <span className="text-xs font-medium text-neutral-200 group-hover:text-amber-400 transition-colors block">

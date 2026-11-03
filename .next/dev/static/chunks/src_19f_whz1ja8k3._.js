@@ -160,141 +160,121 @@ function AssetCard({ asset, onSelect, onExplore, onExplore3D }) {
         else window.location.href = `/inventions/${asset.id}`;
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "group relative rounded-2xl bg-[#111111] overflow-hidden flex flex-col justify-between h-full transition-all duration-300 hover:translate-y-[-4px] border border-neutral-800 hover:border-amber-500/50 shadow-xl",
+        className: "group relative rounded-xl sm:rounded-2xl bg-[#111113] overflow-hidden flex flex-col justify-between h-full transition-all duration-300 hover:translate-y-[-3px] border border-neutral-800/80 hover:border-amber-500/50 shadow-xl",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "relative h-56 sm:h-60 overflow-hidden bg-[#1A1A1A] flex items-center justify-center cursor-pointer",
+                        className: "relative h-40 xs:h-44 sm:h-56 md:h-60 overflow-hidden bg-[#18181b] flex items-center justify-center cursor-pointer",
                         onClick: handlePrimaryClick,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                className: "w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100",
+                                className: "w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-95 group-hover:opacity-100",
                                 alt: asset.title,
                                 src: asset.image
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 30,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
                                 lineNumber: 35,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute top-3.5 right-3.5 flex gap-2",
+                                className: "absolute inset-0 bg-gradient-to-t from-[#111113] via-transparent to-transparent opacity-90"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                lineNumber: 41,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute top-2 right-2 sm:top-3 sm:right-3 flex gap-1 z-10",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "px-2.5 py-1 rounded-md bg-black/65 backdrop-blur-md text-amber-400 font-mono text-[10px] uppercase tracking-wider flex items-center gap-1.5 border border-amber-500/30 shadow-md",
+                                    className: "px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-black/75 backdrop-blur-md text-amber-400 font-mono text-[8px] sm:text-[10px] uppercase tracking-wider flex items-center gap-1 border border-amber-500/30 shadow-md",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"
+                                            className: "w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                            lineNumber: 40,
+                                            lineNumber: 46,
                                             columnNumber: 15
                                         }, this),
-                                        " ",
-                                        asset.badge
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "truncate max-w-[80px] sm:max-w-none",
+                                            children: asset.badge
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                            lineNumber: 47,
+                                            columnNumber: 15
+                                        }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                    lineNumber: 39,
+                                    lineNumber: 45,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 38,
+                                lineNumber: 44,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute bottom-2 left-2 sm:bottom-3 sm:left-3 z-10",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "px-1.5 sm:px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-neutral-300 font-mono text-[8px] sm:text-[10px] tracking-tight border border-white/10",
+                                    children: asset.patent
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                    lineNumber: 53,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                lineNumber: 52,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/cards/AssetCard.tsx",
-                        lineNumber: 26,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-4 sm:p-5 flex flex-col gap-3",
+                        className: "p-3 sm:p-4 md:p-5 flex flex-col gap-1.5 sm:gap-2.5",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "font-serif text-lg sm:text-xl font-bold text-white group-hover:text-amber-400 transition-colors cursor-pointer truncate leading-tight",
+                                className: "font-serif text-xs xs:text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-amber-400 transition-colors cursor-pointer line-clamp-1 leading-snug",
                                 onClick: handlePrimaryClick,
                                 title: asset.title,
                                 children: asset.title
                             }, void 0, false, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 48,
+                                lineNumber: 62,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-neutral-400 font-sans text-[11px] sm:text-xs line-clamp-1 sm:line-clamp-2 leading-relaxed",
+                                children: asset.desc
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                lineNumber: 71,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between gap-2 text-neutral-400 text-xs font-sans",
+                                className: "flex items-center justify-between gap-1 pt-1 text-neutral-400 text-[10px] sm:text-xs font-mono border-t border-neutral-800/60",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-1.5 min-w-0 flex-1 truncate",
+                                        className: "flex items-center gap-1 min-w-0 flex-1",
                                         title: `Inventor: ${asset.inventor}`,
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
-                                                className: "w-3.5 h-3.5 text-amber-500 shrink-0"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                                lineNumber: 63,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "truncate",
-                                                children: asset.inventor
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                                lineNumber: 64,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                        lineNumber: 59,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-1.5 shrink-0 text-neutral-400",
-                                        title: `Patent Date: ${asset.patentDate}`,
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
-                                                className: "w-3.5 h-3.5 text-amber-500 shrink-0"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                                lineNumber: 72,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "whitespace-nowrap",
-                                                children: asset.patentDate
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                                lineNumber: 73,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                        lineNumber: 68,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-1 shrink-0 text-amber-400 font-mono text-[11px]",
-                                        title: "3D Interactive Model",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$box$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
-                                                className: "w-3.5 h-3.5 text-amber-500 shrink-0"
+                                                className: "w-3 h-3 text-amber-500 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
                                                 lineNumber: 81,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: "3D"
+                                                className: "truncate text-neutral-300",
+                                                children: asset.inventor
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
                                                 lineNumber: 82,
@@ -305,37 +285,85 @@ function AssetCard({ asset, onSelect, onExplore, onExplore3D }) {
                                         fileName: "[project]/src/components/cards/AssetCard.tsx",
                                         lineNumber: 77,
                                         columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "hidden sm:flex items-center gap-1 shrink-0 text-neutral-400 text-[11px]",
+                                        title: `Patent Date: ${asset.patentDate}`,
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
+                                                className: "w-3.5 h-3.5 text-amber-500 shrink-0"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                                lineNumber: 89,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "whitespace-nowrap",
+                                                children: asset.patentDate
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                                lineNumber: 90,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                        lineNumber: 85,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-0.5 shrink-0 text-amber-400 font-mono text-[9px] sm:text-[11px]",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$box$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
+                                                className: "w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 shrink-0"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                                lineNumber: 94,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "3D"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                                lineNumber: 95,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/cards/AssetCard.tsx",
+                                        lineNumber: 93,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 57,
+                                lineNumber: 76,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/cards/AssetCard.tsx",
-                        lineNumber: 46,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                lineNumber: 24,
+                lineNumber: 29,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "px-4 py-3 flex items-center justify-between gap-2.5 border-t border-neutral-800/60 bg-[#0A0A0A]/60 mt-auto",
+                className: "px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-1.5 sm:gap-2.5 border-t border-neutral-800/80 bg-[#0c0c0e] mt-auto",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-1.5 text-neutral-500 min-w-0 flex-1",
+                        className: "hidden sm:flex items-center gap-1.5 text-neutral-400 min-w-0 flex-1",
                         title: `Location: ${asset.location}`,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__["MapPin"], {
-                                className: "w-3.5 h-3.5 shrink-0 text-neutral-500"
+                                className: "w-3.5 h-3.5 shrink-0 text-amber-500/70"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 95,
+                                lineNumber: 107,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -343,17 +371,17 @@ function AssetCard({ asset, onSelect, onExplore, onExplore3D }) {
                                 children: asset.location
                             }, void 0, false, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 96,
+                                lineNumber: 108,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/cards/AssetCard.tsx",
-                        lineNumber: 91,
+                        lineNumber: 103,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-1.5 shrink-0",
+                        className: "flex items-center justify-end gap-1.5 sm:gap-2 w-full sm:w-auto",
                         children: [
                             onExplore3D && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: (e)=>{
@@ -361,62 +389,63 @@ function AssetCard({ asset, onSelect, onExplore, onExplore3D }) {
                                     e.stopPropagation();
                                     onExplore3D(asset);
                                 },
-                                className: "p-1.5 rounded-lg bg-[#1A1A1A] hover:bg-amber-500/20 text-neutral-400 hover:text-amber-400 transition-colors border border-neutral-800 hover:border-amber-500/40 shrink-0 cursor-pointer",
-                                title: "Inspect 3D in Spatial Workbench",
+                                className: "inline-flex p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/[0.04] hover:bg-amber-500/20 text-neutral-300 hover:text-amber-400 transition-colors border border-white/10 hover:border-amber-500/40 shrink-0 cursor-pointer",
+                                title: "Inspect 3D Spatial Model",
                                 "aria-label": "Inspect 3D model",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$box$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
-                                    className: "w-3.5 h-3.5"
+                                    className: "w-3.5 h-3.5 sm:w-4 sm:h-4"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                    lineNumber: 115,
+                                    lineNumber: 125,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 105,
+                                lineNumber: 115,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: `/inventions/${asset.id}`,
-                                className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 transition-all border border-amber-500/25 hover:border-amber-500/50 shrink-0 whitespace-nowrap cursor-pointer shadow-sm group-hover:bg-amber-500/15",
+                                className: "flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-gradient-to-r from-amber-500/15 to-yellow-500/10 hover:from-amber-500/25 hover:to-yellow-500/20 text-amber-400 hover:text-amber-300 transition-all border border-amber-500/30 hover:border-amber-400/50 shrink-0 whitespace-nowrap cursor-pointer shadow-sm active:scale-95",
+                                "aria-label": "Explore Asset",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-sans font-bold text-[11px] uppercase tracking-wider leading-none",
+                                        className: "font-sans font-bold text-[10px] sm:text-xs uppercase tracking-wider leading-none",
                                         children: "Explore"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                        lineNumber: 124,
+                                        lineNumber: 134,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
-                                        className: "w-3.5 h-3.5 shrink-0 transition-transform group-hover:translate-x-0.5"
+                                        className: "w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                        lineNumber: 127,
+                                        lineNumber: 137,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                                lineNumber: 120,
+                                lineNumber: 129,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/cards/AssetCard.tsx",
-                        lineNumber: 102,
+                        lineNumber: 113,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/cards/AssetCard.tsx",
-                lineNumber: 89,
+                lineNumber: 102,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/cards/AssetCard.tsx",
-        lineNumber: 23,
+        lineNumber: 28,
         columnNumber: 5
     }, this);
 }
@@ -528,24 +557,15 @@ function VideoCard({ vignette, video, onPlay }) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "pt-2 border-t border-outline-variant/15 flex items-center justify-between text-[10px] font-mono text-on-surface-variant",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        children: "3 SCENES // 30s MASTER"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/cards/VideoCard.tsx",
-                        lineNumber: 51,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-primary group-hover:translate-x-0.5 transition-transform",
-                        children: "PLAY REEL →"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/cards/VideoCard.tsx",
-                        lineNumber: 52,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "text-primary group-hover:translate-x-0.5 transition-transform",
+                    children: "PLAY REEL →"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/cards/VideoCard.tsx",
+                    lineNumber: 51,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
                 fileName: "[project]/src/components/cards/VideoCard.tsx",
                 lineNumber: 50,
                 columnNumber: 7
@@ -668,15 +688,19 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$network$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Network$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/network.mjs [app-client] (ecmascript) <export default as Network>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.mjs [app-client] (ecmascript) <export default as Search>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.mjs [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2d$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__SearchX$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search-x.mjs [app-client] (ecmascript) <export default as SearchX>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.mjs [app-client] (ecmascript) <export default as ShieldCheck>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.mjs [app-client] (ecmascript) <export default as Loader2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-down.mjs [app-client] (ecmascript) <export default as ChevronDown>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check-check.mjs [app-client] (ecmascript) <export default as CheckCheck>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$cards$2f$AssetCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/cards/AssetCard.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$common$2f$TaxonomyModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/common/TaxonomyModal.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$grid$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutGrid$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layout-grid.mjs [app-client] (ecmascript) <export default as LayoutGrid>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rows$2d$3$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Rows3$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/rows-3.mjs [app-client] (ecmascript) <export default as Rows3>");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -718,26 +742,85 @@ const CATEGORY_TABS = [
         count: 1
     }
 ];
+const BATCH_SIZE = 6;
 function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '', onSearchChange }) {
     _s();
     const [activeCategory, setActiveCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('ALL');
     const [internalSearch, setInternalSearch] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [isTaxonomyOpen, setIsTaxonomyOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [mobileColumns, setMobileColumns] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('2');
+    const [visibleCount, setVisibleCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(BATCH_SIZE);
+    const [isLoadingMore, setIsLoadingMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const observerTargetRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const effectiveSearch = searchQuery || internalSearch;
     const filteredAssets = assets.filter((asset)=>{
         const matchesCategory = activeCategory === 'ALL' || asset.category === activeCategory;
         const matchesSearch = effectiveSearch === '' || asset.title.toLowerCase().includes(effectiveSearch.toLowerCase()) || asset.inventor.toLowerCase().includes(effectiveSearch.toLowerCase()) || asset.patent.toLowerCase().includes(effectiveSearch.toLowerCase()) || asset.desc.toLowerCase().includes(effectiveSearch.toLowerCase());
         return matchesCategory && matchesSearch;
     });
+    // Reset to initial batch whenever search query or category filter changes
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AssetCollection.useEffect": ()=>{
+            setVisibleCount(BATCH_SIZE);
+        }
+    }["AssetCollection.useEffect"], [
+        activeCategory,
+        effectiveSearch
+    ]);
+    // Load next batch of cards
+    const loadMoreCards = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "AssetCollection.useCallback[loadMoreCards]": ()=>{
+            if (isLoadingMore || visibleCount >= filteredAssets.length) return;
+            setIsLoadingMore(true);
+            setTimeout({
+                "AssetCollection.useCallback[loadMoreCards]": ()=>{
+                    setVisibleCount({
+                        "AssetCollection.useCallback[loadMoreCards]": (prev)=>Math.min(prev + BATCH_SIZE, filteredAssets.length)
+                    }["AssetCollection.useCallback[loadMoreCards]"]);
+                    setIsLoadingMore(false);
+                }
+            }["AssetCollection.useCallback[loadMoreCards]"], 350);
+        }
+    }["AssetCollection.useCallback[loadMoreCards]"], [
+        isLoadingMore,
+        visibleCount,
+        filteredAssets.length
+    ]);
+    // Infinite Scroll: triggers loadMoreCards as user scrolls into the sentinel element
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AssetCollection.useEffect": ()=>{
+            const observer = new IntersectionObserver({
+                "AssetCollection.useEffect": (entries)=>{
+                    if (entries[0].isIntersecting) {
+                        loadMoreCards();
+                    }
+                }
+            }["AssetCollection.useEffect"], {
+                threshold: 0.1,
+                rootMargin: '120px'
+            });
+            const target = observerTargetRef.current;
+            if (target) observer.observe(target);
+            return ({
+                "AssetCollection.useEffect": ()=>{
+                    if (target) observer.unobserve(target);
+                }
+            })["AssetCollection.useEffect"];
+        }
+    }["AssetCollection.useEffect"], [
+        loadMoreCards
+    ]);
+    const displayedAssets = filteredAssets.slice(0, visibleCount);
+    const hasMore = visibleCount < filteredAssets.length;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "collection",
-        className: "relative py-24 bg-surface text-on-surface border-t border-outline-variant/20 scroll-mt-20",
+        className: "relative py-16 sm:py-24 bg-surface text-on-surface border-t border-outline-variant/20 scroll-mt-20",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-surface-container-high/40 via-surface to-surface"
             }, void 0, false, {
                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                lineNumber: 55,
+                lineNumber: 114,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -755,7 +838,7 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                                 className: "w-2 h-2 rounded-full bg-primary animate-pulse"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                                lineNumber: 62,
+                                                lineNumber: 121,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -763,13 +846,13 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                                 children: "Primary Registry"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                                lineNumber: 63,
+                                                lineNumber: 122,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 61,
+                                        lineNumber: 120,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -777,21 +860,13 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                         children: "Historical Asset Collection"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 67,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-3 text-sm md:text-base text-on-surface-variant max-w-2xl font-sans leading-relaxed",
-                                        children: "Curated physical-grade digital reconstructions of landmark industrial patents. Every specimen is verified against 19th-century patent office records and modeled to microscopic tolerance."
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 70,
+                                        lineNumber: 126,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 60,
+                                lineNumber: 119,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -799,26 +874,26 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setIsTaxonomyOpen(true),
-                                        className: "inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-primary/30 bg-surface-container-high/60 hover:bg-surface-container-highest hover:border-primary text-xs font-mono text-primary transition-all shadow-sm",
+                                        className: "inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-primary/30 bg-surface-container-high/60 hover:bg-surface-container-highest hover:border-primary text-xs font-mono text-primary transition-all shadow-sm active:scale-95 cursor-pointer",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$network$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Network$3e$__["Network"], {
                                                 className: "w-4 h-4 text-primary"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                                lineNumber: 81,
+                                                lineNumber: 137,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "View 64 Disciplines"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                                lineNumber: 82,
+                                                lineNumber: 138,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 77,
+                                        lineNumber: 133,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -827,100 +902,127 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                             children: "500+ ASSETS INDEXED"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                            lineNumber: 85,
+                                            lineNumber: 141,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 84,
+                                        lineNumber: 140,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 76,
+                                lineNumber: 132,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                        lineNumber: 59,
+                        lineNumber: 118,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-1.5 overflow-x-auto pb-2 lg:pb-0 scrollbar-none -mx-1 px-1 scroll-smooth",
-                                children: CATEGORY_TABS.map((tab)=>{
-                                    const isActive = activeCategory === tab.key;
-                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>setActiveCategory(tab.key),
-                                        className: `px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${isActive ? 'bg-primary text-surface-container-lowest font-medium shadow-md' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'}`,
-                                        children: tab.label
-                                    }, tab.key, false, {
-                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 97,
-                                        columnNumber: 17
-                                    }, this);
-                                })
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 93,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative min-w-[280px]",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
-                                        className: "absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 114,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                        type: "text",
-                                        placeholder: "Search inventor, patent, or keyword...",
-                                        value: effectiveSearch,
-                                        onChange: (e)=>{
-                                            if (onSearchChange) onSearchChange(e.target.value);
-                                            setInternalSearch(e.target.value);
-                                        },
-                                        className: "w-full bg-surface-container-high border border-outline-variant/20 rounded-xl pl-9 pr-8 py-2 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 115,
-                                        columnNumber: 13
-                                    }, this),
-                                    effectiveSearch && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>{
-                                            if (onSearchChange) onSearchChange('');
-                                            setInternalSearch('');
-                                        },
-                                        className: "absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                            className: "w-3.5 h-3.5"
-                                        }, void 0, false, {
+                        className: "mb-3 p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "relative min-w-0",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 scroll-smooth",
+                                    style: {
+                                        scrollbarWidth: 'none',
+                                        msOverflowStyle: 'none'
+                                    },
+                                    children: CATEGORY_TABS.map((tab)=>{
+                                        const isActive = activeCategory === tab.key;
+                                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setActiveCategory(tab.key),
+                                            className: `shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${isActive ? 'bg-primary text-surface-container-lowest font-medium shadow-md' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'}`,
+                                            children: tab.label
+                                        }, tab.key, false, {
                                             fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                            lineNumber: 133,
-                                            columnNumber: 17
-                                        }, this)
+                                            lineNumber: 158,
+                                            columnNumber: 19
+                                        }, this);
+                                    })
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                    lineNumber: 151,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-low to-transparent"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                    lineNumber: 173,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                            lineNumber: 150,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                        lineNumber: 149,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "mb-6 flex sm:hidden items-center justify-end",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "relative flex items-center p-1 bg-surface-container rounded-xl border border-outline-variant/30",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: `absolute top-1 bottom-1 w-[calc(50%-0.25rem)] left-1 rounded-lg bg-primary shadow-sm transition-transform duration-300 ease-out ${mobileColumns === '2' ? 'translate-x-0' : 'translate-x-full'}`
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                    lineNumber: 183,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setMobileColumns('2'),
+                                    className: `relative z-10 w-9 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer ${mobileColumns === '2' ? 'text-surface-container-lowest' : 'text-on-surface-variant hover:text-on-surface'}`,
+                                    title: "Grid View (2 per row)",
+                                    "aria-label": "Grid view",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$grid$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutGrid$3e$__["LayoutGrid"], {
+                                        className: "w-3.5 h-3.5"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 126,
+                                        lineNumber: 198,
                                         columnNumber: 15
                                     }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 113,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                    lineNumber: 188,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setMobileColumns('1'),
+                                    className: `relative z-10 w-9 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer ${mobileColumns === '1' ? 'text-surface-container-lowest' : 'text-on-surface-variant hover:text-on-surface'}`,
+                                    title: "List View (1 per row)",
+                                    "aria-label": "List view",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rows$2d$3$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Rows3$3e$__["Rows3"], {
+                                        className: "w-3.5 h-3.5"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                        lineNumber: 210,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                    lineNumber: 200,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                            lineNumber: 181,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                        lineNumber: 91,
+                        lineNumber: 180,
                         columnNumber: 9
                     }, this),
                     filteredAssets.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -930,7 +1032,7 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                 className: "w-10 h-10 text-on-surface-variant/50 mb-3 mx-auto"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 142,
+                                lineNumber: 218,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -938,7 +1040,7 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                 children: "No Historical Assets Found"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 143,
+                                lineNumber: 219,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -952,7 +1054,7 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 144,
+                                lineNumber: 220,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -961,32 +1063,157 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                     if (onSearchChange) onSearchChange('');
                                     setInternalSearch('');
                                 },
-                                className: "mt-4 px-4 py-2 rounded-lg bg-surface-container text-xs font-mono text-primary hover:text-on-surface border border-primary/30",
+                                className: "mt-4 px-4 py-2 rounded-lg bg-surface-container text-xs font-mono text-primary hover:text-on-surface border border-primary/30 cursor-pointer",
                                 children: "Reset Filters"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 147,
+                                lineNumber: 224,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                        lineNumber: 141,
+                        lineNumber: 217,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6",
-                        children: filteredAssets.map((asset)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$cards$2f$AssetCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                asset: asset,
-                                onSelect: onSelectAsset,
-                                onExplore3D: onExplore3D
-                            }, asset.id, false, {
+                        className: "flex flex-col",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: `grid ${mobileColumns === '2' ? 'grid-cols-2' : 'grid-cols-1'} md:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-6`,
+                                children: displayedAssets.map((asset)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$cards$2f$AssetCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        asset: asset,
+                                        onSelect: onSelectAsset,
+                                        onExplore3D: onExplore3D
+                                    }, asset.id, false, {
+                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                        lineNumber: 243,
+                                        columnNumber: 17
+                                    }, this))
+                            }, void 0, false, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 161,
-                                columnNumber: 15
-                            }, this))
-                    }, void 0, false, {
+                                lineNumber: 237,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                ref: observerTargetRef,
+                                className: "h-6 w-full"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                lineNumber: 253,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "mt-8 flex flex-col items-center justify-center gap-3",
+                                children: hasMore ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex flex-col items-center gap-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: loadMoreCards,
+                                            disabled: isLoadingMore,
+                                            className: "inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-container-highest border border-primary/40 hover:border-primary text-xs font-mono text-primary transition-all shadow-lg active:scale-95 cursor-pointer disabled:opacity-50",
+                                            children: isLoadingMore ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                                                        className: "w-4 h-4 animate-spin text-primary"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                                        lineNumber: 266,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        children: "Unlocking Next Archival Batch..."
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                                        lineNumber: 267,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                                lineNumber: 265,
+                                                columnNumber: 23
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        children: "Load More Inventions"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                                        lineNumber: 271,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
+                                                        className: "w-4 h-4"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                                        lineNumber: 272,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                                lineNumber: 270,
+                                                columnNumber: 23
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                            lineNumber: 259,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[11px] font-mono text-on-surface-variant",
+                                            children: [
+                                                "Showing ",
+                                                displayedAssets.length,
+                                                " of ",
+                                                filteredAssets.length,
+                                                " Inventions • Scroll down to auto-load"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                            lineNumber: 276,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                    lineNumber: 258,
+                                    columnNumber: 17
+                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low border border-outline-variant/30 text-[11px] font-mono text-on-surface-variant",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCheck$3e$__["CheckCheck"], {
+                                            className: "w-4 h-4 text-emerald-400"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                            lineNumber: 283,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: [
+                                                "All ",
+                                                filteredAssets.length,
+                                                " verified archival specimens loaded"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                            lineNumber: 284,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                    lineNumber: 282,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/sections/AssetCollection.tsx",
+                                lineNumber: 256,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                        lineNumber: 159,
+                        lineNumber: 236,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -999,20 +1226,20 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                         className: "w-4 h-4 text-primary shrink-0"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 174,
+                                        lineNumber: 294,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "All renderings use historically reconstructed 3D cad visuals rather than degraded archival photographs."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                        lineNumber: 175,
+                                        lineNumber: 295,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 173,
+                                lineNumber: 293,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1020,42 +1247,41 @@ function AssetCollection({ assets, onSelectAsset, onExplore3D, searchQuery = '',
                                 children: "IAMS STANDARD REF #882-C"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                                lineNumber: 177,
+                                lineNumber: 300,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                        lineNumber: 172,
+                        lineNumber: 292,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                lineNumber: 57,
+                lineNumber: 116,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$common$2f$TaxonomyModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 isOpen: isTaxonomyOpen,
                 onClose: ()=>setIsTaxonomyOpen(false),
                 onSelectCategory: (cat)=>{
-                    // search filter with selected category
                     if (onSearchChange) onSearchChange(cat.split(' ')[0]);
                     else setInternalSearch(cat.split(' ')[0]);
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/sections/AssetCollection.tsx",
-                lineNumber: 182,
+                lineNumber: 305,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/sections/AssetCollection.tsx",
-        lineNumber: 53,
+        lineNumber: 109,
         columnNumber: 5
     }, this);
 }
-_s(AssetCollection, "zAOBI8MavKhI6fvAXqraWMds9GY=");
+_s(AssetCollection, "23kjLpfzZzggmEgJ4+gr9Ca1mPY=");
 _c = AssetCollection;
 var _c;
 __turbopack_context__.k.register(_c, "AssetCollection");
@@ -3588,48 +3814,48 @@ var _s = __turbopack_context__.k.signature();
 const HERO_ASSETS = [
     {
         id: 'HA-109',
-        name: "Alexander Graham Bell",
-        inventor: 'Inventor of the Speaking Telephone (1876)',
+        name: 'Character A',
+        inventor: 'Test Role A (1876)',
         year: '1876',
         image: '/images/character_bell_stage.png',
-        tag: 'Animated Character • Bell',
-        desc: '3D animated cartoon inventor testing acoustic voice transmitters across telegraph wires.'
+        tag: 'Animated Character • A',
+        desc: 'Test description for Character A.'
     },
     {
         id: 'HA-102',
-        name: 'Caroline F. Fleming',
-        inventor: 'Inventor of Improved Washing-Machine (1880)',
+        name: 'Character B',
+        inventor: 'Test Role B (1880)',
         year: '1884',
         image: '/images/character_fleming_stage.png',
-        tag: 'Animated Character • Fleming',
-        desc: '3D animated cartoon engineer pioneering mechanical gear agitation and domestic labor automation.'
+        tag: 'Animated Character • B',
+        desc: 'Test description for Character B.'
     },
     {
         id: 'HA-103',
-        name: 'Henry H. Beville',
-        inventor: 'Inventor of Iron Duke Wind Mill (1882)',
+        name: 'Character C',
+        inventor: 'Test Role C (1882)',
         year: '1887',
         image: '/images/character_beville_stage.png',
-        tag: 'Animated Character • Beville',
-        desc: '3D animated cartoon prairie engineer designing self-governing radial wind engines.'
+        tag: 'Animated Character • C',
+        desc: 'Test description for Character C.'
     },
     {
         id: 'HA-107',
-        name: 'Nikola Tesla',
-        inventor: 'Inventor of AC Induction Dynamo (1888)',
+        name: 'Character D',
+        inventor: 'Test Role D (1888)',
         year: '1888',
         image: '/images/character_tesla_stage.png',
-        tag: 'Animated Character • Tesla',
-        desc: '3D animated cartoon visionary scientist experimenting with wireless energy and polyphase currents.'
+        tag: 'Animated Character • D',
+        desc: 'Test description for Character D.'
     },
     {
         id: 'HA-105',
-        name: 'Thomas Alva Edison',
-        inventor: 'Inventor of Incandescent Lamp (1880)',
+        name: 'Character E',
+        inventor: 'Test Role E (1880)',
         year: '1880',
         image: '/images/character_edison_stage.png',
-        tag: 'Animated Character • Edison',
-        desc: '3D animated cartoon pioneer holding a glowing warm incandescent filament lightbulb.'
+        tag: 'Animated Character • E',
+        desc: 'Test description for Character E.'
     }
 ];
 function HeroSection({ onExploreCollection, onWatchStories, onExploreAsset }) {
@@ -3691,7 +3917,7 @@ function HeroSection({ onExploreCollection, onWatchStories, onExploreAsset }) {
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "hero",
-        className: "relative w-full bg-[#0a0a0c] text-[#e2e8f0] overflow-hidden pt-4 pb-10 sm:pt-8 sm:pb-16 lg:pt-14 lg:pb-24",
+        className: "relative w-full bg-[#0a0a0c] text-[#e2e8f0] overflow-hidden pt-16 pb-10 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-24",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 pointer-events-none overflow-hidden",
@@ -4308,6 +4534,7 @@ __turbopack_context__.s([
     ()=>SpatialGallery
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/styled-jsx/style.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/shared/lib/app-dynamic.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
@@ -4321,6 +4548,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/info.mjs [app-client] (ecmascript) <export default as Info>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.mjs [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.mjs [app-client] (ecmascript) <export default as ArrowRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layers$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Layers$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layers.mjs [app-client] (ecmascript) <export default as Layers>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sparkles.mjs [app-client] (ecmascript) <export default as Sparkles>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$compass$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Compass$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/compass.mjs [app-client] (ecmascript) <export default as Compass>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/award.mjs [app-client] (ecmascript) <export default as Award>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.mjs [app-client] (ecmascript) <export default as Search>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$grid$2d$2x2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Grid2x2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/grid-2x2.mjs [app-client] (ecmascript) <export default as Grid2x2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$constants$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/constants.ts [app-client] (ecmascript)");
 ;
 ;
@@ -4331,7 +4564,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-// Dynamically import Three.js viewer with SSR disabled
+;
 const ModelViewer3D = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/src/components/viewers/ModelViewer3D.tsx [app-client] (ecmascript, next/dynamic entry, async loader)"), {
     loadableGenerated: {
         modules: [
@@ -4346,38 +4579,79 @@ const ModelViewer3D = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_m
                     className: "w-10 h-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin"
                 }, void 0, false, {
                     fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                    lineNumber: 15,
+                    lineNumber: 32,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                     children: "INITIALIZING THREE.JS WEBGL RENDERER..."
                 }, void 0, false, {
                     fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                    lineNumber: 16,
+                    lineNumber: 33,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-            lineNumber: 14,
+            lineNumber: 31,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0))
 });
 _c = ModelViewer3D;
+const SPATIAL_CATEGORIES = [
+    {
+        key: 'ALL',
+        label: 'All 3D Models'
+    },
+    {
+        key: 'TELECOM',
+        label: 'Telephony & Acoustic'
+    },
+    {
+        key: 'AERO',
+        label: 'Aeronautics'
+    },
+    {
+        key: 'DOMESTIC',
+        label: 'Domestic Mechanics'
+    },
+    {
+        key: 'WIND',
+        label: 'Wind & Rotary'
+    },
+    {
+        key: 'COMPUTING',
+        label: 'Computing Engines'
+    },
+    {
+        key: 'TIME',
+        label: 'Horology & Clocks'
+    }
+];
 function SpatialGallery({ onSelectAssetForDossier, selectedAssetId: externalAssetId, onSelectAssetId }) {
     _s();
     const [internalAssetId, setInternalAssetId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('HA-101');
     const selectedAssetId = externalAssetId || internalAssetId;
+    // Search & Filter State
+    const [searchQuery, setSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [activeCategory, setActiveCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('ALL');
+    const [isBrowserModalOpen, setIsBrowserModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const handleSelectAssetId = (id)=>{
         setInternalAssetId(id);
         if (onSelectAssetId) onSelectAssetId(id);
     };
     const featuredAssets = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$constants$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MOCK_HISTORICAL_ASSETS"];
+    // Filter 3D Models based on active category and search query
+    const filteredAssets = featuredAssets.filter((asset)=>{
+        const matchesCategory = activeCategory === 'ALL' || asset.category === activeCategory;
+        const matchesSearch = !searchQuery.trim() || asset.title.toLowerCase().includes(searchQuery.toLowerCase()) || asset.inventor.toLowerCase().includes(searchQuery.toLowerCase()) || asset.patent.toLowerCase().includes(searchQuery.toLowerCase()) || asset.id.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
     const [isWireframe, setIsWireframe] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isAutoRotating, setIsAutoRotating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [lightingMode, setLightingMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('spotlight');
     const [zoomLevel, setZoomLevel] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(4.8);
     const [activeHotspot, setActiveHotspot] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [isFullscreen, setIsFullscreen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const viewerContainerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const currentAsset = featuredAssets.find((a)=>a.id === selectedAssetId) || featuredAssets[0];
     const handleReset = ()=>{
@@ -4389,255 +4663,467 @@ function SpatialGallery({ onSelectAssetForDossier, selectedAssetId: externalAsse
     const handleToggleFullscreen = ()=>{
         if (!viewerContainerRef.current) return;
         if (!document.fullscreenElement) {
-            viewerContainerRef.current.requestFullscreen().catch((err)=>{
-                console.error('Error attempting to enable fullscreen:', err);
-            });
+            viewerContainerRef.current.requestFullscreen().catch((err)=>console.error('Fullscreen error:', err));
         } else {
             document.exitFullscreen();
         }
     };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "SpatialGallery.useEffect": ()=>{
+            const onFsChange = {
+                "SpatialGallery.useEffect.onFsChange": ()=>setIsFullscreen(!!document.fullscreenElement)
+            }["SpatialGallery.useEffect.onFsChange"];
+            document.addEventListener('fullscreenchange', onFsChange);
+            return ({
+                "SpatialGallery.useEffect": ()=>document.removeEventListener('fullscreenchange', onFsChange)
+            })["SpatialGallery.useEffect"];
+        }
+    }["SpatialGallery.useEffect"], []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "gallery3d",
-        className: "relative py-24 bg-surface-container-lowest text-on-surface border-t border-outline-variant/20 scroll-mt-20",
+        className: "jsx-33b71532ca9a173d" + " " + "relative py-16 sm:py-24 bg-surface-container-lowest text-on-surface border-t border-outline-variant/20 scroll-mt-20 overflow-hidden",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 opacity-[0.03] pointer-events-none",
                 style: {
-                    backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
-                }
+                    backgroundImage: 'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
+                    backgroundSize: '48px 48px'
+                },
+                className: "jsx-33b71532ca9a173d" + " " + "absolute inset-0 opacity-[0.04] pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                lineNumber: 72,
+                lineNumber: 128,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "relative max-w-7xl mx-auto px-4 sm:px-6",
+                className: "jsx-33b71532ca9a173d" + " " + "absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none"
+            }, void 0, false, {
+                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                lineNumber: 137,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-33b71532ca9a173d" + " " + "relative max-w-7xl mx-auto px-4 sm:px-6",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12",
+                        className: "jsx-33b71532ca9a173d" + " " + "flex flex-col gap-5 mb-8 sm:mb-10",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "jsx-33b71532ca9a173d" + " " + "flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2 mb-3",
+                                        className: "jsx-33b71532ca9a173d" + " " + "min-w-0 shrink-0",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$box$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
-                                                className: "w-4 h-4 text-primary"
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-2 mb-3",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__["Sparkles"], {
+                                                            className: "w-3 h-3 text-primary"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 148,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "text-[10px] font-mono tracking-widest text-primary uppercase",
+                                                            children: "Spatial Workbench"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 149,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 147,
+                                                    columnNumber: 17
+                                                }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 85,
+                                                lineNumber: 146,
                                                 columnNumber: 15
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs font-mono tracking-widest text-primary uppercase",
-                                                children: "Section 03 // Spatial Exploration Workbench"
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                className: "jsx-33b71532ca9a173d" + " " + "font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight text-on-surface font-normal leading-tight",
+                                                children: [
+                                                    "Interactive ",
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "italic text-primary/90",
+                                                        children: "3D"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 155,
+                                                        columnNumber: 29
+                                                    }, this),
+                                                    " Model Gallery"
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 86,
+                                                lineNumber: 154,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 84,
+                                        lineNumber: 145,
                                         columnNumber: 13
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "font-serif text-3xl md:text-5xl tracking-tight text-on-surface font-normal",
-                                        children: "Interactive 3D Model Gallery"
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-33b71532ca9a173d" + " " + "hidden lg:flex items-center gap-2 w-full max-w-md",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-33b71532ca9a173d" + " " + "relative flex-1 group",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
+                                                        className: "absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none transition-colors group-focus-within:text-primary"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 163,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        type: "text",
+                                                        placeholder: "Search model, inventor, patent ID…",
+                                                        value: searchQuery,
+                                                        onChange: (e)=>setSearchQuery(e.target.value),
+                                                        className: "jsx-33b71532ca9a173d" + " " + "w-full bg-surface-container border border-outline-variant/40 rounded-xl pl-9 pr-16 py-2.5 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 164,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    searchQuery ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>setSearchQuery(''),
+                                                        "aria-label": "Clear search",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high cursor-pointer transition-colors",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                            className: "w-3.5 h-3.5"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 177,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 172,
+                                                        columnNumber: 19
+                                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("kbd", {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-outline-variant/40 bg-surface-container-high text-[9px] font-mono text-on-surface-variant/70 pointer-events-none select-none",
+                                                        children: "⌘K"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 180,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                lineNumber: 162,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>setIsBrowserModalOpen(true),
+                                                title: `Browse all ${featuredAssets.length} models`,
+                                                className: "jsx-33b71532ca9a173d" + " " + "inline-flex items-center justify-center gap-1.5 h-[38px] px-3 rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 text-xs font-mono font-medium transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$grid$2d$2x2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Grid2x2$3e$__["Grid2x2"], {
+                                                        className: "w-4 h-4"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 192,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "hidden xl:inline",
+                                                        children: featuredAssets.length
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 193,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                lineNumber: 187,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 90,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-3 text-sm md:text-base text-on-surface-variant max-w-2xl font-sans leading-relaxed",
-                                        children: "Examine historical patents via real-time WebGL rendering. Rotate, zoom, and inspect wireframe topologies reconstructed from original 19th-century mechanical blueprints."
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 160,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                lineNumber: 83,
+                                lineNumber: 143,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-1.5 p-1.5 bg-surface-container border border-outline-variant/30 rounded-xl overflow-x-auto max-w-full",
-                                children: featuredAssets.map((asset)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>handleSelectAssetId(asset.id),
-                                        className: `px-3.5 py-2 rounded-lg text-xs font-mono transition-all whitespace-nowrap flex items-center gap-2 cursor-pointer ${selectedAssetId === asset.id ? 'bg-primary text-surface-container-lowest font-semibold shadow-md' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'}`,
+                                className: "jsx-33b71532ca9a173d" + " " + "flex lg:hidden items-center gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-33b71532ca9a173d" + " " + "relative flex-1 group",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: asset.title.split(' ')[0]
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
+                                                className: "absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none transition-colors group-focus-within:text-primary"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 110,
-                                                columnNumber: 17
+                                                lineNumber: 201,
+                                                columnNumber: 15
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[10px] opacity-70",
-                                                children: [
-                                                    "(",
-                                                    asset.id,
-                                                    ")"
-                                                ]
-                                            }, void 0, true, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                type: "text",
+                                                placeholder: "Search model, inventor, patent…",
+                                                value: searchQuery,
+                                                onChange: (e)=>setSearchQuery(e.target.value),
+                                                className: "jsx-33b71532ca9a173d" + " " + "w-full bg-surface-container border border-outline-variant/40 rounded-xl pl-9 pr-9 py-2.5 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                            }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 111,
+                                                lineNumber: 202,
+                                                columnNumber: 15
+                                            }, this),
+                                            searchQuery && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>setSearchQuery(''),
+                                                "aria-label": "Clear search",
+                                                className: "jsx-33b71532ca9a173d" + " " + "absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high cursor-pointer",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                    className: "w-3.5 h-3.5"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 215,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                lineNumber: 210,
                                                 columnNumber: 17
                                             }, this)
                                         ]
-                                    }, asset.id, true, {
+                                    }, void 0, true, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 101,
-                                        columnNumber: 15
-                                    }, this))
-                            }, void 0, false, {
+                                        lineNumber: 200,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setIsBrowserModalOpen(true),
+                                        title: `Browse all ${featuredAssets.length} models`,
+                                        "aria-label": "Browse all models",
+                                        className: "jsx-33b71532ca9a173d" + " " + "inline-flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$grid$2d$2x2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Grid2x2$3e$__["Grid2x2"], {
+                                            className: "w-4 h-4"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                            lineNumber: 226,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                        lineNumber: 220,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                lineNumber: 99,
+                                lineNumber: 199,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                        lineNumber: 82,
+                        lineNumber: 141,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch",
+                        className: "jsx-33b71532ca9a173d" + " " + "grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 ref: viewerContainerRef,
-                                className: "lg:col-span-8 relative bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden shadow-2xl flex flex-col min-h-[380px] sm:min-h-[480px] lg:min-h-[620px]",
+                                className: "jsx-33b71532ca9a173d" + " " + `lg:col-span-8 relative bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-lowest rounded-3xl border border-outline-variant/40 overflow-hidden shadow-2xl flex flex-col min-h-[420px] sm:min-h-[520px] lg:min-h-[640px] ${isFullscreen ? 'rounded-none border-0' : ''}`,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-3 sm:p-4 border-b border-outline-variant/20 bg-surface-container/60 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 text-xs font-mono z-10",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-2 sm:gap-3 truncate",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 127,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-on-surface font-medium truncate",
-                                                        children: currentAsset.title
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 128,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-on-surface-variant hidden sm:inline",
-                                                        children: "•"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 129,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-on-surface-variant hidden sm:inline",
-                                                        children: currentAsset.polyCount
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 130,
-                                                        columnNumber: 17
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 126,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-1.5 sm:gap-2 shrink-0",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>setIsWireframe(!isWireframe),
-                                                        className: `px-2 py-1 rounded text-[10px] sm:text-[11px] font-mono border transition-all ${isWireframe ? 'border-primary bg-primary/20 text-primary' : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface'}`,
-                                                        title: "Toggle wireframe topology view",
-                                                        children: isWireframe ? 'WIREFRAME' : 'SHADED'
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 136,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>setIsAutoRotating(!isAutoRotating),
-                                                        className: `p-1.5 rounded border border-outline-variant/40 transition-colors ${isAutoRotating ? 'text-primary border-primary/50' : 'text-on-surface-variant'}`,
-                                                        title: "Toggle 360° turntable rotation",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rotate$2d$cw$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RotateCw$3e$__["RotateCw"], {
-                                                            className: `w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                            lineNumber: 156,
-                                                            columnNumber: 19
-                                                        }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 149,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>setLightingMode(lightingMode === 'spotlight' ? 'ambient' : 'spotlight'),
-                                                        className: "p-1.5 rounded border border-outline-variant/40 text-on-surface-variant hover:text-on-surface transition-colors",
-                                                        title: "Toggle bronze chiaroscuro vs ambient lighting",
-                                                        children: lightingMode === 'spotlight' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__["Sun"], {
-                                                            className: "w-3.5 h-3.5"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                            lineNumber: 166,
-                                                            columnNumber: 21
-                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"], {
-                                                            className: "w-3.5 h-3.5"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                            lineNumber: 168,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 160,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: handleToggleFullscreen,
-                                                        className: "p-1.5 rounded border border-outline-variant/40 text-on-surface-variant hover:text-on-surface transition-colors",
-                                                        title: "Full-screen view",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$maximize$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Maximize2$3e$__["Maximize2"], {
-                                                            className: "w-3.5 h-3.5"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                            lineNumber: 178,
-                                                            columnNumber: 19
-                                                        }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 173,
-                                                        columnNumber: 17
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 134,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                        className: "jsx-33b71532ca9a173d" + " " + "absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/30 rounded-tl-3xl pointer-events-none z-10"
+                                    }, void 0, false, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 125,
+                                        lineNumber: 244,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "relative flex-1 w-full h-full cursor-grab active:cursor-grabbing",
+                                        className: "jsx-33b71532ca9a173d" + " " + "absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/30 rounded-tr-3xl pointer-events-none z-10"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                        lineNumber: 245,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-33b71532ca9a173d" + " " + "relative z-10 p-2.5 sm:p-4 border-b border-outline-variant/20 bg-surface-container/70 backdrop-blur-xl",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "jsx-33b71532ca9a173d" + " " + "flex items-center justify-between gap-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-2 min-w-0",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "relative flex w-2 h-2 shrink-0",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-60"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 252,
+                                                                    columnNumber: 21
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "relative w-2 h-2 rounded-full bg-emerald-500"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 253,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 251,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "flex flex-col min-w-0 leading-tight",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "text-[11px] sm:text-xs text-on-surface font-medium truncate",
+                                                                    children: currentAsset.title
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 256,
+                                                                    columnNumber: 21
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "text-[9px] sm:text-[10px] text-on-surface-variant font-mono truncate",
+                                                                    children: [
+                                                                        currentAsset.id,
+                                                                        " • ",
+                                                                        currentAsset.polyCount
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 259,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 255,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 250,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-1 sm:gap-1.5 shrink-0",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            onClick: ()=>setIsWireframe(!isWireframe),
+                                                            title: "Toggle wireframe",
+                                                            className: "jsx-33b71532ca9a173d" + " " + `h-8 px-2 sm:px-2.5 rounded-lg text-[10px] sm:text-[11px] font-mono border transition-all flex items-center gap-1 ${isWireframe ? 'border-primary bg-primary/15 text-primary' : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30'}`,
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layers$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Layers$3e$__["Layers"], {
+                                                                    className: "w-3.5 h-3.5"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 275,
+                                                                    columnNumber: 21
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "hidden sm:inline",
+                                                                    children: isWireframe ? 'WIRE' : 'SHADED'
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 276,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 266,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            onClick: ()=>setIsAutoRotating(!isAutoRotating),
+                                                            title: "Auto rotate",
+                                                            className: "jsx-33b71532ca9a173d" + " " + `w-8 h-8 rounded-lg border flex items-center justify-center transition-all ${isAutoRotating ? 'border-primary/50 text-primary bg-primary/10' : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface'}`,
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rotate$2d$cw$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RotateCw$3e$__["RotateCw"], {
+                                                                className: `w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                lineNumber: 288,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 279,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            onClick: ()=>setLightingMode(lightingMode === 'spotlight' ? 'ambient' : 'spotlight'),
+                                                            title: "Lighting",
+                                                            className: "jsx-33b71532ca9a173d" + " " + "w-8 h-8 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30 flex items-center justify-center transition-all",
+                                                            children: lightingMode === 'spotlight' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__["Sun"], {
+                                                                className: "w-3.5 h-3.5"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                lineNumber: 299,
+                                                                columnNumber: 23
+                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"], {
+                                                                className: "w-3.5 h-3.5"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                lineNumber: 301,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 291,
+                                                            columnNumber: 19
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            onClick: handleToggleFullscreen,
+                                                            title: "Fullscreen",
+                                                            className: "jsx-33b71532ca9a173d" + " " + "w-8 h-8 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30 flex items-center justify-center transition-all",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$maximize$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Maximize2$3e$__["Maximize2"], {
+                                                                className: "w-3.5 h-3.5"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                lineNumber: 310,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 305,
+                                                            columnNumber: 19
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 265,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                            lineNumber: 249,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                        lineNumber: 248,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-33b71532ca9a173d" + " " + "relative flex-1 w-full h-full cursor-grab active:cursor-grabbing",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ModelViewer3D, {
                                                 modelType: currentAsset.modelType,
@@ -4645,519 +5131,746 @@ function SpatialGallery({ onSelectAssetForDossier, selectedAssetId: externalAsse
                                                 isAutoRotating: isAutoRotating,
                                                 lightingMode: lightingMode,
                                                 zoomLevel: zoomLevel,
-                                                onHotspotClick: (id)=>{
-                                                    setActiveHotspot(`Component #${id}: Primary mechanical assembly interface`);
-                                                }
+                                                onHotspotClick: (id)=>setActiveHotspot(`Component #${id}: Primary mechanical assembly interface`)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 185,
+                                                lineNumber: 318,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "hidden sm:flex absolute bottom-4 left-4 pointer-events-none items-center gap-3 text-[11px] font-mono text-on-surface-variant/70 bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-outline-variant/20",
+                                                className: "jsx-33b71532ca9a173d" + " " + "hidden sm:flex absolute bottom-4 left-4 pointer-events-none items-center gap-3 text-[10px] font-mono text-on-surface-variant/70 bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-outline-variant/20",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "flex items-center gap-1.5",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-1.5",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mouse$2d$pointer$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MousePointer$3e$__["MousePointer"], {
-                                                                className: "w-3.5 h-3.5 text-primary"
+                                                                className: "w-3 h-3 text-primary"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 199,
+                                                                lineNumber: 331,
                                                                 columnNumber: 19
                                                             }, this),
-                                                            " Left-click + drag to orbit"
+                                                            " Drag to orbit"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 198,
+                                                        lineNumber: 330,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        children: "•"
+                                                        className: "jsx-33b71532ca9a173d" + " " + "opacity-40",
+                                                        children: "·"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 201,
+                                                        lineNumber: 333,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "flex items-center gap-1.5",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-1.5",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zoom$2d$in$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ZoomIn$3e$__["ZoomIn"], {
-                                                                className: "w-3.5 h-3.5 text-primary"
+                                                                className: "w-3 h-3 text-primary"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 203,
+                                                                lineNumber: 335,
                                                                 columnNumber: 19
                                                             }, this),
-                                                            " Scroll / pinch to zoom"
+                                                            " Scroll to zoom"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 202,
+                                                        lineNumber: 334,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 197,
+                                                lineNumber: 329,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "absolute bottom-3 right-3 sm:bottom-4 sm:right-4 flex items-center gap-1.5 bg-surface-container-lowest/80 backdrop-blur-md p-1.5 rounded-lg border border-outline-variant/20 z-10",
+                                                className: "jsx-33b71532ca9a173d" + " " + "absolute right-3 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1 bg-surface-container-lowest/85 backdrop-blur-xl p-1.5 rounded-2xl border border-outline-variant/30 shadow-xl z-10",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>setZoomLevel((z)=>Math.max(2.5, z - 0.5)),
-                                                        className: "w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-base font-mono active:scale-95",
-                                                        title: "Zoom In",
+                                                        onClick: ()=>setZoomLevel((z)=>Math.min(8.0, z + 0.5)),
+                                                        title: "Zoom in",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90",
                                                         children: "+"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 209,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>setZoomLevel((z)=>Math.min(8.0, z + 0.5)),
-                                                        className: "w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-base font-mono active:scale-95",
-                                                        title: "Zoom Out",
-                                                        children: "−"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 216,
+                                                        lineNumber: 340,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-[1px] h-4 bg-outline-variant/30 my-auto"
+                                                        className: "jsx-33b71532ca9a173d" + " " + "w-5 h-[1px] bg-outline-variant/40"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 223,
+                                                        lineNumber: 347,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        onClick: ()=>setZoomLevel((z)=>Math.max(2.5, z - 0.5)),
+                                                        title: "Zoom out",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90",
+                                                        children: "−"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 348,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "w-5 h-[1px] bg-outline-variant/40"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 355,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                         onClick: handleReset,
-                                                        className: "px-2 py-1 text-[10px] font-mono text-primary hover:underline active:scale-95",
-                                                        title: "Reset view orientation",
-                                                        children: "RESET"
+                                                        title: "Reset view",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "w-8 h-8 rounded-xl flex items-center justify-center text-primary hover:bg-primary/10 transition-colors active:scale-90",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$compass$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Compass$3e$__["Compass"], {
+                                                            className: "w-3.5 h-3.5"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 361,
+                                                            columnNumber: 19
+                                                        }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 224,
+                                                        lineNumber: 356,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 208,
+                                                lineNumber: 339,
                                                 columnNumber: 15
                                             }, this),
                                             activeHotspot && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "absolute top-4 left-4 right-4 p-3 rounded-lg bg-surface-container/95 border border-primary/40 text-xs font-mono text-on-surface flex items-center justify-between z-10 shadow-lg",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center gap-2 truncate",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"], {
-                                                                className: "w-4 h-4 text-primary shrink-0"
+                                                className: "jsx-33b71532ca9a173d" + " " + "absolute left-3 right-3 sm:left-auto sm:right-3 sm:top-3 sm:max-w-sm bottom-3 sm:bottom-auto z-20 animate-[slideUp_0.3s_ease-out]",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "p-3 rounded-xl bg-surface-container/95 backdrop-blur-xl border border-primary/40 shadow-2xl flex items-start gap-2",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "w-7 h-7 rounded-lg bg-primary/15 flex items-center justify-center shrink-0",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$info$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Info$3e$__["Info"], {
+                                                                className: "w-3.5 h-3.5 text-primary"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 237,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "truncate",
-                                                                children: activeHotspot
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 238,
-                                                                columnNumber: 21
+                                                                lineNumber: 369,
+                                                                columnNumber: 23
                                                             }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 236,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>setActiveHotspot(null),
-                                                        className: "text-on-surface-variant hover:text-on-surface ml-2",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                                            className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                            lineNumber: 241,
+                                                            lineNumber: 368,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "flex-1 min-w-0",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "text-[9px] font-mono text-primary uppercase tracking-widest block mb-0.5",
+                                                                    children: "Hotspot Selected"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 372,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "text-[11px] font-mono text-on-surface block leading-snug",
+                                                                    children: activeHotspot
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 375,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 371,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            onClick: ()=>setActiveHotspot(null),
+                                                            className: "jsx-33b71532ca9a173d" + " " + "text-on-surface-variant hover:text-on-surface shrink-0",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                                className: "w-3.5 h-3.5"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                lineNumber: 383,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 379,
                                                             columnNumber: 21
                                                         }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 240,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 367,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 235,
+                                                lineNumber: 366,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 184,
+                                        lineNumber: 317,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "px-3 sm:px-4 py-2 border-t border-outline-variant/20 bg-surface-container/40 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-on-surface-variant gap-2 truncate",
+                                        className: "jsx-33b71532ca9a173d" + " " + "relative z-10 px-3 sm:px-4 py-2 border-t border-outline-variant/20 bg-surface-container/50 backdrop-blur-md flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-on-surface-variant gap-2",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "shrink-0",
-                                                children: currentAsset.id
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-1.5 shrink-0",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__["Award"], {
+                                                        className: "w-3 h-3 text-primary"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 392,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "truncate max-w-[120px] sm:max-w-none",
+                                                        children: currentAsset.patent
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 393,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 249,
+                                                lineNumber: 391,
                                                 columnNumber: 15
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "truncate",
-                                                children: currentAsset.patent
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-2 shrink-0",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "text-primary hidden sm:inline",
+                                                        children: "Three.js"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 396,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "w-1 h-1 rounded-full bg-emerald-500"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 397,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-33b71532ca9a173d",
+                                                        children: "LIVE"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                        lineNumber: 398,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 250,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-primary hidden md:inline shrink-0",
-                                                children: "Three.js"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 251,
+                                                lineNumber: 395,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 248,
+                                        lineNumber: 390,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                lineNumber: 120,
+                                lineNumber: 237,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "lg:col-span-4 flex flex-col justify-between bg-surface-container-low rounded-2xl border border-outline-variant/30 p-4 sm:p-6 shadow-xl",
+                                className: "jsx-33b71532ca9a173d" + " " + "lg:col-span-4 flex flex-col bg-gradient-to-b from-surface-container-low to-surface-container rounded-3xl border border-outline-variant/40 p-5 sm:p-6 shadow-xl relative overflow-hidden",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-33b71532ca9a173d" + " " + "absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                        lineNumber: 405,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-33b71532ca9a173d" + " " + "flex-1",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center justify-between mb-4",
+                                                className: "jsx-33b71532ca9a173d" + " " + "flex items-center justify-between mb-4",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "px-2.5 py-1 rounded bg-primary/10 text-primary border border-primary/20 text-[10px] font-mono uppercase tracking-wider",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 text-[10px] font-mono uppercase tracking-widest",
                                                         children: currentAsset.categoryLabel
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 260,
+                                                        lineNumber: 409,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-xs font-mono text-on-surface-variant",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "text-[10px] font-mono text-on-surface-variant",
                                                         children: currentAsset.era
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 263,
+                                                        lineNumber: 412,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 259,
+                                                lineNumber: 408,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "font-serif text-2xl text-on-surface font-normal mb-1",
+                                                className: "jsx-33b71532ca9a173d" + " " + "font-serif text-2xl sm:text-3xl text-on-surface font-normal mb-1 leading-tight",
                                                 children: currentAsset.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 267,
+                                                lineNumber: 417,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs font-mono text-primary mb-4",
+                                                className: "jsx-33b71532ca9a173d" + " " + "text-[11px] font-mono text-primary mb-5",
                                                 children: [
-                                                    "Inventor: ",
+                                                    "by ",
                                                     currentAsset.inventor
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 270,
+                                                lineNumber: 420,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-3.5 rounded-xl bg-surface-container border border-outline-variant/20 mb-6 space-y-2",
+                                                className: "jsx-33b71532ca9a173d" + " " + "relative rounded-2xl bg-surface-container-lowest/60 border border-outline-variant/30 p-4 mb-5 space-y-2.5",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center justify-between text-xs font-mono",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface-variant",
-                                                                children: "Patent Registry:"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 277,
-                                                                columnNumber: 19
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface font-medium",
-                                                                children: currentAsset.patent
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 278,
-                                                                columnNumber: 19
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "absolute top-1.5 left-1.5 w-3 h-3 border-t border-l border-primary/40"
+                                                    }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 423,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center justify-between text-xs font-mono",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface-variant",
-                                                                children: "Grant Date:"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 281,
-                                                                columnNumber: 19
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface",
-                                                                children: currentAsset.patentDate
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 282,
-                                                                columnNumber: 19
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "absolute bottom-1.5 right-1.5 w-3 h-3 border-b border-r border-primary/40"
+                                                    }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 280,
+                                                        lineNumber: 424,
                                                         columnNumber: 17
                                                     }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center justify-between text-xs font-mono",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface-variant",
-                                                                children: "Workshop Origin:"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 285,
-                                                                columnNumber: 19
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface",
-                                                                children: currentAsset.location
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 286,
-                                                                columnNumber: 19
-                                                            }, this)
+                                                    [
+                                                        [
+                                                            'Patent',
+                                                            currentAsset.patent
+                                                        ],
+                                                        [
+                                                            'Granted',
+                                                            currentAsset.patentDate
+                                                        ],
+                                                        [
+                                                            'Origin',
+                                                            currentAsset.location
+                                                        ],
+                                                        [
+                                                            'Material',
+                                                            currentAsset.medium
                                                         ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 284,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center justify-between text-xs font-mono",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface-variant",
-                                                                children: "Material Spec:"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 289,
-                                                                columnNumber: 19
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-on-surface",
-                                                                children: currentAsset.medium
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 290,
-                                                                columnNumber: 19
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 288,
-                                                        columnNumber: 17
-                                                    }, this)
+                                                    ].map(([label, value])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "flex items-center justify-between text-[11px] font-mono gap-2",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "text-on-surface-variant uppercase tracking-wider",
+                                                                    children: label
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 436,
+                                                                    columnNumber: 21
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "jsx-33b71532ca9a173d" + " " + "text-on-surface font-medium truncate text-right",
+                                                                    children: value
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                    lineNumber: 439,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            ]
+                                                        }, label, true, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 432,
+                                                            columnNumber: 19
+                                                        }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 275,
+                                                lineNumber: 422,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "mb-6",
+                                                className: "jsx-33b71532ca9a173d" + " " + "mb-5",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                        className: "text-[11px] font-mono text-on-surface-variant uppercase tracking-wider mb-2",
-                                                        children: "Historical Mechanics"
-                                                    }, void 0, false, {
+                                                        className: "jsx-33b71532ca9a173d" + " " + "text-[10px] font-mono text-on-surface-variant uppercase tracking-widest mb-2 flex items-center gap-1.5",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$box$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
+                                                                className: "w-3 h-3 text-primary"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                                lineNumber: 446,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            " Historical Mechanics"
+                                                        ]
+                                                    }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 296,
+                                                        lineNumber: 445,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-xs font-sans text-on-surface/90 leading-relaxed line-clamp-4",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "text-[12px] font-sans text-on-surface/85 leading-relaxed line-clamp-4",
                                                         children: currentAsset.mechanics || currentAsset.desc
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 299,
+                                                        lineNumber: 448,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 295,
+                                                lineNumber: 444,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "grid grid-cols-2 gap-3 mb-6",
+                                                className: "jsx-33b71532ca9a173d" + " " + "grid grid-cols-2 gap-2.5 mb-5",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "p-2.5 rounded-lg bg-surface-container border border-outline-variant/20",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "rounded-xl bg-surface-container-lowest/60 border border-outline-variant/30 p-3",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-[10px] font-mono text-on-surface-variant block",
-                                                                children: "GEOMETRY"
+                                                                className: "jsx-33b71532ca9a173d" + " " + "text-[9px] font-mono text-on-surface-variant uppercase tracking-widest block mb-1",
+                                                                children: "Geometry"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 307,
+                                                                lineNumber: 455,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-xs font-mono text-on-surface font-medium",
+                                                                className: "jsx-33b71532ca9a173d" + " " + "text-xs font-mono text-on-surface font-semibold",
                                                                 children: currentAsset.polyCount
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 308,
+                                                                lineNumber: 458,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 306,
+                                                        lineNumber: 454,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "p-2.5 rounded-lg bg-surface-container border border-outline-variant/20",
+                                                        className: "jsx-33b71532ca9a173d" + " " + "rounded-xl bg-surface-container-lowest/60 border border-outline-variant/30 p-3",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-[10px] font-mono text-on-surface-variant block",
-                                                                children: "RESONANCE"
+                                                                className: "jsx-33b71532ca9a173d" + " " + "text-[9px] font-mono text-on-surface-variant uppercase tracking-widest block mb-1",
+                                                                children: "Resonance"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 311,
+                                                                lineNumber: 463,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-xs font-mono text-on-surface font-medium",
+                                                                className: "jsx-33b71532ca9a173d" + " " + "text-xs font-mono text-on-surface font-semibold",
                                                                 children: currentAsset.resonance
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                                lineNumber: 312,
+                                                                lineNumber: 466,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 310,
+                                                        lineNumber: 462,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 305,
+                                                lineNumber: 453,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 257,
+                                        lineNumber: 407,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "pt-4 border-t border-outline-variant/20 space-y-2",
+                                        className: "jsx-33b71532ca9a173d" + " " + "pt-4 border-t border-outline-variant/30 space-y-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                                 href: `/inventions/${currentAsset.id}`,
-                                                className: "w-full py-3 rounded-xl bg-primary text-surface-container-lowest font-medium font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md group",
+                                                className: "w-full py-3 rounded-xl bg-primary text-surface-container-lowest font-medium font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 group",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "jsx-33b71532ca9a173d",
                                                         children: "OPEN FULL MONOGRAPH"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 323,
+                                                        lineNumber: 478,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                                         className: "w-4 h-4 group-hover:translate-x-1 transition-transform"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                        lineNumber: 324,
+                                                        lineNumber: 479,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 319,
+                                                lineNumber: 474,
                                                 columnNumber: 15
                                             }, this),
                                             onSelectAssetForDossier && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 onClick: ()=>onSelectAssetForDossier(currentAsset),
-                                                className: "w-full py-2.5 rounded-xl border border-outline-variant/40 hover:bg-surface-container text-xs font-mono text-on-surface-variant hover:text-on-surface transition-colors",
+                                                className: "jsx-33b71532ca9a173d" + " " + "w-full py-2.5 rounded-xl border border-outline-variant/40 hover:bg-surface-container hover:border-primary/40 text-[11px] font-mono text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer",
                                                 children: "Quick Monograph Preview"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                                lineNumber: 328,
+                                                lineNumber: 483,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                        lineNumber: 318,
+                                        lineNumber: 473,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                                lineNumber: 256,
+                                lineNumber: 404,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                        lineNumber: 118,
+                        lineNumber: 235,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-                lineNumber: 80,
+                lineNumber: 139,
                 columnNumber: 7
-            }, this)
+            }, this),
+            isBrowserModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                onClick: (e)=>{
+                    if (e.target === e.currentTarget) setIsBrowserModalOpen(false);
+                },
+                className: "jsx-33b71532ca9a173d" + " " + "fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 animate-fadeIn",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "jsx-33b71532ca9a173d" + " " + "w-full max-w-3xl bg-[#121217] border border-amber-500/40 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4 max-h-[88vh] overflow-hidden",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "jsx-33b71532ca9a173d" + " " + "flex items-center justify-between pb-3 border-b border-white/10",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "jsx-33b71532ca9a173d" + " " + "flex items-center gap-2.5",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "jsx-33b71532ca9a173d" + " " + "w-8 h-8 rounded-xl bg-primary/20 flex items-center justify-center text-primary",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$grid$2d$2x2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Grid2x2$3e$__["Grid2x2"], {
+                                                className: "w-4 h-4"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                lineNumber: 508,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                            lineNumber: 507,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "jsx-33b71532ca9a173d",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "font-serif text-base sm:text-lg font-bold text-white leading-tight",
+                                                    children: "Select 3D Spatial Model"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 511,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "text-[10px] font-mono text-amber-400",
+                                                    children: [
+                                                        featuredAssets.length,
+                                                        " Photogrammetry & CAD Assets Available"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 514,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                            lineNumber: 510,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                    lineNumber: 506,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setIsBrowserModalOpen(false),
+                                    className: "jsx-33b71532ca9a173d" + " " + "w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white flex items-center justify-center transition cursor-pointer",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                        className: "w-4 h-4"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                        lineNumber: 524,
+                                        columnNumber: 17
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                    lineNumber: 520,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                            lineNumber: 505,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "jsx-33b71532ca9a173d" + " " + "grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-y-auto pr-1",
+                            children: featuredAssets.map((asset)=>{
+                                const isCurrent = currentAsset.id === asset.id;
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    onClick: ()=>{
+                                        handleSelectAssetId(asset.id);
+                                        setIsBrowserModalOpen(false);
+                                    },
+                                    className: "jsx-33b71532ca9a173d" + " " + `p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 active:scale-98 ${isCurrent ? 'bg-primary/15 border-primary shadow-lg shadow-primary/20' : 'bg-white/[0.03] border-white/10 hover:border-amber-400/50 hover:bg-white/[0.06]'}`,
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                            src: asset.image,
+                                            alt: asset.title,
+                                            className: "jsx-33b71532ca9a173d" + " " + "w-14 h-14 rounded-xl object-cover shrink-0 border border-white/10"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                            lineNumber: 545,
+                                            columnNumber: 21
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "jsx-33b71532ca9a173d" + " " + "flex-1 min-w-0",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "flex items-center justify-between mb-0.5",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "text-[10px] font-mono text-amber-400 font-semibold truncate",
+                                                            children: [
+                                                                asset.id,
+                                                                " • ",
+                                                                asset.categoryLabel.split(' ')[0]
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 553,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        isCurrent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "jsx-33b71532ca9a173d" + " " + "px-1.5 py-0.5 rounded bg-primary text-surface-container-lowest text-[9px] font-mono font-bold",
+                                                            children: "ACTIVE"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                            lineNumber: 557,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 552,
+                                                    columnNumber: 23
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "font-serif text-sm font-bold text-white truncate",
+                                                    children: asset.title
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 562,
+                                                    columnNumber: 23
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "jsx-33b71532ca9a173d" + " " + "text-[11px] font-sans text-neutral-400 truncate",
+                                                    children: [
+                                                        "by ",
+                                                        asset.inventor
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                                    lineNumber: 565,
+                                                    columnNumber: 23
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                            lineNumber: 551,
+                                            columnNumber: 21
+                                        }, this)
+                                    ]
+                                }, asset.id, true, {
+                                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                                    lineNumber: 533,
+                                    columnNumber: 19
+                                }, this);
+                            })
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                            lineNumber: 529,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                    lineNumber: 503,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/sections/SpatialGallery.tsx",
+                lineNumber: 497,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                id: "33b71532ca9a173d",
+                children: "@keyframes slideUp{0%{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}"
+            }, void 0, false, void 0, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/sections/SpatialGallery.tsx",
-        lineNumber: 70,
+        lineNumber: 123,
         columnNumber: 5
     }, this);
 }
-_s(SpatialGallery, "8kI5jWVwXuGF94LeaM3DJ5tZUHE=");
+_s(SpatialGallery, "0lnf7YzcrXBVFhPsmJkuZGUenho=");
 _c1 = SpatialGallery;
 var _c, _c1;
 __turbopack_context__.k.register(_c, "ModelViewer3D");
@@ -5176,7 +5889,6 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$film$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Film$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/film.mjs [app-client] (ecmascript) <export default as Film>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/clock.mjs [app-client] (ecmascript) <export default as Clock>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$play$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Play$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/play.mjs [app-client] (ecmascript) <export default as Play>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$play$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlayCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-play.mjs [app-client] (ecmascript) <export default as PlayCircle>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$constants$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/constants.ts [app-client] (ecmascript)");
@@ -5210,80 +5922,47 @@ function VideoGallery() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2 mb-3",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$film$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Film$3e$__["Film"], {
-                                                className: "w-4 h-4 text-primary"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 24,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs font-mono tracking-widest text-primary uppercase",
-                                                children: "Audiovisual Archive"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 25,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 23,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "font-serif text-3xl md:text-5xl tracking-tight text-on-surface font-normal",
-                                        children: "Historical Narration Video Gallery"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 29,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-3 text-sm md:text-base text-on-surface-variant max-w-2xl font-sans leading-relaxed",
-                                        children: "Cinematic AI-narrated invention documentaries crafted in disciplined 30-second vignettes. Each documentary follows a strict 3-scene tripartite structure: The Problem (10s), The Breakthrough (10s), and The Global Legacy (10s)."
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 32,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                lineNumber: 22,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2 px-3.5 py-2 rounded-full bg-surface-container-high border border-outline-variant/30 text-xs font-mono text-on-surface-variant self-start md:self-auto",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
-                                        className: "w-4 h-4 text-primary"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 39,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "3 SCENES • 10s EACH • 30s TOTAL"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 40,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                lineNumber: 38,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center gap-2 mb-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$film$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Film$3e$__["Film"], {
+                                            className: "w-4 h-4 text-primary"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sections/VideoGallery.tsx",
+                                            lineNumber: 24,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-xs font-mono tracking-widest text-primary uppercase",
+                                            children: "Audiovisual Archive"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sections/VideoGallery.tsx",
+                                            lineNumber: 25,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/sections/VideoGallery.tsx",
+                                    lineNumber: 23,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "font-serif text-3xl md:text-5xl tracking-tight text-on-surface font-normal",
+                                    children: "Historical Narration Video Gallery"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/sections/VideoGallery.tsx",
+                                    lineNumber: 29,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/sections/VideoGallery.tsx",
+                            lineNumber: 22,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
                         lineNumber: 21,
                         columnNumber: 9
@@ -5302,14 +5981,14 @@ function VideoGallery() {
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 52,
+                                        lineNumber: 46,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-black/60"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 56,
+                                        lineNumber: 50,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5321,12 +6000,12 @@ function VideoGallery() {
                                                     className: "w-6 h-6 sm:w-7 sm:h-7 fill-current ml-1 text-surface-container-lowest"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                    lineNumber: 61,
+                                                    lineNumber: 55,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 60,
+                                                lineNumber: 54,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5338,13 +6017,13 @@ function VideoGallery() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 63,
+                                                lineNumber: 57,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 59,
+                                        lineNumber: 53,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5355,7 +6034,7 @@ function VideoGallery() {
                                                 children: "FEATURED DOC"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 70,
+                                                lineNumber: 64,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5366,19 +6045,19 @@ function VideoGallery() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 73,
+                                                lineNumber: 67,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 63,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                lineNumber: 47,
+                                lineNumber: 41,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5393,27 +6072,27 @@ function VideoGallery() {
                                                         children: featuredVideo.inventor
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                        lineNumber: 83,
+                                                        lineNumber: 77,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "•"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                        lineNumber: 84,
+                                                        lineNumber: 78,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: featuredVideo.assetId
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                        lineNumber: 85,
+                                                        lineNumber: 79,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 82,
+                                                lineNumber: 76,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -5421,7 +6100,7 @@ function VideoGallery() {
                                                 children: featuredVideo.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 81,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5429,7 +6108,7 @@ function VideoGallery() {
                                                 children: featuredVideo.shortDesc
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 90,
+                                                lineNumber: 84,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5440,7 +6119,7 @@ function VideoGallery() {
                                                         children: "Tripartite Scene Structure (30 Seconds)"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                        lineNumber: 96,
+                                                        lineNumber: 90,
                                                         columnNumber: 17
                                                     }, this),
                                                     featuredVideo.scenes.map((scene, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5451,7 +6130,7 @@ function VideoGallery() {
                                                                     children: scene.timeRange
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                                    lineNumber: 104,
+                                                                    lineNumber: 98,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5462,7 +6141,7 @@ function VideoGallery() {
                                                                             children: scene.title
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                                            lineNumber: 108,
+                                                                            lineNumber: 102,
                                                                             columnNumber: 23
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5470,31 +6149,31 @@ function VideoGallery() {
                                                                             children: scene.description
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                                            lineNumber: 109,
+                                                                            lineNumber: 103,
                                                                             columnNumber: 23
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                                    lineNumber: 107,
+                                                                    lineNumber: 101,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, idx, true, {
                                                             fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                            lineNumber: 100,
+                                                            lineNumber: 94,
                                                             columnNumber: 19
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 95,
+                                                lineNumber: 89,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 75,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5505,32 +6184,32 @@ function VideoGallery() {
                                                 className: "w-4 h-4"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 120,
+                                                lineNumber: 114,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "PLAY CINEMATIC REEL"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                                lineNumber: 121,
+                                                lineNumber: 115,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                        lineNumber: 116,
+                                        lineNumber: 110,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                lineNumber: 80,
+                                lineNumber: 74,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                        lineNumber: 45,
+                        lineNumber: 39,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5540,12 +6219,12 @@ function VideoGallery() {
                                 onPlay: setSelectedVideo
                             }, video.id, false, {
                                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                                lineNumber: 129,
+                                lineNumber: 123,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                        lineNumber: 127,
+                        lineNumber: 121,
                         columnNumber: 9
                     }, this)
                 ]
@@ -5560,7 +6239,7 @@ function VideoGallery() {
                 onClose: ()=>setSelectedVideo(null)
             }, void 0, false, {
                 fileName: "[project]/src/components/sections/VideoGallery.tsx",
-                lineNumber: 139,
+                lineNumber: 133,
                 columnNumber: 7
             }, this)
         ]

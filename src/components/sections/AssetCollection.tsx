@@ -1,10 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Network, Search, X, SearchX, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import {
+  Network,
+  Search,
+  X,
+  SearchX,
+  ShieldCheck,
+  Loader2,
+  ChevronDown,
+  CheckCheck,
+  Grid2x2,
+  RectangleVertical,
+} from 'lucide-react';
 import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
 import AssetCard from '@/components/cards/AssetCard';
 import TaxonomyModal from '@/components/common/TaxonomyModal';
+import { LayoutGrid, Rows3 } from 'lucide-react';
+
 
 interface AssetCollectionProps {
   assets: HistoricalAsset[];
@@ -24,6 +37,8 @@ const CATEGORY_TABS: { key: CategoryFilterType; label: string; count: number }[]
   { key: 'TIME', label: 'Horology & Precision', count: 1 },
 ];
 
+const BATCH_SIZE = 6;
+
 export default function AssetCollection({
   assets,
   onSelectAsset,
@@ -34,6 +49,10 @@ export default function AssetCollection({
   const [activeCategory, setActiveCategory] = useState<CategoryFilterType>('ALL');
   const [internalSearch, setInternalSearch] = useState('');
   const [isTaxonomyOpen, setIsTaxonomyOpen] = useState(false);
+  const [mobileColumns, setMobileColumns] = useState<'2' | '1'>('2');
+  const [visibleCount, setVisibleCount] = useState<number>(BATCH_SIZE);
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
+  const observerTargetRef = useRef<HTMLDivElement>(null);
 
   const effectiveSearch = searchQuery || internalSearch;
 
@@ -49,8 +68,48 @@ export default function AssetCollection({
     return matchesCategory && matchesSearch;
   });
 
+  // Reset to initial batch whenever search query or category filter changes
+  useEffect(() => {
+    setVisibleCount(BATCH_SIZE);
+  }, [activeCategory, effectiveSearch]);
+
+  // Load next batch of cards
+  const loadMoreCards = useCallback(() => {
+    if (isLoadingMore || visibleCount >= filteredAssets.length) return;
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount((prev) => Math.min(prev + BATCH_SIZE, filteredAssets.length));
+      setIsLoadingMore(false);
+    }, 350);
+  }, [isLoadingMore, visibleCount, filteredAssets.length]);
+
+  // Infinite Scroll: triggers loadMoreCards as user scrolls into the sentinel element
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMoreCards();
+        }
+      },
+      { threshold: 0.1, rootMargin: '120px' }
+    );
+
+    const target = observerTargetRef.current;
+    if (target) observer.observe(target);
+
+    return () => {
+      if (target) observer.unobserve(target);
+    };
+  }, [loadMoreCards]);
+
+  const displayedAssets = filteredAssets.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredAssets.length;
+
   return (
-    <section id="collection" className="relative py-24 bg-surface text-on-surface border-t border-outline-variant/20 scroll-mt-20">
+    <section
+      id="collection"
+      className="relative py-16 sm:py-24 bg-surface text-on-surface border-t border-outline-variant/20 scroll-mt-20"
+    >
       {/* Background radial atmosphere */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-surface-container-high/40 via-surface to-surface" />
 
@@ -67,16 +126,13 @@ export default function AssetCollection({
             <h2 className="font-serif text-3xl md:text-5xl tracking-tight text-on-surface font-normal">
               Historical Asset Collection
             </h2>
-            <p className="mt-3 text-sm md:text-base text-on-surface-variant max-w-2xl font-sans leading-relaxed">
-              Curated physical-grade digital reconstructions of landmark industrial patents.
-              Every specimen is verified against 19th-century patent office records and modeled to microscopic tolerance.
-            </p>
+            
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsTaxonomyOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-primary/30 bg-surface-container-high/60 hover:bg-surface-container-highest hover:border-primary text-xs font-mono text-primary transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-primary/30 bg-surface-container-high/60 hover:bg-surface-container-highest hover:border-primary text-xs font-mono text-primary transition-all shadow-sm active:scale-95 cursor-pointer"
             >
               <Network className="w-4 h-4 text-primary" />
               <span>View 64 Disciplines</span>
@@ -87,62 +143,83 @@ export default function AssetCollection({
           </div>
         </div>
 
-        {/* Search & Filter Bar */}
-        <div className="mb-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30">
-          {/* Category Tabs */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 lg:pb-0 scrollbar-none -mx-1 px-1 scroll-smooth">
-            {CATEGORY_TABS.map((tab) => {
-              const isActive = activeCategory === tab.key;
-              return (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveCategory(tab.key)}
-                  className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
-                    isActive
-                      ? 'bg-primary text-surface-container-lowest font-medium shadow-md'
-                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Search Input */}
-          <div className="relative min-w-[280px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none" />
-            <input
-              type="text"
-              placeholder="Search inventor, patent, or keyword..."
-              value={effectiveSearch}
-              onChange={(e) => {
-                if (onSearchChange) onSearchChange(e.target.value);
-                setInternalSearch(e.target.value);
-              }}
-              className="w-full bg-surface-container-high border border-outline-variant/20 rounded-xl pl-9 pr-8 py-2 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"
-            />
-            {effectiveSearch && (
-              <button
-                onClick={() => {
-                  if (onSearchChange) onSearchChange('');
-                  setInternalSearch('');
-                }}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            )}
+        {/* ============================================
+    Filter Bar (Category Tabs only) — mobile scrollable
+   ============================================ */}
+        <div className="mb-3 p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30">
+          <div className="relative min-w-0">
+            <div
+              className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 scroll-smooth"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {CATEGORY_TABS.map((tab) => {
+                const isActive = activeCategory === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveCategory(tab.key)}
+                    className={`shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-primary text-surface-container-lowest font-medium shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+            {/* Right fade hint so users know it scrolls */}
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-low to-transparent" />
           </div>
         </div>
 
-        {/* Asset Cards Grid */}
+        {/* ============================================
+    Mobile View Switcher — own row, right-aligned
+   ============================================ */}
+        <div className="mb-6 flex sm:hidden items-center justify-end">
+          <div className="relative flex items-center p-1 bg-surface-container rounded-xl border border-outline-variant/30">
+            {/* sliding highlight */}
+            <span
+              className={`absolute top-1 bottom-1 w-[calc(50%-0.25rem)] left-1 rounded-lg bg-primary shadow-sm transition-transform duration-300 ease-out ${
+                mobileColumns === '2' ? 'translate-x-0' : 'translate-x-full'
+              }`}
+            />
+            <button
+              onClick={() => setMobileColumns('2')}
+              className={`relative z-10 w-9 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer ${
+                mobileColumns === '2'
+                  ? 'text-surface-container-lowest'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+              title="Grid View (2 per row)"
+              aria-label="Grid view"
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={() => setMobileColumns('1')}
+              className={`relative z-10 w-9 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer ${
+                mobileColumns === '1'
+                  ? 'text-surface-container-lowest'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+              title="List View (1 per row)"
+              aria-label="List view"
+            >
+              <Rows3 className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Asset Cards Grid — Mobile: 2 Columns by default; Desktop: 3 Columns */}
         {filteredAssets.length === 0 ? (
           <div className="py-20 text-center rounded-2xl border border-dashed border-outline-variant/40 bg-surface-container-low">
             <SearchX className="w-10 h-10 text-on-surface-variant/50 mb-3 mx-auto" />
             <h4 className="font-serif text-lg text-on-surface mb-1">No Historical Assets Found</h4>
             <p className="text-xs text-on-surface-variant font-mono">
-              No specimens match the criteria &ldquo;{effectiveSearch}&rdquo; in category &ldquo;{activeCategory}&rdquo;.
+              No specimens match the criteria &ldquo;{effectiveSearch}&rdquo; in category &ldquo;
+              {activeCategory}&rdquo;.
             </p>
             <button
               onClick={() => {
@@ -150,21 +227,64 @@ export default function AssetCollection({
                 if (onSearchChange) onSearchChange('');
                 setInternalSearch('');
               }}
-              className="mt-4 px-4 py-2 rounded-lg bg-surface-container text-xs font-mono text-primary hover:text-on-surface border border-primary/30"
+              className="mt-4 px-4 py-2 rounded-lg bg-surface-container text-xs font-mono text-primary hover:text-on-surface border border-primary/30 cursor-pointer"
             >
               Reset Filters
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-            {filteredAssets.map((asset) => (
-              <AssetCard
-                key={asset.id}
-                asset={asset}
-                onSelect={onSelectAsset}
-                onExplore3D={onExplore3D}
-              />
-            ))}
+          <div className="flex flex-col">
+            <div
+              className={`grid ${
+                mobileColumns === '2' ? 'grid-cols-2' : 'grid-cols-1'
+              } md:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-6`}
+            >
+              {displayedAssets.map((asset) => (
+                <AssetCard
+                  key={asset.id}
+                  asset={asset}
+                  onSelect={onSelectAsset}
+                  onExplore3D={onExplore3D}
+                />
+              ))}
+            </div>
+
+            {/* Infinite Scroll Sentinel */}
+            <div ref={observerTargetRef} className="h-6 w-full" />
+
+            {/* Infinite Scroll & Load More Controls */}
+            <div className="mt-8 flex flex-col items-center justify-center gap-3">
+              {hasMore ? (
+                <div className="flex flex-col items-center gap-3">
+                  <button
+                    onClick={loadMoreCards}
+                    disabled={isLoadingMore}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-container-highest border border-primary/40 hover:border-primary text-xs font-mono text-primary transition-all shadow-lg active:scale-95 cursor-pointer disabled:opacity-50"
+                  >
+                    {isLoadingMore ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                        <span>Unlocking Next Archival Batch...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Load More Inventions</span>
+                        <ChevronDown className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                  <span className="text-[11px] font-mono text-on-surface-variant">
+                    Showing {displayedAssets.length} of {filteredAssets.length} Inventions • Scroll
+                    down to auto-load
+                  </span>
+                </div>
+              ) : (
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low border border-outline-variant/30 text-[11px] font-mono text-on-surface-variant">
+                  <CheckCheck className="w-4 h-4 text-emerald-400" />
+                  <span>All {filteredAssets.length} verified archival specimens loaded</span>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
@@ -172,7 +292,10 @@ export default function AssetCollection({
         <div className="mt-12 p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-on-surface-variant">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
-            <span>All renderings use historically reconstructed 3D cad visuals rather than degraded archival photographs.</span>
+            <span>
+              All renderings use historically reconstructed 3D cad visuals rather than degraded
+              archival photographs.
+            </span>
           </div>
           <span className="text-outline">IAMS STANDARD REF #882-C</span>
         </div>
@@ -183,7 +306,6 @@ export default function AssetCollection({
         isOpen={isTaxonomyOpen}
         onClose={() => setIsTaxonomyOpen(false)}
         onSelectCategory={(cat) => {
-          // search filter with selected category
           if (onSearchChange) onSearchChange(cat.split(' ')[0]);
           else setInternalSearch(cat.split(' ')[0]);
         }}
