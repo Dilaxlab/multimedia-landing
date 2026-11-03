@@ -108,25 +108,27 @@ export default function AssetCollection({
   return (
     <section
       id="collection"
-      className="relative py-16 sm:py-24 bg-surface text-on-surface border-t border-outline-variant/20 scroll-mt-20"
+      className="relative py-8 sm:py-16 md:py-20 bg-surface text-on-surface border-t border-outline-variant/20 scroll-mt-20"
     >
       {/* Background radial atmosphere */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-surface-container-high/40 via-surface to-surface" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-5 sm:mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span className="text-xs font-mono tracking-widest text-primary uppercase">
                 Primary Registry
               </span>
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl tracking-tight text-on-surface font-normal">
+            <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl tracking-tight text-on-surface font-normal">
               Historical Asset Collection
             </h2>
-            
+            <p className="mt-1.5 text-xs sm:text-sm text-on-surface-variant max-w-xl font-sans leading-relaxed">
+              Curated physical-grade digital reconstructions of landmark industrial patents.
+            </p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -144,10 +146,11 @@ export default function AssetCollection({
         </div>
 
         {/* ============================================
-    Filter Bar (Category Tabs only) — mobile scrollable
-   ============================================ */}
-        <div className="mb-3 p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30">
-          <div className="relative min-w-0">
+            Filter Bar & Mobile 1-col / 2-col View Switcher
+           ============================================ */}
+        <div className="mb-4 sm:mb-6 p-2 sm:p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-between gap-2">
+          {/* Category Tabs (Horizontal Scroll) */}
+          <div className="relative min-w-0 flex-1 overflow-hidden">
             <div
               className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 scroll-smooth"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -158,7 +161,7 @@ export default function AssetCollection({
                   <button
                     key={tab.key}
                     onClick={() => setActiveCategory(tab.key)}
-                    className={`shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
+                    className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
                       isActive
                         ? 'bg-primary text-surface-container-lowest font-medium shadow-md'
                         : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
@@ -172,47 +175,44 @@ export default function AssetCollection({
             {/* Right fade hint so users know it scrolls */}
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-low to-transparent" />
           </div>
-        </div>
 
-        {/* ============================================
-    Mobile View Switcher — own row, right-aligned
-   ============================================ */}
-        <div className="mb-6 flex sm:hidden items-center justify-end">
-          <div className="relative flex items-center p-1 bg-surface-container rounded-xl border border-outline-variant/30">
-            {/* sliding highlight */}
-            <span
-              className={`absolute top-1 bottom-1 w-[calc(50%-0.25rem)] left-1 rounded-lg bg-primary shadow-sm transition-transform duration-300 ease-out ${
-                mobileColumns === '2' ? 'translate-x-0' : 'translate-x-full'
-              }`}
-            />
-            <button
-              onClick={() => setMobileColumns('2')}
-              className={`relative z-10 w-9 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer ${
-                mobileColumns === '2'
-                  ? 'text-surface-container-lowest'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-              title="Grid View (2 per row)"
-              aria-label="Grid view"
-            >
-              <LayoutGrid className="w-3.5 h-3.5" />
-            </button>
-            <button
-              onClick={() => setMobileColumns('1')}
-              className={`relative z-10 w-9 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer ${
-                mobileColumns === '1'
-                  ? 'text-surface-container-lowest'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-              title="List View (1 per row)"
-              aria-label="List view"
-            >
-              <Rows3 className="w-3.5 h-3.5" />
-            </button>
+          {/* Mobile View Switcher (2-Cards Grid vs 1-Card Feed) */}
+          <div className="flex sm:hidden items-center shrink-0 pl-1.5 border-l border-outline-variant/30">
+            <div className="relative flex items-center p-0.5 bg-surface-container rounded-lg border border-outline-variant/30">
+              <span
+                className={`absolute top-0.5 bottom-0.5 w-[calc(50%-0.15rem)] left-0.5 rounded-md bg-primary shadow-sm transition-transform duration-300 ease-out ${
+                  mobileColumns === '2' ? 'translate-x-0' : 'translate-x-full'
+                }`}
+              />
+              <button
+                onClick={() => setMobileColumns('2')}
+                className={`relative z-10 w-7 h-6 flex items-center justify-center rounded-md transition-colors cursor-pointer ${
+                  mobileColumns === '2'
+                    ? 'text-surface-container-lowest'
+                    : 'text-on-surface-variant hover:text-on-surface'
+                }`}
+                title="2 Cards Grid"
+                aria-label="2 Columns"
+              >
+                <LayoutGrid className="w-3.5 h-3.5" />
+              </button>
+              <button
+                onClick={() => setMobileColumns('1')}
+                className={`relative z-10 w-7 h-6 flex items-center justify-center rounded-md transition-colors cursor-pointer ${
+                  mobileColumns === '1'
+                    ? 'text-surface-container-lowest'
+                    : 'text-on-surface-variant hover:text-on-surface'
+                }`}
+                title="1 Card Feed"
+                aria-label="1 Column"
+              >
+                <Rows3 className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Asset Cards Grid — Mobile: 2 Columns by default; Desktop: 3 Columns */}
+        {/* Asset Cards Grid — Mobile: 2 Columns or 1 Column; Desktop: 3 Columns */}
         {filteredAssets.length === 0 ? (
           <div className="py-20 text-center rounded-2xl border border-dashed border-outline-variant/40 bg-surface-container-low">
             <SearchX className="w-10 h-10 text-on-surface-variant/50 mb-3 mx-auto" />
@@ -237,7 +237,7 @@ export default function AssetCollection({
             <div
               className={`grid ${
                 mobileColumns === '2' ? 'grid-cols-2' : 'grid-cols-1'
-              } md:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-6`}
+              } md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 xs:gap-4 sm:gap-6`}
             >
               {displayedAssets.map((asset) => (
                 <AssetCard

@@ -236,54 +236,62 @@ export default function DossierView({
         {/* ==================== 4. PRIMARY INTERACTIVE MEDIA WORKSPACE ==================== */}
         <div className="mb-14">
 
-          {/* Tab Navigation Pill Header */}
+          {/* Tab Navigation Pill Header - Icon-Forward Navbar Style */}
           <div className="flex items-center gap-1.5 p-1.5 bg-[#0e0e13]/90 rounded-2xl border border-white/10 backdrop-blur-xl mb-6 overflow-x-auto max-w-full scrollbar-none -mx-1 px-1 scroll-smooth">
             <button
               onClick={() => setActiveTab('3D_MODEL')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
+              title="Interactive 3D Spatial Model"
+              aria-label="Interactive 3D Model"
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === '3D_MODEL'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
               }`}
             >
-              <Boxes className="w-4 h-4 shrink-0" />
-              <span>1. Interactive 3D Spatial Model</span>
+              <Boxes className={`w-4 h-4 shrink-0 ${activeTab === '3D_MODEL' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
+              <span className="font-semibold">3D Model</span>
             </button>
 
             <button
               onClick={() => setActiveTab('WATCH_STORY')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
+              title="3-Scene Narration Video (30s)"
+              aria-label="3-Scene Narration Video"
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === 'WATCH_STORY'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
               }`}
             >
-              <Film className="w-4 h-4 shrink-0" />
-              <span>2. 3-Scene Narration Video (30s)</span>
+              <Film className={`w-4 h-4 shrink-0 ${activeTab === 'WATCH_STORY' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
+              <span className="font-semibold">Story Reel</span>
             </button>
 
             <button
               onClick={() => setActiveTab('BLUEPRINTS')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
+              title="Patent Blueprints & Schematics"
+              aria-label="Patent Blueprints & Schematics"
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === 'BLUEPRINTS'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
               }`}
             >
-              <FileText className="w-4 h-4 shrink-0" />
-              <span>3. Patent Blueprints & Schematics</span>
+              <FileText className={`w-4 h-4 shrink-0 ${activeTab === 'BLUEPRINTS' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
+              <span className="font-semibold">Blueprints</span>
             </button>
 
             <button
               onClick={() => setActiveTab('AUDIO_GUIDE')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
+              title="Binaural Curatorial Audio Guide"
+              aria-label="Binaural Curatorial Audio Guide"
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === 'AUDIO_GUIDE'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill'
+                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
               }`}
             >
-              <Headphones className="w-4 h-4 shrink-0" />
-              <span>4. Binaural Curatorial Audio Guide</span>
+              <Headphones className={`w-4 h-4 shrink-0 ${activeTab === 'AUDIO_GUIDE' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
+              <span className="font-semibold">Audio Guide</span>
             </button>
           </div>
 
