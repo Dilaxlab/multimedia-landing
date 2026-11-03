@@ -151,9 +151,9 @@ html {
 }
 .nav-icon-item:hover .nav-label,
 .nav-icon-item.active-tab .nav-label {
-  max-width: 90px;
+  max-width: 100px;
   opacity: 1;
-  margin-left: 2px;
+  margin-left: 4px;
 }
 
 /* Glow effects */

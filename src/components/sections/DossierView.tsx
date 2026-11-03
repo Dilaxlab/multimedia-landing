@@ -177,63 +177,148 @@ export default function DossierView({
         {/* ==================== 4. PRIMARY INTERACTIVE MEDIA WORKSPACE ==================== */}
         <div className="mb-14">
 
-          {/* Tab Navigation Pill Header - Icon-Forward Navbar Style */}
-          <div className="flex items-center gap-1.5 p-1.5 bg-[#0e0e13]/90 rounded-2xl border border-white/10 backdrop-blur-xl mb-6 overflow-x-auto max-w-full scrollbar-none -mx-1 px-1 scroll-smooth">
-            <button
-              onClick={() => setActiveTab('3D_MODEL')}
-              title="Interactive 3D Spatial Model"
-              aria-label="Interactive 3D Model"
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === '3D_MODEL'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-              }`}
-            >
-              <Boxes className={`w-4 h-4 shrink-0 ${activeTab === '3D_MODEL' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
-              <span className="font-semibold">3D Model</span>
-            </button>
+          {/* Tab Navigation Pill Header - Aligned to the RIGHT, identical to Top Navbar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+            {/* Left Curatorial Workspace Tag */}
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                Interactive Workspace
+              </span>
+            </div>
 
-            <button
-              onClick={() => setActiveTab('WATCH_STORY')}
-              title="3-Scene Narration Video (30s)"
-              aria-label="3-Scene Narration Video"
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === 'WATCH_STORY'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-              }`}
-            >
-              <Film className={`w-4 h-4 shrink-0 ${activeTab === 'WATCH_STORY' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
-              <span className="font-semibold">Story Reel</span>
-            </button>
+            {/* Right-Aligned Icon-First Nav Pill Bar (Exact Top Navbar Style) */}
+            <nav className="flex items-center p-1 bg-black/40 border border-white/[0.08] rounded-xl backdrop-blur-md self-end sm:self-auto shadow-lg">
+              <ul className="flex items-center gap-0.5">
+                <li className="relative has-tooltip">
+                  <button
+                    onClick={() => setActiveTab('3D_MODEL')}
+                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                      activeTab === '3D_MODEL'
+                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
+                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                    }`}
+                    aria-label="3D Model"
+                  >
+                    <span
+                      className={
+                        activeTab === '3D_MODEL'
+                          ? 'text-black stroke-[2.2] shrink-0'
+                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                      }
+                    >
+                      <Boxes className="w-4 h-4" />
+                    </span>
+                    <span
+                      className={`nav-label text-[10px] tracking-wide ${
+                        activeTab === '3D_MODEL' ? 'font-bold text-neutral-950' : 'font-medium'
+                      }`}
+                    >
+                      3D Model
+                    </span>
+                  </button>
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                    Interactive 3D Spatial Model
+                  </div>
+                </li>
 
-            <button
-              onClick={() => setActiveTab('BLUEPRINTS')}
-              title="Patent Blueprints & Schematics"
-              aria-label="Patent Blueprints & Schematics"
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === 'BLUEPRINTS'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-              }`}
-            >
-              <FileText className={`w-4 h-4 shrink-0 ${activeTab === 'BLUEPRINTS' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
-              <span className="font-semibold">Blueprints</span>
-            </button>
+                <li className="relative has-tooltip">
+                  <button
+                    onClick={() => setActiveTab('WATCH_STORY')}
+                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                      activeTab === 'WATCH_STORY'
+                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
+                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                    }`}
+                    aria-label="Story Reel"
+                  >
+                    <span
+                      className={
+                        activeTab === 'WATCH_STORY'
+                          ? 'text-black stroke-[2.2] shrink-0'
+                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                      }
+                    >
+                      <Film className="w-4 h-4" />
+                    </span>
+                    <span
+                      className={`nav-label text-[10px] tracking-wide ${
+                        activeTab === 'WATCH_STORY' ? 'font-bold text-neutral-950' : 'font-medium'
+                      }`}
+                    >
+                      Story Reel
+                    </span>
+                  </button>
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                    3-Scene Narration Video (30s)
+                  </div>
+                </li>
 
-            <button
-              onClick={() => setActiveTab('AUDIO_GUIDE')}
-              title="Binaural Curatorial Audio Guide"
-              aria-label="Binaural Curatorial Audio Guide"
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl font-mono text-xs whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === 'AUDIO_GUIDE'
-                  ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold shadow-glow-pill scale-[1.02]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
-              }`}
-            >
-              <Headphones className={`w-4 h-4 shrink-0 ${activeTab === 'AUDIO_GUIDE' ? 'text-neutral-950 stroke-[2.2]' : 'text-amber-400/90'}`} />
-              <span className="font-semibold">Audio Guide</span>
-            </button>
+                <li className="relative has-tooltip">
+                  <button
+                    onClick={() => setActiveTab('BLUEPRINTS')}
+                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                      activeTab === 'BLUEPRINTS'
+                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
+                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                    }`}
+                    aria-label="Blueprints"
+                  >
+                    <span
+                      className={
+                        activeTab === 'BLUEPRINTS'
+                          ? 'text-black stroke-[2.2] shrink-0'
+                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                      }
+                    >
+                      <FileText className="w-4 h-4" />
+                    </span>
+                    <span
+                      className={`nav-label text-[10px] tracking-wide ${
+                        activeTab === 'BLUEPRINTS' ? 'font-bold text-neutral-950' : 'font-medium'
+                      }`}
+                    >
+                      Blueprints
+                    </span>
+                  </button>
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                    Patent Blueprints & Schematics
+                  </div>
+                </li>
+
+                <li className="relative has-tooltip">
+                  <button
+                    onClick={() => setActiveTab('AUDIO_GUIDE')}
+                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                      activeTab === 'AUDIO_GUIDE'
+                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
+                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                    }`}
+                    aria-label="Audio Guide"
+                  >
+                    <span
+                      className={
+                        activeTab === 'AUDIO_GUIDE'
+                          ? 'text-black stroke-[2.2] shrink-0'
+                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                      }
+                    >
+                      <Headphones className="w-4 h-4" />
+                    </span>
+                    <span
+                      className={`nav-label text-[10px] tracking-wide ${
+                        activeTab === 'AUDIO_GUIDE' ? 'font-bold text-neutral-950' : 'font-medium'
+                      }`}
+                    >
+                      Audio Guide
+                    </span>
+                  </button>
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                    Binaural Curatorial Audio Guide
+                  </div>
+                </li>
+              </ul>
+            </nav>
           </div>
 
           {/* TAB 1: INTERACTIVE 3D SPATIAL MODEL */}
