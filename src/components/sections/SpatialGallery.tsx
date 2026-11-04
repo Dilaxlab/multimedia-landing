@@ -425,7 +425,7 @@ export default function SpatialGallery({
 
                 {[
                   ['Patent', currentAsset.patent],
-                  ['Patent Date', currentAsset.patentDate],
+                  ['Patented Date', currentAsset.patentDate],
                   ['Origin', currentAsset.location],
                   ['Material', currentAsset.medium],
                 ].map(([label, value]) => (

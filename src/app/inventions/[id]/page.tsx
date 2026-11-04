@@ -119,10 +119,7 @@ export default async function InventionPage({ params }: InventionPageProps) {
                 <Landmark className="w-3.5 h-3.5" />
                 {asset.categoryLabel || 'Historical Asset'}
               </span>
-              <span className="text-xs font-mono text-neutral-500 flex items-center gap-1.5">
-                <Fingerprint className="w-3.5 h-3.5" /> REF: {asset.id}
-              </span>
-              <span className="text-neutral-700">•</span>
+
               <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider">
                 {asset.era}
               </span>
