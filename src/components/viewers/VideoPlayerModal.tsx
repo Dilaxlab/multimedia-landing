@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Subtitles } from 'lucide-react';
 import { VideoVignette } from '@/types/media';
 import YouTubeVideoPlayer from '@/components/viewers/YouTubeVideoPlayer';
 
@@ -9,11 +9,23 @@ interface VideoPlayerModalProps {
   vignette?: VideoVignette | null;
   video?: VideoVignette | null;
   isOpen: boolean;
+  initialCaptionsOn?: boolean;
   onClose: () => void;
 }
 
-export default function VideoPlayerModal({ vignette, video, isOpen, onClose }: VideoPlayerModalProps) {
+export default function VideoPlayerModal({
+  vignette,
+  video,
+  isOpen,
+  initialCaptionsOn = true,
+  onClose,
+}: VideoPlayerModalProps) {
   const activeVignette = video || vignette;
+  const [captionsOn, setCaptionsOn] = useState<boolean>(initialCaptionsOn);
+
+  useEffect(() => {
+    setCaptionsOn(initialCaptionsOn);
+  }, [initialCaptionsOn]);
 
   if (!isOpen || !activeVignette) return null;
 
@@ -41,18 +53,39 @@ export default function VideoPlayerModal({ vignette, video, isOpen, onClose }: V
               </p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition cursor-pointer shrink-0"
-            aria-label="Close video player"
-          >
-            <X className="w-5 h-5" />
-          </button>
+
+          <div className="flex items-center gap-2">
+            {/* Quick Caption Toggle Button */}
+            <button
+              onClick={() => setCaptionsOn(!captionsOn)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition cursor-pointer ${
+                captionsOn
+                  ? 'bg-primary/20 border-primary text-primary font-bold shadow-sm'
+                  : 'bg-surface-container border-outline-variant/30 text-on-surface-variant hover:text-on-surface'
+              }`}
+              title="Toggle Captions"
+            >
+              <Subtitles className="w-3.5 h-3.5" />
+              <span>CC: {captionsOn ? 'ON' : 'OFF'}</span>
+            </button>
+
+            <button
+              onClick={onClose}
+              className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition cursor-pointer shrink-0"
+              aria-label="Close video player"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* YouTube Style Video Player with Captions & Fullscreen */}
         <div className="w-full">
-          <YouTubeVideoPlayer video={activeVignette} autoPlay={true} />
+          <YouTubeVideoPlayer
+            video={activeVignette}
+            autoPlay={true}
+            initialCaptionsOn={captionsOn}
+          />
         </div>
 
         {/* 3-Scene Detailed Narrative Breakdown */}

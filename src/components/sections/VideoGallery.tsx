@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Film, Clock, Play, PlayCircle } from 'lucide-react';
+import { Film, Clock, Play, PlayCircle, Subtitles } from 'lucide-react';
 import { MOCK_VIDEO_VIGNETTES } from '@/lib/constants';
 import { VideoVignette } from '@/types/media';
 import VideoCard from '@/components/cards/VideoCard';
@@ -9,6 +9,7 @@ import VideoPlayerModal from '@/components/viewers/VideoPlayerModal';
 
 export default function VideoGallery() {
   const [selectedVideo, setSelectedVideo] = useState<VideoVignette | null>(null);
+  const [captionsPreference, setCaptionsPreference] = useState<boolean>(true);
   const featuredVideo = MOCK_VIDEO_VIGNETTES[0]; // Alexander Graham Bell
 
   return (
@@ -59,14 +60,29 @@ export default function VideoGallery() {
               </span>
             </div>
 
-            {/* Bottom time badge */}
-            <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2">
+            {/* Bottom time badge & Caption toggle */}
+            <div className="absolute bottom-4 left-4 z-10 flex flex-wrap items-center gap-2">
               <span className="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-outline-variant/30 text-[10px] font-mono text-primary font-semibold">
                 FEATURED DOC
               </span>
               <span className="text-xs font-mono text-on-surface/90">
                 {featuredVideo.scenes.length} Scenes Verified
               </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCaptionsPreference(!captionsPreference);
+                }}
+                className={`px-2.5 py-1 rounded-md backdrop-blur-md border text-[10px] font-mono flex items-center gap-1.5 transition cursor-pointer ${
+                  captionsPreference
+                    ? 'bg-primary/20 border-primary text-primary font-bold shadow-sm'
+                    : 'bg-black/80 border-outline-variant/30 text-on-surface-variant hover:text-on-surface'
+                }`}
+                title="Toggle Captions Preference"
+              >
+                <Subtitles className="w-3.5 h-3.5" />
+                <span>CC: {captionsPreference ? 'ON' : 'OFF'}</span>
+              </button>
             </div>
           </div>
 
@@ -107,13 +123,59 @@ export default function VideoGallery() {
               </div>
             </div>
 
-            <button
-              onClick={() => setSelectedVideo(featuredVideo)}
-              className="w-full py-3 rounded-xl bg-primary text-surface-container-lowest font-medium font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md group"
-            >
-              <PlayCircle className="w-4 h-4" />
-              <span>PLAY CINEMATIC REEL</span>
-            </button>
+            <div>
+              {/* Closed Caption Preference Switcher - User Choice */}
+              <div className="mb-3 p-2.5 px-3.5 rounded-xl bg-surface-container border border-outline-variant/30 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  <Subtitles className={`w-4 h-4 shrink-0 ${captionsPreference ? 'text-primary' : 'text-on-surface-variant'}`} />
+                  <div className="flex flex-col min-w-0">
+                    <span className="font-mono text-xs text-on-surface font-semibold truncate">
+                      Subtitles / Closed Captions [CC]
+                    </span>
+                    <span className="text-[10px] text-on-surface-variant font-sans truncate">
+                      {captionsPreference ? 'Subtitles will appear on video' : 'Subtitles turned off'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* ON / OFF Segmented Switch */}
+                <div className="flex items-center p-1 bg-surface-container-high rounded-lg border border-outline-variant/20 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setCaptionsPreference(true)}
+                    className={`px-3 py-1 rounded-md text-[11px] font-mono font-bold transition-all cursor-pointer ${
+                      captionsPreference
+                        ? 'bg-primary text-surface-container-lowest shadow-sm'
+                        : 'text-on-surface-variant hover:text-on-surface'
+                    }`}
+                  >
+                    ON
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCaptionsPreference(false)}
+                    className={`px-3 py-1 rounded-md text-[11px] font-mono font-bold transition-all cursor-pointer ${
+                      !captionsPreference
+                        ? 'bg-surface-container-highest text-on-surface shadow-sm border border-white/10'
+                        : 'text-on-surface-variant hover:text-on-surface'
+                    }`}
+                  >
+                    OFF
+                  </button>
+                </div>
+              </div>
+
+              {/* Play Button */}
+              <button
+                onClick={() => setSelectedVideo(featuredVideo)}
+                className="w-full py-3.5 rounded-xl bg-primary text-surface-container-lowest font-bold font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md group cursor-pointer"
+              >
+                <PlayCircle className="w-4 h-4" />
+                <span>
+                  PLAY CINEMATIC REEL {captionsPreference ? 'WITH [CC] CAPTIONS' : '(NO CAPTIONS)'}
+                </span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -133,6 +195,7 @@ export default function VideoGallery() {
       <VideoPlayerModal
         isOpen={!!selectedVideo}
         video={selectedVideo}
+        initialCaptionsOn={captionsPreference}
         onClose={() => setSelectedVideo(null)}
       />
     </section>

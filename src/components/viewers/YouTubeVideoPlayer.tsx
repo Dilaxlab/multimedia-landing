@@ -22,6 +22,7 @@ import { VideoVignette } from '@/types/media';
 interface YouTubeVideoPlayerProps {
   video: VideoVignette;
   autoPlay?: boolean;
+  initialCaptionsOn?: boolean;
   onEnded?: () => void;
   className?: string;
 }
@@ -37,6 +38,7 @@ interface CaptionCue {
 export default function YouTubeVideoPlayer({
   video,
   autoPlay = false,
+  initialCaptionsOn = true,
   onEnded,
   className = '',
 }: YouTubeVideoPlayerProps) {
@@ -50,7 +52,11 @@ export default function YouTubeVideoPlayer({
   const [volume, setVolume] = useState<number>(0.85);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
-  const [isCaptionsOn, setIsCaptionsOn] = useState<boolean>(true);
+  const [isCaptionsOn, setIsCaptionsOn] = useState<boolean>(initialCaptionsOn);
+
+  useEffect(() => {
+    setIsCaptionsOn(initialCaptionsOn);
+  }, [initialCaptionsOn]);
   const [captionLang, setCaptionLang] = useState<'en' | 'ta'>('en');
   const [showSettingsMenu, setShowSettingsMenu] = useState<boolean>(false);
   const [settingsTab, setSettingsTab] = useState<'main' | 'speed' | 'subtitles' | 'quality'>('main');
