@@ -60,30 +60,7 @@ export default function VideoGallery() {
               </span>
             </div>
 
-            {/* Bottom time badge & Caption toggle */}
-            <div className="absolute bottom-4 left-4 z-10 flex flex-wrap items-center gap-2">
-              <span className="px-2.5 py-1 rounded bg-black/80 backdrop-blur-md border border-outline-variant/30 text-[10px] font-mono text-primary font-semibold">
-                FEATURED DOC
-              </span>
-              <span className="text-xs font-mono text-on-surface/90">
-                {featuredVideo.scenes.length} Scenes Verified
-              </span>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCaptionsPreference(!captionsPreference);
-                }}
-                className={`px-2.5 py-1 rounded-md backdrop-blur-md border text-[10px] font-mono flex items-center gap-1.5 transition cursor-pointer ${
-                  captionsPreference
-                    ? 'bg-primary/20 border-primary text-primary font-bold shadow-sm'
-                    : 'bg-black/80 border-outline-variant/30 text-on-surface-variant hover:text-on-surface'
-                }`}
-                title="Toggle Captions Preference"
-              >
-                <Subtitles className="w-3.5 h-3.5" />
-                <span>CC: {captionsPreference ? 'ON' : 'OFF'}</span>
-              </button>
-            </div>
+           
           </div>
 
           {/* Featured Info Panel */}

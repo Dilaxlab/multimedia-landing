@@ -174,7 +174,7 @@ export default function DossierView({
 
         </div>
 
-      
+
 
         {/* ==================== 4. PRIMARY INTERACTIVE MEDIA WORKSPACE ==================== */}
         <div className="mb-14">
@@ -492,35 +492,7 @@ export default function DossierView({
           {activeTab === 'WATCH_STORY' && (
             <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-4 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-5">
 
-              {/* Caption Prompt / Toggle Bar */}
-              <div className="flex items-center justify-between p-2.5 px-4 rounded-xl bg-black/40 border border-white/10 text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-amber-400" />
-                  <span className="font-mono text-neutral-300">Subtitles & Closed Captions [CC]:</span>
-                </div>
-                <div className="flex items-center gap-1 bg-white/[0.04] p-1 rounded-lg border border-white/10 font-mono text-[11px]">
-                  <button
-                    onClick={() => setDossierCaptionsOn(true)}
-                    className={`px-3 py-1 rounded-md font-bold transition cursor-pointer ${
-                      dossierCaptionsOn
-                        ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 shadow-sm'
-                        : 'text-neutral-400 hover:text-white'
-                    }`}
-                  >
-                    ON
-                  </button>
-                  <button
-                    onClick={() => setDossierCaptionsOn(false)}
-                    className={`px-3 py-1 rounded-md font-bold transition cursor-pointer ${
-                      !dossierCaptionsOn
-                        ? 'bg-white/10 text-white shadow-sm'
-                        : 'text-neutral-400 hover:text-white'
-                    }`}
-                  >
-                    OFF
-                  </button>
-                </div>
-              </div>
+             
 
               {/* YouTube Style Video Player with Captions & Fullscreen */}
               <div className="w-full">

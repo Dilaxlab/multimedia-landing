@@ -55,19 +55,7 @@ export default function VideoPlayerModal({
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Quick Caption Toggle Button */}
-            <button
-              onClick={() => setCaptionsOn(!captionsOn)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition cursor-pointer ${
-                captionsOn
-                  ? 'bg-primary/20 border-primary text-primary font-bold shadow-sm'
-                  : 'bg-surface-container border-outline-variant/30 text-on-surface-variant hover:text-on-surface'
-              }`}
-              title="Toggle Captions"
-            >
-              <Subtitles className="w-3.5 h-3.5" />
-              <span>CC: {captionsOn ? 'ON' : 'OFF'}</span>
-            </button>
+           
 
             <button
               onClick={onClose}
