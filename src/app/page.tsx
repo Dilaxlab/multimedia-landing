@@ -75,7 +75,8 @@ export default function HomePage() {
       {/* SECTION 4: Historical Narration Video Gallery */}
       <VideoGallery />
 
-
+      {/* SECTION 5: Curatorial Media Archive (Masonry) */}
+      <MultimediaMasonry />
 
       {/* SECTION 6: Explore an Invention Detailed Experience */}
       <DossierView

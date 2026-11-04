@@ -93,19 +93,31 @@ export default function MobileBottomNav() {
     }
 
     if (pathname !== '/') {
-      router.push(`/#${targetId}`);
+      window.location.href = `/#${targetId}`;
       return;
     }
 
     const el = document.getElementById(targetId);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 60;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth',
+      });
+    } else {
+      const fallbackId = targetId === 'multimedia' ? 'collection' : 'hero';
+      const fallbackEl = document.getElementById(fallbackId);
+      if (fallbackEl) {
+        fallbackEl.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#0c0d12]/95 backdrop-blur-2xl border-t border-[rgba(212,175,55,0.22)] shadow-[0_-8px_30px_rgba(0,0,0,0.9)] px-1 pt-2 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.35rem))] transition-all"
+      className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#0c0d12]/95 backdrop-blur-2xl border-t border-[rgba(212,175,55,0.22)] shadow-[0_-8px_30px_rgba(0,0,0,0.9)] px-1 pt-2 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.35rem))] transition-all touch-manipulation"
       aria-label="Mobile Navigation Bar"
     >
       <div className="grid grid-cols-5 w-full max-w-md mx-auto items-center">
@@ -114,8 +126,9 @@ export default function MobileBottomNav() {
           return (
             <button
               key={item.name}
+              type="button"
               onClick={() => handleNavClick(item.targetId, item.name)}
-              className="group relative flex flex-col items-center justify-center w-full py-0.5 select-none active:scale-95 transition-transform cursor-pointer"
+              className="group relative flex flex-col items-center justify-center w-full py-0.5 select-none active:scale-95 transition-transform cursor-pointer touch-manipulation"
             >
               {/* Active Pill Container around Icon */}
               <div
