@@ -228,7 +228,7 @@ export default function SpatialGallery({
           </div>
 
           {/* --- Row 3: Category tabs strip --- */}
-       
+
         </div>
 
         {/* ================= WORKBENCH ================= */}
@@ -425,7 +425,7 @@ export default function SpatialGallery({
 
                 {[
                   ['Patent', currentAsset.patent],
-                  ['Granted', currentAsset.patentDate],
+                  ['Patent Date', currentAsset.patentDate],
                   ['Origin', currentAsset.location],
                   ['Material', currentAsset.medium],
                 ].map(([label, value]) => (

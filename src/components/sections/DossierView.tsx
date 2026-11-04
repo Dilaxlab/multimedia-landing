@@ -35,6 +35,7 @@ import { HistoricalAsset } from '@/types/asset';
 import { MOCK_VIDEO_VIGNETTES, MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import LightboxModal from '@/components/common/LightboxModal';
 import { BlueprintMedia } from '@/types/media';
+import YouTubeVideoPlayer from '@/components/viewers/YouTubeVideoPlayer';
 
 // Dynamically import Three.js viewer with SSR disabled
 const ModelViewer3D = dynamic(() => import('@/components/viewers/ModelViewer3D'), {
@@ -490,99 +491,9 @@ export default function DossierView({
           {activeTab === 'WATCH_STORY' && (
             <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-4 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-6">
 
-              {/* Cinematic Video Player Stage */}
-              <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black flex items-center justify-center shadow-2xl border border-amber-500/25">
-                <img
-                  src={matchingVideo.thumbnailUrl}
-                  alt={matchingVideo.title}
-                  className={`w-full h-full object-cover transition-opacity duration-700 ${
-                    isPlayingVideo ? 'opacity-85' : 'opacity-40'
-                  }`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50" />
-
-                {/* Center Play/Pause Overlay */}
-                <button
-                  onClick={() => setIsPlayingVideo(!isPlayingVideo)}
-                  className="relative z-10 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 flex items-center justify-center shadow-glow-pill hover:scale-110 active:scale-95 transition-transform cursor-pointer"
-                >
-                  {isPlayingVideo ? (
-                    <Pause className="w-6 h-6 sm:w-8 sm:h-8 fill-current" />
-                  ) : (
-                    <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-0.5 sm:ml-1" />
-                  )}
-                </button>
-
-                {/* Top Overlay Badge */}
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 flex items-center gap-2">
-                  <span className="px-2.5 sm:px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-amber-500/30 text-amber-300 font-mono text-[9px] sm:text-[10px] uppercase font-bold">
-                    AI NARRATION DOC
-                  </span>
-                  <span className="hidden sm:inline text-xs font-mono text-neutral-300">
-                    Narrated by {matchingVideo.narrator}
-                  </span>
-                </div>
-
-                {/* Bottom Video Progress & Scene Scrub Bar */}
-                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent z-10 flex flex-col gap-2">
-                  {/* Tripartite 3-Scene Progress Bar */}
-                  <div className="grid grid-cols-3 gap-1.5 h-2 w-full">
-                    {[0, 1, 2].map((idx) => {
-                      const isPast = currentSceneIdx > idx;
-                      const isCurrent = currentSceneIdx === idx;
-                      const sceneProgress = isCurrent
-                        ? ((videoSeconds % 10) / 10) * 100
-                        : isPast
-                        ? 100
-                        : 0;
-                      return (
-                        <div
-                          key={idx}
-                          onClick={() => setVideoSeconds(idx * 10)}
-                          className="relative h-full bg-white/20 rounded-full overflow-hidden cursor-pointer"
-                        >
-                          <div
-                            className="h-full bg-gradient-to-r from-amber-400 to-yellow-500 transition-all duration-300"
-                            style={{ width: `${sceneProgress}%` }}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Playback Controls Row */}
-                  <div className="flex items-center justify-between text-xs font-mono text-neutral-300 pt-1">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => setIsPlayingVideo(!isPlayingVideo)}
-                        className="text-amber-400 hover:text-white"
-                      >
-                        {isPlayingVideo ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                      </button>
-                      <span>
-                        0:{videoSeconds < 10 ? '0' : ''}{videoSeconds} / 0:30
-                      </span>
-                      <span className="text-amber-300 font-medium hidden sm:inline">
-                        Current: {matchingVideo.scenes[currentSceneIdx].title}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => setIsMuted(!isMuted)}
-                        className="text-neutral-400 hover:text-white"
-                      >
-                        {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                      </button>
-                      <button
-                        onClick={() => setVideoSeconds(0)}
-                        className="text-[11px] text-amber-400 hover:underline"
-                      >
-                        REPLAY
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              {/* YouTube Style Video Player with Captions & Fullscreen */}
+              <div className="w-full">
+                <YouTubeVideoPlayer video={matchingVideo} autoPlay={false} />
               </div>
 
               {/* 3-Scene Tripartite Breakdown Cards */}
