@@ -481,7 +481,13 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
           setIsTaxonomyOpen(false);
           const el = document.getElementById('collection');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
-          if (onSearchChange) onSearchChange(category.split(' ')[0]);
+          const keyword = category
+            ? category.toLowerCase().startsWith('test taxonomy')
+              ? 'Test'
+              : category.split(' ')[0]
+            : '';
+          window.dispatchEvent(new CustomEvent('heritage:filterCategory', { detail: keyword }));
+          if (onSearchChange) onSearchChange(keyword);
         }}
       />
     </>

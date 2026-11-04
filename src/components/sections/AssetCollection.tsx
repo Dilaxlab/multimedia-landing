@@ -76,6 +76,21 @@ export default function AssetCollection({
     setVisibleCount(BATCH_SIZE);
   }, [activeCategory, effectiveSearch]);
 
+  // Listen for category selection events dispatched from MobileBottomNav or Desktop Navbar
+  useEffect(() => {
+    const handleCategoryEvent = (e: Event) => {
+      const ce = e as CustomEvent<string>;
+      if (ce.detail !== undefined) {
+        if (onSearchChange) onSearchChange(ce.detail);
+        else setInternalSearch(ce.detail);
+      }
+    };
+    window.addEventListener('heritage:filterCategory', handleCategoryEvent);
+    return () => {
+      window.removeEventListener('heritage:filterCategory', handleCategoryEvent);
+    };
+  }, [onSearchChange]);
+
   // Load next batch of cards
   const loadMoreCards = useCallback(() => {
     if (isLoadingMore || visibleCount >= filteredAssets.length) return;
