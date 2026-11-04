@@ -142,9 +142,7 @@ export default function AssetCollection({
             >
               <Search className="w-3.5 h-3.5 text-primary" />
               <span className="font-medium tracking-wide">Filter &amp; Search</span>
-              <span className="px-2 py-0.5 rounded-full bg-surface-container border border-outline-variant/40 text-[11px] font-bold text-on-surface-variant">
-                64 Disciplines
-              </span>
+
             </button>
             <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-low border border-outline-variant/30 text-[11px] font-mono text-on-surface-variant">
               <span>500+ ASSETS INDEXED</span>
@@ -162,14 +160,7 @@ export default function AssetCollection({
               className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 scroll-smooth"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              <button
-                onClick={() => setIsTaxonomyOpen(true)}
-                className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-medium bg-surface-container border border-primary/30 hover:border-primary text-primary hover:bg-surface-container-high transition-colors cursor-pointer"
-                title="Search and filter through all 64 disciplines"
-              >
-                <SlidersHorizontal className="w-3.5 h-3.5 text-primary" />
-                <span>+ 64 Disciplines</span>
-              </button>
+             
               {CATEGORY_TABS.map((tab) => {
                 const isActive = activeCategory === tab.key;
                 return (

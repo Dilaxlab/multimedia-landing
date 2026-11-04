@@ -33,7 +33,7 @@ export default function VideoGallery() {
 
           </div>
 
-          
+
         </div>
 
         {/* Featured Documentary Spotlight Box */}
@@ -124,46 +124,6 @@ export default function VideoGallery() {
             </div>
 
             <div>
-              {/* Closed Caption Preference Switcher - User Choice */}
-              <div className="mb-3 p-2.5 px-3.5 rounded-xl bg-surface-container border border-outline-variant/30 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <Subtitles className={`w-4 h-4 shrink-0 ${captionsPreference ? 'text-primary' : 'text-on-surface-variant'}`} />
-                  <div className="flex flex-col min-w-0">
-                    <span className="font-mono text-xs text-on-surface font-semibold truncate">
-                      Subtitles / Closed Captions [CC]
-                    </span>
-                    <span className="text-[10px] text-on-surface-variant font-sans truncate">
-                      {captionsPreference ? 'Subtitles will appear on video' : 'Subtitles turned off'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* ON / OFF Segmented Switch */}
-                <div className="flex items-center p-1 bg-surface-container-high rounded-lg border border-outline-variant/20 shrink-0">
-                  <button
-                    type="button"
-                    onClick={() => setCaptionsPreference(true)}
-                    className={`px-3 py-1 rounded-md text-[11px] font-mono font-bold transition-all cursor-pointer ${
-                      captionsPreference
-                        ? 'bg-primary text-surface-container-lowest shadow-sm'
-                        : 'text-on-surface-variant hover:text-on-surface'
-                    }`}
-                  >
-                    ON
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCaptionsPreference(false)}
-                    className={`px-3 py-1 rounded-md text-[11px] font-mono font-bold transition-all cursor-pointer ${
-                      !captionsPreference
-                        ? 'bg-surface-container-highest text-on-surface shadow-sm border border-white/10'
-                        : 'text-on-surface-variant hover:text-on-surface'
-                    }`}
-                  >
-                    OFF
-                  </button>
-                </div>
-              </div>
 
               {/* Play Button */}
               <button
@@ -172,7 +132,7 @@ export default function VideoGallery() {
               >
                 <PlayCircle className="w-4 h-4" />
                 <span>
-                  PLAY CINEMATIC REEL {captionsPreference ? 'WITH [CC] CAPTIONS' : '(NO CAPTIONS)'}
+                  PLAY CINEMATIC REEL
                 </span>
               </button>
             </div>

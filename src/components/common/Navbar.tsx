@@ -20,7 +20,7 @@ import {
 import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import TaxonomyModal from '@/components/common/TaxonomyModal';
 
-type TabName = 'Home' | 'Inventions' | '3D Gallery' | 'Stories' | 'Multimedia' | 'Disciplines';
+type TabName = 'Home' | 'Inventions' | '3D Gallery' | 'Stories' | 'Disciplines';
 
 interface NavbarProps {
   onSearchChange?: (val: string) => void;
@@ -53,7 +53,6 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
         { id: 'collection', tab: 'Inventions' },
         { id: 'gallery3d', tab: '3D Gallery' },
         { id: 'videos', tab: 'Stories' },
-        { id: 'multimedia', tab: 'Multimedia' },
         { id: 'explore', tab: 'Disciplines' },
       ];
 
@@ -182,13 +181,6 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
       href: '/#videos',
       icon: <BookOpen className="w-4 h-4 shrink-0 transition-colors" />,
       tooltip: 'Archival Narratives',
-    },
-    {
-      name: 'Multimedia',
-      label: 'Multimedia',
-      href: '/#multimedia',
-      icon: <Clapperboard className="w-4 h-4 shrink-0 transition-colors" />,
-      tooltip: 'Film & Audio Archives',
     },
     {
       name: 'Disciplines',
