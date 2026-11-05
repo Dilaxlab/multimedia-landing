@@ -23,7 +23,7 @@ export default function Footer() {
     <footer className="w-full bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.4)] border-t border-primary/20">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          
+
           {/* Col 1: Brand & Mission */}
           <div className="flex flex-col gap-space-sm">
             <div className="flex items-center gap-space-sm mb-space-xs">
@@ -103,7 +103,7 @@ export default function Footer() {
         <div className="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md bg-surface-container-low/40 rounded-xl px-space-lg py-space-md border border-primary/10">
           <div className="flex flex-wrap items-center gap-space-md">
             <span className="font-label-sm text-label-sm text-on-surface-variant">
-              © 2025 Heritage Archive Consortium. All Rights Reserved.
+              © 2026 Heritage Archive Consortium. All Rights Reserved.
             </span>
             <span className="font-label-sm text-label-sm text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
               Curatorial Ethics
