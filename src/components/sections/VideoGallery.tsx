@@ -116,8 +116,8 @@ export default function VideoGallery() {
           </div>
         </div>
 
-        {/* Video Reel Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* Video Reel Grid — Responsive 2-card grid on mobile, 4-card on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6">
           {MOCK_VIDEO_VIGNETTES.map((video) => (
             <VideoCard
               key={video.id}
