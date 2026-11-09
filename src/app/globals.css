@@ -6,12 +6,117 @@
 @tailwind utilities;
 
 :root {
+  /* ========================================================
+     WARM CURATORIAL PARCHMENT (Light Mode Museum Palette)
+     ======================================================== */
+  --color-surface-lowest-rgb: 255 255 255;
+  --color-surface-low-rgb: 246 243 235;
+  --color-surface-rgb: 250 248 244;
+  --color-surface-dim-rgb: 237 231 220;
+  --color-surface-bright-rgb: 255 255 255;
+  --color-surface-container-rgb: 237 231 220;
+  --color-surface-high-rgb: 227 219 201;
+  --color-surface-highest-rgb: 217 207 186;
+  --color-on-surface-rgb: 26 25 24;
+  --color-on-surface-variant-rgb: 92 85 73;
+  --color-inverse-surface-rgb: 26 25 24;
+  --color-inverse-on-surface-rgb: 246 243 235;
+  --color-outline-rgb: 140 130 115;
+  --color-outline-variant-rgb: 213 203 186;
+  --color-primary-rgb: 161 112 27;
+  --color-primary-gold-rgb: 161 112 27;
+  --color-primary-container-rgb: 212 163 75;
+  --color-on-primary-rgb: 255 255 255;
+  --color-on-primary-container-rgb: 38 23 0;
+  --color-secondary-rgb: 140 93 18;
+  --color-secondary-container-rgb: 236 216 171;
+  --color-tertiary-rgb: 117 85 25;
+  --color-tertiary-container-rgb: 240 222 187;
+
+  /* Legacy hex fallbacks */
+  --color-surface-lowest: #ffffff;
+  --color-surface-low: #f6f3eb;
+  --color-surface: #faf8f4;
+  --color-surface-dim: #ede7dc;
+  --color-surface-bright: #ffffff;
+  --color-surface-container: #ede7dc;
+  --color-surface-high: #e3dbc9;
+  --color-surface-highest: #d9cfba;
+  --color-on-surface: #1a1918;
+  --color-on-surface-variant: #5c5549;
+  --color-inverse-surface: #1a1918;
+  --color-inverse-on-surface: #f6f3eb;
+  --color-outline: #8c8273;
+  --color-outline-variant: #d5cbba;
+  --color-primary: #a1701b;
+  --color-primary-gold: #a1701b;
+  --color-primary-container: #d4a34b;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #261700;
+  --color-secondary: #8c5d12;
+  --color-secondary-container: #ecd8ab;
+  --color-tertiary: #755519;
+  --color-tertiary-container: #f0debb;
+}
+
+.dark {
+  /* ========================================================
+     CHIAROSCURO NOCTURNAL SANCTUARY (Dark Mode Museum Palette)
+     ======================================================== */
+  --color-surface-lowest-rgb: 14 14 16;
+  --color-surface-low-rgb: 28 27 29;
+  --color-surface-rgb: 19 19 21;
+  --color-surface-dim-rgb: 19 19 21;
+  --color-surface-bright-rgb: 57 57 59;
+  --color-surface-container-rgb: 32 31 33;
+  --color-surface-high-rgb: 42 42 44;
+  --color-surface-highest-rgb: 53 52 55;
+  --color-on-surface-rgb: 229 225 228;
+  --color-on-surface-variant-rgb: 208 197 175;
+  --color-inverse-surface-rgb: 229 225 228;
+  --color-inverse-on-surface-rgb: 49 48 50;
+  --color-outline-rgb: 153 144 124;
+  --color-outline-variant-rgb: 77 70 53;
+  --color-primary-rgb: 242 202 80;
+  --color-primary-gold-rgb: 212 175 55;
+  --color-primary-container-rgb: 212 175 55;
+  --color-on-primary-rgb: 60 47 0;
+  --color-on-primary-container-rgb: 85 67 0;
+  --color-secondary-rgb: 238 193 75;
+  --color-secondary-container-rgb: 179 139 20;
+  --color-tertiary-rgb: 241 202 100;
+  --color-tertiary-container-rgb: 211 175 76;
+
+  /* Legacy hex fallbacks */
   --color-surface-lowest: #0e0e10;
+  --color-surface-low: #1c1b1d;
   --color-surface: #131315;
-  --color-primary-gold: #c5a059;
-  --color-secondary-bronze: #8c6d3b;
-  --color-on-surface: #e5e2e3;
-  --color-on-surface-variant: #c8c5c7;
+  --color-surface-dim: #131315;
+  --color-surface-bright: #39393b;
+  --color-surface-container: #201f21;
+  --color-surface-high: #2a2a2c;
+  --color-surface-highest: #353437;
+  --color-on-surface: #e5e1e4;
+  --color-on-surface-variant: #d0c5af;
+  --color-inverse-surface: #e5e1e4;
+  --color-inverse-on-surface: #313032;
+  --color-outline: #99907c;
+  --color-outline-variant: #4d4635;
+  --color-primary: #f2ca50;
+  --color-primary-gold: #D4AF37;
+  --color-primary-container: #d4af37;
+  --color-on-primary: #3c2f00;
+  --color-on-primary-container: #554300;
+  --color-secondary: #eec14b;
+  --color-secondary-container: #b38b14;
+  --color-tertiary: #f1ca64;
+  --color-tertiary-container: #d3af4c;
+}
+
+@layer base {
+  *, ::before, ::after {
+    border-color: rgb(var(--color-outline-variant-rgb) / 0.25);
+  }
 }
 
 /* Material Symbols configuration */
@@ -32,17 +137,16 @@
 }
 
 body {
-  background-color: #131315;
-  color: #e5e2e3;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
   font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
-  selection-background-color: #c5a059;
-  selection-color: #0e0e10;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 ::selection {
-  background: #c5a059;
-  color: #0e0e10;
+  background: var(--color-primary-gold);
+  color: var(--color-surface-lowest);
 }
 
 /* Subtle Chiaroscuro Museum Scrollbar */

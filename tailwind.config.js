@@ -1,4 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgb(var(${variableName}) / ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 module.exports = {
   darkMode: "class",
   content: [
@@ -7,36 +17,40 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "obsidian": "#070709",
-        "gold-antique": "#D4AF37",
-        "gold-glow": "#f59e0b",
-        "bronze": "#8C6D3B",
-        "background": "#131315",
-        "surface": "#131315",
-        "surface-dim": "#131315",
-        "surface-bright": "#39393b",
-        "surface-container-lowest": "#0e0e10",
-        "surface-container-low": "#1c1b1d",
-        "surface-container": "#201f21",
-        "surface-container-high": "#2a2a2c",
-        "surface-container-highest": "#353437",
-        "on-surface": "#e5e1e4",
-        "on-surface-variant": "#d0c5af",
-        "inverse-surface": "#e5e1e4",
-        "inverse-on-surface": "#313032",
-        "outline": "#99907c",
-        "outline-variant": "#4d4635",
-        "primary": "#f2ca50",
-        "primary-container": "#d4af37",
-        "on-primary": "#3c2f00",
-        "on-primary-container": "#554300",
-        "secondary": "#eec14b",
-        "secondary-container": "#b38b14",
-        "tertiary": "#f1ca64",
-        "tertiary-container": "#d3af4c",
+        "obsidian": withOpacity("--color-surface-lowest-rgb"),
+        "gold-antique": withOpacity("--color-primary-gold-rgb"),
+        "gold-glow": withOpacity("--color-primary-rgb"),
+        "bronze": withOpacity("--color-secondary-rgb"),
+        "background": withOpacity("--color-surface-rgb"),
+        "surface": withOpacity("--color-surface-rgb"),
+        "surface-dim": withOpacity("--color-surface-dim-rgb"),
+        "surface-bright": withOpacity("--color-surface-bright-rgb"),
+        "surface-container-lowest": withOpacity("--color-surface-lowest-rgb"),
+        "surface-container-low": withOpacity("--color-surface-low-rgb"),
+        "surface-container": withOpacity("--color-surface-container-rgb"),
+        "surface-container-high": withOpacity("--color-surface-high-rgb"),
+        "surface-container-highest": withOpacity("--color-surface-highest-rgb"),
+        "on-surface": withOpacity("--color-on-surface-rgb"),
+        "on-surface-variant": withOpacity("--color-on-surface-variant-rgb"),
+        "inverse-surface": withOpacity("--color-inverse-surface-rgb"),
+        "inverse-on-surface": withOpacity("--color-inverse-on-surface-rgb"),
+        "outline": withOpacity("--color-outline-rgb"),
+        "outline-variant": withOpacity("--color-outline-variant-rgb"),
+        "primary": withOpacity("--color-primary-rgb"),
+        "primary-container": withOpacity("--color-primary-container-rgb"),
+        "on-primary": withOpacity("--color-on-primary-rgb"),
+        "on-primary-container": withOpacity("--color-on-primary-container-rgb"),
+        "secondary": withOpacity("--color-secondary-rgb"),
+        "secondary-container": withOpacity("--color-secondary-container-rgb"),
+        "tertiary": withOpacity("--color-tertiary-rgb"),
+        "tertiary-container": withOpacity("--color-tertiary-container-rgb"),
         "error": "#ffb4ab",
         "error-container": "#93000a"
       },
+      borderColor: ({ theme }) => ({
+        ...theme('colors'),
+        DEFAULT: 'rgb(var(--color-outline-variant-rgb) / 0.25)',
+      }),
       borderRadius: {
         "DEFAULT": "0.25rem",
         "sm": "0.125rem",

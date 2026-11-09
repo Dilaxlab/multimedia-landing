@@ -3,6 +3,7 @@ import './globals.css';
 import Navbar from '@/components/common/Navbar';
 import Footer from '@/components/common/Footer';
 import MobileBottomNav from '@/components/common/MobileBottomNav';
+import { ThemeProvider } from '@/components/common/ThemeProvider';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -54,24 +55,46 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Anti-flicker theme initialization script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('heritage-theme');
+                  var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                    document.documentElement.style.colorScheme = 'dark';
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                    document.documentElement.style.colorScheme = 'light';
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-surface text-on-surface antialiased flex flex-col selection:bg-primary selection:text-surface-container-lowest pb-24 md:pb-0"
+        className="min-h-screen bg-surface text-on-surface antialiased flex flex-col selection:bg-primary selection:text-surface-container-lowest pb-24 md:pb-0 transition-colors duration-300"
       >
-        {/* Navigation Bar */}
-        <Navbar />
+        <ThemeProvider>
+          {/* Navigation Bar */}
+          <Navbar />
 
-        {/* Main Content Viewport */}
-        <main className="flex-1 w-full">
-          {children}
-        </main>
+          {/* Main Content Viewport */}
+          <main className="flex-1 w-full">{children}</main>
 
-        {/* Mobile Multimedia App Bottom Navigation Bar */}
-        <MobileBottomNav />
+          {/* Mobile Multimedia App Bottom Navigation Bar */}
+          <MobileBottomNav />
 
-        {/* Museum Footer */}
-        <Footer />
+          {/* Museum Footer */}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

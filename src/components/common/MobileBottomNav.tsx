@@ -113,7 +113,7 @@ export default function MobileBottomNav() {
   return (
     <>
       <nav
-        className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#0c0d12]/95 backdrop-blur-2xl border-t border-[rgba(212,175,55,0.22)] shadow-[0_-8px_30px_rgba(0,0,0,0.9)] px-1 pt-2 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.35rem))] transition-all"
+        className="fixed bottom-0 left-0 right-0 z-50 md:hidden dark:bg-[#0c0d12]/95 bg-[#faf8f4]/95 backdrop-blur-2xl border-t dark:border-primary/20 border-outline-variant/40 shadow-[0_-8px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.9)] px-1 pt-2 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.35rem))] transition-all"
         aria-label="Mobile Navigation Bar"
       >
         <div className="grid grid-cols-5 w-full max-w-md mx-auto items-center">
@@ -129,13 +129,13 @@ export default function MobileBottomNav() {
                 <div
                   className={`flex items-center justify-center w-12 h-7 rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'bg-amber-400/20 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.3)]'
-                      : 'text-neutral-400 group-hover:text-neutral-200'
+                      ? 'bg-primary/20 text-primary shadow-sm'
+                      : 'dark:text-neutral-400 text-neutral-600 dark:group-hover:text-neutral-200 group-hover:text-neutral-950'
                   }`}
                 >
                   <span
                     className={`transition-transform duration-200 flex items-center justify-center ${
-                      isActive ? 'scale-110 drop-shadow-[0_0_6px_rgba(212,175,55,0.7)]' : ''
+                      isActive ? 'scale-110 drop-shadow-sm' : ''
                     }`}
                   >
                     {item.icon}
@@ -145,7 +145,7 @@ export default function MobileBottomNav() {
                 {/* Label */}
                 <span
                   className={`text-[10px] font-sans tracking-tight mt-1 leading-tight text-center whitespace-nowrap truncate max-w-full transition-colors ${
-                    isActive ? 'font-bold text-amber-400' : 'font-medium text-neutral-400'
+                    isActive ? 'font-bold text-primary' : 'font-medium dark:text-neutral-400 text-neutral-600'
                   }`}
                 >
                   {item.label}

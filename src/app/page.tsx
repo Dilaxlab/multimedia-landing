@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 import HeroSection from '@/components/sections/HeroSection';
+import MilestoneBanner from '@/components/sections/MilestoneBanner';
 import AssetCollection from '@/components/sections/AssetCollection';
+import StoryStepsSection from '@/components/sections/StoryStepsSection';
 import SpatialGallery from '@/components/sections/SpatialGallery';
 import VideoGallery from '@/components/sections/VideoGallery';
-import MultimediaMasonry from '@/components/sections/MultimediaMasonry';
+import CuratorialDispatchSection from '@/components/sections/CuratorialDispatchSection';
 import DossierView from '@/components/sections/DossierView';
 import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import { HistoricalAsset } from '@/types/asset';
@@ -75,9 +77,7 @@ export default function HomePage() {
       {/* SECTION 4: Historical Narration Video Gallery */}
       <VideoGallery />
 
-
-
-      {/* SECTION 6: Explore an Invention Detailed Experience */}
+      {/* SECTION 5: Explore an Invention Detailed Experience */}
       <DossierView
         asset={selectedAsset}
         onClose={
@@ -90,6 +90,12 @@ export default function HomePage() {
             : undefined
         }
       />
+
+      {/* SECTION 6: A Story Worth Sharing (3-Step Curatorial Discovery) */}
+      <StoryStepsSection />
+
+      {/* SECTION 7: Stay Curious - Stories of Ingenuity, Delivered (Curatorial Dispatch) */}
+      <CuratorialDispatchSection />
     </div>
   );
 }

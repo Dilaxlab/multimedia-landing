@@ -48,14 +48,14 @@ export default function VideoGallery() {
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-80"
               style={{ backgroundImage: `url(${featuredVideo.thumbnailUrl})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50" />
 
             {/* Play Button Overlay */}
             <div className="relative z-10 flex flex-col items-center gap-3">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/90 text-surface-container-lowest flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-primary transition-all">
-                <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-1 text-surface-container-lowest" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary text-neutral-950 flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-primary/95 transition-all">
+                <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-1 text-neutral-950" />
               </div>
-              <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-outline-variant/40 text-[11px] font-mono text-on-surface tracking-wider">
+              <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[11px] font-mono text-white tracking-wider shadow-lg">
                 WATCH SPOTLIGHT REEL ({featuredVideo.duration})
               </span>
             </div>
@@ -105,9 +105,9 @@ export default function VideoGallery() {
               {/* Play Button */}
               <button
                 onClick={() => setSelectedVideo(featuredVideo)}
-                className="w-full py-3.5 rounded-xl bg-primary text-surface-container-lowest font-bold font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md group cursor-pointer"
+                className="w-full py-3.5 rounded-xl bg-primary text-neutral-950 font-bold font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-md group cursor-pointer active:scale-95"
               >
-                <PlayCircle className="w-4 h-4" />
+                <PlayCircle className="w-4 h-4 text-neutral-950" />
                 <span>
                   PLAY CINEMATIC REEL
                 </span>

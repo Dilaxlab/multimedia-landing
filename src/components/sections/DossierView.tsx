@@ -154,10 +154,10 @@ export default function DossierView({
   return (
     <section
       id="explore"
-      className={`relative w-full text-neutral-200 ${
+      className={`relative w-full dark:text-neutral-200 text-on-surface transition-colors duration-300 ${
         isStandalonePage
-          ? 'bg-[#07090E] min-h-screen pt-4 pb-24'
-          : 'bg-[#07090E] py-20 border-t border-amber-500/20 scroll-mt-20'
+          ? 'bg-surface dark:bg-[#07090E] min-h-screen pt-4 pb-24'
+          : 'bg-surface dark:bg-[#07090E] py-20 border-t border-outline-variant/30 dark:border-amber-500/20 scroll-mt-20'
       }`}
     >
       {/* Background Museum Ambience */}
@@ -169,7 +169,7 @@ export default function DossierView({
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ==================== 2. HEADER & BREADCRUMB NAVIGATION ==================== */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-outline-variant/20 dark:border-white/10">
 
 
         </div>
@@ -183,30 +183,30 @@ export default function DossierView({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             {/* Left Curatorial Workspace Tag */}
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="font-mono text-xs text-on-surface-variant uppercase tracking-widest">
                 Interactive Workspace
               </span>
             </div>
 
             {/* Right-Aligned Icon-First Nav Pill Bar (Exact Top Navbar Style) */}
-            <nav className="flex items-center p-1 bg-black/40 border border-white/[0.08] rounded-xl backdrop-blur-md self-end sm:self-auto shadow-lg">
+            <nav className="flex items-center p-1 bg-surface-container dark:bg-black/40 border border-outline-variant/30 dark:border-white/[0.08] rounded-xl backdrop-blur-md self-end sm:self-auto shadow-md">
               <ul className="flex items-center gap-0.5">
                 <li className="relative has-tooltip">
                   <button
                     onClick={() => setActiveTab('3D_MODEL')}
                     className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
                       activeTab === '3D_MODEL'
-                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
-                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="3D Model"
                   >
                     <span
                       className={
                         activeTab === '3D_MODEL'
-                          ? 'text-black stroke-[2.2] shrink-0'
-                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
+                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
                       }
                     >
                       <Boxes className="w-4 h-4" />
@@ -219,7 +219,7 @@ export default function DossierView({
                       3D Model
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
                     Interactive 3D Spatial Model
                   </div>
                 </li>
@@ -229,16 +229,16 @@ export default function DossierView({
                     onClick={() => setActiveTab('WATCH_STORY')}
                     className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
                       activeTab === 'WATCH_STORY'
-                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
-                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="Story Reel"
                   >
                     <span
                       className={
                         activeTab === 'WATCH_STORY'
-                          ? 'text-black stroke-[2.2] shrink-0'
-                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
+                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
                       }
                     >
                       <Film className="w-4 h-4" />
@@ -251,7 +251,7 @@ export default function DossierView({
                       Story Reel
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
                     3-Scene Narration Video (30s)
                   </div>
                 </li>
@@ -261,16 +261,16 @@ export default function DossierView({
                     onClick={() => setActiveTab('BLUEPRINTS')}
                     className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
                       activeTab === 'BLUEPRINTS'
-                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
-                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="Blueprints"
                   >
                     <span
                       className={
                         activeTab === 'BLUEPRINTS'
-                          ? 'text-black stroke-[2.2] shrink-0'
-                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
+                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
                       }
                     >
                       <FileText className="w-4 h-4" />
@@ -283,7 +283,7 @@ export default function DossierView({
                       Blueprints
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
                     Patent Blueprints & Schematics
                   </div>
                 </li>
@@ -293,16 +293,16 @@ export default function DossierView({
                     onClick={() => setActiveTab('AUDIO_GUIDE')}
                     className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
                       activeTab === 'AUDIO_GUIDE'
-                        ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
-                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="Audio Guide"
                   >
                     <span
                       className={
                         activeTab === 'AUDIO_GUIDE'
-                          ? 'text-black stroke-[2.2] shrink-0'
-                          : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
+                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
                       }
                     >
                       <Headphones className="w-4 h-4" />
@@ -315,7 +315,7 @@ export default function DossierView({
                       Audio Guide
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
                     Binaural Curatorial Audio Guide
                   </div>
                 </li>
@@ -327,15 +327,15 @@ export default function DossierView({
           {activeTab === '3D_MODEL' && (
             <div
               ref={viewerContainerRef}
-              className="relative w-full rounded-2xl sm:rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 overflow-hidden shadow-2xl flex flex-col min-h-[380px] sm:min-h-[500px] lg:min-h-[640px]"
+              className="relative w-full rounded-2xl sm:rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/90 border border-outline-variant/40 dark:border-amber-500/30 overflow-hidden shadow-xl dark:shadow-2xl flex flex-col min-h-[380px] sm:min-h-[500px] lg:min-h-[640px]"
             >
               {/* Top Controls Toolbar */}
-              <div className="p-3 sm:p-4 border-b border-white/10 bg-black/40 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs font-mono z-20">
+              <div className="p-3 sm:p-4 border-b border-outline-variant/20 dark:border-white/10 bg-surface-container/70 dark:bg-black/40 backdrop-blur-md flex flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs font-mono z-20">
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                  <span className="text-white font-medium truncate max-w-[130px] sm:max-w-none">{asset.title}</span>
-                  <span className="text-neutral-500 hidden sm:inline">•</span>
-                  <span className="text-amber-400 hidden sm:inline">{asset.polyCount}</span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <span className="text-on-surface dark:text-white font-medium truncate max-w-[130px] sm:max-w-none">{asset.title}</span>
+                  <span className="text-outline-variant dark:text-neutral-500 hidden sm:inline">•</span>
+                  <span className="text-primary hidden sm:inline">{asset.polyCount}</span>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
@@ -343,7 +343,7 @@ export default function DossierView({
                   {asset.modelType === 'antigravity' ? (
                     <button
                       onClick={() => setDismantleAmount((d) => (d > 0.1 ? 0 : 0.55))}
-                      className="px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] sm:text-[11px] font-mono cursor-pointer flex items-center gap-1.5 active:scale-95"
+                      className="px-2.5 sm:px-3 py-1.5 rounded-lg bg-primary/20 text-primary border border-primary/40 text-[10px] sm:text-[11px] font-mono cursor-pointer flex items-center gap-1.5 active:scale-95"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
                       <span>{dismantleAmount > 0.1 ? 'LEVITATE' : 'ASSEMBLE'}</span>
@@ -355,8 +355,8 @@ export default function DossierView({
                     onClick={() => setIsWireframe(!isWireframe)}
                     className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-mono border transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 ${
                       isWireframe
-                        ? 'bg-amber-500/25 text-amber-300 border-amber-400'
-                        : 'bg-white/[0.04] text-neutral-300 border-white/10 hover:border-amber-400/40'
+                        ? 'bg-primary/20 text-primary border-primary'
+                        : 'bg-surface-container-high/60 dark:bg-white/[0.04] text-on-surface-variant dark:text-neutral-300 border-outline-variant/30 dark:border-white/10 hover:border-primary/40'
                     }`}
                   >
                     <Layers className="w-3.5 h-3.5" />
@@ -368,8 +368,8 @@ export default function DossierView({
                     onClick={() => setIsAutoRotating(!isAutoRotating)}
                     className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-mono border transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 ${
                       isAutoRotating
-                        ? 'bg-amber-500/20 text-amber-300 border-amber-400/50'
-                        : 'bg-white/[0.04] text-neutral-400 border-white/10'
+                        ? 'bg-primary/20 text-primary border-primary/50'
+                        : 'bg-surface-container-high/60 dark:bg-white/[0.04] text-on-surface-variant dark:text-neutral-400 border-outline-variant/30 dark:border-white/10'
                     }`}
                   >
                     <RotateCw className="w-3.5 h-3.5" />
@@ -379,10 +379,10 @@ export default function DossierView({
                   {/* Lighting Switch (Warm Bronze vs Neutral) */}
                   <button
                     onClick={() => setLightingMode(lightingMode === 'spotlight' ? 'ambient' : 'spotlight')}
-                    className="p-1.5 rounded-lg bg-white/[0.04] text-neutral-300 border border-white/10 hover:border-amber-400/50 transition cursor-pointer active:scale-95"
+                    className="p-1.5 rounded-lg bg-surface-container-high/60 dark:bg-white/[0.04] text-on-surface-variant dark:text-neutral-300 border border-outline-variant/30 dark:border-white/10 hover:border-primary/50 transition cursor-pointer active:scale-95"
                     title="Toggle Warm Bronze vs Archival Neutral Lighting"
                   >
-                    <Sun className="w-4 h-4 text-amber-400" />
+                    <Sun className="w-4 h-4 text-primary" />
                   </button>
 
                   {/* Reset Camera */}
@@ -393,7 +393,7 @@ export default function DossierView({
                       setIsWireframe(false);
                       setActiveHotspot(null);
                     }}
-                    className="p-1.5 rounded-lg bg-white/[0.04] text-neutral-300 border border-white/10 hover:border-amber-400/50 transition cursor-pointer active:scale-95"
+                    className="p-1.5 rounded-lg bg-surface-container-high/60 dark:bg-white/[0.04] text-on-surface-variant dark:text-neutral-300 border border-outline-variant/30 dark:border-white/10 hover:border-primary/50 transition cursor-pointer active:scale-95"
                     title="Reset Camera Position"
                   >
                     <RotateCcw className="w-4 h-4" />
@@ -402,7 +402,7 @@ export default function DossierView({
                   {/* Fullscreen */}
                   <button
                     onClick={toggleFullscreen}
-                    className="p-1.5 rounded-lg bg-white/[0.04] text-neutral-300 border border-white/10 hover:border-amber-400/50 transition cursor-pointer active:scale-95"
+                    className="p-1.5 rounded-lg bg-surface-container-high/60 dark:bg-white/[0.04] text-on-surface-variant dark:text-neutral-300 border border-outline-variant/30 dark:border-white/10 hover:border-primary/50 transition cursor-pointer active:scale-95"
                     title="Fullscreen Mode"
                   >
                     <Maximize2 className="w-4 h-4" />
@@ -431,14 +431,14 @@ export default function DossierView({
                         onClick={() => setActiveHotspot(`${hs.title}: ${hs.desc}`)}
                       >
                         <div className="relative flex items-center justify-center">
-                          <span className="w-6 h-6 rounded-full bg-amber-400/30 animate-ping absolute" />
-                          <div className="w-5 h-5 rounded-full bg-amber-400 text-neutral-950 font-bold text-[10px] flex items-center justify-center shadow-glow-pill">
+                          <span className="w-6 h-6 rounded-full bg-primary/30 animate-ping absolute" />
+                          <div className="w-5 h-5 rounded-full bg-primary text-neutral-950 font-bold text-[10px] flex items-center justify-center shadow-md">
                             {hs.id}
                           </div>
                         </div>
-                        <div className="absolute left-6 -top-2 w-56 p-3 rounded-xl bg-[#14141c]/95 border border-amber-500/40 text-xs font-mono shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                          <span className="text-amber-400 font-bold block">{hs.title}</span>
-                          <span className="text-neutral-300 text-[11px] leading-snug mt-1 block font-sans">
+                        <div className="absolute left-6 -top-2 w-56 p-3 rounded-xl bg-surface-container/95 dark:bg-[#14141c]/95 border border-primary/40 text-xs font-mono shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                          <span className="text-primary font-bold block">{hs.title}</span>
+                          <span className="text-on-surface-variant dark:text-neutral-300 text-[11px] leading-snug mt-1 block font-sans">
                             {hs.desc}
                           </span>
                         </div>
@@ -448,38 +448,38 @@ export default function DossierView({
 
                 {/* Floating Hotspot Alert if Clicked */}
                 {activeHotspot && (
-                  <div className="absolute top-4 left-4 right-4 p-3.5 rounded-xl bg-[#14141c]/95 border border-amber-500/50 text-xs font-mono text-neutral-200 flex items-center justify-between z-30 shadow-2xl">
+                  <div className="absolute top-4 left-4 right-4 p-3.5 rounded-xl bg-surface-container/95 dark:bg-[#14141c]/95 border border-primary/50 text-xs font-mono text-on-surface dark:text-neutral-200 flex items-center justify-between z-30 shadow-2xl">
                     <div className="flex items-center gap-2">
-                      <Info className="w-4 h-4 text-amber-400 shrink-0" />
+                      <Info className="w-4 h-4 text-primary shrink-0" />
                       <span>{activeHotspot}</span>
                     </div>
-                    <button onClick={() => setActiveHotspot(null)} className="text-neutral-400 hover:text-white">
+                    <button onClick={() => setActiveHotspot(null)} className="text-on-surface-variant hover:text-on-surface">
                       ✕
                     </button>
                   </div>
                 )}
 
                 {/* Floating Zoom & Scale HUD */}
-                <div className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-[#0e0e13]/85 backdrop-blur-md p-1.5 rounded-xl border border-white/10 z-20 font-mono text-xs">
+                <div className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-surface-container/90 dark:bg-[#0e0e13]/85 backdrop-blur-md p-1.5 rounded-xl border border-outline-variant/30 dark:border-white/10 z-20 font-mono text-xs">
                   <button
                     onClick={() => setZoomLevel((z) => Math.max(2.4, z - 0.4))}
-                    className="w-7 h-7 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] flex items-center justify-center text-neutral-200"
+                    className="w-7 h-7 rounded-lg bg-surface-container-high hover:bg-surface-container-highest dark:bg-white/[0.04] dark:hover:bg-white/[0.08] flex items-center justify-center text-on-surface dark:text-neutral-200"
                   >
                     +
                   </button>
                   <button
                     onClick={() => setZoomLevel((z) => Math.min(7.5, z + 0.4))}
-                    className="w-7 h-7 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] flex items-center justify-center text-neutral-200"
+                    className="w-7 h-7 rounded-lg bg-surface-container-high hover:bg-surface-container-highest dark:bg-white/[0.04] dark:hover:bg-white/[0.08] flex items-center justify-center text-on-surface dark:text-neutral-200"
                   >
                     −
                   </button>
-                  <span className="px-2 text-neutral-400 text-[10px]">
+                  <span className="px-2 text-on-surface-variant dark:text-neutral-400 text-[10px]">
                     {Math.round((4.6 / zoomLevel) * 100)}% SCALE
                   </span>
                 </div>
 
                 {/* Camera Navigation Tip */}
-                <div className="hidden sm:flex absolute bottom-4 left-4 pointer-events-none items-center gap-2 text-[11px] font-mono text-neutral-400 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                <div className="hidden sm:flex absolute bottom-4 left-4 pointer-events-none items-center gap-2 text-[11px] font-mono text-on-surface-variant dark:text-neutral-400 bg-surface-container-lowest/80 dark:bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-outline-variant/20 dark:border-white/10">
                   <span>Left-click + drag to orbit</span>
                   <span>•</span>
                   <span>Pinch / wheel to zoom</span>
@@ -490,7 +490,7 @@ export default function DossierView({
 
           {/* TAB 2: 3-SCENE HISTORICAL NARRATION VIDEO (30s) */}
           {activeTab === 'WATCH_STORY' && (
-            <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-4 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-5">
+            <div className="rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/90 border border-outline-variant/40 dark:border-amber-500/30 p-4 sm:p-8 backdrop-blur-xl shadow-xl dark:shadow-2xl flex flex-col gap-5">
 
              
 
@@ -511,22 +511,22 @@ export default function DossierView({
                     onClick={() => setVideoSeconds(idx * 10)}
                     className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                       idx === currentSceneIdx
-                        ? 'bg-[#14141c] border-amber-400 shadow-glow-gold'
-                        : 'bg-white/[0.02] border-white/10 hover:border-white/20'
+                        ? 'bg-surface-container dark:bg-[#14141c] border-primary shadow-md'
+                        : 'bg-surface-container-low/60 dark:bg-white/[0.02] border-outline-variant/30 dark:border-white/10 hover:border-primary/40'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1.5 font-mono">
-                      <span className="text-xs text-amber-400 font-bold">
+                      <span className="text-xs text-primary font-bold">
                         Scene 0{idx + 1}
                       </span>
-                      <span className="text-[10px] text-neutral-400 px-2 py-0.5 rounded bg-white/[0.04]">
+                      <span className="text-[10px] text-on-surface-variant dark:text-neutral-400 px-2 py-0.5 rounded bg-surface-container-high dark:bg-white/[0.04]">
                         {scene.timeRange}
                       </span>
                     </div>
-                    <h4 className="font-serif text-sm font-semibold text-white mb-1">
+                    <h4 className="font-serif text-sm font-semibold text-on-surface dark:text-white mb-1">
                       {scene.title}
                     </h4>
-                    <p className="font-sans text-xs text-neutral-400 leading-relaxed">
+                    <p className="font-sans text-xs text-on-surface-variant dark:text-neutral-400 leading-relaxed">
                       {scene.description}
                     </p>
                   </div>
@@ -534,22 +534,22 @@ export default function DossierView({
               </div>
 
               {/* Collapsible Narrator Voice-Over Transcript */}
-              <div className="rounded-2xl bg-[#121217] border border-white/10 overflow-hidden">
+              <div className="rounded-2xl bg-surface-container dark:bg-[#121217] border border-outline-variant/30 dark:border-white/10 overflow-hidden">
                 <button
                   onClick={() => setShowTranscript(!showTranscript)}
-                  className="w-full p-4 flex items-center justify-between text-left text-xs font-mono text-neutral-300 hover:bg-white/[0.02] cursor-pointer"
+                  className="w-full p-4 flex items-center justify-between text-left text-xs font-mono text-on-surface-variant dark:text-neutral-300 hover:bg-surface-container-high/40 dark:hover:bg-white/[0.02] cursor-pointer"
                 >
                   <span className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-amber-400" />
-                    <span className="font-bold text-white uppercase tracking-wider">
+                    <FileText className="w-4 h-4 text-primary" />
+                    <span className="font-bold text-on-surface dark:text-white uppercase tracking-wider">
                       Curatorial Voice-Over Transcript
                     </span>
                   </span>
                   {showTranscript ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </button>
                 {showTranscript ? (
-                  <div className="px-5 pb-5 text-xs font-sans text-neutral-300 leading-relaxed border-t border-white/10 pt-4 space-y-3">
-                    <p className="italic text-amber-300/90 font-serif text-sm">
+                  <div className="px-5 pb-5 text-xs font-sans text-on-surface dark:text-neutral-300 leading-relaxed border-t border-outline-variant/20 dark:border-white/10 pt-4 space-y-3">
+                    <p className="italic text-primary font-serif text-sm">
                       &ldquo;{matchingVideo.shortDesc}&rdquo;
                     </p>
                     <p>
@@ -574,11 +574,11 @@ export default function DossierView({
 
           {/* TAB 3: PATENT BLUEPRINTS & TECHNICAL SCHEMATICS */}
           {activeTab === 'BLUEPRINTS' && (
-            <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-6">
+            <div className="rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/90 border border-outline-variant/40 dark:border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-xl dark:shadow-2xl flex flex-col gap-6">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
                 {/* Blueprint Drawing Viewport */}
-                <div className="lg:col-span-8 rounded-2xl bg-black border border-white/15 overflow-hidden relative group">
+                <div className="lg:col-span-8 rounded-2xl bg-black border border-outline-variant/30 dark:border-white/15 overflow-hidden relative group">
                   <img
                     src={asset.schematicImage || asset.image}
                     alt={`${asset.title} Patent Blueprint`}
@@ -587,7 +587,7 @@ export default function DossierView({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
 
                   {/* Floating Action Badge */}
-                  <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/80 border border-amber-500/30 text-amber-300 font-mono text-[10px] uppercase font-bold">
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-black/80 border border-primary/30 text-primary font-mono text-[10px] uppercase font-bold">
                     CYANOTYPE ARCHIVAL PLATE • USPTO GAZETTE
                   </div>
 
@@ -606,7 +606,7 @@ export default function DossierView({
                           date: asset.patentDate,
                         })
                       }
-                      className="px-3 py-2 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-bold font-mono text-xs shadow-glow-pill hover:shadow-glow-gold active:scale-95 transition flex items-center gap-1.5 cursor-pointer"
+                      className="px-3 py-2 sm:px-4 sm:py-2 rounded-xl bg-primary text-neutral-950 font-bold font-mono text-xs shadow-md hover:bg-primary/90 active:scale-95 transition flex items-center gap-1.5 cursor-pointer"
                     >
                       <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                       <span className="hidden sm:inline">Inspect High-Resolution Plate</span>
@@ -617,10 +617,10 @@ export default function DossierView({
 
                 {/* Draughtsmanship & Numbered Parts Ledger */}
                 <div className="lg:col-span-4 flex flex-col gap-4">
-                  <h3 className="font-serif text-lg font-bold text-white">
+                  <h3 className="font-serif text-lg font-bold text-on-surface dark:text-white">
                     Numbered Parts & Assembly Ledger
                   </h3>
-                  <p className="font-sans text-xs text-neutral-400 leading-relaxed">
+                  <p className="font-sans text-xs text-on-surface-variant dark:text-neutral-400 leading-relaxed">
                     Verified technical draughtsmanship details transcribed from original patent office drawings:
                   </p>
 
@@ -636,17 +636,17 @@ export default function DossierView({
                     ).map((entry, idx) => (
                       <div
                         key={idx}
-                        className="p-3 rounded-xl bg-[#14141c] border border-white/10 flex flex-col gap-1"
+                        className="p-3 rounded-xl bg-surface-container dark:bg-[#14141c] border border-outline-variant/30 dark:border-white/10 flex flex-col gap-1"
                       >
-                        <span className="text-amber-400 font-bold">
+                        <span className="text-primary font-bold">
                           Fig. {idx + 1} // {entry.item}
                         </span>
-                        <span className="text-neutral-400 text-[11px]">{entry.spec}</span>
+                        <span className="text-on-surface-variant dark:text-neutral-400 text-[11px]">{entry.spec}</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px] font-mono text-amber-300">
+                  <div className="p-3.5 rounded-xl bg-primary/10 border border-primary/30 text-[11px] font-mono text-primary">
                     Draughtsman Certification: Verified by International Archive for Mechanical Standards (IAMS).
                   </div>
                 </div>
@@ -657,32 +657,32 @@ export default function DossierView({
 
           {/* TAB 4: BINAURAL CURATORIAL AUDIO GUIDE */}
           {activeTab === 'AUDIO_GUIDE' && (
-            <div className="rounded-3xl bg-[#0e0e13]/90 border border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-6">
+            <div className="rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/90 border border-outline-variant/40 dark:border-amber-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-xl dark:shadow-2xl flex flex-col gap-6">
               <div className="max-w-2xl mx-auto w-full flex flex-col items-center text-center gap-5">
 
                 {/* Audio Crest Icon */}
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/25 to-amber-600/10 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-glow-gold">
+                <div className="w-20 h-20 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center text-primary shadow-lg">
                   <Headphones className="w-9 h-9" />
                 </div>
 
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-semibold block mb-1">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-semibold block mb-1">
                     Binaural Curatorial Commentary
                   </span>
-                  <h3 className="font-serif text-2xl font-bold text-white">
+                  <h3 className="font-serif text-2xl font-bold text-on-surface dark:text-white">
                     {asset.title}: Engineering Genesis
                   </h3>
-                  <p className="font-mono text-xs text-neutral-400 mt-1">
+                  <p className="font-mono text-xs text-on-surface-variant dark:text-neutral-400 mt-1">
                     Curated by {asset.curatorAuthor || 'Senior Fellow of Industrial Antiquities'}
                   </p>
                 </div>
 
                 {/* Animated Frequency Soundwave Simulation */}
-                <div className="flex items-center justify-center gap-1.5 h-12 w-full max-w-sm px-4 py-2 rounded-2xl bg-black/60 border border-white/10">
+                <div className="flex items-center justify-center gap-1.5 h-12 w-full max-w-sm px-4 py-2 rounded-2xl bg-surface-container dark:bg-black/60 border border-outline-variant/30 dark:border-white/10">
                   {[20, 35, 12, 45, 25, 40, 18, 50, 30, 42, 16, 38, 22, 48, 28, 14].map((h, i) => (
                     <span
                       key={i}
-                      className={`w-1 rounded-full bg-amber-400 transition-all duration-300 ${
+                      className={`w-1 rounded-full bg-primary transition-all duration-300 ${
                         isPlayingAudio ? 'animate-pulse' : 'opacity-40'
                       }`}
                       style={{ height: isPlayingAudio ? `${h}px` : '6px' }}
@@ -691,10 +691,10 @@ export default function DossierView({
                 </div>
 
                 {/* Audio Progress Bar */}
-                <div className="w-full flex flex-col gap-1.5 font-mono text-xs text-neutral-400">
-                  <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden cursor-pointer">
+                <div className="w-full flex flex-col gap-1.5 font-mono text-xs text-on-surface-variant dark:text-neutral-400">
+                  <div className="w-full h-2 bg-outline-variant/30 dark:bg-white/10 rounded-full overflow-hidden cursor-pointer">
                     <div
-                      className="h-full bg-gradient-to-r from-amber-400 to-yellow-500 transition-all duration-300"
+                      className="h-full bg-primary transition-all duration-300"
                       style={{ width: `${(audioSeconds / 45) * 100}%` }}
                     />
                   </div>
@@ -709,7 +709,7 @@ export default function DossierView({
                   {/* Speed toggle */}
                   <button
                     onClick={() => setAudioSpeed((s) => (s === 1 ? 1.25 : 1))}
-                    className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-neutral-300 hover:text-white"
+                    className="px-3 py-1.5 rounded-lg bg-surface-container-high/60 dark:bg-white/[0.04] border border-outline-variant/30 dark:border-white/10 text-xs font-mono text-on-surface dark:text-neutral-300 hover:text-primary"
                   >
                     {audioSpeed}x SPEED
                   </button>
@@ -717,7 +717,7 @@ export default function DossierView({
                   {/* Play / Pause */}
                   <button
                     onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                    className="w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 flex items-center justify-center shadow-glow-pill hover:scale-105 transition cursor-pointer"
+                    className="w-14 h-14 rounded-full bg-primary text-neutral-950 flex items-center justify-center shadow-lg hover:scale-105 transition cursor-pointer"
                   >
                     {isPlayingAudio ? (
                       <Pause className="w-6 h-6 fill-current" />
@@ -728,7 +728,7 @@ export default function DossierView({
 
                   <button
                     onClick={() => setAudioSeconds(0)}
-                    className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-neutral-300 hover:text-white"
+                    className="px-3 py-1.5 rounded-lg bg-surface-container-high/60 dark:bg-white/[0.04] border border-outline-variant/30 dark:border-white/10 text-xs font-mono text-on-surface dark:text-neutral-300 hover:text-primary"
                   >
                     REPLAY
                   </button>
@@ -747,43 +747,43 @@ export default function DossierView({
           <div className="lg:col-span-8 flex flex-col gap-8">
 
             {/* 1. Historical Context & Background */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#0e0e13]/85 border border-white/10 flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-widest">
+            <div className="p-6 sm:p-8 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 shadow-md">
+              <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest">
                 <Clock className="w-4 h-4" />
                 <span>01 // Historical Context & Genesis</span>
               </div>
-              <h2 className="font-serif text-2xl font-bold text-white">
+              <h2 className="font-serif text-2xl font-bold text-on-surface dark:text-white">
                 The Societal Conditions & Necessity
               </h2>
-              <p className="font-sans text-neutral-300 text-sm leading-relaxed">
+              <p className="font-sans text-on-surface-variant dark:text-neutral-300 text-sm leading-relaxed">
                 {asset.story || asset.desc}
               </p>
             </div>
 
             {/* 2. How the Invention Works (Mechanical Breakdown) */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#0e0e13]/85 border border-white/10 flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-widest">
+            <div className="p-6 sm:p-8 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 shadow-md">
+              <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest">
                 <Compass className="w-4 h-4" />
                 <span>02 // How the Invention Works</span>
               </div>
-              <h2 className="font-serif text-2xl font-bold text-white">
+              <h2 className="font-serif text-2xl font-bold text-on-surface dark:text-white">
                 Mechanical Breakdown & Kinematic Principles
               </h2>
-              <p className="font-sans text-neutral-300 text-sm leading-relaxed">
+              <p className="font-sans text-on-surface-variant dark:text-neutral-300 text-sm leading-relaxed">
                 {asset.mechanics || asset.desc}
               </p>
             </div>
 
             {/* 3. Societal Impact & Modern Legacy */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#0e0e13]/85 border border-white/10 flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-widest">
+            <div className="p-6 sm:p-8 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 shadow-md">
+              <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest">
                 <Sparkles className="w-4 h-4" />
                 <span>03 // Societal Impact & Modern Legacy</span>
               </div>
-              <h2 className="font-serif text-2xl font-bold text-white">
+              <h2 className="font-serif text-2xl font-bold text-on-surface dark:text-white">
                 Global Impact & Modern Industrial Descendants
               </h2>
-              <p className="font-sans text-neutral-300 text-sm leading-relaxed">
+              <p className="font-sans text-on-surface-variant dark:text-neutral-300 text-sm leading-relaxed">
                 {asset.legacy || asset.desc}
               </p>
             </div>
@@ -794,47 +794,47 @@ export default function DossierView({
           <div className="lg:col-span-4 flex flex-col gap-6">
 
             {/* 4. Curator's Reflection Highlight Quote */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-amber-500/10 via-[#0e0e13] to-black border border-amber-500/40 shadow-glow-gold flex flex-col justify-between">
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-primary/15 via-surface-container to-surface-container-low dark:from-amber-500/10 dark:via-[#0e0e13] dark:to-black border border-primary/40 shadow-lg flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-widest mb-3">
+                <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest mb-3">
                   <Sparkles className="w-4 h-4" />
                   <span>Curator&apos;s Reflection</span>
                 </div>
-                <blockquote className="font-serif text-base sm:text-lg italic text-amber-200/95 leading-relaxed">
+                <blockquote className="font-serif text-base sm:text-lg italic text-on-surface dark:text-amber-200/95 leading-relaxed">
                   &ldquo;{asset.curatorQuote || asset.desc}&rdquo;
                 </blockquote>
               </div>
-              <div className="pt-4 mt-4 border-t border-amber-500/20 font-mono text-xs">
-                <span className="text-white font-medium block">
+              <div className="pt-4 mt-4 border-t border-primary/20 font-mono text-xs">
+                <span className="text-on-surface dark:text-white font-medium block">
                   {asset.curatorAuthor || 'Chief Archivist, IAIMS Museum'}
                 </span>
-                <span className="text-amber-400/80 text-[11px] block mt-0.5">
+                <span className="text-primary text-[11px] block mt-0.5">
                   Department of Historical Kinematics
                 </span>
               </div>
             </div>
 
             {/* Archival Standards Verification Card */}
-            <div className="p-6 rounded-3xl bg-[#0e0e13]/85 border border-white/10 flex flex-col gap-3 font-mono text-xs">
-              <span className="text-xs uppercase tracking-widest text-neutral-400 font-bold">
+            <div className="p-6 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 font-mono text-xs shadow-md">
+              <span className="text-xs uppercase tracking-widest text-on-surface-variant dark:text-neutral-400 font-bold">
                 Archival Certification
               </span>
-              <div className="space-y-2 text-neutral-300">
+              <div className="space-y-2 text-on-surface dark:text-neutral-300">
                 <div className="flex items-center justify-between">
-                  <span>IAMS Classification:</span>
-                  <span className="text-amber-400">CLASS 4-ENG</span>
+                  <span className="text-on-surface-variant">IAMS Classification:</span>
+                  <span className="text-primary font-semibold">CLASS 4-ENG</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>Digitization Standard:</span>
+                  <span className="text-on-surface-variant">Digitization Standard:</span>
                   <span>ISO-IAMS-2024</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>Photogrammetry Mesh:</span>
-                  <span className="text-white">{asset.polyCount}</span>
+                  <span className="text-on-surface-variant">Photogrammetry Mesh:</span>
+                  <span className="text-on-surface dark:text-white font-medium">{asset.polyCount}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>Resonance Profile:</span>
-                  <span className="text-white">{asset.resonance}</span>
+                  <span className="text-on-surface-variant">Resonance Profile:</span>
+                  <span className="text-on-surface dark:text-white font-medium">{asset.resonance}</span>
                 </div>
               </div>
             </div>
@@ -844,19 +844,19 @@ export default function DossierView({
         </div>
 
         {/* ==================== 6. RELATED HOLDINGS & RECOMMENDED INVENTIONS ==================== */}
-        <div className="border-t border-white/10 pt-12">
+        <div className="border-t border-outline-variant/20 dark:border-white/10 pt-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="text-xs font-mono text-amber-400 uppercase tracking-widest block mb-1">
+              <span className="text-xs font-mono text-primary uppercase tracking-widest block mb-1">
                 Comparative Historical Holdings
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-on-surface dark:text-white">
                 Related Inventions from This Era
               </h3>
             </div>
             <Link
               href="/#collection"
-              className="text-xs font-mono text-amber-400 hover:underline flex items-center gap-1.5"
+              className="text-xs font-mono text-primary hover:underline flex items-center gap-1.5"
             >
               <span>View Full Registry (500+ Assets)</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -868,32 +868,32 @@ export default function DossierView({
               <Link
                 key={rel.id}
                 href={`/inventions/${rel.id}`}
-                className="group p-4 rounded-2xl bg-[#0e0e13]/80 hover:bg-[#14141c] border border-white/10 hover:border-amber-400 transition-all duration-300 flex flex-col justify-between shadow-lg"
+                className="group p-4 rounded-2xl bg-surface-container-low dark:bg-[#0e0e13]/80 hover:bg-surface-container dark:hover:bg-[#14141c] border border-outline-variant/30 dark:border-white/10 hover:border-primary transition-all duration-300 flex flex-col justify-between shadow-md"
               >
                 <div>
                   <div className="relative h-44 rounded-xl overflow-hidden bg-black mb-3">
                     <img
                       src={rel.image}
                       alt={rel.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/80 font-mono text-[10px] text-amber-400">
+                    <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/80 font-mono text-[10px] text-amber-300">
                       {rel.categoryLabel}
                     </span>
                   </div>
-                  <h4 className="font-serif text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                  <h4 className="font-serif text-base font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors">
                     {rel.title}
                   </h4>
-                  <p className="font-mono text-xs text-amber-400/90 mt-0.5">
+                  <p className="font-mono text-xs text-primary mt-0.5">
                     {rel.inventor} • {rel.patent}
                   </p>
-                  <p className="font-sans text-xs text-neutral-400 mt-2 line-clamp-2">
+                  <p className="font-sans text-xs text-on-surface-variant dark:text-neutral-400 mt-2 line-clamp-2">
                     {rel.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-amber-400">
+                <div className="pt-3 mt-3 border-t border-outline-variant/20 dark:border-white/10 flex items-center justify-between text-xs font-mono text-primary">
                   <span>INSPECT DOSSIER</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </div>

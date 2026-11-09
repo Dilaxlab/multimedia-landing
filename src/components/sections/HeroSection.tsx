@@ -128,7 +128,7 @@ export default function HeroSection({
   return (
     <section
       id="hero"
-      className="relative w-full bg-[#0a0a0c] text-[#e2e8f0] overflow-hidden pt-16 pb-10 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-24"
+      className="relative w-full dark:bg-[#0a0a0c] bg-surface dark:text-[#e2e8f0] text-on-surface overflow-hidden pt-16 pb-10 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-24 transition-colors duration-300"
     >
       {/* Warm Ambient Bronze & Amber Spotlight Glow Radiating from Center Stage */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -155,13 +155,13 @@ export default function HeroSection({
             </div>
 
             {/* Main Headline: Large Serif Display Typography */}
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.15]">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight dark:text-white text-on-surface leading-[1.15]">
               Explore History <br />
-              <span className="text-[#d4af37] font-serif italic">Beyond the Museum</span>
+              <span className="text-primary font-serif italic">Beyond the Museum</span>
             </h1>
 
-            {/* Subtitle: Muted Ivory Text */}
-            <p className="font-sans text-[#e2e8f0]/80 text-xs sm:text-base leading-relaxed max-w-xl">
+            {/* Subtitle: Muted Text */}
+            <p className="font-sans text-on-surface-variant text-xs sm:text-base leading-relaxed max-w-xl">
               Discover historical inventions through immersive 3D models, cinematic stories, and
               interactive digital experiences.
             </p>
@@ -178,12 +178,12 @@ export default function HeroSection({
                 <span className="text-base font-bold leading-none">→</span>
               </button>
 
-              {/* Button 2: Outlined Dark Button with Play Icon and Gold Border */}
+              {/* Button 2: Outlined Button with Play Icon and Gold Border */}
               <button
                 onClick={onWatchStories || (() => handleScrollTo('videos'))}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-black/40 hover:bg-white/[0.06] border border-[#d4af37]/40 hover:border-[#d4af37] text-[#e2e8f0] hover:text-white font-medium text-sm tracking-wide transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high dark:bg-black/40 dark:hover:bg-white/[0.06] border border-[#d4af37]/40 hover:border-[#d4af37] text-on-surface hover:text-primary dark:text-white dark:hover:text-[#d4af37] font-medium text-sm tracking-wide transition-all duration-300 cursor-pointer backdrop-blur-md active:scale-[0.98]"
               >
-                <PlayCircle className="w-4 h-4 text-[#d4af37] stroke-[2]" />
+                <PlayCircle className="w-4 h-4 text-primary stroke-[2]" />
                 <span>Watch Historical Stories</span>
               </button>
             </div>
@@ -298,16 +298,16 @@ export default function HeroSection({
         {/* ========================================================================= */}
         {/* BOTTOM HERO STATISTICS BAR                                                */}
         {/* ========================================================================= */}
-        <div className="w-full rounded-2xl bg-[#0c0d12]/85 border border-[rgba(212,175,55,0.2)] px-6 sm:px-8 py-5 backdrop-blur-md shadow-2xl mb-8">
+        <div className="w-full rounded-2xl dark:bg-[#0c0d12]/85 bg-surface-container-low border border-primary/20 px-6 sm:px-8 py-5 backdrop-blur-md shadow-2xl mb-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 items-center">
             {/* Metric 1: 500+ Historical Inventions */}
             <div className="flex items-center gap-3.5 sm:gap-4">
-              <div className="w-11 h-11 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/25 flex items-center justify-center text-[#d4af37] shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary shrink-0">
                 <Cog className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold text-white leading-tight">500+</span>
-                <span className="font-sans text-xs text-[#e2e8f0]/70 mt-0.5">
+                <span className="font-serif text-2xl font-bold dark:text-white text-on-surface leading-tight">500+</span>
+                <span className="font-sans text-xs text-on-surface-variant mt-0.5">
                   Historical Inventions
                 </span>
               </div>
@@ -315,12 +315,12 @@ export default function HeroSection({
 
             {/* Metric 2: 64 Invention Disciplines */}
             <div className="flex items-center gap-3.5 sm:gap-4">
-              <div className="w-11 h-11 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/25 flex items-center justify-center text-[#d4af37] shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary shrink-0">
                 <Layers className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold text-white leading-tight">64</span>
-                <span className="font-sans text-xs text-[#e2e8f0]/70 mt-0.5">
+                <span className="font-serif text-2xl font-bold dark:text-white text-on-surface leading-tight">64</span>
+                <span className="font-sans text-xs text-on-surface-variant mt-0.5">
                   Invention Disciplines
                 </span>
               </div>
@@ -328,12 +328,12 @@ export default function HeroSection({
 
             {/* Metric 3: 30s 3-Scene Documentaries */}
             <div className="flex items-center gap-3.5 sm:gap-4">
-              <div className="w-11 h-11 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/25 flex items-center justify-center text-[#d4af37] shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary shrink-0">
                 <Film className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold text-white leading-tight">30s</span>
-                <span className="font-sans text-xs text-[#e2e8f0]/70 mt-0.5">
+                <span className="font-serif text-2xl font-bold dark:text-white text-on-surface leading-tight">30s</span>
+                <span className="font-sans text-xs text-on-surface-variant mt-0.5">
                   3-Scene Documentaries
                 </span>
               </div>
@@ -341,12 +341,12 @@ export default function HeroSection({
 
             {/* Metric 4: 100% Verified Patent Archives */}
             <div className="flex items-center gap-3.5 sm:gap-4">
-              <div className="w-11 h-11 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/25 flex items-center justify-center text-[#d4af37] shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary shrink-0">
                 <ShieldCheck className="w-6 h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold text-white leading-tight">100%</span>
-                <span className="font-sans text-xs text-[#e2e8f0]/70 mt-0.5">
+                <span className="font-serif text-2xl font-bold dark:text-white text-on-surface leading-tight">100%</span>
+                <span className="font-sans text-xs text-on-surface-variant mt-0.5">
                   Verified Patent Archives
                 </span>
               </div>

@@ -500,18 +500,18 @@ export default function SpatialGallery({
             if (e.target === e.currentTarget) setIsBrowserModalOpen(false);
           }}
         >
-          <div className="w-full max-w-3xl bg-[#121217] border border-amber-500/40 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4 max-h-[88vh] overflow-hidden">
+          <div className="w-full max-w-3xl bg-surface-container-low dark:bg-[#121217] border border-outline-variant/40 dark:border-amber-500/40 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4 max-h-[88vh] overflow-hidden">
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+            <div className="flex items-center justify-between pb-3 border-b border-outline-variant/20 dark:border-white/10">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
                   <Grid2x2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-base sm:text-lg font-bold text-white leading-tight">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-on-surface dark:text-white leading-tight">
                     Select 3D Spatial Model
                   </h3>
-                  <span className="text-[10px] font-mono text-amber-400">
+                  <span className="text-[10px] font-mono text-primary">
                     {featuredAssets.length} Photogrammetry & CAD Assets Available
                   </span>
                 </div>
@@ -519,7 +519,7 @@ export default function SpatialGallery({
 
               <button
                 onClick={() => setIsBrowserModalOpen(false)}
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+                className="w-8 h-8 rounded-xl bg-surface-container hover:bg-surface-container-high dark:bg-white/5 dark:hover:bg-white/10 text-on-surface-variant hover:text-on-surface dark:text-neutral-400 dark:hover:text-white flex items-center justify-center transition cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -539,30 +539,30 @@ export default function SpatialGallery({
                     className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 active:scale-98 ${
                       isCurrent
                         ? 'bg-primary/15 border-primary shadow-lg shadow-primary/20'
-                        : 'bg-white/[0.03] border-white/10 hover:border-amber-400/50 hover:bg-white/[0.06]'
+                        : 'bg-surface-container dark:bg-white/[0.03] border-outline-variant/30 dark:border-white/10 hover:border-primary/50'
                     }`}
                   >
                     <img
                       src={asset.image}
                       alt={asset.title}
-                      className="w-14 h-14 rounded-xl object-cover shrink-0 border border-white/10"
+                      className="w-14 h-14 rounded-xl object-cover shrink-0 border border-outline-variant/30 dark:border-white/10"
                     />
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className="text-[10px] font-mono text-amber-400 font-semibold truncate">
+                        <span className="text-[10px] font-mono text-primary font-semibold truncate">
                           {asset.id} • {asset.categoryLabel.split(' ')[0]}
                         </span>
                         {isCurrent && (
-                          <span className="px-1.5 py-0.5 rounded bg-primary text-surface-container-lowest text-[9px] font-mono font-bold">
+                          <span className="px-1.5 py-0.5 rounded bg-primary text-neutral-950 text-[9px] font-mono font-bold">
                             ACTIVE
                           </span>
                         )}
                       </div>
-                      <h4 className="font-serif text-sm font-bold text-white truncate">
+                      <h4 className="font-serif text-sm font-bold text-on-surface dark:text-white truncate">
                         {asset.title}
                       </h4>
-                      <p className="text-[11px] font-sans text-neutral-400 truncate">
+                      <p className="text-[11px] font-sans text-on-surface-variant dark:text-neutral-400 truncate">
                         by {asset.inventor}
                       </p>
                     </div>

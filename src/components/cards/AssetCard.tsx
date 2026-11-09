@@ -25,11 +25,11 @@ export default function AssetCard({
   };
 
   return (
-    <div className="group relative rounded-xl sm:rounded-2xl bg-[#111113] overflow-hidden flex flex-col justify-between h-full transition-all duration-300 hover:translate-y-[-3px] border border-neutral-800/80 hover:border-amber-500/50 shadow-xl">
+    <div className="group relative rounded-xl sm:rounded-2xl bg-surface-container-low dark:bg-[#111113] overflow-hidden flex flex-col justify-between h-full transition-all duration-300 hover:translate-y-[-3px] border border-outline-variant/30 hover:border-primary/50 shadow-lg">
       <div className="flex flex-col">
         {/* Thumbnail — Responsive for 2-column mobile and 3-column desktop */}
         <div
-          className="relative h-40 xs:h-44 sm:h-56 md:h-60 overflow-hidden bg-[#18181b] flex items-center justify-center cursor-pointer"
+          className="relative h-40 xs:h-44 sm:h-56 md:h-60 overflow-hidden bg-surface-container dark:bg-[#18181b] flex items-center justify-center cursor-pointer"
           onClick={handlePrimaryClick}
         >
           <img
@@ -38,7 +38,7 @@ export default function AssetCard({
             src={asset.image}
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111113] via-transparent to-transparent opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-t dark:from-[#111113] from-black/40 via-transparent to-transparent opacity-60 dark:opacity-90" />
 
           {/* Badge */}
           <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex gap-1 z-10">
@@ -60,7 +60,7 @@ export default function AssetCard({
         <div className="p-3 sm:p-4 md:p-5 flex flex-col gap-1.5 sm:gap-2.5">
           {/* Title */}
           <h3
-            className="font-serif text-xs xs:text-sm sm:text-base md:text-lg font-bold text-white group-hover:text-amber-400 transition-colors cursor-pointer line-clamp-1 leading-snug"
+            className="font-serif text-xs xs:text-sm sm:text-base md:text-lg font-bold dark:text-white text-on-surface group-hover:text-primary transition-colors cursor-pointer line-clamp-1 leading-snug"
             onClick={handlePrimaryClick}
             title={asset.title}
           >
@@ -68,30 +68,30 @@ export default function AssetCard({
           </h3>
 
           {/* Short Curatorial Excerpt */}
-          <p className="text-neutral-400 font-sans text-[11px] sm:text-xs line-clamp-1 sm:line-clamp-2 leading-relaxed">
+          <p className="text-on-surface-variant font-sans text-[11px] sm:text-xs line-clamp-1 sm:line-clamp-2 leading-relaxed">
             {asset.desc}
           </p>
 
           {/* Metadata Row */}
-          <div className="flex items-center justify-between gap-1 pt-1 text-neutral-400 text-[10px] sm:text-xs font-mono border-t border-neutral-800/60">
+          <div className="flex items-center justify-between gap-1 pt-1 text-on-surface-variant text-[10px] sm:text-xs font-mono border-t border-outline-variant/20">
             <div
               className="flex items-center gap-1 min-w-0 flex-1"
               title={`Inventor: ${asset.inventor}`}
             >
-              <User className="w-3 h-3 text-amber-500 shrink-0" />
-              <span className="truncate text-neutral-300">{asset.inventor}</span>
+              <User className="w-3 h-3 text-primary shrink-0" />
+              <span className="truncate text-on-surface">{asset.inventor}</span>
             </div>
 
             <div
-              className="hidden sm:flex items-center gap-1 shrink-0 text-neutral-400 text-[11px]"
+              className="hidden sm:flex items-center gap-1 shrink-0 text-on-surface-variant text-[11px]"
               title={`Patent Date: ${asset.patentDate}`}
             >
-              <Calendar className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+              <Calendar className="w-3.5 h-3.5 text-primary shrink-0" />
               <span className="whitespace-nowrap">{asset.patentDate}</span>
             </div>
 
-            <div className="flex items-center gap-0.5 shrink-0 text-amber-400 font-mono text-[9px] sm:text-[11px]">
-              <Box className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 shrink-0" />
+            <div className="flex items-center gap-0.5 shrink-0 text-primary font-mono text-[9px] sm:text-[11px]">
+              <Box className="w-3.5 h-3.5 text-primary shrink-0" />
               <span>3D</span>
             </div>
           </div>
@@ -99,12 +99,12 @@ export default function AssetCard({
       </div>
 
       {/* Card Footer */}
-      <div className="px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-1.5 sm:gap-2.5 border-t border-neutral-800/80 bg-[#0c0c0e] mt-auto">
+      <div className="px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-1.5 sm:gap-2.5 border-t border-outline-variant/30 bg-surface-container/60 dark:bg-[#0c0c0e] mt-auto">
         <div
-          className="hidden sm:flex items-center gap-1.5 text-neutral-400 min-w-0 flex-1"
+          className="hidden sm:flex items-center gap-1.5 text-on-surface-variant min-w-0 flex-1"
           title={`Location: ${asset.location}`}
         >
-          <MapPin className="w-3.5 h-3.5 shrink-0 text-amber-500/70" />
+          <MapPin className="w-3.5 h-3.5 shrink-0 text-primary" />
           <span className="font-mono text-[10px] uppercase tracking-wider truncate">
             {asset.location}
           </span>
@@ -118,7 +118,7 @@ export default function AssetCard({
                 e.stopPropagation();
                 onExplore3D(asset);
               }}
-              className="inline-flex p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/[0.04] hover:bg-amber-500/20 text-neutral-300 hover:text-amber-400 transition-colors border border-white/10 hover:border-amber-500/40 shrink-0 cursor-pointer"
+              className="inline-flex p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-surface-container-high/80 dark:bg-white/[0.04] hover:bg-primary/20 text-on-surface-variant dark:text-neutral-300 hover:text-primary transition-colors border border-outline-variant/30 dark:border-white/10 hover:border-primary/40 shrink-0 cursor-pointer"
               title="Inspect 3D Spatial Model"
               aria-label="Inspect 3D model"
             >
@@ -128,7 +128,7 @@ export default function AssetCard({
 
           <Link
             href={`/inventions/${asset.id}`}
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-gradient-to-r from-amber-500/15 to-yellow-500/10 hover:from-amber-500/25 hover:to-yellow-500/20 text-amber-400 hover:text-amber-300 transition-all border border-amber-500/30 hover:border-amber-400/50 shrink-0 whitespace-nowrap cursor-pointer shadow-sm active:scale-95"
+            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-primary/15 hover:bg-primary/25 text-primary hover:text-primary transition-all border border-primary/30 hover:border-primary/50 shrink-0 whitespace-nowrap cursor-pointer shadow-sm active:scale-95"
             aria-label="Explore Asset"
           >
             <span className="font-sans font-bold text-[10px] sm:text-xs uppercase tracking-wider leading-none">

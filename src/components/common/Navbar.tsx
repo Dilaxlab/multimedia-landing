@@ -16,9 +16,12 @@ import {
   Award,
   ArrowRight,
   ChevronDown,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import TaxonomyModal from '@/components/common/TaxonomyModal';
+import { useTheme } from '@/components/common/ThemeProvider';
 
 type TabName = 'Home' | 'Inventions' | '3D Gallery' | 'Stories' | 'Disciplines';
 
@@ -29,6 +32,7 @@ interface NavbarProps {
 
 export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) {
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
   const [activeTab, setActiveTab] = useState<TabName>('Home');
   const [isAudioTourActive, setIsAudioTourActive] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -210,7 +214,7 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
     <>
       {/* ==================== ICON-FORWARD NAVBAR ==================== */}
       <header className="sticky top-0 z-50 w-full px-3 py-3 md:px-8">
-        <div className="max-w-6xl mx-auto backdrop-blur-xl bg-[#0e0e13]/85 border border-white/10 hover:border-amber-500/25 rounded-2xl shadow-2xl transition-all duration-300">
+        <div className="max-w-6xl mx-auto backdrop-blur-xl dark:bg-[#0e0e13]/85 bg-[#faf8f4]/95 dark:border-white/10 border-[#d8cfbe]/80 hover:border-amber-500/30 rounded-2xl shadow-xl dark:shadow-2xl transition-all duration-300">
           <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 gap-2">
             {/* 1. COMPACT LOGO WITH CLASSICAL TEMPLE CREST */}
             <Link
@@ -223,17 +227,17 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                 <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-400" />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="font-serif font-bold text-[10px] sm:text-[12px] tracking-[0.14em] sm:tracking-[0.2em] text-white group-hover:text-amber-300 transition-colors uppercase">
+                <span className="font-serif font-bold text-[10px] sm:text-[12px] tracking-[0.14em] sm:tracking-[0.2em] dark:text-white text-[#1a1918] group-hover:text-primary transition-colors uppercase">
                   Heritage Archive
                 </span>
-                <span className="text-[7px] sm:text-[8px] tracking-[0.18em] sm:tracking-[0.25em] uppercase text-amber-400/80 font-medium font-sans">
+                <span className="text-[7px] sm:text-[8px] tracking-[0.18em] sm:tracking-[0.25em] uppercase text-primary font-medium font-sans">
                   Digital Museum
                 </span>
               </div>
             </Link>
 
             {/* 2. ICON-FIRST NAV PILL — YOUR SECTIONS */}
-            <nav className="hidden md:flex items-center p-1 bg-black/40 border border-white/[0.08] rounded-xl backdrop-blur-md">
+            <nav className="hidden md:flex items-center p-1 dark:bg-black/40 bg-surface-container-high/60 dark:border-white/[0.08] border-outline-variant/30 rounded-xl backdrop-blur-md">
               <ul className="flex items-center gap-0.5">
                 {navItems.map((item) => {
                   const isActive = activeTab === item.name;
@@ -250,14 +254,14 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                         className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all ${
                           isActive
                             ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
-                            : 'text-neutral-400 hover:text-white hover:bg-white/[0.06]'
+                            : 'dark:text-neutral-400 text-[#5c5549] dark:hover:text-white hover:text-[#1a1918] dark:hover:bg-white/[0.06] hover:bg-black/[0.04]'
                         }`}
                       >
                         <span
                           className={
                             isActive
                               ? 'text-black stroke-[2.2] shrink-0'
-                              : 'text-neutral-400 group-hover:text-amber-400 transition-colors shrink-0'
+                              : 'dark:text-neutral-400 text-[#5c5549] group-hover:text-primary transition-colors shrink-0'
                           }
                         >
                           {item.icon}
@@ -270,7 +274,7 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                           {item.label}
                         </span>
                       </Link>
-                      <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                      <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
                         {item.tooltip}
                       </div>
                     </li>
@@ -286,11 +290,11 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                 <button
                   onClick={() => setIsSearchOpen(true)}
                   aria-label="Search"
-                  className="p-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-amber-400/50 text-neutral-300 hover:text-amber-300 transition-all cursor-pointer"
+                  className="p-2 rounded-xl dark:bg-white/[0.04] dark:hover:bg-white/[0.08] bg-surface-container hover:bg-surface-container-high dark:border-white/10 border-outline-variant/30 dark:text-neutral-300 text-on-surface hover:text-primary transition-all cursor-pointer"
                 >
                   <Search className="w-4 h-4" />
                 </button>
-                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
                   Search ⌘K
                 </div>
               </div>
@@ -302,11 +306,11 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                   aria-label="Audio Commentary"
                   className={`nav-icon-item flex items-center gap-1.5 px-2.5 py-2 rounded-xl border transition-all cursor-pointer ${
                     isAudioTourActive
-                      ? 'border-amber-400 bg-amber-500/10 text-amber-300'
-                      : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/10 hover:border-amber-400/50 text-neutral-300'
+                      ? 'border-amber-400 bg-amber-500/10 text-amber-400'
+                      : 'dark:bg-white/[0.04] dark:hover:bg-white/[0.08] bg-surface-container hover:bg-surface-container-high dark:border-white/10 border-outline-variant/30 text-on-surface-variant hover:text-primary'
                   }`}
                 >
-                  <Headphones className="w-4 h-4 text-amber-400 shrink-0" />
+                  <Headphones className="w-4 h-4 text-primary shrink-0" />
                   {isAudioTourActive ? (
                     <div className="flex items-center gap-0.5 h-3">
                       <span className="sound-bar w-0.5 bg-amber-400 rounded-full inline-block" />
@@ -317,25 +321,43 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                   <span
                     className={`nav-label text-[10px] ${
                       isAudioTourActive
-                        ? 'font-semibold text-amber-300'
-                        : 'font-medium text-neutral-300'
+                        ? 'font-semibold text-primary'
+                        : 'font-medium text-on-surface'
                     }`}
                   >
                     {isAudioTourActive ? 'On' : 'Tour'}
                   </span>
                 </button>
-                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-neutral-900 border border-white/10 text-[10px] text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
+                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
                   {isAudioTourActive ? 'Voiceover Active' : 'Curator Voiceover'}
                 </div>
               </div>
 
-              <div className="hidden sm:block h-5 w-px bg-white/10 mx-0.5" />
+              {/* Theme Toggle Button (Light & Dark Mode Switcher) */}
+              <div className="relative has-tooltip">
+                <button
+                  onClick={toggleTheme}
+                  aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+                  className="p-2 rounded-xl dark:bg-white/[0.04] dark:hover:bg-white/[0.08] bg-surface-container hover:bg-surface-container-high dark:border-white/10 border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all cursor-pointer flex items-center justify-center group"
+                >
+                  {theme === 'dark' ? (
+                    <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-300" />
+                  ) : (
+                    <Moon className="w-4 h-4 text-amber-700 group-hover:-rotate-12 transition-transform duration-300" />
+                  )}
+                </button>
+                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
+                  {theme === 'dark' ? 'Parchment Light' : 'Nocturnal Dark'}
+                </div>
+              </div>
+
+              <div className="hidden sm:block h-5 w-px dark:bg-white/10 bg-outline-variant/40 mx-0.5" />
 
               {/* Language Selector Dropdown (Replaced Explore Archives) */}
               <div className="relative" ref={langDropdownRef}>
                 <button
                   onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                  className="flex items-center gap-1 px-2 sm:px-3 py-2 rounded-xl hover:bg-white/[0.06] text-neutral-300 hover:text-white transition-colors text-[11px] sm:text-xs font-semibold tracking-wide cursor-pointer select-none"
+                  className="flex items-center gap-1 px-2 sm:px-3 py-2 rounded-xl dark:hover:bg-white/[0.06] hover:bg-black/[0.05] text-on-surface-variant hover:text-on-surface transition-colors text-[11px] sm:text-xs font-semibold tracking-wide cursor-pointer select-none"
                 >
                   <span>{currentLang}</span>
                   <ChevronDown
@@ -345,7 +367,7 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
 
                 {/* Dropdown Menu */}
                 {isLangDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-24 bg-[#121217] border border-white/10 rounded-xl shadow-xl overflow-hidden py-1 z-50 animate-fadeIn">
+                  <div className="absolute right-0 mt-2 w-24 bg-surface-container border border-outline-variant/30 rounded-xl shadow-xl overflow-hidden py-1 z-50 animate-fadeIn">
                     {languages.map((lang) => (
                       <button
                         key={lang}
@@ -355,8 +377,8 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                         }}
                         className={`w-full text-left px-4 py-2 text-xs font-mono transition-colors ${
                           currentLang === lang
-                            ? 'bg-amber-500/10 text-amber-400 font-bold'
-                            : 'text-neutral-400 hover:bg-white/5 hover:text-white'
+                            ? 'bg-primary/10 text-primary font-bold'
+                            : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
                         }`}
                       >
                         {lang}
@@ -378,16 +400,16 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
             if (e.target === e.currentTarget) setIsSearchOpen(false);
           }}
         >
-          <div className="w-full max-w-md bg-[#121217] border border-amber-500/30 rounded-2xl p-4 sm:p-5 shadow-glow-gold flex flex-col gap-3 sm:gap-4 max-h-[85vh] overflow-hidden">
+          <div className="w-full max-w-md bg-surface-container-low dark:bg-[#121217] border border-outline-variant/40 dark:border-amber-500/30 rounded-2xl p-4 sm:p-5 shadow-2xl flex flex-col gap-3 sm:gap-4 max-h-[85vh] overflow-hidden">
             {/* Modal Header */}
             <div className="flex items-center justify-between mb-1">
-              <div className="flex items-center gap-2 text-amber-400 text-sm font-semibold">
+              <div className="flex items-center gap-2 text-primary text-sm font-semibold">
                 <Search className="w-4 h-4" />
                 <span className="font-serif">Quick Archive Search</span>
               </div>
               <button
                 onClick={() => setIsSearchOpen(false)}
-                className="text-neutral-400 hover:text-white text-xs px-2 py-0.5 bg-white/5 rounded font-mono hover:bg-white/10 transition"
+                className="text-on-surface-variant hover:text-on-surface text-xs px-2 py-0.5 bg-surface-container-high dark:bg-white/5 rounded font-mono hover:bg-surface-container-highest dark:hover:bg-white/10 transition"
               >
                 ESC
               </button>
@@ -405,7 +427,7 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                   setSearchQuery(val);
                   onSearchChange?.(val);
                 }}
-                className="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-400 font-mono transition"
+                className="w-full bg-surface-container dark:bg-black/60 border border-outline-variant/40 dark:border-white/15 rounded-xl px-4 py-2.5 text-sm text-on-surface dark:text-neutral-100 placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary font-mono transition"
               />
               {searchQuery && (
                 <button
@@ -413,7 +435,7 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                     setSearchQuery('');
                     onSearchChange?.('');
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white text-xs font-mono"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary text-xs font-mono"
                 >
                   CLEAR
                 </button>
@@ -422,13 +444,13 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
 
             {/* Quick Result List */}
             <div className="flex flex-col gap-1.5 max-h-60 overflow-y-auto">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 px-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-on-surface-variant px-1">
                 {searchQuery
                   ? `Matching Inventions (${filteredAssets.length})`
                   : 'Featured Inventions'}
               </span>
               {filteredAssets.length === 0 ? (
-                <div className="py-6 text-center text-xs font-mono text-neutral-500">
+                <div className="py-6 text-center text-xs font-mono text-on-surface-variant">
                   No artifacts found matching &ldquo;{searchQuery}&rdquo;
                 </div>
               ) : (
@@ -439,10 +461,10 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                       setIsSearchOpen(false);
                       router.push(`/inventions/${asset.id}`);
                     }}
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.08] border border-white/5 hover:border-amber-500/30 text-left transition group cursor-pointer"
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-surface-container/60 dark:bg-white/[0.02] hover:bg-surface-container-high dark:hover:bg-white/[0.08] border border-outline-variant/20 dark:border-white/5 hover:border-primary/40 text-left transition group cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg overflow-hidden bg-neutral-900 shrink-0">
+                      <div className="w-8 h-8 rounded-lg overflow-hidden bg-surface-container-highest dark:bg-neutral-900 shrink-0">
                         <img
                           src={asset.image}
                           alt={asset.title}
@@ -450,22 +472,22 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
                         />
                       </div>
                       <div>
-                        <span className="text-xs font-medium text-neutral-200 group-hover:text-amber-400 transition-colors block">
+                        <span className="text-xs font-medium text-on-surface dark:text-neutral-200 group-hover:text-primary transition-colors block">
                           {asset.title}
                         </span>
-                        <span className="text-[10px] font-mono text-neutral-500 block">
+                        <span className="text-[10px] font-mono text-on-surface-variant block">
                           {asset.inventor} • {asset.patent}
                         </span>
                       </div>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight className="w-3.5 h-3.5 text-on-surface-variant group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                   </button>
                 ))
               )}
             </div>
 
             {/* Modal Footer Key Hint */}
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-neutral-500">
+            <div className="pt-2 border-t border-outline-variant/20 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-on-surface-variant">
               <span>Press ESC to exit</span>
               <span className="text-amber-400/80">Navigation Ready</span>
             </div>
