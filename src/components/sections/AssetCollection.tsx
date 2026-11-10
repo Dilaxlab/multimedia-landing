@@ -19,7 +19,6 @@ import {
 import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
 import AssetCard from '@/components/cards/AssetCard';
 import TaxonomyModal from '@/components/common/TaxonomyModal';
-import { LayoutGrid, Rows3 } from 'lucide-react';
 
 
 interface AssetCollectionProps {
@@ -52,7 +51,6 @@ export default function AssetCollection({
   const [activeCategory, setActiveCategory] = useState<CategoryFilterType>('ALL');
   const [internalSearch, setInternalSearch] = useState('');
   const [isTaxonomyOpen, setIsTaxonomyOpen] = useState(false);
-  const [mobileColumns, setMobileColumns] = useState<'2' | '1'>('2');
   const [visibleCount, setVisibleCount] = useState<number>(BATCH_SIZE);
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const observerTargetRef = useRef<HTMLDivElement>(null);
@@ -166,7 +164,7 @@ export default function AssetCollection({
         </div>
 
         {/* ============================================
-            Filter Bar & Mobile 1-col / 2-col View Switcher
+            Filter Bar & Category Tabs (Horizontal Scroll)
            ============================================ */}
         <div className="mb-4 sm:mb-6 p-2 sm:p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-between gap-2">
           {/* Category Tabs (Horizontal Scroll) */}
@@ -175,7 +173,6 @@ export default function AssetCollection({
               className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 scroll-smooth"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-             
               {CATEGORY_TABS.map((tab) => {
                 const isActive = activeCategory === tab.key;
                 return (
@@ -195,41 +192,6 @@ export default function AssetCollection({
             </div>
             {/* Right fade hint so users know it scrolls */}
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-low to-transparent" />
-          </div>
-
-          {/* Mobile View Switcher (2-Cards Grid vs 1-Card Feed) */}
-          <div className="flex sm:hidden items-center shrink-0 pl-1.5 border-l border-outline-variant/30">
-            <div className="relative flex items-center p-0.5 bg-surface-container rounded-lg border border-outline-variant/30">
-              <span
-                className={`absolute top-0.5 bottom-0.5 w-[calc(50%-0.15rem)] left-0.5 rounded-md bg-primary shadow-sm transition-transform duration-300 ease-out ${
-                  mobileColumns === '2' ? 'translate-x-0' : 'translate-x-full'
-                }`}
-              />
-              <button
-                onClick={() => setMobileColumns('2')}
-                className={`relative z-10 w-7 h-6 flex items-center justify-center rounded-md transition-colors cursor-pointer ${
-                  mobileColumns === '2'
-                    ? 'text-surface-container-lowest'
-                    : 'text-on-surface-variant hover:text-on-surface'
-                }`}
-                title="2 Cards Grid"
-                aria-label="2 Columns"
-              >
-                <LayoutGrid className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => setMobileColumns('1')}
-                className={`relative z-10 w-7 h-6 flex items-center justify-center rounded-md transition-colors cursor-pointer ${
-                  mobileColumns === '1'
-                    ? 'text-surface-container-lowest'
-                    : 'text-on-surface-variant hover:text-on-surface'
-                }`}
-                title="1 Card Feed"
-                aria-label="1 Column"
-              >
-                <Rows3 className="w-3.5 h-3.5" />
-              </button>
-            </div>
           </div>
         </div>
 
@@ -281,9 +243,7 @@ export default function AssetCollection({
         ) : (
           <div className="flex flex-col">
             <div
-              className={`grid ${
-                mobileColumns === '2' ? 'grid-cols-2' : 'grid-cols-1'
-              } md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 xs:gap-4 sm:gap-6`}
+              className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2.5 xs:gap-3.5 sm:gap-6"
             >
               {displayedAssets.map((asset) => (
                 <AssetCard

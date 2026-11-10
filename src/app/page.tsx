@@ -29,12 +29,7 @@ export default function HomePage() {
   };
 
   const handleExplore3D = (asset: HistoricalAsset) => {
-    setSelectedAsset(asset);
-    setSpatialAssetId(asset.id);
-    const galleryEl = document.getElementById('gallery3d');
-    if (galleryEl) {
-      galleryEl.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.location.href = `/inventions/${asset.id}#explore`;
   };
 
   return (

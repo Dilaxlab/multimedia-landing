@@ -1,27 +1,26 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import {
-  Landmark,
-  Home,
-  Lightbulb,
-  Boxes,
-  BookOpen,
-  Clapperboard,
-  Layers,
-  Search,
-  Headphones,
-  Award,
-  ArrowRight,
-  ChevronDown,
-  Sun,
-  Moon,
-} from 'lucide-react';
-import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import TaxonomyModal from '@/components/common/TaxonomyModal';
 import { useTheme } from '@/components/common/ThemeProvider';
+import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
+import {
+  ArrowRight,
+  BookOpen,
+  Boxes,
+  ChevronDown,
+  Headphones,
+  Home,
+  Landmark,
+  Layers,
+  Lightbulb,
+  Moon,
+  Search,
+  Sun,
+  X,
+} from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 
 type TabName = 'Home' | 'Inventions' | '3D Gallery' | 'Stories' | 'Disciplines';
 
@@ -409,9 +408,10 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
               </div>
               <button
                 onClick={() => setIsSearchOpen(false)}
-                className="text-on-surface-variant hover:text-on-surface text-xs px-2 py-0.5 bg-surface-container-high dark:bg-white/5 rounded font-mono hover:bg-surface-container-highest dark:hover:bg-white/10 transition"
+                className="w-9 h-9 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors shrink-0 cursor-pointer"
+                aria-label="Close search modal"
               >
-                ESC
+                <X className="w-4 h-4" />
               </button>
             </div>
 
@@ -488,8 +488,6 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
 
             {/* Modal Footer Key Hint */}
             <div className="pt-2 border-t border-outline-variant/20 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-on-surface-variant">
-              <span>Press ESC to exit</span>
-              <span className="text-amber-400/80">Navigation Ready</span>
             </div>
           </div>
         </div>
