@@ -29,8 +29,7 @@ export default function AssetCard({
       <div className="flex flex-col">
         {/* Thumbnail — Responsive for 2-column mobile and 3-column desktop */}
         <div
-          className="relative h-36 xs:h-40 sm:h-56 md:h-60 overflow-hidden bg-surface-container dark:bg-[#18181b] flex items-center justify-center cursor-pointer"
-          onClick={handlePrimaryClick}
+          className="relative h-36 xs:h-40 sm:h-56 md:h-60 overflow-hidden bg-surface-container dark:bg-[#18181b] flex items-center justify-center"
         >
           <img
             className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-95 group-hover:opacity-100"
@@ -68,7 +67,7 @@ export default function AssetCard({
           >
             {asset.title}
           </Link>
-          
+
           {/* Short Curatorial Excerpt */}
           <p className="text-on-surface-variant font-sans text-[10px] xs:text-[11px] sm:text-xs line-clamp-1 sm:line-clamp-2 leading-relaxed">
             {asset.desc}
