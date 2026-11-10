@@ -44,7 +44,9 @@ export default function AssetCard({
           <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex gap-1 z-10">
             <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-black/75 backdrop-blur-md text-amber-400 font-mono text-[8px] sm:text-[10px] uppercase tracking-wider flex items-center gap-1 border border-amber-500/30 shadow-md">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              <span className="truncate max-w-[70px] xs:max-w-[80px] sm:max-w-none">{asset.badge}</span>
+              <span className="truncate max-w-[70px] xs:max-w-[80px] sm:max-w-none">
+                {asset.badge}
+              </span>
             </span>
           </div>
 
@@ -59,19 +61,18 @@ export default function AssetCard({
         {/* Card Body */}
         <div className="p-2.5 sm:p-4 md:p-5 flex flex-col gap-1 sm:gap-2">
           {/* Title */}
-          <h3
-            className="font-serif text-xs xs:text-sm sm:text-base md:text-lg font-bold dark:text-white text-on-surface group-hover:text-primary transition-colors cursor-pointer line-clamp-1 leading-snug"
-            onClick={handlePrimaryClick}
+          <Link
+            href={`/inventions/${asset.id}`}
+            className="font-serif text-xs xs:text-sm sm:text-base md:text-lg font-bold dark:text-white text-on-surface group-hover:text-primary transition-colors cursor-pointer line-clamp-1 leading-snug block"
             title={asset.title}
           >
             {asset.title}
-          </h3>
-
+          </Link>
+          
           {/* Short Curatorial Excerpt */}
           <p className="text-on-surface-variant font-sans text-[10px] xs:text-[11px] sm:text-xs line-clamp-1 sm:line-clamp-2 leading-relaxed">
             {asset.desc}
           </p>
-
           {/* Metadata Row */}
           <div className="flex items-center justify-between gap-1 pt-1 text-on-surface-variant text-[10px] sm:text-xs font-mono border-t border-outline-variant/20">
             <div
