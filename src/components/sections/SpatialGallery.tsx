@@ -342,7 +342,7 @@ export default function SpatialGallery({
                   className="w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90"
                   title="Zoom in"
                 >
-                  +
+                  -
                 </button>
                 <div className="w-5 h-[1px] bg-outline-variant/40" />
                 <button
@@ -350,7 +350,7 @@ export default function SpatialGallery({
                   className="w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90"
                   title="Zoom out"
                 >
-                  −
+                  +
                 </button>
                 <div className="w-5 h-[1px] bg-outline-variant/40" />
                 <button

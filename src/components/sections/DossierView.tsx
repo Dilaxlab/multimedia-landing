@@ -145,8 +145,8 @@ export default function DossierView({
     }
   };
 
-  // Related assets in collection
-  const relatedAssets = MOCK_HISTORICAL_ASSETS.filter((a) => a.id !== asset.id).slice(0, 3);
+  // Related assets in collection (4 assets for symmetric 2-col mobile & 4-col desktop layout)
+  const relatedAssets = MOCK_HISTORICAL_ASSETS.filter((a) => a.id !== asset.id).slice(0, 4);
 
   // Video scene index: 0-10s = Scene 1, 10-20s = Scene 2, 20-30s = Scene 3
   const currentSceneIdx = videoSeconds < 10 ? 0 : videoSeconds < 20 ? 1 : 2;
@@ -179,8 +179,8 @@ export default function DossierView({
         {/* ==================== 4. PRIMARY INTERACTIVE MEDIA WORKSPACE ==================== */}
         <div className="mb-14">
 
-          {/* Tab Navigation Pill Header - Aligned to the RIGHT, identical to Top Navbar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+          {/* Tab Navigation Pill Header — Fully Responsive Segmented Control */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6">
             {/* Left Curatorial Workspace Tag */}
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
@@ -189,135 +189,75 @@ export default function DossierView({
               </span>
             </div>
 
-            {/* Right-Aligned Icon-First Nav Pill Bar (Exact Top Navbar Style) */}
-            <nav className="flex items-center p-1 bg-surface-container dark:bg-black/40 border border-outline-variant/30 dark:border-white/[0.08] rounded-xl backdrop-blur-md self-end sm:self-auto shadow-md">
-              <ul className="flex items-center gap-0.5">
-                <li className="relative has-tooltip">
+            {/* Segmented Nav Bar: 4-Column Grid on Mobile, Compact Flex on Tablet/Desktop */}
+            <nav className="w-full sm:w-auto p-1 bg-surface-container dark:bg-black/40 border border-outline-variant/30 dark:border-white/[0.08] rounded-xl backdrop-blur-md shadow-md">
+              <ul className="grid grid-cols-4 sm:flex items-center gap-1 w-full sm:w-auto">
+                <li className="relative">
                   <button
                     onClick={() => setActiveTab('3D_MODEL')}
-                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                    className={`w-full flex items-center justify-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                       activeTab === '3D_MODEL'
-                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
-                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
+                        ? 'bg-primary text-neutral-950 font-bold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="3D Model"
                   >
-                    <span
-                      className={
-                        activeTab === '3D_MODEL'
-                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
-                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
-                      }
-                    >
-                      <Boxes className="w-4 h-4" />
-                    </span>
-                    <span
-                      className={`nav-label text-[10px] tracking-wide ${
-                        activeTab === '3D_MODEL' ? 'font-bold text-neutral-950' : 'font-medium'
-                      }`}
-                    >
+                    <Boxes className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <span className="text-[10px] sm:text-xs tracking-tight truncate">
                       3D Model
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
-                    Interactive 3D Spatial Model
-                  </div>
                 </li>
 
-                <li className="relative has-tooltip">
+                <li className="relative">
                   <button
                     onClick={() => setActiveTab('WATCH_STORY')}
-                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                    className={`w-full flex items-center justify-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                       activeTab === 'WATCH_STORY'
-                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
-                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
+                        ? 'bg-primary text-neutral-950 font-bold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="Story Reel"
                   >
-                    <span
-                      className={
-                        activeTab === 'WATCH_STORY'
-                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
-                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
-                      }
-                    >
-                      <Film className="w-4 h-4" />
-                    </span>
-                    <span
-                      className={`nav-label text-[10px] tracking-wide ${
-                        activeTab === 'WATCH_STORY' ? 'font-bold text-neutral-950' : 'font-medium'
-                      }`}
-                    >
-                      Story Reel
+                    <Film className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <span className="text-[10px] sm:text-xs tracking-tight truncate">
+                      <span className="hidden xs:inline">Story </span>Reel
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
-                    3-Scene Narration Video (30s)
-                  </div>
                 </li>
 
-                <li className="relative has-tooltip">
+                <li className="relative">
                   <button
                     onClick={() => setActiveTab('BLUEPRINTS')}
-                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                    className={`w-full flex items-center justify-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                       activeTab === 'BLUEPRINTS'
-                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
-                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
+                        ? 'bg-primary text-neutral-950 font-bold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="Blueprints"
                   >
-                    <span
-                      className={
-                        activeTab === 'BLUEPRINTS'
-                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
-                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
-                      }
-                    >
-                      <FileText className="w-4 h-4" />
-                    </span>
-                    <span
-                      className={`nav-label text-[10px] tracking-wide ${
-                        activeTab === 'BLUEPRINTS' ? 'font-bold text-neutral-950' : 'font-medium'
-                      }`}
-                    >
-                      Blueprints
+                    <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <span className="text-[10px] sm:text-xs tracking-tight truncate">
+                      Blueprint<span className="hidden xs:inline">s</span>
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
-                    Patent Blueprints & Schematics
-                  </div>
                 </li>
 
-                <li className="relative has-tooltip">
+                <li className="relative">
                   <button
                     onClick={() => setActiveTab('AUDIO_GUIDE')}
-                    className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all cursor-pointer ${
+                    className={`w-full flex items-center justify-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                       activeTab === 'AUDIO_GUIDE'
-                        ? 'active-tab bg-primary text-neutral-950 font-semibold shadow-md'
-                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
+                        ? 'bg-primary text-neutral-950 font-bold shadow-md'
+                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 dark:text-neutral-400 dark:hover:text-white dark:hover:bg-white/[0.06]'
                     }`}
                     aria-label="Audio Guide"
                   >
-                    <span
-                      className={
-                        activeTab === 'AUDIO_GUIDE'
-                          ? 'text-neutral-950 stroke-[2.2] shrink-0'
-                          : 'text-on-surface-variant dark:text-neutral-400 group-hover:text-primary transition-colors shrink-0'
-                      }
-                    >
-                      <Headphones className="w-4 h-4" />
-                    </span>
-                    <span
-                      className={`nav-label text-[10px] tracking-wide ${
-                        activeTab === 'AUDIO_GUIDE' ? 'font-bold text-neutral-950' : 'font-medium'
-                      }`}
-                    >
-                      Audio Guide
+                    <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <span className="text-[10px] sm:text-xs tracking-tight truncate">
+                      Audio<span className="hidden xs:inline"> Guide</span>
                     </span>
                   </button>
-                  <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-highest dark:bg-neutral-900 border border-outline-variant/40 dark:border-white/10 text-[10px] text-on-surface dark:text-neutral-300 font-mono shadow-lg whitespace-nowrap z-50">
-                    Binaural Curatorial Audio Guide
-                  </div>
                 </li>
               </ul>
             </nav>
@@ -492,7 +432,7 @@ export default function DossierView({
           {activeTab === 'WATCH_STORY' && (
             <div className="rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/90 border border-outline-variant/40 dark:border-amber-500/30 p-4 sm:p-8 backdrop-blur-xl shadow-xl dark:shadow-2xl flex flex-col gap-5">
 
-             
+
 
               {/* YouTube Style Video Player with Captions & Fullscreen */}
               <div className="w-full">
@@ -741,49 +681,49 @@ export default function DossierView({
         </div>
 
         {/* ==================== 5. CURATORIAL IN-DEPTH DOSSIER SECTIONS ==================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-16">
 
           {/* Main 3 Narrative Blocks */}
-          <div className="lg:col-span-8 flex flex-col gap-8">
+          <div className="lg:col-span-8 flex flex-col gap-3 sm:gap-5 lg:gap-6">
 
             {/* 1. Historical Context & Background */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 shadow-md">
-              <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest">
-                <Clock className="w-4 h-4" />
+            <div className="p-4 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-2 sm:gap-3 shadow-md hover:border-primary/40 transition-colors">
+              <div className="flex items-center gap-2 text-primary text-[10px] sm:text-xs font-mono uppercase tracking-wider sm:tracking-widest">
+                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 <span>01 // Historical Context & Genesis</span>
               </div>
-              <h2 className="font-serif text-2xl font-bold text-on-surface dark:text-white">
+              <h2 className="font-serif text-base sm:text-xl lg:text-2xl font-bold text-on-surface dark:text-white leading-snug">
                 The Societal Conditions & Necessity
               </h2>
-              <p className="font-sans text-on-surface-variant dark:text-neutral-300 text-sm leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-on-surface-variant dark:text-neutral-300 leading-relaxed">
                 {asset.story || asset.desc}
               </p>
             </div>
 
             {/* 2. How the Invention Works (Mechanical Breakdown) */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 shadow-md">
-              <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest">
-                <Compass className="w-4 h-4" />
+            <div className="p-4 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-2 sm:gap-3 shadow-md hover:border-primary/40 transition-colors">
+              <div className="flex items-center gap-2 text-primary text-[10px] sm:text-xs font-mono uppercase tracking-wider sm:tracking-widest">
+                <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 <span>02 // How the Invention Works</span>
               </div>
-              <h2 className="font-serif text-2xl font-bold text-on-surface dark:text-white">
+              <h2 className="font-serif text-base sm:text-xl lg:text-2xl font-bold text-on-surface dark:text-white leading-snug">
                 Mechanical Breakdown & Kinematic Principles
               </h2>
-              <p className="font-sans text-on-surface-variant dark:text-neutral-300 text-sm leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-on-surface-variant dark:text-neutral-300 leading-relaxed">
                 {asset.mechanics || asset.desc}
               </p>
             </div>
 
             {/* 3. Societal Impact & Modern Legacy */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 shadow-md">
-              <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest">
-                <Sparkles className="w-4 h-4" />
+            <div className="p-4 sm:p-6 lg:p-7 rounded-2xl sm:rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-2 sm:gap-3 shadow-md hover:border-primary/40 transition-colors">
+              <div className="flex items-center gap-2 text-primary text-[10px] sm:text-xs font-mono uppercase tracking-wider sm:tracking-widest">
+                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 <span>03 // Societal Impact & Modern Legacy</span>
               </div>
-              <h2 className="font-serif text-2xl font-bold text-on-surface dark:text-white">
+              <h2 className="font-serif text-base sm:text-xl lg:text-2xl font-bold text-on-surface dark:text-white leading-snug">
                 Global Impact & Modern Industrial Descendants
               </h2>
-              <p className="font-sans text-on-surface-variant dark:text-neutral-300 text-sm leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-on-surface-variant dark:text-neutral-300 leading-relaxed">
                 {asset.legacy || asset.desc}
               </p>
             </div>
@@ -791,35 +731,35 @@ export default function DossierView({
           </div>
 
           {/* Right Column: Curator's Reflection & Archival Seals */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
+          <div className="lg:col-span-4 flex flex-col gap-3.5 sm:gap-5 lg:gap-6">
 
             {/* 4. Curator's Reflection Highlight Quote */}
-            <div className="p-6 rounded-3xl bg-gradient-to-br from-primary/15 via-surface-container to-surface-container-low dark:from-amber-500/10 dark:via-[#0e0e13] dark:to-black border border-primary/40 shadow-lg flex flex-col justify-between">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary/15 via-surface-container to-surface-container-low dark:from-amber-500/10 dark:via-[#0e0e13] dark:to-black border border-primary/40 shadow-lg flex flex-col justify-between gap-3">
               <div>
-                <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-widest mb-3">
-                  <Sparkles className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-primary text-[10px] sm:text-xs font-mono uppercase tracking-wider sm:tracking-widest mb-2 sm:mb-3">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>Curator&apos;s Reflection</span>
                 </div>
-                <blockquote className="font-serif text-base sm:text-lg italic text-on-surface dark:text-amber-200/95 leading-relaxed">
+                <blockquote className="font-serif text-sm sm:text-base lg:text-lg italic text-on-surface dark:text-amber-200/95 leading-relaxed">
                   &ldquo;{asset.curatorQuote || asset.desc}&rdquo;
                 </blockquote>
               </div>
-              <div className="pt-4 mt-4 border-t border-primary/20 font-mono text-xs">
+              <div className="pt-3 sm:pt-4 mt-1 sm:mt-2 border-t border-primary/20 font-mono text-xs">
                 <span className="text-on-surface dark:text-white font-medium block">
                   {asset.curatorAuthor || 'Chief Archivist, IAIMS Museum'}
                 </span>
-                <span className="text-primary text-[11px] block mt-0.5">
+                <span className="text-primary text-[10px] sm:text-[11px] block mt-0.5">
                   Department of Historical Kinematics
                 </span>
               </div>
             </div>
 
             {/* Archival Standards Verification Card */}
-            <div className="p-6 rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-3 font-mono text-xs shadow-md">
-              <span className="text-xs uppercase tracking-widest text-on-surface-variant dark:text-neutral-400 font-bold">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-surface-container-low dark:bg-[#0e0e13]/85 border border-outline-variant/30 dark:border-white/10 flex flex-col gap-2.5 sm:gap-3 font-mono text-xs shadow-md">
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-on-surface-variant dark:text-neutral-400 font-bold">
                 Archival Certification
               </span>
-              <div className="space-y-2 text-on-surface dark:text-neutral-300">
+              <div className="space-y-2 text-on-surface dark:text-neutral-300 text-[11px] sm:text-xs">
                 <div className="flex items-center justify-between">
                   <span className="text-on-surface-variant">IAMS Classification:</span>
                   <span className="text-primary font-semibold">CLASS 4-ENG</span>
@@ -863,39 +803,39 @@ export default function DossierView({
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6">
             {relatedAssets.map((rel) => (
               <Link
                 key={rel.id}
                 href={`/inventions/${rel.id}`}
-                className="group p-4 rounded-2xl bg-surface-container-low dark:bg-[#0e0e13]/80 hover:bg-surface-container dark:hover:bg-[#14141c] border border-outline-variant/30 dark:border-white/10 hover:border-primary transition-all duration-300 flex flex-col justify-between shadow-md"
+                className="group p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-surface-container-low dark:bg-[#0e0e13]/80 hover:bg-surface-container dark:hover:bg-[#14141c] border border-outline-variant/30 dark:border-white/10 hover:border-primary transition-all duration-300 flex flex-col justify-between shadow-md"
               >
                 <div>
-                  <div className="relative h-44 rounded-xl overflow-hidden bg-black mb-3">
+                  <div className="relative aspect-[16/11] sm:aspect-auto sm:h-44 rounded-lg sm:rounded-xl overflow-hidden bg-black mb-2 sm:mb-3">
                     <img
                       src={rel.image}
                       alt={rel.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                    <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/80 font-mono text-[10px] text-amber-300">
+                    <span className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 px-1.5 sm:px-2 py-0.5 rounded bg-black/80 font-mono text-[8px] sm:text-[10px] text-amber-300 truncate max-w-[85px] sm:max-w-none">
                       {rel.categoryLabel}
                     </span>
                   </div>
-                  <h4 className="font-serif text-base font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors">
+                  <h4 className="font-serif text-xs sm:text-base font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
                     {rel.title}
                   </h4>
-                  <p className="font-mono text-xs text-primary mt-0.5">
+                  <p className="font-mono text-[10px] sm:text-xs text-primary mt-0.5 truncate">
                     {rel.inventor} • {rel.patent}
                   </p>
-                  <p className="font-sans text-xs text-on-surface-variant dark:text-neutral-400 mt-2 line-clamp-2">
+                  <p className="font-sans text-[11px] sm:text-xs text-on-surface-variant dark:text-neutral-400 mt-1 sm:mt-2 line-clamp-2 leading-snug sm:leading-relaxed">
                     {rel.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 mt-3 border-t border-outline-variant/20 dark:border-white/10 flex items-center justify-between text-xs font-mono text-primary">
-                  <span>INSPECT DOSSIER</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                <div className="pt-2 sm:pt-3 mt-2 sm:mt-3 border-t border-outline-variant/20 dark:border-white/10 flex items-center justify-between text-[10px] sm:text-xs font-mono text-primary">
+                  <span className="truncate">INSPECT DOSSIER</span>
+                  <span className="group-hover:translate-x-1 transition-transform shrink-0">→</span>
                 </div>
               </Link>
             ))}
