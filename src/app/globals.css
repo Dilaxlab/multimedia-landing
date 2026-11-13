@@ -140,7 +140,7 @@ body {
   background-color: var(--color-surface);
   color: var(--color-on-surface);
   font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
   transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -266,4 +266,230 @@ html {
 }
 .shadow-glow-pill {
   box-shadow: 0 2px 16px -2px rgba(245, 158, 11, 0.45);
+}
+/* ============================================================
+   NAV LABEL — HOVER REVEAL (icon-first)
+   ============================================================ */
+.nav-item .nav-label {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  transform: translateX(-6px) scale(0.92);
+  transition:
+    max-width 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 220ms ease,
+    margin-left 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  pointer-events: none;
+  will-change: max-width, transform, opacity;
+}
+
+/* Reveal on hover OR when active */
+.nav-icon-item:hover .nav-label,
+.nav-icon-item.active-tab .nav-label {
+  max-width: 160px;
+  opacity: 1;
+  margin-left: 6px;
+  transform: translateX(0) scale(1);
+}
+
+/* ============================================================
+   ACTIVE PILL — animated golden gradient shimmer
+   ============================================================ */
+.active-tab {
+  background: linear-gradient(
+    110deg,
+    #f59e0b 0%,
+    #fbbf24 25%,
+    #fde047 50%,
+    #fbbf24 75%,
+    #f59e0b 100%
+  );
+  background-size: 200% 100%;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ============================================================
+   ANIMATED UNDERLINE ON INACTIVE HOVER
+   ============================================================ */
+.nav-underline {
+  transform-origin: left;
+}
+
+/* ============================================================
+   TOOLTIP — floating glass bubble
+   ============================================================ */
+.has-tooltip .tooltip {
+  opacity: 0;
+  transform: translateX(-50%) translateY(4px) scale(0.94);
+  transition:
+    opacity 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.has-tooltip:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* ============================================================
+   GLOW UTILITIES
+   ============================================================ */
+.shadow-glow-gold {
+  box-shadow:
+    0 0 0 1px rgba(251, 191, 36, 0.5),
+    0 0 20px -2px rgba(251, 191, 36, 0.6),
+    0 0 40px -8px rgba(251, 191, 36, 0.35);
+}
+.shadow-glow-pill {
+  box-shadow:
+    0 0 0 1px rgba(251, 191, 36, 0.4),
+    0 6px 18px -6px rgba(251, 191, 36, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================================
+   FADE-IN KEYFRAMES (used by modals/dropdowns)
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   SCROLLBAR — hide horizontal scroll in nav on mobile
+   ============================================================ */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ============================================================
+   REDUCED MOTION — respect accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .nav-item .nav-label,
+  .has-tooltip .tooltip,
+  .active-tab {
+    transition: none;
+    animation: none;
+  }
+  .nav-item .nav-label {
+    max-width: 160px;
+    opacity: 1;
+    margin-left: 6px;
+    transform: none;
+  }
+}
+
+
+/* ============================================================
+   ICON-FIRST NAV LABEL — reveal on hover / when active
+   ============================================================ */
+.nav-item .nav-label {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  transform: translateX(-6px) scale(0.9);
+  transition:
+    max-width 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 220ms ease,
+    margin-left 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  pointer-events: none;
+  will-change: max-width, transform, opacity;
+}
+.nav-item:hover .nav-label,
+.nav-item.active-tab .nav-label {
+  max-width: 180px;
+  opacity: 1;
+  margin-left: 6px;
+  transform: translateX(0) scale(1);
+}
+
+/* ============================================================
+   ACTIVE PILL — animated golden shimmer
+   ============================================================ */
+.active-tab {
+  background: linear-gradient(110deg, #f59e0b 0%, #fbbf24 25%, #fde047 50%, #fbbf24 75%, #f59e0b 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ============================================================
+   TOOLTIP — floating glass bubble with spring
+   ============================================================ */
+.has-tooltip .tooltip {
+  opacity: 0;
+  transform: translateX(-50%) translateY(4px) scale(0.94);
+  transition:
+    opacity 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.has-tooltip:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* ============================================================
+   GLOW UTILITIES
+   ============================================================ */
+.shadow-glow-gold {
+  box-shadow:
+    0 0 0 1px rgba(251, 191, 36, 0.5),
+    0 0 20px -2px rgba(251, 191, 36, 0.6),
+    0 0 40px -8px rgba(251, 191, 36, 0.35);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fadeIn { animation: fadeIn 200ms ease-out; }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-modalIn { animation: modalIn 260ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* ============================================================
+   REDUCED MOTION fallback
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .nav-item .nav-label,
+  .has-tooltip .tooltip,
+  .active-tab,
+  .animate-modalIn {
+    transition: none;
+    animation: none;
+  }
+  .nav-item .nav-label {
+    max-width: 180px;
+    opacity: 1;
+    margin-left: 6px;
+    transform: none;
+  }
 }

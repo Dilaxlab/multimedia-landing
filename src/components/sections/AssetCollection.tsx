@@ -2,24 +2,17 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  Network,
   Search,
-  X,
   SearchX,
-  ShieldCheck,
-  Loader2,
   ChevronDown,
-  CheckCheck,
-  Grid2x2,
-  RectangleVertical,
-  SlidersHorizontal,
-  Sparkles,
   Filter,
+  X,
+  Layers,
 } from 'lucide-react';
 import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
+import { OFFICIAL_18_CATEGORIES } from '@/lib/constants';
 import AssetCard from '@/components/cards/AssetCard';
 import TaxonomyModal from '@/components/common/TaxonomyModal';
-
 
 interface AssetCollectionProps {
   assets: HistoricalAsset[];
@@ -27,17 +20,9 @@ interface AssetCollectionProps {
   onExplore3D?: (asset: HistoricalAsset) => void;
   searchQuery?: string;
   onSearchChange?: (q: string) => void;
+  activeCategory?: CategoryFilterType;
+  onCategoryChange?: (category: CategoryFilterType) => void;
 }
-
-const CATEGORY_TABS: { key: CategoryFilterType; label: string; count: number }[] = [
-  { key: 'ALL', label: 'All Cataloged', count: 8 },
-  { key: 'TELECOM', label: 'Telephony & Acoustic', count: 2 },
-  { key: 'DOMESTIC', label: 'Domestic Mechanics', count: 1 },
-  { key: 'WIND', label: 'Wind & Rotary Forces', count: 1 },
-  { key: 'AERO', label: 'Aeronautics', count: 1 },
-  { key: 'COMPUTING', label: 'Computing Engines', count: 1 },
-  { key: 'TIME', label: 'Horology & Precision', count: 1 },
-];
 
 const BATCH_SIZE = 6;
 
@@ -47,8 +32,29 @@ export default function AssetCollection({
   onExplore3D,
   searchQuery = '',
   onSearchChange,
+  activeCategory: propActiveCategory,
+  onCategoryChange,
 }: AssetCollectionProps) {
-  const [activeCategory, setActiveCategory] = useState<CategoryFilterType>('ALL');
+  const [internalCategory, setInternalCategory] = useState<CategoryFilterType>('ENERGY');
+  const activeCategory = propActiveCategory !== undefined ? propActiveCategory : internalCategory;
+
+  const handleCategorySelect = (cat: CategoryFilterType) => {
+    setInternalCategory(cat);
+    if (onCategoryChange) {
+      onCategoryChange(cat);
+    }
+  };
+
+  // 18 official categories only (NO "All Cataloged" tab)
+  const categoryTabs: { key: CategoryFilterType; label: string; shortName: string; emoji: string; count: number }[] =
+    OFFICIAL_18_CATEGORIES.map((cat) => ({
+      key: cat.key,
+      label: cat.label,
+      shortName: cat.shortName,
+      emoji: cat.emoji,
+      count: assets.filter((a) => a.category === cat.key).length,
+    }));
+
   const [internalSearch, setInternalSearch] = useState('');
   const [isTaxonomyOpen, setIsTaxonomyOpen] = useState(false);
   const [visibleCount, setVisibleCount] = useState<number>(BATCH_SIZE);
@@ -57,9 +63,9 @@ export default function AssetCollection({
 
   const effectiveSearch = searchQuery || internalSearch;
 
+  // Filter strictly by the active category (NO 'ALL')
   const filteredAssets = assets.filter((asset) => {
-    const matchesCategory =
-      activeCategory === 'ALL' || asset.category === activeCategory;
+    const matchesCategory = asset.category === activeCategory;
     const matchesSearch =
       effectiveSearch === '' ||
       asset.title.toLowerCase().includes(effectiveSearch.toLowerCase()) ||
@@ -73,6 +79,16 @@ export default function AssetCollection({
   useEffect(() => {
     setVisibleCount(BATCH_SIZE);
   }, [activeCategory, effectiveSearch]);
+
+  // Auto-scroll the active category tab into view
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const activeBtn = document.getElementById(`cat-tab-${activeCategory}`);
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
+  }, [activeCategory]);
 
   // Listen for category selection events dispatched from MobileBottomNav or Desktop Navbar
   useEffect(() => {
@@ -96,23 +112,24 @@ export default function AssetCollection({
     setTimeout(() => {
       setVisibleCount((prev) => Math.min(prev + BATCH_SIZE, filteredAssets.length));
       setIsLoadingMore(false);
-    }, 350);
+    }, 180);
   }, [isLoadingMore, visibleCount, filteredAssets.length]);
 
-  // Infinite Scroll: triggers loadMoreCards as user scrolls into the sentinel element
+  // IntersectionObserver for continuous infinite scroll
   useEffect(() => {
+    const target = observerTargetRef.current;
+    if (!target) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           loadMoreCards();
         }
       },
-      { threshold: 0.1, rootMargin: '120px' }
+      { threshold: 0.1, rootMargin: '200px' }
     );
 
-    const target = observerTargetRef.current;
-    if (target) observer.observe(target);
-
+    observer.observe(target);
     return () => {
       if (target) observer.unobserve(target);
     };
@@ -151,49 +168,21 @@ export default function AssetCollection({
             <button
               onClick={() => setIsTaxonomyOpen(true)}
               className="inline-flex items-center gap-2.5 px-4 py-2 sm:py-2.5 rounded-full border border-primary/40 bg-surface-container-high/70 hover:bg-surface-container-highest hover:border-primary text-xs font-mono text-primary transition-all active:scale-95 cursor-pointer"
-              title="Search and filter patents by 64 engineering disciplines"
+              title="Search and filter patents by 18 engineering categories"
             >
               <Search className="w-3.5 h-3.5 text-primary" />
               <span className="font-medium tracking-wide">Filter &amp; Search</span>
-
             </button>
             <div className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-low border border-outline-variant/30 text-[11px] font-mono text-on-surface-variant">
-              <span>500+ ASSETS INDEXED</span>
+              <span>{filteredAssets.length} SPECIMENS IN CATEGORY</span>
             </div>
           </div>
         </div>
 
         {/* ============================================
-            Filter Bar & Category Tabs (Horizontal Scroll)
+            Filter Bar & Category Tabs (All 18 Categories)
            ============================================ */}
-        <div className="mb-4 sm:mb-6 p-2 sm:p-3 rounded-2xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-between gap-2">
-          {/* Category Tabs (Horizontal Scroll) */}
-          <div className="relative min-w-0 flex-1 overflow-hidden">
-            <div
-              className="flex flex-nowrap items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 scroll-smooth"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {CATEGORY_TABS.map((tab) => {
-                const isActive = activeCategory === tab.key;
-                return (
-                  <button
-                    key={tab.key}
-                    onClick={() => setActiveCategory(tab.key)}
-                    className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-primary text-surface-container-lowest font-medium shadow-md'
-                        : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
-            {/* Right fade hint so users know it scrolls */}
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-low to-transparent" />
-          </div>
-        </div>
+       
 
         {/* Active Filter / Search Pill Indicator */}
         {effectiveSearch && (
@@ -220,107 +209,55 @@ export default function AssetCollection({
           </div>
         )}
 
-        {/* Asset Cards Grid — Mobile: 2 Columns or 1 Column; Desktop: 3 Columns */}
+        {/* Asset Cards Grid */}
         {filteredAssets.length === 0 ? (
           <div className="py-20 text-center rounded-2xl border border-dashed border-outline-variant/40 bg-surface-container-low">
             <SearchX className="w-10 h-10 text-on-surface-variant/50 mb-3 mx-auto" />
             <h4 className="font-serif text-lg text-on-surface mb-1">No Historical Assets Found</h4>
             <p className="text-xs text-on-surface-variant font-mono">
-              No specimens match the criteria &ldquo;{effectiveSearch}&rdquo; in category &ldquo;
-              {activeCategory}&rdquo;.
+              No specimens match the criteria &ldquo;{effectiveSearch}&rdquo; in this category.
             </p>
-            <button
-              onClick={() => {
-                setActiveCategory('ALL');
-                if (onSearchChange) onSearchChange('');
-                setInternalSearch('');
-              }}
-              className="mt-4 px-4 py-2 rounded-lg bg-surface-container text-xs font-mono text-primary hover:text-on-surface border border-primary/30 cursor-pointer"
-            >
-              Reset Filters
-            </button>
           </div>
         ) : (
-          <div className="flex flex-col">
-            <div
-              className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2.5 xs:gap-3.5 sm:gap-6"
-            >
-              {displayedAssets.map((asset) => (
-                <AssetCard
-                  key={asset.id}
-                  asset={asset}
-                  onSelect={onSelectAsset}
-                  onExplore3D={onExplore3D}
-                />
-              ))}
-            </div>
-
-            {/* Infinite Scroll Sentinel */}
-            <div ref={observerTargetRef} className="h-6 w-full" />
-
-            {/* Infinite Scroll & Load More Controls */}
-            <div className="mt-8 flex flex-col items-center justify-center gap-3">
-              {hasMore ? (
-                <div className="flex flex-col items-center gap-3">
-                  <button
-                    onClick={loadMoreCards}
-                    disabled={isLoadingMore}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-container-highest border border-primary/40 hover:border-primary text-xs font-mono text-primary transition-all shadow-lg active:scale-95 cursor-pointer disabled:opacity-50"
-                  >
-                    {isLoadingMore ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                        <span>Unlocking Next Archival Batch...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Load More Inventions</span>
-                        <ChevronDown className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                  <span className="text-[11px] font-mono text-on-surface-variant">
-                    Showing {displayedAssets.length} of {filteredAssets.length} Inventions • Scroll
-                    down to auto-load
-                  </span>
-                </div>
-              ) : (
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low border border-outline-variant/30 text-[11px] font-mono text-on-surface-variant">
-                  <CheckCheck className="w-4 h-4 text-emerald-400" />
-                  <span>All {filteredAssets.length} verified archival specimens loaded</span>
-                </div>
-              )}
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {displayedAssets.map((asset) => (
+              <AssetCard
+                key={asset.id}
+                asset={asset}
+                onSelect={onSelectAsset}
+                onExplore3D={onExplore3D}
+              />
+            ))}
           </div>
         )}
 
-        {/* Footnote on Reconstructed Assets */}
-        <div className="mt-12 p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-on-surface-variant">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
-            <span>
-              All renderings use historically reconstructed 3D cad visuals rather than degraded
-              archival photographs.
-            </span>
+        {/* Sentinel loader for infinite scroll */}
+        {hasMore && (
+          <div ref={observerTargetRef} className="py-12 flex items-center justify-center">
+            <div className="flex items-center gap-2 text-xs font-mono text-on-surface-variant animate-pulse">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <span>Cataloging additional artifacts...</span>
+            </div>
           </div>
-          <span className="text-outline">IAMS STANDARD REF #882-C</span>
-        </div>
+        )}
       </div>
 
-      {/* 64 Disciplines Taxonomy Modal */}
+      {/* 18 Categories Taxonomy Modal */}
       <TaxonomyModal
         isOpen={isTaxonomyOpen}
         onClose={() => setIsTaxonomyOpen(false)}
-        activeCategory={effectiveSearch}
-        onSelectCategory={(cat) => {
-          if (!cat) {
-            if (onSearchChange) onSearchChange('');
-            setInternalSearch('');
-            return;
+        onSelectCategory={(categoryName) => {
+          setIsTaxonomyOpen(false);
+          const found = OFFICIAL_18_CATEGORIES.find(
+            (c) => categoryName && (
+              c.label.toLowerCase().includes(categoryName.toLowerCase()) ||
+              c.key.toLowerCase() === categoryName.toLowerCase() ||
+              c.shortName.toLowerCase().includes(categoryName.toLowerCase())
+            )
+          );
+          if (found) {
+            handleCategorySelect(found.key);
           }
-          const query = cat.toLowerCase().startsWith('test taxonomy') ? 'Test' : cat;
-          if (onSearchChange) onSearchChange(query);
-          else setInternalSearch(query);
         }}
       />
     </section>

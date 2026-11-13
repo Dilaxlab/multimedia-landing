@@ -4,13 +4,25 @@ import React, { useState } from 'react';
 import { Film, Clock, Play, PlayCircle, Subtitles } from 'lucide-react';
 import { MOCK_VIDEO_VIGNETTES } from '@/lib/constants';
 import { VideoVignette } from '@/types/media';
+import { CategoryFilterType } from '@/types/asset';
 import VideoCard from '@/components/cards/VideoCard';
 import VideoPlayerModal from '@/components/viewers/VideoPlayerModal';
 
-export default function VideoGallery() {
+interface VideoGalleryProps {
+  category?: CategoryFilterType;
+}
+
+export default function VideoGallery({ category }: VideoGalleryProps = {}) {
   const [selectedVideo, setSelectedVideo] = useState<VideoVignette | null>(null);
   const [captionsPreference, setCaptionsPreference] = useState<boolean>(true);
-  const featuredVideo = MOCK_VIDEO_VIGNETTES[0]; // Alexander Graham Bell
+
+  const filteredVideos =
+    category && category !== 'ALL'
+      ? MOCK_VIDEO_VIGNETTES.filter((v) => v.categoryId === category)
+      : MOCK_VIDEO_VIGNETTES;
+
+  const displayVideos = filteredVideos.length > 0 ? filteredVideos : MOCK_VIDEO_VIGNETTES;
+  const featuredVideo = displayVideos[0];
 
   return (
     <section id="videos" className="relative py-12 sm:py-24 bg-surface text-on-surface border-t border-outline-variant/20 scroll-mt-20">
@@ -118,7 +130,7 @@ export default function VideoGallery() {
 
         {/* Video Reel Grid — Responsive 2-card grid on mobile, 4-card on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6">
-          {MOCK_VIDEO_VIGNETTES.map((video) => (
+          {displayVideos.map((video) => (
             <VideoCard
               key={video.id}
               video={video}

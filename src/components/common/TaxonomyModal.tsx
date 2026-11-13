@@ -20,14 +20,15 @@ interface TaxonomyModalProps {
 
 // Popular domain shortcuts for rapid filtering
 const QUICK_DOMAIN_TAGS = [
-  { label: 'All (64)', query: '' },
-  { label: 'Telephony & Sound', query: 'Telephony' },
-  { label: 'Steam & Pressure', query: 'Steam' },
-  { label: 'Aeronautics & Flight', query: 'Aero' },
-  { label: 'Domestic Mechanics', query: 'Domestic' },
-  { label: 'Horology & Clocks', query: 'Time' },
-  { label: 'Computing Engines', query: 'Computing' },
-  { label: 'Optics & Lenses', query: 'Optic' },
+  { label: 'All (18)', query: '' },
+  { label: '⚡ Energy', query: 'Energy' },
+  { label: '📡 Telephony', query: 'Telephony' },
+  { label: '🧵 Household', query: 'Domestic' },
+  { label: '🕐 Horology', query: 'Horology' },
+  { label: '✈️ Aero', query: 'Aero' },
+  { label: '🧮 Computing', query: 'Computing' },
+  { label: '⚙️ Steam', query: 'Steam' },
+  { label: '💡 Lighting', query: 'Illumination' },
 ];
 
 export default function TaxonomyModal({
@@ -85,11 +86,11 @@ export default function TaxonomyModal({
                 IAMS Taxonomy Register
               </span>
               <span className="text-[11px] font-mono text-on-surface-variant">
-                • 64 Disciplines
+                • 18 Archival Categories
               </span>
             </div>
             <h3 className="font-serif text-xl sm:text-2xl text-on-surface font-normal">
-              Filter Archival Assets by Discipline
+              Filter Archival Assets by Category
             </h3>
             <p className="text-xs text-on-surface-variant font-mono mt-1">
               Select or search any historical engineering classification to filter the collection.
@@ -116,7 +117,7 @@ export default function TaxonomyModal({
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search disciplines (e.g. steam, optics, telephony, pneumatic, time)..."
+              placeholder="Search categories (e.g. steam, optics, telephony, pneumatic, time)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full bg-transparent text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none font-mono"
@@ -172,7 +173,7 @@ export default function TaxonomyModal({
         <div className="p-4 sm:p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3">
           {filtered.length === 0 ? (
             <div className="col-span-full py-14 text-center text-on-surface-variant font-mono text-sm">
-              <p className="mb-3">No historical disciplines match &ldquo;{search}&rdquo;</p>
+              <p className="mb-3">No historical categories match &ldquo;{search}&rdquo;</p>
               <button
                 onClick={() => setSearch('')}
                 className="px-3.5 py-1.5 rounded-lg bg-surface-container-high text-xs font-mono text-primary hover:text-on-surface border border-outline-variant/30 cursor-pointer"

@@ -1,96 +1,57 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import HeroSection from '@/components/sections/HeroSection';
-import MilestoneBanner from '@/components/sections/MilestoneBanner';
-import AssetCollection from '@/components/sections/AssetCollection';
-import StoryStepsSection from '@/components/sections/StoryStepsSection';
-import SpatialGallery from '@/components/sections/SpatialGallery';
-import VideoGallery from '@/components/sections/VideoGallery';
-import CuratorialDispatchSection from '@/components/sections/CuratorialDispatchSection';
-import DossierView from '@/components/sections/DossierView';
-import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
-import { HistoricalAsset } from '@/types/asset';
+import WhatsInsideSection from '@/components/sections/WhatsInsideSection';
+import ThemeFamiliesSection from '@/components/sections/ThemeFamiliesSection';
+import TrendingInventionsSection from '@/components/sections/TrendingInventionsSection';
+import VirtualMuseumPortalSection from '@/components/sections/VirtualMuseumPortalSection';
 
 export default function HomePage() {
-  const [selectedAsset, setSelectedAsset] = useState<HistoricalAsset>(MOCK_HISTORICAL_ASSETS[0]);
-  const [spatialAssetId, setSpatialAssetId] = useState<string>('HA-101');
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [showDossierModal, setShowDossierModal] = useState<boolean>(false);
+  const router = useRouter();
 
-  const handleSelectAsset = (asset: HistoricalAsset) => {
-    setSelectedAsset(asset);
-    setShowDossierModal(true);
-    // Smooth scroll to explore section if not opening modal
-    const exploreEl = document.getElementById('explore');
-    if (exploreEl) {
-      exploreEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleExplore3D = (asset: HistoricalAsset) => {
-    window.location.href = `/inventions/${asset.id}#explore`;
+  const scrollToThemes = () => {
+    const el = document.getElementById('themes');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen">
-      {/* SECTION 1: Hero Section */}
+    <div className="flex flex-col w-full min-h-screen bg-surface selection:bg-primary/30">
+      {/* =========================================================================
+          SECTION 1: HERO SECTION
+         ========================================================================= */}
       <HeroSection
-        onExploreCollection={() => {
-          const el = document.getElementById('collection');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-        onWatchStories={() => {
-          const el = document.getElementById('videos');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
+        onExploreCollection={scrollToThemes}
+        onWatchStories={scrollToThemes}
         onExploreAsset={(id) => {
-          window.location.href = `/inventions/${id}`;
+          if (typeof window !== 'undefined') {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          }
+          router.push(`/inventions/${id}`);
         }}
       />
 
-      {/* SECTION 2: Historical Asset Collection */}
-      <AssetCollection
-        assets={MOCK_HISTORICAL_ASSETS}
-        onSelectAsset={handleSelectAsset}
-        onExplore3D={handleExplore3D}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-      />
+      {/* =========================================================================
+          SECTION 2: WHAT'S INSIDE THE ARCHIVE (4 Interactive Bento Feature Cards)
+         ========================================================================= */}
+      <WhatsInsideSection onExploreDisciplines={scrollToThemes} />
 
-      {/* SECTION 3: Interactive 3D Model Gallery */}
-      <SpatialGallery
-        selectedAssetId={spatialAssetId}
-        onSelectAssetId={setSpatialAssetId}
-        onSelectAssetForDossier={(asset) => {
-          setSelectedAsset(asset);
-          const el = document.getElementById('explore');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-      />
+      {/* =========================================================================
+          SECTION 3: 10 THEME FAMILIES (Page 1 -> Page 2 Funnel)
+         ========================================================================= */}
+      <ThemeFamiliesSection />
 
-      {/* SECTION 4: Historical Narration Video Gallery */}
-      <VideoGallery />
+      {/* =========================================================================
+          SECTION 4: MOST EXPLORED & TRENDING INVENTIONS (Quick Start Gateway)
+         ========================================================================= */}
+      <TrendingInventionsSection />
 
-      {/* SECTION 5: Explore an Invention Detailed Experience */}
-      <DossierView
-        asset={selectedAsset}
-        onClose={
-          showDossierModal
-            ? () => {
-                setShowDossierModal(false);
-                const colEl = document.getElementById('collection');
-                if (colEl) colEl.scrollIntoView({ behavior: 'smooth' });
-              }
-            : undefined
-        }
-      />
-
-      {/* SECTION 6: A Story Worth Sharing (3-Step Curatorial Discovery) */}
-      <StoryStepsSection />
-
-      {/* SECTION 7: Stay Curious - Stories of Ingenuity, Delivered (Curatorial Dispatch) */}
-      <CuratorialDispatchSection />
+      {/* =========================================================================
+          SECTION 5: DIRECT VIRTUAL MUSEUM GATEWAY & INSTITUTIONAL TRUST STRIP
+         ========================================================================= */}
+      <VirtualMuseumPortalSection />
     </div>
   );
 }
+

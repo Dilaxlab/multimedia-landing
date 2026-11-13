@@ -2,176 +2,248 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { Home, Lightbulb, Boxes, Clapperboard, Layers } from 'lucide-react';
-import TaxonomyModal from '@/components/common/TaxonomyModal';
+import {
+  Home,
+  Layers,
+  BookOpen,
+  Boxes,
+  Film,
+  FileText,
+  ArrowLeft,
+  Sparkles,
+  TrendingUp,
+} from 'lucide-react';
+import { useCategory } from '@/context/CategoryContext';
+import { MOCK_HISTORICAL_ASSETS, OFFICIAL_18_CATEGORIES } from '@/lib/constants';
 
-type MobileTab = 'Home' | 'Inventions' | '3D Vault' | 'Stories' | 'Archive';
-
-interface NavItem {
-  name: MobileTab;
+interface MobileNavItem {
+  id: string;
   label: string;
-  targetId: string;
   icon: React.ReactNode;
-  action?: () => void;
+  action: () => void;
 }
 
 export default function MobileBottomNav() {
   const router = useRouter();
   const pathname = usePathname();
-  const [activeTab, setActiveTab] = useState<MobileTab>('Home');
-  const [isTaxonomyOpen, setIsTaxonomyOpen] = useState<boolean>(false);
+  const { activeCategoryMeta } = useCategory();
+  const [activeId, setActiveId] = useState<string>('hero');
 
-  const NAV_ITEMS: NavItem[] = [
-    {
-      name: 'Home',
-      label: 'Home',
-      targetId: 'hero',
-      icon: <Home className="w-5 h-5" />,
-    },
-    {
-      name: 'Inventions',
-      label: 'Explore',
-      targetId: 'collection',
-      icon: <Lightbulb className="w-5 h-5" />,
-    },
-    {
-      name: '3D Vault',
-      label: '3D Vault',
-      targetId: 'gallery3d',
-      icon: <Boxes className="w-5 h-5" />,
-    },
-    {
-      name: 'Stories',
-      label: 'Stories',
-      targetId: 'videos',
-      icon: <Clapperboard className="w-5 h-5" />,
-    },
-    {
-      name: 'Archive',
-      label: 'Archive',
-      targetId: 'collection',
-      icon: <Layers className="w-5 h-5" />,
-      action: () => setIsTaxonomyOpen(true),
-    },
-  ];
+  const isHome = pathname === '/';
+  const isTheme = pathname.startsWith('/themes/');
+  const isCategory = pathname.startsWith('/categories/') || pathname.startsWith('/category/');
+  const isAsset = pathname.startsWith('/inventions/');
 
+  const categorySlug = pathname.startsWith('/category/')
+    ? pathname.split('/category/')[1]?.split('/')[0]?.split('?')[0]?.toUpperCase()
+    : null;
+  const currentCategoryMeta = categorySlug
+    ? OFFICIAL_18_CATEGORIES.find((c) => c.key === categorySlug) || activeCategoryMeta
+    : activeCategoryMeta;
+
+  const assetId = isAsset
+    ? pathname.split('/inventions/')[1]?.split('?')[0]?.split('#')[0]
+    : null;
+  const currentAsset = assetId
+    ? MOCK_HISTORICAL_ASSETS.find(
+        (a) => a.id.toLowerCase() === assetId.toLowerCase()
+      )
+    : null;
+
+  const scrollTo = (id: string) => {
+    if (isHome && id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActiveId('hero');
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setActiveId(id);
+    }
+  };
+
+  // Scroll spy for mobile bottom nav
   useEffect(() => {
-    if (pathname !== '/') return;
+    let sectionIds: string[] = [];
+    if (isHome) sectionIds = ['hero', 'whats-inside', 'themes', 'trending', 'virtual-portal'];
+    else if (isTheme) sectionIds = ['overview', 'categories', 'highlights'];
+    else if (isCategory) sectionIds = ['assets', 'story', 'book', '3d', 'videos'];
+    else if (isAsset) sectionIds = ['story', 'book', '3d', 'video'];
+
+    if (sectionIds.length === 0) return;
 
     const handleScroll = () => {
       const scrollPos = window.scrollY + 200;
-      const sections: { id: string; tab: MobileTab }[] = [
-        { id: 'hero', tab: 'Home' },
-        { id: 'collection', tab: 'Inventions' },
-        { id: 'gallery3d', tab: '3D Vault' },
-        { id: 'videos', tab: 'Stories' },
-      ];
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i].id);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPos >= top) {
-            setActiveTab(sections[i].tab);
-            return;
-          }
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && scrollPos >= el.offsetTop) {
+          setActiveId(sectionIds[i]);
+          return;
         }
       }
-      setActiveTab('Home');
+      setActiveId(sectionIds[0]);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname]);
+  }, [isHome, isTheme, isCategory, isAsset, pathname]);
 
-  const handleNavClick = (item: NavItem) => {
-    setActiveTab(item.name);
-    if (typeof window !== 'undefined' && 'vibrate' in navigator) {
-      try {
-        navigator.vibrate(8);
-      } catch {
-        // Safe fallback
-      }
-    }
+  // Build items based on active page
+  let navItems: MobileNavItem[] = [];
 
-    if (item.action) {
-      item.action();
-    }
-
-    if (pathname !== '/') {
-      router.push(`/#${item.targetId}`);
-      return;
-    }
-
-    const el = document.getElementById(item.targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  if (isHome) {
+    navItems = [
+      {
+        id: 'hero',
+        label: 'Home',
+        icon: <Home className="w-4 h-4" />,
+        action: () => scrollTo('hero'),
+      },
+      {
+        id: 'whats-inside',
+        label: 'Inside',
+        icon: <Sparkles className="w-4 h-4" />,
+        action: () => scrollTo('whats-inside'),
+      },
+      {
+        id: 'themes',
+        label: 'Themes',
+        icon: <Layers className="w-4 h-4" />,
+        action: () => scrollTo('themes'),
+      },
+      {
+        id: 'trending',
+        label: 'Trending',
+        icon: <TrendingUp className="w-4 h-4" />,
+        action: () => scrollTo('trending'),
+      },
+    ];
+  } else if (isTheme) {
+    navItems = [
+      {
+        id: 'home',
+        label: 'Home',
+        icon: <Home className="w-4 h-4" />,
+        action: () => router.push('/'),
+      },
+      {
+        id: 'overview',
+        label: 'Overview',
+        icon: <Sparkles className="w-4 h-4" />,
+        action: () => scrollTo('overview'),
+      },
+      {
+        id: 'categories',
+        label: 'Categories',
+        icon: <Layers className="w-4 h-4" />,
+        action: () => scrollTo('categories'),
+      },
+      {
+        id: 'highlights',
+        label: 'Highlights',
+        icon: <TrendingUp className="w-4 h-4" />,
+        action: () => scrollTo('highlights'),
+      },
+    ];
+  } else if (isCategory) {
+    navItems = [
+      {
+        id: 'home',
+        label: 'Home',
+        icon: <Home className="w-4 h-4" />,
+        action: () => router.push('/'),
+      },
+      {
+        id: 'assets',
+        label: 'Assets',
+        icon: <Layers className="w-4 h-4" />,
+        action: () => scrollTo('assets'),
+      },
+      {
+        id: 'story',
+        label: 'Story',
+        icon: <BookOpen className="w-4 h-4" />,
+        action: () => scrollTo('story'),
+      },
+      {
+        id: 'book',
+        label: 'Books',
+        icon: <FileText className="w-4 h-4" />,
+        action: () => scrollTo('book'),
+      },
+      {
+        id: '3d',
+        label: '3D Vault',
+        icon: <Boxes className="w-4 h-4" />,
+        action: () => scrollTo('3d'),
+      },
+      {
+        id: 'videos',
+        label: 'Videos',
+        icon: <Film className="w-4 h-4" />,
+        action: () => scrollTo('videos'),
+      },
+    ];
+  } else if (isAsset) {
+    navItems = [
+      {
+        id: 'home',
+        label: 'Home',
+        icon: <Home className="w-4 h-4" />,
+        action: () => router.push('/'),
+      },
+      {
+        id: 'story',
+        label: 'Story',
+        icon: <BookOpen className="w-4 h-4" />,
+        action: () => scrollTo('story'),
+      },
+      {
+        id: 'book',
+        label: 'Books',
+        icon: <FileText className="w-4 h-4" />,
+        action: () => scrollTo('book'),
+      },
+      {
+        id: '3d',
+        label: '3D Model',
+        icon: <Boxes className="w-4 h-4" />,
+        action: () => scrollTo('3d'),
+      },
+      {
+        id: 'video',
+        label: 'Video Reel',
+        icon: <Film className="w-4 h-4" />,
+        action: () => scrollTo('video'),
+      },
+    ];
+  }
 
   return (
-    <>
-      <nav
-        className="fixed bottom-0 left-0 right-0 z-50 md:hidden dark:bg-[#0c0d12]/95 bg-[#faf8f4]/95 backdrop-blur-2xl border-t dark:border-primary/20 border-outline-variant/40 shadow-[0_-8px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.9)] px-1 pt-2 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.35rem))] transition-all"
-        aria-label="Mobile Navigation Bar"
-      >
-        <div className="grid grid-cols-5 w-full max-w-md mx-auto items-center">
-          {NAV_ITEMS.map((item) => {
-            const isActive = activeTab === item.name;
-            return (
-              <button
-                key={item.name}
-                onClick={() => handleNavClick(item)}
-                className="group relative flex flex-col items-center justify-center w-full py-0.5 select-none active:scale-95 transition-transform cursor-pointer"
-              >
-                {/* Active Pill Container around Icon */}
-                <div
-                  className={`flex items-center justify-center w-12 h-7 rounded-full transition-all duration-300 ${
-                    isActive
-                      ? 'bg-primary/20 text-primary shadow-sm'
-                      : 'dark:text-neutral-400 text-neutral-600 dark:group-hover:text-neutral-200 group-hover:text-neutral-950'
-                  }`}
-                >
-                  <span
-                    className={`transition-transform duration-200 flex items-center justify-center ${
-                      isActive ? 'scale-110 drop-shadow-sm' : ''
-                    }`}
-                  >
-                    {item.icon}
-                  </span>
-                </div>
-
-                {/* Label */}
-                <span
-                  className={`text-[10px] font-sans tracking-tight mt-1 leading-tight text-center whitespace-nowrap truncate max-w-full transition-colors ${
-                    isActive ? 'font-bold text-primary' : 'font-medium dark:text-neutral-400 text-neutral-600'
-                  }`}
-                >
-                  {item.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </nav>
-
-      {/* 64 Disciplines / Archive Taxonomy Modal */}
-      <TaxonomyModal
-        isOpen={isTaxonomyOpen}
-        onClose={() => setIsTaxonomyOpen(false)}
-        onSelectCategory={(category) => {
-          setIsTaxonomyOpen(false);
-          const el = document.getElementById('collection');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-          const keyword = category
-            ? category.toLowerCase().startsWith('test taxonomy')
-              ? 'Test'
-              : category.split(' ')[0]
-            : '';
-          window.dispatchEvent(new CustomEvent('heritage:filterCategory', { detail: keyword }));
-        }}
-      />
-    </>
+    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-surface-container-high/95 backdrop-blur-xl border-t border-outline-variant/30 px-2 py-1.5 shadow-2xl">
+      <div className="flex items-center justify-around gap-1 overflow-x-auto scrollbar-none py-0.5">
+        {navItems.map((item) => {
+          const isActive = activeId === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={item.action}
+              className={`flex flex-col items-center justify-center min-w-[56px] min-h-[44px] px-2 py-1 rounded-xl transition-all ${
+                isActive
+                  ? 'text-amber-400 font-bold bg-amber-500/10'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              <div className={isActive ? 'text-amber-400 scale-110 transition-transform' : ''}>
+                {item.icon}
+              </div>
+              <span className="text-[10px] font-mono mt-0.5">{item.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
   );
 }

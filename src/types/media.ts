@@ -1,6 +1,7 @@
 export interface VideoVignette {
   id: string;
   assetId: string;
+  categoryId?: string;
   title: string;
   inventor: string;
   shortDesc: string;

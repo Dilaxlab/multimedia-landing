@@ -19,6 +19,9 @@ export default function AssetCard({
   onExplore3D,
 }: AssetCardProps) {
   const handlePrimaryClick = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
     if (onSelect) onSelect(asset);
     else if (onExplore) onExplore(asset);
     else window.location.href = `/inventions/${asset.id}`;
@@ -69,7 +72,7 @@ export default function AssetCard({
           </Link>
 
           {/* Short Curatorial Excerpt */}
-          <p className="text-on-surface-variant font-sans text-[10px] xs:text-[11px] sm:text-xs line-clamp-1 sm:line-clamp-2 leading-relaxed">
+          <p className="text-on-surface-variant font-sans text-[10px] xs:text-[11px] sm:text-xs line-clamp-1 sm:line-clamp-2 leading-relaxed sm:h-8 overflow-hidden">
             {asset.desc}
           </p>
           {/* Metadata Row */}
@@ -91,10 +94,13 @@ export default function AssetCard({
             </div>
 
             <Link
-              href={`/inventions/${asset.id}#explore`}
-              onClick={(e) => e.stopPropagation()}
+              href={`/inventions/${asset.id}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'instant' });
+              }}
               className="flex items-center gap-0.5 shrink-0 text-primary font-mono text-[9px] sm:text-[11px] hover:underline cursor-pointer"
-              title="View 3D Model"
+              title="View Specimen Details"
             >
               <Box className="w-3.5 h-3.5 text-primary shrink-0" />
               <span>3D</span>
@@ -116,27 +122,31 @@ export default function AssetCard({
         </div>
 
         <div className="flex items-center justify-end gap-1.5 sm:gap-2 w-full sm:w-auto">
-          {/* 3D Model Button — Navigates to 3D View on Invention Page */}
+          {/* 3D Model Button — Navigates to Invention Page */}
           <Link
-            href={`/inventions/${asset.id}#explore`}
+            href={`/inventions/${asset.id}`}
             onClick={(e) => {
               e.stopPropagation();
+              if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'instant' });
               if (onExplore3D) onExplore3D(asset);
             }}
             className="inline-flex p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-surface-container-high/80 dark:bg-white/[0.04] hover:bg-primary/20 text-on-surface-variant dark:text-neutral-300 hover:text-primary transition-colors border border-outline-variant/30 dark:border-white/10 hover:border-primary/40 shrink-0 cursor-pointer shadow-sm active:scale-95"
-            title="Inspect 3D Spatial Model on Invention Page"
-            aria-label="Inspect 3D model"
+            title="Inspect Specimen Details"
+            aria-label="Inspect Specimen Details"
           >
             <Box className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </Link>
 
           <Link
             href={`/inventions/${asset.id}`}
+            onClick={() => {
+              if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
             className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-primary/15 hover:bg-primary/25 text-primary hover:text-primary transition-all border border-primary/30 hover:border-primary/50 shrink-0 whitespace-nowrap cursor-pointer shadow-sm active:scale-95"
             aria-label="Explore Asset"
           >
             <span className="font-sans font-bold text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-wider leading-none">
-              Explore
+              Open Story, 3D &amp; Film
             </span>
             <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
           </Link>

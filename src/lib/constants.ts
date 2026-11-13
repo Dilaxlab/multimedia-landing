@@ -1,417 +1,748 @@
-import { HistoricalAsset } from '@/types/asset';
+import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
 import { VideoVignette, BlueprintMedia } from '@/types/media';
 
-export const TAXONOMY_MASTER_LIST: string[] = [
-  "Test Taxonomy 01", "Test Taxonomy 02", "Test Taxonomy 03",
-  "Test Taxonomy 04", "Test Taxonomy 05", "Test Taxonomy 06",
-  "Test Taxonomy 07", "Test Taxonomy 08", "Test Taxonomy 09",
-  "Test Taxonomy 10", "Test Taxonomy 11", "Test Taxonomy 12",
-  "Test Taxonomy 13", "Test Taxonomy 14", "Test Taxonomy 15",
-  "Test Taxonomy 16", "Test Taxonomy 17", "Test Taxonomy 18",
-  "Test Taxonomy 19", "Test Taxonomy 20", "Test Taxonomy 21",
-  "Test Taxonomy 22", "Test Taxonomy 23", "Test Taxonomy 24",
-  "Test Taxonomy 25", "Test Taxonomy 26", "Test Taxonomy 27",
-  "Test Taxonomy 28", "Test Taxonomy 29", "Test Taxonomy 30",
-  "Test Taxonomy 31", "Test Taxonomy 32", "Test Taxonomy 33",
-  "Test Taxonomy 34", "Test Taxonomy 35", "Test Taxonomy 36",
-  "Test Taxonomy 37", "Test Taxonomy 38", "Test Taxonomy 39",
-  "Test Taxonomy 40", "Test Taxonomy 41", "Test Taxonomy 42",
-  "Test Taxonomy 43", "Test Taxonomy 44", "Test Taxonomy 45",
-  "Test Taxonomy 46", "Test Taxonomy 47", "Test Taxonomy 48",
-  "Test Taxonomy 49", "Test Taxonomy 50", "Test Taxonomy 51",
-  "Test Taxonomy 52", "Test Taxonomy 53", "Test Taxonomy 54",
-  "Test Taxonomy 55", "Test Taxonomy 56", "Test Taxonomy 57",
-  "Test Taxonomy 58", "Test Taxonomy 59", "Test Taxonomy 60",
-  "Test Taxonomy 61", "Test Taxonomy 62", "Test Taxonomy 63", "Test Taxonomy 64"
+/** External 3D Virtual Tour Museum Website URL (configurable via .env.local) */
+export const VIRTUAL_TOUR_MUSEUM_URL =
+  process.env.NEXT_PUBLIC_VIRTUAL_TOUR_URL || 'https://your-external-website.com';
+
+export interface CategoryMeta {
+  key: CategoryFilterType;
+  label: string;
+  shortName: string;
+  emoji: string;
+  icon: string;
+  era: string;
+  desc: string;
+  spotlightAssetId: string;
+}
+
+export const OFFICIAL_18_CATEGORIES: CategoryMeta[] = [
+  {
+    key: 'ENERGY',
+    label: 'Energy & Power Generation',
+    shortName: 'Energy',
+    emoji: '⚡',
+    icon: 'Zap',
+    era: '1780 — 1920',
+    desc: 'Electromagnetic dynamos, polyphase AC induction motors, and high-voltage transmission grids.',
+    spotlightAssetId: 'HA-107',
+  },
+  {
+    key: 'TELECOM',
+    label: 'Telephony & Acoustic Telegraphy',
+    shortName: 'Telecom',
+    emoji: '📡',
+    icon: 'Radio',
+    era: '1837 — 1915',
+    desc: 'Speaking transmitters, carbon microphones, and underwater harmonic telegraph networks.',
+    spotlightAssetId: 'HA-101',
+  },
+  {
+    key: 'DOMESTIC',
+    label: 'Domestic Mechanics & Household',
+    shortName: 'Household',
+    emoji: '🧵',
+    icon: 'Sparkles',
+    era: '1850 — 1930',
+    desc: 'Mechanical agitators, sewing mechanisms, and labor-saving appliances that transformed the home.',
+    spotlightAssetId: 'HA-102',
+  },
+  {
+    key: 'TIME',
+    label: 'Horology & Precision Escapements',
+    shortName: 'Horology',
+    emoji: '🕐',
+    icon: 'Clock',
+    era: '1650 — 1900',
+    desc: 'Chronometer balances, deadbeat escapements, and astronomical timekeeping reticles.',
+    spotlightAssetId: 'HA-100',
+  },
+  {
+    key: 'WIND',
+    label: 'Wind & Rotary Kinetic Systems',
+    shortName: 'Wind',
+    emoji: '💨',
+    icon: 'Wind',
+    era: '1750 — 1910',
+    desc: 'Self-governing centrifugal windmills, vane governors, and aerodynamic rotary dynamo power.',
+    spotlightAssetId: 'HA-103',
+  },
+  {
+    key: 'AERO',
+    label: 'Aeronautics & Aerial Navigation',
+    shortName: 'Aero',
+    emoji: '✈️',
+    icon: 'Plane',
+    era: '1890 — 1940',
+    desc: 'Wing-warping aerofoils, biplane gliders, and internal combustion airborne propulsion.',
+    spotlightAssetId: 'HA-106',
+  },
+  {
+    key: 'COMPUTING',
+    label: 'Mechanical Computing Engines',
+    shortName: 'Computing',
+    emoji: '🧮',
+    icon: 'Cpu',
+    era: '1820 — 1945',
+    desc: 'Difference calculating trains, punched-card analytical gears, and early algorithmic registers.',
+    spotlightAssetId: 'HA-108',
+  },
+  {
+    key: 'STEAM',
+    label: 'Steam Dynamics & Pressure Vessels',
+    shortName: 'Steam',
+    emoji: '⚙️',
+    icon: 'Flame',
+    era: '1769 — 1920',
+    desc: 'Centrifugal governor valves, compound cylinders, and superheated steam locomotion.',
+    spotlightAssetId: 'HA-110',
+  },
+  {
+    key: 'PRINTING',
+    label: 'Printing Presses & Movable Types',
+    shortName: 'Printing',
+    emoji: '🖨️',
+    icon: 'Printer',
+    era: '1790 — 1925',
+    desc: 'Rotary cylinder presses, automated line-casting matrices, and high-speed lithography.',
+    spotlightAssetId: 'HA-111',
+  },
+  {
+    key: 'OPTICS',
+    label: 'Optics, Lenses & Microscopes',
+    shortName: 'Optics',
+    emoji: '🔬',
+    icon: 'Search',
+    era: '1700 — 1910',
+    desc: 'Apochromatic lens geometry, oil-immersion condensers, and astronomical refractors.',
+    spotlightAssetId: 'HA-112',
+  },
+  {
+    key: 'CIVIL',
+    label: 'Architectural & Truss Engineering',
+    shortName: 'Civil',
+    emoji: '🏗️',
+    icon: 'Building2',
+    era: '1820 — 1930',
+    desc: 'Pioneering wire cable suspension, structural lattice girders, and monumental caissons.',
+    spotlightAssetId: 'HA-113',
+  },
+  {
+    key: 'AGRICULTURE',
+    label: 'Agricultural Harvesters & Machinery',
+    shortName: 'Agriculture',
+    emoji: '🌾',
+    icon: 'Tractor',
+    era: '1830 — 1925',
+    desc: 'Mechanical grain reapers, steam traction plows, and automated grain threshers.',
+    spotlightAssetId: 'HA-114',
+  },
+  {
+    key: 'MARITIME',
+    label: 'Maritime Propulsion & Navigation',
+    shortName: 'Maritime',
+    emoji: '⚓',
+    icon: 'Anchor',
+    era: '1800 — 1920',
+    desc: 'Submerged screw propellers, ironclad naval hulls, and gyrocompass stabilization.',
+    spotlightAssetId: 'HA-115',
+  },
+  {
+    key: 'LIGHTING',
+    label: 'Incandescent & Arc Illumination',
+    shortName: 'Lighting',
+    emoji: '💡',
+    icon: 'Lightbulb',
+    era: '1870 — 1925',
+    desc: 'High-vacuum carbon filament lamps, electric arc streetlights, and mercury vapor tubes.',
+    spotlightAssetId: 'HA-105',
+  },
+  {
+    key: 'METALLURGY',
+    label: 'Metallurgy & Blast Furnace Tech',
+    shortName: 'Metallurgy',
+    emoji: '🧪',
+    icon: 'Hammer',
+    era: '1850 — 1935',
+    desc: 'Pneumatic air-blast converters, electrolytic aluminum reduction, and industrial alloys.',
+    spotlightAssetId: 'HA-116',
+  },
+  {
+    key: 'TRANSIT',
+    label: 'Rail Kinematics & Locomotives',
+    shortName: 'Transit',
+    emoji: '🚂',
+    icon: 'Train',
+    era: '1825 — 1930',
+    desc: 'Pneumatic triple-valve air brakes, articulated steam chassis, and electric urban trolleys.',
+    spotlightAssetId: 'HA-117',
+  },
+  {
+    key: 'MEDICAL',
+    label: 'Surgical & Diagnostic Instruments',
+    shortName: 'Medical',
+    emoji: '🩺',
+    icon: 'Activity',
+    era: '1810 — 1920',
+    desc: 'Acoustic stethoscopes, cold-cathode Roentgen X-ray tubes, and antiseptic steam autoclaves.',
+    spotlightAssetId: 'HA-118',
+  },
+  {
+    key: 'PHOTOGRAPHY',
+    label: 'Photography & Cinematography',
+    shortName: 'Photo',
+    emoji: '📷',
+    icon: 'Camera',
+    era: '1839 — 1915',
+    desc: 'Wet collodion glass plates, flexible celluloid film reels, and intermittent motion projectors.',
+    spotlightAssetId: 'HA-119',
+  },
 ];
 
-export const MOCK_HISTORICAL_ASSETS: HistoricalAsset[] = [
-  {
-    id: "HA-100",
-    title: "Asset-1",
-    officialTitle: "Asset-1 Official Title",
-    inventor: "Inventor A",
-    patent: "Pat. #249,002 • 1881",
-    patentDate: "November 1, 2026",
-    location: "Location A",
-    category: "TIME",
-    categoryLabel: "Category Label A",
-    badge: "ABC Vault",
-    image: "/images/character_beville.jpg",
-    desc: "Test description for Asset-1.",
-    polyCount: "142,000 Quads",
-    medium: "Material A • Material B • Material C",
-    resonance: "Test Resonance A",
-    era: "Golden Age (1871-1910)",
-    modelType: "ABC",
-    schematicImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuBvoeUi7zbFfW6aL0rZOcCiSCwv9K_tLRK2Mhp4gAvv1nPCHY9QhJ4-BanaNERMMfPEEea0ve42hNJPB1l_6HTBm6HSxtZ2ZwD9nftsUnYxOg3vOiicMGWSV7-flKeYSr9kCUmqAp1G4W11WS9aWCo0-3DjEvYplPxfIUmuy4GcF6jUkvLgYbEg-9UR1mdI2R8ccumSrm5m-o7vxAKEI6txsLyg8s4-pkD04IJKE-Y",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-1.",
-    mechanics: "Test mechanics text for Asset-1.",
-    legacy: "Test legacy text for Asset-1.",
-    curatorQuote: "Test curator quote for Asset-1.",
-    curatorAuthor: "Test Curator A, Test Institution A",
-    blueprintLedger: [
-      { item: "Test Blueprint Item 1", spec: "Test spec 1" },
-      { item: "Test Blueprint Item 2", spec: "Test spec 2" },
-      { item: "Test Blueprint Item 3", spec: "Test spec 3" },
-      { item: "Test Blueprint Item 4", spec: "Test spec 4" },
-    ],
-    hotspots: [
-      { id: 1, title: "Hotspot 1", desc: "Test hotspot description 1.", pos: [35, 42] },
-      { id: 2, title: "Hotspot 2", desc: "Test hotspot description 2.", pos: [62, 58] },
-    ]
-  },
-  {
-    id: "HA-101",
-    title: "Asset-2",
-    officialTitle: "Asset-2 Official Title",
-    inventor: "Inventor B",
-    patent: "Pat. #174,465 • 1876",
-    patentDate: "Test Date B",
-    location: "Location B",
-    category: "TELECOM",
-    categoryLabel: "Category Label B",
-    badge: "3D Vault",
-    image: "/images/character_bell.jpg",
-    desc: "Test description for Asset-2.",
-    polyCount: "84,000 Quads",
-    medium: "Material D • Material E",
-    resonance: "Test Resonance B",
-    era: "Golden Age (1871-1910)",
-    modelType: "bell",
-    schematicImage: "/images/character_bell.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-2.",
-    mechanics: "Test mechanics text for Asset-2.",
-    legacy: "Test legacy text for Asset-2.",
-    curatorQuote: "Test curator quote for Asset-2.",
-    curatorAuthor: "Test Curator B, Test Institution B",
-    blueprintLedger: [
-      { item: "Test Blueprint Item A", spec: "Test spec A" },
-      { item: "Test Blueprint Item B", spec: "Test spec B" },
-      { item: "Test Blueprint Item C", spec: "Test spec C" },
-      { item: "Test Blueprint Item D", spec: "Test spec D" },
-    ],
-    hotspots: [
-      { id: 1, title: "Hotspot A", desc: "Test hotspot description A.", pos: [45, 32] },
-      { id: 2, title: "Hotspot B", desc: "Test hotspot description B.", pos: [55, 68] },
-    ]
-  },
-  {
-    id: "HA-102",
-    title: "Asset-3",
-    inventor: "Inventor C",
-    patent: "Pat. #231,554 • 1880",
-    patentDate: "Test Date C",
-    location: "Location C",
-    category: "DOMESTIC",
-    categoryLabel: "Category Label C",
-    badge: "Kinetic Model",
-    image: "/images/character_fleming.jpg",
-    desc: "Test description for Asset-3.",
-    polyCount: "76,000 Quads",
-    medium: "Material F • Material G",
-    resonance: "Test Resonance C",
-    era: "Golden Age (1871-1910)",
-    modelType: "fleming",
-    schematicImage: "/images/character_fleming.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-3.",
-    mechanics: "Test mechanics text for Asset-3.",
-    legacy: "Test legacy text for Asset-3."
-  },
-  {
-    id: "HA-103",
-    title: "Asset-4",
-    inventor: "Inventor D",
-    patent: "Pat. #262,912 • 1882",
-    patentDate: "Test Date D",
-    location: "Location D",
-    category: "WIND",
-    categoryLabel: "Category Label D",
-    badge: "Aero Twin",
-    image: "/images/character_beville.jpg",
-    desc: "Test description for Asset-4.",
-    polyCount: "92,000 Quads",
-    medium: "Material H • Material I",
-    resonance: "Test Resonance D",
-    era: "Golden Age (1871-1910)",
-    modelType: "beville",
-    schematicImage: "/images/character_beville.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-4.",
-    mechanics: "Test mechanics text for Asset-4.",
-    legacy: "Test legacy text for Asset-4."
-  },
-  {
-    id: "HA-104",
-    title: "Asset-5",
-    inventor: "Inventor E",
-    patent: "Circa 1843 • Rare Artifact",
-    patentDate: "c. 1843",
-    location: "Location E",
-    category: "TIME",
-    categoryLabel: "Category Label E",
-    badge: "Cosmic Vault",
-    image: "/images/character_ada.jpg",
-    desc: "Test description for Asset-5.",
-    polyCount: "110,000 Quads",
-    medium: "Material J • Material K",
-    resonance: "Test Resonance E",
-    era: "Pre-Industrial Enlightenment",
-    modelType: "astrolabe",
-    schematicImage: "/images/character_ada.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-5.",
-    mechanics: "Test mechanics text for Asset-5.",
-    legacy: "Test legacy text for Asset-5."
-  },
-  {
-    id: "HA-105",
-    title: "Asset-6",
-    inventor: "Inventor F",
-    patent: "Pat. #223,898 • 1880",
-    patentDate: "Test Date F",
-    location: "Location F",
-    category: "DOMESTIC",
-    categoryLabel: "Category Label F",
-    badge: "Filament Model",
-    image: "/images/character_edison.jpg",
-    desc: "Test description for Asset-6.",
-    polyCount: "62,000 Quads",
-    medium: "Material L • Material M",
-    resonance: "Test Resonance F",
-    era: "Golden Age (1871-1910)",
-    modelType: "bell",
-    schematicImage: "/images/character_edison.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-6.",
-    mechanics: "Test mechanics text for Asset-6.",
-    legacy: "Test legacy text for Asset-6."
-  },
-  {
-    id: "HA-106",
-    title: "Asset-7",
-    inventor: "Inventor G",
-    patent: "Pat. #821,393 • 1906",
-    patentDate: "Test Date G",
-    location: "Location G",
-    category: "AERO",
-    categoryLabel: "Category Label G",
-    badge: "Aero Kinematics",
-    image: "/images/character_wright.jpg",
-    desc: "Test description for Asset-7.",
-    polyCount: "115,000 Quads",
-    medium: "Material N • Material O",
-    resonance: "Test Resonance G",
-    era: "Early Modern (1911-1950)",
-    modelType: "wright",
-    schematicImage: "/images/character_wright.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-7.",
-    mechanics: "Test mechanics text for Asset-7.",
-    legacy: "Test legacy text for Asset-7."
-  },
-  {
-    id: "HA-107",
-    title: "Asset-8",
-    inventor: "Inventor H",
-    patent: "Pat. #381,968 • 1888",
-    patentDate: "Test Date H",
-    location: "Location H",
-    category: "TELECOM",
-    categoryLabel: "Category Label H",
-    badge: "Rotational Core",
-    image: "/images/character_tesla.jpg",
-    desc: "Test description for Asset-8.",
-    polyCount: "88,000 Quads",
-    medium: "Material P • Material Q",
-    resonance: "Test Resonance H",
-    era: "Golden Age (1871-1910)",
-    modelType: "tesla",
-    schematicImage: "/images/character_tesla.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-8.",
-    mechanics: "Test mechanics text for Asset-8.",
-    legacy: "Test legacy text for Asset-8."
-  },
-  {
-    id: "HA-108",
-    title: "Asset-9",
-    inventor: "Inventor I",
-    patent: "Archival Registry #1849",
-    patentDate: "Circa 1849",
-    location: "Location I",
-    category: "COMPUTING",
-    categoryLabel: "Category Label I",
-    badge: "Gear Core",
-    image: "/images/character_babbage.jpg",
-    desc: "Test description for Asset-9.",
-    polyCount: "140,000 Quads",
-    medium: "Material R • Material S",
-    resonance: "Test Resonance I",
-    era: "Industrial Era (1760-1870)",
-    modelType: "babbage",
-    schematicImage: "/images/character_babbage.jpg",
-    videoDuration: "0:30",
-    story: "Test story text for Asset-9.",
-    mechanics: "Test mechanics text for Asset-9.",
-    legacy: "Test legacy text for Asset-9."
-  },
-  {
-    id: "HA-109",
-    title: "Asset-10",
-    officialTitle: "Asset-10 Official Title",
-    inventor: "Inventor J",
-    patent: "Pat. #174,465 • 1876",
-    patentDate: "Test Date J",
-    location: "Location J",
-    category: "TELECOM",
-    categoryLabel: "Category Label J",
-    badge: "Centennial Gold",
-    image: "/images/character_bell.jpg",
-    desc: "Test description for Asset-10.",
-    polyCount: "98,000 Quads",
-    medium: "Material T • Material U • Material V",
-    resonance: "Test Resonance J",
-    era: "Golden Age (1871-1910)",
-    modelType: "telephone",
-    schematicImage: "/images/character_bell.jpg",
-    videoDuration: "0:30",
-    curatorQuote: "Test curator quote for Asset-10.",
-    curatorAuthor: "Test Curator J, Test Institution J",
-    story: "Test story text for Asset-10.",
-    mechanics: "Test mechanics text for Asset-10.",
-    legacy: "Test legacy text for Asset-10.",
-    blueprintLedger: [
-      { item: "Test Blueprint Item X", spec: "Test spec X" },
-      { item: "Test Blueprint Item Y", spec: "Test spec Y" },
-      { item: "Test Blueprint Item Z", spec: "Test spec Z" },
-      { item: "Test Blueprint Item W", spec: "Test spec W" }
-    ],
-    hotspots: [
-      { id: 1, title: "Hotspot X", desc: "Test hotspot description X.", pos: [35, 45] },
-      { id: 2, title: "Hotspot Y", desc: "Test hotspot description Y.", pos: [65, 52] },
-      { id: 3, title: "Hotspot Z", desc: "Test hotspot description Z.", pos: [50, 80] }
-    ]
-  }
-];
+export const TAXONOMY_MASTER_LIST: string[] = OFFICIAL_18_CATEGORIES.map(
+  (c) => `${c.emoji} ${c.label}`
+);
+
+export { MOCK_HISTORICAL_ASSETS } from "@/data/historicalAssets";
 
 export const MOCK_VIDEO_VIGNETTES: VideoVignette[] = [
   {
-    id: "VID-01",
-    assetId: "HA-101",
-    title: "Test Vignette 1",
-    inventor: "Inventor B",
-    shortDesc: "Test short description for vignette 1.",
-    duration: "0:30",
-    totalSeconds: 30,
-    narrator: "Test Narrator A",
-    narratorInstitution: "Test Institution A",
-    thumbnailUrl: "/images/character_bell.jpg",
-    scenes: [
+    "id": "VID-01",
+    "assetId": "HA-101",
+    "categoryId": "TELECOM",
+    "title": "The Undulatory Wave Transmitter",
+    "inventor": "Alexander Graham Bell",
+    "shortDesc": "The laboratory breakthrough that transmitted continuous variable current speech waves across copper telegraph wire.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Alistair Vance",
+    "narratorInstitution": "Smithsonian Acoustic Technology Division",
+    "thumbnailUrl": "/images/character_bell.jpg",
+    "scenes": [
       {
-        title: "01: Test Scene One",
-        timeRange: "00:00 - 00:10",
-        description: "Test scene description one."
+        "title": "01: The Harmonic Dilemma",
+        "timeRange": "00:00 - 00:10",
+        "description": "Telegraph cables restricted to staccato Morse pulses cannot convey human vocal inflections."
       },
       {
-        title: "02: Test Scene Two",
-        timeRange: "00:10 - 00:20",
-        description: "Test scene description two."
+        "title": "02: The Liquid Breakthrough",
+        "timeRange": "00:10 - 00:20",
+        "description": "Acidulated water diaphragm needle modulates continuous current resistance synchronously."
       },
       {
-        title: "03: Test Scene Three",
-        timeRange: "00:20 - 00:30",
-        description: "Test scene description three."
+        "title": "03: The Global Exchange",
+        "timeRange": "00:20 - 00:30",
+        "description": "Transcontinental copper lines birth worldwide acoustic communication grids."
       }
     ]
   },
   {
-    id: "VID-02",
-    assetId: "HA-102",
-    title: "Test Vignette 2",
-    inventor: "Inventor C",
-    shortDesc: "Test short description for vignette 2.",
-    duration: "0:30",
-    totalSeconds: 30,
-    narrator: "Test Narrator B",
-    narratorInstitution: "Test Institution B",
-    thumbnailUrl: "/images/character_fleming.jpg",
-    scenes: [
+    "id": "VID-02",
+    "assetId": "HA-102",
+    "categoryId": "DOMESTIC",
+    "title": "Mechanics of the Domestic Hearth",
+    "inventor": "Caroline Fleming",
+    "shortDesc": "How planetary agitator gearing emancipated households from exhausting manual laundry labor.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Elena Rostova",
+    "narratorInstitution": "Institute of Social Technology & Household History",
+    "thumbnailUrl": "/images/character_fleming.jpg",
+    "scenes": [
       {
-        title: "01: Test Scene A",
-        timeRange: "00:00 - 00:10",
-        description: "Test scene description A."
+        "title": "01: The Domestic Burden",
+        "timeRange": "00:00 - 00:10",
+        "description": "Washboard friction demanded 14 hours of weekly physical strain per household."
       },
       {
-        title: "02: Test Scene B",
-        timeRange: "00:10 - 00:20",
-        description: "Test scene description B."
+        "title": "02: The Rotary Agitator",
+        "timeRange": "00:10 - 00:20",
+        "description": "Double-acting wooden agitator fingers force pressurized soapy water through fibers."
       },
       {
-        title: "03: Test Scene C",
-        timeRange: "00:20 - 00:30",
-        description: "Test scene description C."
+        "title": "03: The Modern Home",
+        "timeRange": "00:20 - 00:30",
+        "description": "Mechanical domestic tools liberate human energy for civic, scientific, and educational pursuit."
       }
     ]
   },
   {
-    id: "VID-03",
-    assetId: "HA-103",
-    title: "Test Vignette 3",
-    inventor: "Inventor D",
-    shortDesc: "Test short description for vignette 3.",
-    duration: "0:30",
-    totalSeconds: 30,
-    narrator: "Test Narrator C",
-    narratorInstitution: "Test Institution C",
-    thumbnailUrl: "/images/character_beville.jpg",
-    scenes: [
+    "id": "VID-03",
+    "assetId": "HA-103",
+    "categoryId": "WIND",
+    "title": "Harvesting the Prairie Gales",
+    "inventor": "Charles F. Brush",
+    "shortDesc": "Automatic cedar windmill dynamos charging early subterranean battery banks in Cleveland.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Marcus Thorne",
+    "narratorInstitution": "Renewable Kinetic Archive, Cleveland",
+    "thumbnailUrl": "/images/windmill_isolated.png",
+    "scenes": [
       {
-        title: "01: Test Scene D",
-        timeRange: "00:00 - 00:10",
-        description: "Test scene description D."
+        "title": "01: The Cleveland Gale",
+        "timeRange": "00:00 - 00:10",
+        "description": "Lake Erie breezes buffet the eighty-thousand-pound white cedar tower rotor."
       },
       {
-        title: "02: Test Scene E",
-        timeRange: "00:10 - 00:20",
-        description: "Test scene description E."
+        "title": "02: The Stepped Gearing",
+        "timeRange": "00:10 - 00:20",
+        "description": "Internal 50-to-1 pulley systems step rotor torque up to dynamo rotational velocity."
       },
       {
-        title: "03: Test Scene F",
-        timeRange: "00:20 - 00:30",
-        description: "Test scene description F."
+        "title": "03: Subterranean Power",
+        "timeRange": "00:20 - 00:30",
+        "description": "Four hundred lead-acid storage cells absorb uninterrupted clean kinetic current."
       }
     ]
   },
   {
-    id: "VID-04",
-    assetId: "HA-105",
-    title: "Test Vignette 4",
-    inventor: "Inventor F",
-    shortDesc: "Test short description for vignette 4.",
-    duration: "0:30",
-    totalSeconds: 30,
-    narrator: "Test Narrator D",
-    narratorInstitution: "Test Institution D",
-    thumbnailUrl: "/images/character_edison.jpg",
-    scenes: [
+    "id": "VID-04",
+    "assetId": "HA-105",
+    "categoryId": "LIGHTING",
+    "title": "The Incandescent Carbonized Thread",
+    "inventor": "Thomas Alva Edison",
+    "shortDesc": "Inside Menlo Park: testing thousands of plant fibers until carbonized Japanese bamboo shone continuous light.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Lucia Moretti",
+    "narratorInstitution": "Edison Historical Laboratories Foundation",
+    "thumbnailUrl": "/images/character_edison.jpg",
+    "scenes": [
       {
-        title: "01: Test Scene G",
-        timeRange: "00:00 - 00:10",
-        description: "Test scene description G."
+        "title": "01: The Search for Filament",
+        "timeRange": "00:00 - 00:10",
+        "description": "Six thousand botanical specimens tested inside high-vacuum Sprengel pump glass globes."
       },
       {
-        title: "02: Test Scene H",
-        timeRange: "00:10 - 00:20",
-        description: "Test scene description H."
+        "title": "02: The Bamboo Breakthrough",
+        "timeRange": "00:10 - 00:20",
+        "description": "Carbonized Japanese bamboo thread endures 1,200 continuous hours of golden incandescence."
       },
       {
-        title: "03: Test Scene I",
-        timeRange: "00:20 - 00:30",
-        description: "Test scene description I."
+        "title": "03: Night Transformed",
+        "timeRange": "00:20 - 00:30",
+        "description": "Central station distribution banishes darkness from cities across the industrialized world."
+      }
+    ]
+  },
+  {
+    "id": "VID-05",
+    "assetId": "HA-107",
+    "categoryId": "ENERGY",
+    "title": "The Rotating Magnetic Field",
+    "inventor": "Nikola Tesla",
+    "shortDesc": "Visualizing polyphase alternating current and the commutator-free brushless induction motor.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Prof. Henrik Lindqvist",
+    "narratorInstitution": "International Electrotechnical Commission",
+    "thumbnailUrl": "/images/character_tesla.jpg",
+    "scenes": [
+      {
+        "title": "01: The Commutator Dilemma",
+        "timeRange": "00:00 - 00:10",
+        "description": "Direct current dynamos spark and waste voltage, limited to short urban radiuses."
+      },
+      {
+        "title": "02: The Geometric Epiphany",
+        "timeRange": "00:10 - 00:20",
+        "description": "Two out-of-phase sinusoidal waves generate a frictionless revolving stator magnetic field."
+      },
+      {
+        "title": "03: Niagara Power Transmission",
+        "timeRange": "00:20 - 00:30",
+        "description": "High-voltage alternating current transmits power across continents to drive modern industry."
+      }
+    ]
+  },
+  {
+    "id": "VID-06",
+    "assetId": "HA-106",
+    "categoryId": "AERO",
+    "title": "Equilibrium in Three Dimensions",
+    "inventor": "Orville & Wilbur Wright",
+    "shortDesc": "How wing-warping cables and synchronized rudder controls conquered the unstable ocean of air.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Captain James Sterling",
+    "narratorInstitution": "Royal Aeronautical Society",
+    "thumbnailUrl": "/images/character_wright.jpg",
+    "scenes": [
+      {
+        "title": "01: The Atlantic Squalls",
+        "timeRange": "00:00 - 00:10",
+        "description": "Kill Devil Hills sand dunes provide sustained headwinds for glider test flights."
+      },
+      {
+        "title": "02: Dynamic Wing-Warping",
+        "timeRange": "00:10 - 00:20",
+        "description": "Helical twisting of biplane wingtips produces coordinated aerodynamic banking roll."
+      },
+      {
+        "title": "03: Powered Sustained Flight",
+        "timeRange": "00:20 - 00:30",
+        "description": "On December 17, 1903, humanity takes controlled heavier-than-air flight into history."
+      }
+    ]
+  },
+  {
+    "id": "VID-07",
+    "assetId": "HA-108",
+    "categoryId": "COMPUTING",
+    "title": "Weaving Algebraic Patterns",
+    "inventor": "Charles Babbage & Ada Lovelace",
+    "shortDesc": "Ada Lovelace documentations of the Analytical Engine Mill, Store, and Jacquard punch cards.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Beatrice Montgomery",
+    "narratorInstitution": "Babbage Archive for Computation",
+    "thumbnailUrl": "/images/character_babbage.jpg",
+    "scenes": [
+      {
+        "title": "01: The Human Computer Flaw",
+        "timeRange": "00:00 - 00:10",
+        "description": "Navigational and astronomical logarithm tables riddle hand calculations with fatal errors."
+      },
+      {
+        "title": "02: Mill, Store, and Jacquard Cards",
+        "timeRange": "00:10 - 00:20",
+        "description": "Toothed brass wheels calculate arithmetic operations directed by punched textile cards."
+      },
+      {
+        "title": "03: The First Computer Algorithm",
+        "timeRange": "00:20 - 00:30",
+        "description": "Lovelace conceives software, predicting machines could compose music and process symbols."
+      }
+    ]
+  },
+  {
+    "id": "VID-08",
+    "assetId": "HA-110",
+    "categoryId": "STEAM",
+    "title": "The Separate Condenser Breakthrough",
+    "inventor": "James Watt",
+    "shortDesc": "Keeping the working cylinder continuously hot while condensing steam in an auxiliary vacuum chamber.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Malcolm MacIntyre",
+    "narratorInstitution": "Scottish Industrial Heritage Trust",
+    "thumbnailUrl": "/images/thumb_steam_engine.jpg",
+    "scenes": [
+      {
+        "title": "01: The Newcomen Inefficiency",
+        "timeRange": "00:00 - 00:10",
+        "description": "Repeated chilling and heating of cast iron cylinders consumes four-fifths of fuel energy."
+      },
+      {
+        "title": "02: The Auxiliary Cold Vessel",
+        "timeRange": "00:10 - 00:20",
+        "description": "Steam vents into an isolated water-cooled chamber, condensing into vacuum instantly."
+      },
+      {
+        "title": "03: The Rotary Factory Drive",
+        "timeRange": "00:20 - 00:30",
+        "description": "Sun-and-planet gear linkages convert reciprocating motion to continuous industrial factory power."
+      }
+    ]
+  },
+  {
+    "id": "VID-09",
+    "assetId": "HA-100",
+    "categoryId": "TIME",
+    "title": "The Geometry of Celestial Time",
+    "inventor": "Henry Beville",
+    "shortDesc": "Reconciling astronomical astrolabe projections with deadbeat balance escapement mechanisms.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Julian Vance",
+    "narratorInstitution": "Royal Horological Society",
+    "thumbnailUrl": "/images/character_beville.jpg",
+    "scenes": [
+      {
+        "title": "01: Celestial Coordinates",
+        "timeRange": "00:00 - 00:10",
+        "description": "Navigators sight stellar altitudes across fluctuating latitudes using brass tympan plates."
+      },
+      {
+        "title": "02: The Isochronous Escapement",
+        "timeRange": "00:10 - 00:20",
+        "description": "Jeweled pallets impulse the balance wheel without recoil, maintaining steady seconds."
+      },
+      {
+        "title": "03: The Precision Chronometer",
+        "timeRange": "00:20 - 00:30",
+        "description": "Mechanical timekeeping synchronizes transoceanic exploration and railway networks."
+      }
+    ]
+  },
+  {
+    "id": "VID-10",
+    "assetId": "HA-111",
+    "categoryId": "PRINTING",
+    "title": "The Gutenberg Movable Typographic Matrix",
+    "inventor": "Johannes Gutenberg",
+    "shortDesc": "Hand-molded alloy movable type and screw platen presses that sparked the spread of human knowledge.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Prof. Klaus Becker",
+    "narratorInstitution": "Mainz Gutenberg Museum",
+    "thumbnailUrl": "/images/character_babbage.jpg",
+    "scenes": [
+      {
+        "title": "01: The Scribes Bottleneck",
+        "timeRange": "00:00 - 00:10",
+        "description": "Hand-copying manuscripts required years of labor per volume, restricting knowledge."
+      },
+      {
+        "title": "02: The Lead-Tin Adjustable Mold",
+        "timeRange": "00:10 - 00:20",
+        "description": "Interchangeable durable metal letters cast by the thousands fit into composing sticks."
+      },
+      {
+        "title": "03: The Printing Revolution",
+        "timeRange": "00:20 - 00:30",
+        "description": "Oil-based lampblack inks and wooden screw platens mass-produce identical texts worldwide."
+      }
+    ]
+  },
+  {
+    "id": "VID-11",
+    "assetId": "HA-112",
+    "categoryId": "OPTICS",
+    "title": "The Microcosm: Single-Sphere High-Magnification",
+    "inventor": "Antonie van Leeuwenhoek",
+    "shortDesc": "Discovering microbial animalcules and blood capillary circulation through hand-ground glass sphere lenses.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Sarah Jenkins",
+    "narratorInstitution": "Delft Historical Society for Microbiology",
+    "thumbnailUrl": "/images/raw_card_4_astrolabe.jpg",
+    "scenes": [
+      {
+        "title": "01: Grinding the Sphere",
+        "timeRange": "00:00 - 00:10",
+        "description": "Flame-polishing pinhead-sized glass beads to achieve flawless spherical optical curvature."
+      },
+      {
+        "title": "02: The Living Drop",
+        "timeRange": "00:10 - 00:20",
+        "description": "At 275x magnification, unseen teeming protozoa and bacteria swim into human sight."
+      },
+      {
+        "title": "03: The Dawn of Cellular Biology",
+        "timeRange": "00:20 - 00:30",
+        "description": "Letters to the Royal Society prove an invisible living world surrounds all creation."
+      }
+    ]
+  },
+  {
+    "id": "VID-12",
+    "assetId": "HA-113",
+    "categoryId": "CIVIL",
+    "title": "Puddle-Iron Lattice & Cantilever Statics",
+    "inventor": "Gustave Eiffel",
+    "shortDesc": "How aerodynamic open-work puddle iron trusses withstood gale shears 300 meters above Paris.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Claire Delacroix",
+    "narratorInstitution": "Centre d'Histoire des M\u00e9tiers et des Ponts",
+    "thumbnailUrl": "/images/cards_row.jpg",
+    "scenes": [
+      {
+        "title": "01: Defying Wind Shear",
+        "timeRange": "00:00 - 00:10",
+        "description": "Mathematical calculation of parabolic truss tangents channels wind loads directly to caissons."
+      },
+      {
+        "title": "02: Two Million Hot Rivets",
+        "timeRange": "00:10 - 00:20",
+        "description": "Prefabricated puddle iron beams assembled with millimeter precision without scaffolding accidents."
+      },
+      {
+        "title": "03: The Monument of Modernity",
+        "timeRange": "00:20 - 00:30",
+        "description": "Rising 300 meters, Eiffel proves metal frameworks will define the modern urban skyline."
+      }
+    ]
+  },
+  {
+    "id": "VID-13",
+    "assetId": "HA-114",
+    "categoryId": "AGRICULTURE",
+    "title": "The Mechanical Harvester & The Endless Furrow",
+    "inventor": "Cyrus Hall McCormick",
+    "shortDesc": "Mechanizing grain harvesting with reciprocating sickle blades and divider boards.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Arthur Pendelton",
+    "narratorInstitution": "Smithsonian Agricultural Machinery Archive",
+    "thumbnailUrl": "/images/character_edison_stage.png",
+    "scenes": [
+      {
+        "title": "01: The Summer Scythe Crisis",
+        "timeRange": "00:00 - 00:10",
+        "description": "Wheat rots in fields when hand sickle harvesters cannot cut ripening grain in time."
+      },
+      {
+        "title": "02: The Serrated Knife Motion",
+        "timeRange": "00:10 - 00:20",
+        "description": "Ground wheels drive a pitman arm reciprocating high-speed blades through stationary guards."
+      },
+      {
+        "title": "03: Feeding the Nations",
+        "timeRange": "00:20 - 00:30",
+        "description": "One machine reaps ten men's harvest, preventing famine and releasing workforce for cities."
+      }
+    ]
+  },
+  {
+    "id": "VID-14",
+    "assetId": "HA-115",
+    "categoryId": "MARITIME",
+    "title": "The Steam Paddlewheel & Naval Propulsion",
+    "inventor": "Robert Fulton",
+    "shortDesc": "The Clermont steaming against the Hudson River tide, inaugurating scheduled commercial steam navigation.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Commander Donald Ross",
+    "narratorInstitution": "Hudson River Maritime Society",
+    "thumbnailUrl": "/images/character_wright.jpg",
+    "scenes": [
+      {
+        "title": "01: Hostile Tides and Currents",
+        "timeRange": "00:00 - 00:10",
+        "description": "Sailing sloops spend days becalmed or battling contrary river currents."
+      },
+      {
+        "title": "02: The Boulton & Watt Engine Drive",
+        "timeRange": "00:10 - 00:20",
+        "description": "Steam cylinders drive 15-foot radial wooden paddlewheels churn water continuously."
+      },
+      {
+        "title": "03: River Transit Unbound",
+        "timeRange": "00:20 - 00:30",
+        "description": "150 miles steamed in 32 hours; steamships conquer global rivers, bays, and open seas."
+      }
+    ]
+  },
+  {
+    "id": "VID-15",
+    "assetId": "HA-116",
+    "categoryId": "METALLURGY",
+    "title": "The Decarburizing Blast: Mass Steel Unleashed",
+    "inventor": "Sir Henry Bessemer",
+    "shortDesc": "Blasting cold air through molten pig iron to burn impurities without extra fuel.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Geoffrey Thornton",
+    "narratorInstitution": "Kelham Island Metallurgy Archive",
+    "thumbnailUrl": "/images/cards_row.jpg",
+    "scenes": [
+      {
+        "title": "01: The Expensive Crucible Steel",
+        "timeRange": "00:00 - 00:10",
+        "description": "Steel melted in tiny clay pots costs hundreds of pounds per ton, limiting use."
+      },
+      {
+        "title": "02: The Exothermic Firestorm",
+        "timeRange": "00:10 - 00:20",
+        "description": "Air blasts through tuy\u00e8res; burning carbon raises temperatures to boiling white heat."
+      },
+      {
+        "title": "03: The Age of Steel",
+        "timeRange": "00:20 - 00:30",
+        "description": "Thirty tons of steel produced in twenty minutes, forging global rails and skyscrapers."
+      }
+    ]
+  },
+  {
+    "id": "VID-16",
+    "assetId": "HA-117",
+    "categoryId": "TRANSIT",
+    "title": "Locomotion No. 1 & The Flanged Rail Grid",
+    "inventor": "George Stephenson",
+    "shortDesc": "Direct-coupled connecting rods and flanged wheels conquering rolling friction on public tracks.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "William H. Campbell",
+    "narratorInstitution": "National Railway Museum, York",
+    "thumbnailUrl": "/images/hero_stage_bg.jpg",
+    "scenes": [
+      {
+        "title": "01: Mud Turnpikes & Horse Carts",
+        "timeRange": "00:00 - 00:10",
+        "description": "Heavy coal wagons destroy rutted roads, limiting regional inland trade."
+      },
+      {
+        "title": "02: The Flanged Steel Interface",
+        "timeRange": "00:10 - 00:20",
+        "description": "Flanged iron wheels on cast rails slash friction by ninety percent, synchronizing four axles."
+      },
+      {
+        "title": "03: Stockton & Darlington 1825",
+        "timeRange": "00:20 - 00:30",
+        "description": "Four hundred passengers travel at 15 mph, launching the worldwide railway revolution."
+      }
+    ]
+  },
+  {
+    "id": "VID-17",
+    "assetId": "HA-118",
+    "categoryId": "MEDICAL",
+    "title": "Acoustic Auscultation: Listening Inside the Chest",
+    "inventor": "Ren\u00e9 Laennec",
+    "shortDesc": "The hollow wooden cylinder that allowed physicians to diagnose heart and lung pathologies in living patients.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Dr. Monique Laurent",
+    "narratorInstitution": "Necker Hospital Historical Foundation, Paris",
+    "thumbnailUrl": "/images/character_fleming_stage.png",
+    "scenes": [
+      {
+        "title": "01: The Silent Malady",
+        "timeRange": "00:00 - 00:10",
+        "description": "Physicians could only identify heart diseases and tuberculosis lesions post-mortem."
+      },
+      {
+        "title": "02: The Rolled Paper Cylinder",
+        "timeRange": "00:10 - 00:20",
+        "description": "Acoustic waveguide conduction amplifies cardiac valve clicks and pulmonary murmurs."
+      },
+      {
+        "title": "03: The Foundation of Clinical Cardiology",
+        "timeRange": "00:20 - 00:30",
+        "description": "The stethoscope becomes the universal emblem of scientific internal diagnosis."
+      }
+    ]
+  },
+  {
+    "id": "VID-18",
+    "assetId": "HA-119",
+    "categoryId": "PHOTOGRAPHY",
+    "title": "The Daguerreotype: Fixing the Sun's Shadow",
+    "inventor": "Louis Jacques Mand\u00e9 Daguerre",
+    "shortDesc": "Capturing mirror-sharp reality on iodized silver-plated copper sheets developed in mercury vapors.",
+    "duration": "0:30",
+    "totalSeconds": 30,
+    "narrator": "Giselle Marchand",
+    "narratorInstitution": "Soci\u00e9t\u00e9 Fran\u00e7aise de Photographie",
+    "thumbnailUrl": "/images/character_bell.jpg",
+    "scenes": [
+      {
+        "title": "01: The Fading Camera Obscura",
+        "timeRange": "00:00 - 00:10",
+        "description": "Optical lens projections fade the instant the light source shifts."
+      },
+      {
+        "title": "02: The Heated Mercury Fumes",
+        "timeRange": "00:10 - 00:20",
+        "description": "Invisible latent images on silver halide plates develop into miraculous mirror-like fidelity."
+      },
+      {
+        "title": "03: Free to the World",
+        "timeRange": "00:20 - 00:30",
+        "description": "In 1839 France gifts photography to humanity, forever preserving human history."
       }
     ]
   }

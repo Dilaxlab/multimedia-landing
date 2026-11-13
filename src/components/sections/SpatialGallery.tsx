@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {
@@ -22,8 +22,8 @@ import {
   Grid2x2,
   Check,
 } from 'lucide-react';
-import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
-import { HistoricalAsset } from '@/types/asset';
+import { MOCK_HISTORICAL_ASSETS, OFFICIAL_18_CATEGORIES } from '@/lib/constants';
+import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
 
 const ModelViewer3D = dynamic(() => import('@/components/viewers/ModelViewer3D'), {
   ssr: false,
@@ -39,50 +39,57 @@ interface SpatialGalleryProps {
   onSelectAssetForDossier?: (asset: HistoricalAsset) => void;
   selectedAssetId?: string;
   onSelectAssetId?: (id: string) => void;
+  category?: CategoryFilterType;
 }
-
-const SPATIAL_CATEGORIES: { key: string; label: string }[] = [
-  { key: 'ALL', label: 'All 3D Models' },
-  { key: 'TELECOM', label: 'Telephony & Acoustic' },
-  { key: 'AERO', label: 'Aeronautics' },
-  { key: 'DOMESTIC', label: 'Domestic Mechanics' },
-  { key: 'WIND', label: 'Wind & Rotary' },
-  { key: 'COMPUTING', label: 'Computing Engines' },
-  { key: 'TIME', label: 'Horology & Clocks' },
-];
 
 export default function SpatialGallery({
   onSelectAssetForDossier,
   selectedAssetId: externalAssetId,
   onSelectAssetId,
+  category,
 }: SpatialGalleryProps) {
-  const [internalAssetId, setInternalAssetId] = useState<string>('HA-101');
+  const [internalAssetId, setInternalAssetId] = useState<string>('HA-107');
   const selectedAssetId = externalAssetId || internalAssetId;
 
   // Search & Filter State
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeCategory, setActiveCategory] = useState<string>('ALL');
   const [isBrowserModalOpen, setIsBrowserModalOpen] = useState<boolean>(false);
+
+  // Sync with parent category selection
+  useEffect(() => {
+    if (category) {
+      const catAsset = MOCK_HISTORICAL_ASSETS.find((a) => a.category === category);
+      if (catAsset) {
+        setInternalAssetId(catAsset.id);
+        if (onSelectAssetId) onSelectAssetId(catAsset.id);
+      }
+    }
+  }, [category, onSelectAssetId]);
 
   const handleSelectAssetId = (id: string) => {
     setInternalAssetId(id);
     if (onSelectAssetId) onSelectAssetId(id);
   };
 
-  const featuredAssets = MOCK_HISTORICAL_ASSETS;
+  // Strictly filter 3D models by active category
+  const featuredAssets = useMemo(() => {
+    return category
+      ? MOCK_HISTORICAL_ASSETS.filter((a) => a.category === category)
+      : MOCK_HISTORICAL_ASSETS;
+  }, [category]);
 
-  // Filter 3D Models based on active category and search query
-  const filteredAssets = featuredAssets.filter((asset) => {
-    const matchesCategory =
-      activeCategory === 'ALL' || asset.category === activeCategory;
-    const matchesSearch =
-      !searchQuery.trim() ||
-      asset.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      asset.inventor.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      asset.patent.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      asset.id.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  // Filter 3D Models based on active search query within the category
+  const filteredAssets = useMemo(() => {
+    return featuredAssets.filter((asset) => {
+      const matchesSearch =
+        !searchQuery.trim() ||
+        asset.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        asset.inventor.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        asset.patent.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        asset.id.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesSearch;
+    });
+  }, [featuredAssets, searchQuery]);
 
   const [isWireframe, setIsWireframe] = useState(false);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
@@ -183,11 +190,11 @@ export default function SpatialGallery({
                 )}
               </div>
 
-              {/* Browse All button — icon-only pill on desktop compactness */}
+              {/* Models count button — opens modal with category models */}
               <button
                 onClick={() => setIsBrowserModalOpen(true)}
                 className="inline-flex items-center justify-center gap-1.5 h-[38px] px-3 rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 text-xs font-mono font-medium transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95"
-                title={`Browse all ${featuredAssets.length} models`}
+                title={`View ${featuredAssets.length} 3D models in this category`}
               >
                 <Grid2x2 className="w-4 h-4" />
                 <span className="hidden xl:inline">{featuredAssets.length}</span>
@@ -220,8 +227,8 @@ export default function SpatialGallery({
             <button
               onClick={() => setIsBrowserModalOpen(true)}
               className="inline-flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95"
-              title={`Browse all ${featuredAssets.length} models`}
-              aria-label="Browse all models"
+              title={`View ${featuredAssets.length} 3D models in this category`}
+              aria-label="View models in category"
             >
               <Grid2x2 className="w-4 h-4" />
             </button>
@@ -473,6 +480,9 @@ export default function SpatialGallery({
             <div className="pt-4 border-t border-outline-variant/30 space-y-2">
               <Link
                 href={`/inventions/${currentAsset.id}`}
+                onClick={() => {
+                  if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
                 className="w-full py-3 rounded-xl bg-primary text-surface-container-lowest font-medium font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 group"
               >
                 <span>OPEN FULL MONOGRAPH</span>
@@ -512,7 +522,7 @@ export default function SpatialGallery({
                     Select 3D Spatial Model
                   </h3>
                   <span className="text-[10px] font-mono text-primary">
-                    {featuredAssets.length} Photogrammetry & CAD Assets Available
+                    {featuredAssets.length} Photogrammetry & CAD Models in Active Category
                   </span>
                 </div>
               </div>

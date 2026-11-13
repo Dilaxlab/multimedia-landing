@@ -4,6 +4,7 @@ import Navbar from '@/components/common/Navbar';
 import Footer from '@/components/common/Footer';
 import MobileBottomNav from '@/components/common/MobileBottomNav';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
+import { CategoryProvider } from '@/context/CategoryContext';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -83,17 +84,19 @@ export default function RootLayout({
         className="min-h-screen bg-surface text-on-surface antialiased flex flex-col selection:bg-primary selection:text-surface-container-lowest pb-24 md:pb-0 transition-colors duration-300"
       >
         <ThemeProvider>
-          {/* Navigation Bar */}
-          <Navbar />
+          <CategoryProvider>
+            {/* Navigation Bar */}
+            <Navbar />
 
-          {/* Main Content Viewport */}
-          <main className="flex-1 w-full">{children}</main>
+            {/* Main Content Viewport */}
+            <main className="flex-1 w-full">{children}</main>
 
-          {/* Mobile Multimedia App Bottom Navigation Bar */}
-          <MobileBottomNav />
+            {/* Mobile Multimedia App Bottom Navigation Bar */}
+            <MobileBottomNav />
 
-          {/* Museum Footer */}
-          <Footer />
+            {/* Museum Footer */}
+            <Footer />
+          </CategoryProvider>
         </ThemeProvider>
       </body>
     </html>

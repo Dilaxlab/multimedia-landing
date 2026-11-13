@@ -1,83 +1,142 @@
 'use client';
 
-import TaxonomyModal from '@/components/common/TaxonomyModal';
+import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { useTheme } from '@/components/common/ThemeProvider';
-import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
+import { useCategory } from '@/context/CategoryContext';
 import {
-  ArrowRight,
+  MOCK_HISTORICAL_ASSETS,
+  OFFICIAL_18_CATEGORIES,
+  CategoryMeta,
+  VIRTUAL_TOUR_MUSEUM_URL,
+} from '@/lib/constants';
+import { getCategoryBySlug } from '@/data/taxonomy';
+import {
+  Home,
+  Layers,
   BookOpen,
   Boxes,
-  ChevronDown,
-  Headphones,
-  Home,
-  Landmark,
-  Layers,
-  Lightbulb,
-  Moon,
+  Film,
+  FileText,
   Search,
+  Glasses,
   Sun,
+  Moon,
+  ChevronDown,
   X,
+  ArrowRight,
+  ArrowUpRight,
+  Landmark,
+  Sparkles,
+  TrendingUp,
 } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
-
-type TabName = 'Home' | 'Inventions' | '3D Gallery' | 'Stories' | 'Disciplines';
 
 interface NavbarProps {
   onSearchChange?: (val: string) => void;
   onOpenTaxonomy?: () => void;
 }
 
-export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) {
-  const router = useRouter();
-  const { theme, toggleTheme } = useTheme();
-  const [activeTab, setActiveTab] = useState<TabName>('Home');
-  const [isAudioTourActive, setIsAudioTourActive] = useState<boolean>(false);
-  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [isTaxonomyOpen, setIsTaxonomyOpen] = useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+type NavItem = {
+  id: string;
+  icon: React.ReactNode;
+  label: string;
+  tooltip: string;
+  href?: string;
+};
 
-  // Language Dropdown States
+export default function Navbar({ onSearchChange }: NavbarProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
+  const { activeCategoryMeta } = useCategory();
+
+  const isHome = pathname === '/';
+  const isTheme = pathname.startsWith('/themes/');
+  const isCategorySlugRoute = pathname.startsWith('/categories/');
+  const isCategory = isCategorySlugRoute || pathname.startsWith('/category/');
+  const isAsset = pathname.startsWith('/inventions/');
+
+  const categorySlug = isCategorySlugRoute
+    ? pathname.split('/categories/')[1]?.split('/')[0]?.split('?')[0]
+    : isCategory
+      ? pathname.split('/category/')[1]?.split('/')[0]?.split('?')[0]?.toUpperCase()
+      : null;
+
+  const taxonomyMatch = isCategorySlugRoute && categorySlug ? getCategoryBySlug(categorySlug) : undefined;
+  const themeBackHref = taxonomyMatch ? `/themes/${taxonomyMatch.theme.slug}` : '/#themes';
+
+  const currentCategoryMeta: CategoryMeta | undefined =
+    !isCategorySlugRoute && categorySlug
+      ? OFFICIAL_18_CATEGORIES.find((c) => c.key === categorySlug) || activeCategoryMeta
+      : activeCategoryMeta;
+
+  const assetId = isAsset ? pathname.split('/inventions/')[1]?.split('?')[0]?.split('#')[0] : null;
+  const currentAsset = assetId
+    ? MOCK_HISTORICAL_ASSETS.find((a) => a.id.toLowerCase() === assetId.toLowerCase())
+    : null;
+  const assetCategoryMeta = currentAsset
+    ? OFFICIAL_18_CATEGORIES.find((c) => c.key === currentAsset.category)
+    : currentCategoryMeta;
+
+  const [activeSection, setActiveSection] = useState<string>('hero');
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentLang, setCurrentLang] = useState<string>('EN');
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
 
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
   const langDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-spy: dynamically reflect active section based on scroll position
+  const languages = ['EN', 'ES', 'FR', 'DE', 'TA'];
+
+  // Scroll-spy
   useEffect(() => {
+    let sectionIds: string[] = [];
+    if (isHome) sectionIds = ['hero', 'whats-inside', 'themes', 'trending', 'virtual-portal'];
+    else if (isTheme) sectionIds = ['overview', 'categories', 'highlights'];
+    else if (isCategory) sectionIds = ['assets', 'story', 'book', '3d', 'videos'];
+    else if (isAsset) sectionIds = ['story', 'book', '3d', 'video'];
+    if (sectionIds.length === 0) return;
+
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 180;
-
-      const sections: { id: string; tab: TabName }[] = [
-        { id: 'hero', tab: 'Home' },
-        { id: 'collection', tab: 'Inventions' },
-        { id: 'gallery3d', tab: '3D Gallery' },
-        { id: 'videos', tab: 'Stories' },
-        { id: 'explore', tab: 'Disciplines' },
-      ];
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i].id);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPos >= top) {
-            setActiveTab(sections[i].tab);
-            return;
-          }
+      const scrollPos = window.scrollY + 200;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && scrollPos >= el.offsetTop) {
+          setActiveSection(sectionIds[i]);
+          return;
         }
       }
-      setActiveTab('Home');
+      setActiveSection(sectionIds[0]);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHome, isTheme, isCategory, isAsset, pathname]);
+
+  // Scrolled shrink
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // ⌘K / Ctrl+K and ESC Keyboard Shortcuts
+  const scrollToSection = (id: string) => {
+    if ((isHome && id === 'hero') || ((isCategory || isTheme) && id === 'overview')) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActiveSection(id);
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(id);
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
@@ -85,15 +144,13 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
         setIsSearchOpen((prev) => !prev);
       } else if (e.key === 'Escape') {
         setIsSearchOpen(false);
-        setIsTaxonomyOpen(false);
-        setIsLangDropdownOpen(false); // Close lang dropdown on ESC
+        setIsLangDropdownOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Click outside to close language dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
@@ -104,99 +161,9 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Focus search input when modal opens
   useEffect(() => {
-    if (isSearchOpen) {
-      setTimeout(() => {
-        searchInputRef.current?.focus();
-      }, 50);
-    }
+    if (isSearchOpen) setTimeout(() => searchInputRef.current?.focus(), 50);
   }, [isSearchOpen]);
-
-  // Audio Tour chime playback
-  const toggleAudioTour = () => {
-    const nextState = !isAudioTourActive;
-    setIsAudioTourActive(nextState);
-
-    try {
-      if (!audioContextRef.current && typeof window !== 'undefined') {
-        const AudioCtx =
-          window.AudioContext ||
-          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        if (AudioCtx) audioContextRef.current = new AudioCtx();
-      }
-      if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
-        audioContextRef.current.resume();
-      }
-
-      if (audioContextRef.current && nextState) {
-        const ctx = audioContextRef.current;
-        const now = ctx.currentTime;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(440, now); // A4
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.3); // A5
-        gain.gain.setValueAtTime(0.08, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.35);
-      }
-    } catch {
-      // AudioContext fallback handled silently
-    }
-  };
-
-  const navItems: {
-    name: TabName;
-    label: string;
-    href: string;
-    icon: React.ReactNode;
-    tooltip: string;
-    action?: () => void;
-  }[] = [
-    {
-      name: 'Home',
-      label: 'Home',
-      href: '/#hero',
-      icon: <Home className="w-4 h-4 shrink-0 transition-colors" />,
-      tooltip: 'Archive Entrance',
-    },
-    {
-      name: 'Inventions',
-      label: 'Inventions',
-      href: '/#collection',
-      icon: <Lightbulb className="w-4 h-4 shrink-0 transition-colors" />,
-      tooltip: 'Historic Innovations',
-    },
-    {
-      name: '3D Gallery',
-      label: '3D Gallery',
-      href: '/#gallery3d',
-      icon: <Boxes className="w-4 h-4 shrink-0" />,
-      tooltip: 'Photogrammetry Models',
-    },
-    {
-      name: 'Stories',
-      label: 'Stories',
-      href: '/#videos',
-      icon: <BookOpen className="w-4 h-4 shrink-0 transition-colors" />,
-      tooltip: 'Archival Narratives',
-    },
-    {
-      name: 'Disciplines',
-      label: 'Disciplines',
-      href: '/#collection',
-      icon: <Layers className="w-4 h-4 shrink-0 transition-colors" />,
-      tooltip: 'Fields of Study',
-      action: () => {
-        if (onOpenTaxonomy) onOpenTaxonomy();
-        else setIsTaxonomyOpen(true);
-      },
-    },
-  ];
 
   const filteredAssets = searchQuery.trim()
     ? MOCK_HISTORICAL_ASSETS.filter(
@@ -207,73 +174,221 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
       )
     : MOCK_HISTORICAL_ASSETS.slice(0, 4);
 
-  const languages = ['EN', 'ES', 'FR', 'DE', 'TA'];
+  // ===== Build the nav list per page =====
+  const navItems: NavItem[] = isHome
+    ? [
+        { id: 'hero', icon: <Home className="w-3.5 h-3.5" />, label: 'Home', tooltip: 'Entrance' },
+        {
+          id: 'whats-inside',
+          icon: <Sparkles className="w-3.5 h-3.5" />,
+          label: "What's Inside",
+          tooltip: 'Inside the Archive',
+        },
+        {
+          id: 'themes',
+          icon: <Layers className="w-3.5 h-3.5" />,
+          label: 'Themes',
+          tooltip: '10 Theme Families',
+        },
+        {
+          id: 'trending',
+          icon: <TrendingUp className="w-3.5 h-3.5" />,
+          label: 'Trending',
+          tooltip: 'Popular',
+        },
+      ]
+    : isTheme
+      ? [
+          {
+            id: 'home',
+            icon: <Home className="w-3.5 h-3.5" />,
+            label: 'Home',
+            tooltip: 'Return',
+            href: '/',
+          },
+          {
+            id: 'overview',
+            icon: <Sparkles className="w-3.5 h-3.5" />,
+            label: 'Overview',
+            tooltip: 'Theme Overview',
+          },
+          {
+            id: 'categories',
+            icon: <Layers className="w-3.5 h-3.5" />,
+            label: 'Categories',
+            tooltip: '5 Categories',
+          },
+          {
+            id: 'highlights',
+            icon: <TrendingUp className="w-3.5 h-3.5" />,
+            label: 'Highlights',
+            tooltip: 'Featured Artifacts',
+          },
+        ]
+      : isCategory
+        ? [
+            {
+              id: 'home',
+              icon: <Home className="w-3.5 h-3.5" />,
+              label: 'Theme',
+              tooltip: 'Parent Theme',
+              href: themeBackHref,
+            },
+            {
+              id: 'assets',
+              icon: <Layers className="w-3.5 h-3.5" />,
+            label: 'Assets',
+            tooltip: 'Assets',
+          },
+          {
+            id: 'story',
+            icon: <BookOpen className="w-3.5 h-3.5" />,
+            label: 'Story',
+            tooltip: 'Story',
+          },
+          {
+            id: 'book',
+            icon: <FileText className="w-3.5 h-3.5" />,
+            label: 'Books',
+            tooltip: 'Books',
+          },
+          {
+            id: '3d',
+            icon: <Boxes className="w-3.5 h-3.5" />,
+            label: '3D Vault',
+            tooltip: '3D Vault',
+          },
+          {
+            id: 'videos',
+            icon: <Film className="w-3.5 h-3.5" />,
+            label: 'Videos',
+            tooltip: 'Videos',
+          },
+        ]
+      : [
+          {
+            id: 'home',
+            icon: <Home className="w-3.5 h-3.5" />,
+            label: 'Home',
+            tooltip: 'Return',
+            href: '/',
+          },
+          {
+            id: 'story',
+            icon: <BookOpen className="w-3.5 h-3.5" />,
+            label: 'Story',
+            tooltip: 'Story',
+          },
+          {
+            id: 'book',
+            icon: <FileText className="w-3.5 h-3.5" />,
+            label: 'Books',
+            tooltip: 'Books',
+          },
+          {
+            id: '3d',
+            icon: <Boxes className="w-3.5 h-3.5" />,
+            label: '3D Model',
+            tooltip: '3D Model',
+          },
+          {
+            id: 'video',
+            icon: <Film className="w-3.5 h-3.5" />,
+            label: 'Video Reel',
+            tooltip: 'Video Reel',
+          },
+        ];
 
   return (
     <>
-      {/* ==================== ICON-FORWARD NAVBAR ==================== */}
-      <header className="sticky top-0 z-50 w-full px-3 py-3 md:px-8">
-        <div className="max-w-6xl mx-auto backdrop-blur-xl dark:bg-[#0e0e13]/85 bg-[#faf8f4]/95 dark:border-white/10 border-[#d8cfbe]/80 hover:border-amber-500/30 rounded-2xl shadow-xl dark:shadow-2xl transition-all duration-300">
-          <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 gap-2">
-            {/* 1. COMPACT LOGO WITH CLASSICAL TEMPLE CREST */}
+      <header
+        className={`sticky top-0 z-50 w-full transition-all duration-300 backdrop-blur-xl ${
+          scrolled
+            ? 'dark:bg-[#0a0a0e]/95 bg-[#faf8f4]/95 border-b dark:border-white/10 border-[#d8cfbe]/80 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.6)]'
+            : 'dark:bg-[#0c0d12]/85 bg-[#faf8f4]/90 border-b dark:border-white/5 border-[#d8cfbe]/40'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div
+            className={`flex items-center justify-between gap-2 sm:gap-4 transition-all duration-300 ${scrolled ? 'py-2' : 'py-3'}`}
+          >
+            {/* ============ LEFT: BRAND ============ */}
             <Link
               href="/"
-              className="flex items-center gap-2 sm:gap-2.5 group select-none flex-shrink-0"
+              className="flex items-center gap-2.5 group select-none shrink-0"
+              title="Heritage Archive Digital Museum"
             >
-              <div className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-amber-500/25 to-amber-600/10 border border-amber-500/40 group-hover:border-amber-400 group-hover:shadow-glow-gold transition-all duration-300">
-                <Landmark className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+              <div className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-amber-500/25 to-amber-600/10 border border-amber-500/40 group-hover:border-amber-400 group-hover:shadow-glow-gold group-hover:rotate-3 transition-all duration-400">
+                <Landmark className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform duration-300" />
                 <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
                 <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-400" />
               </div>
-              <div className="flex flex-col leading-tight">
-                <span className="font-serif font-bold text-[10px] sm:text-[12px] tracking-[0.14em] sm:tracking-[0.2em] dark:text-white text-[#1a1918] group-hover:text-primary transition-colors uppercase">
+              <div className="hidden lg:flex flex-col leading-tight">
+                <span className="font-serif font-bold text-[11px] tracking-[0.16em] dark:text-white text-[#1a1918] group-hover:text-primary transition-colors uppercase">
                   Heritage Archive
                 </span>
-                <span className="text-[7px] sm:text-[8px] tracking-[0.18em] sm:tracking-[0.25em] uppercase text-primary font-medium font-sans">
+                <span className="text-[7.5px] tracking-[0.22em] uppercase text-primary font-medium font-sans">
                   Digital Museum
                 </span>
               </div>
             </Link>
 
-            {/* 2. ICON-FIRST NAV PILL — YOUR SECTIONS */}
-            <nav className="hidden md:flex items-center p-1 dark:bg-black/40 bg-surface-container-high/60 dark:border-white/[0.08] border-outline-variant/30 rounded-xl backdrop-blur-md">
-              <ul className="flex items-center gap-0.5">
+            {/* ============ CENTER: SEAMLESS PILL NAV ============ */}
+            <nav className="hidden md:flex items-center justify-center">
+              <ul className="flex items-center gap-0.5 p-1 rounded-full dark:bg-black/50 bg-black/[0.04] dark:border dark:border-white/[0.06] border border-black/[0.04] backdrop-blur-md">
                 {navItems.map((item) => {
-                  const isActive = activeTab === item.name;
-                  return (
-                    <li key={item.name} className="relative has-tooltip">
-                      <Link
-                        href={item.href}
-                        onClick={(e) => {
-                          setActiveTab(item.name);
-                          if (item.action) {
-                            item.action();
-                          }
-                        }}
-                        className={`nav-item nav-icon-item group flex items-center px-3 py-2 rounded-lg transition-all ${
+                  const isActive = activeSection === item.id;
+                  const content = (
+                    <span
+                      className={`nav-item group relative flex items-center px-2.5 lg:px-3 py-2 rounded-full transition-all duration-300 cursor-pointer min-h-[36px] overflow-hidden ${
+                        isActive
+                          ? 'active-tab text-neutral-950 font-bold'
+                          : 'dark:text-neutral-400 text-[#5c5549] hover:text-[#1a1918] dark:hover:text-white'
+                      }`}
+                    >
+                      {/* Active gold fill */}
+                      {isActive && (
+                        <span className="absolute inset-0 bg-gradient-to-br from-amber-400 via-amber-500 to-yellow-500 rounded-full shadow-[0_4px_14px_-4px_rgba(251,191,36,0.65),inset_0_1px_0_rgba(255,255,255,0.4)]" />
+                      )}
+                      {/* Hover sweep (inactive) */}
+                      {!isActive && (
+                        <span className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400/0 via-amber-400/10 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      )}
+
+                      {/* Icon */}
+                      <span
+                        className={`relative z-10 transition-transform duration-300 ease-out ${
                           isActive
-                            ? 'active-tab bg-gradient-to-r from-amber-500 to-yellow-500 text-neutral-950 font-semibold shadow-glow-pill'
-                            : 'dark:text-neutral-400 text-[#5c5549] dark:hover:text-white hover:text-[#1a1918] dark:hover:bg-white/[0.06] hover:bg-black/[0.04]'
+                            ? 'text-neutral-900 scale-110'
+                            : 'dark:text-neutral-400 text-[#5c5549] group-hover:text-primary group-hover:scale-110 group-hover:-rotate-3'
                         }`}
                       >
-                        <span
-                          className={
-                            isActive
-                              ? 'text-black stroke-[2.2] shrink-0'
-                              : 'dark:text-neutral-400 text-[#5c5549] group-hover:text-primary transition-colors shrink-0'
-                          }
-                        >
-                          {item.icon}
-                        </span>
-                        <span
-                          className={`nav-label text-[10px] tracking-wide ${
-                            isActive ? 'font-bold text-neutral-950' : 'font-medium'
-                          }`}
-                        >
-                          {item.label}
-                        </span>
-                      </Link>
-                      <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
+                        {item.icon}
+                      </span>
+
+                      {/* Label — reveal on hover/active */}
+                      <span
+                        className={`nav-label relative z-10 text-[10px] tracking-wide whitespace-nowrap overflow-hidden ${
+                          isActive ? 'font-bold text-neutral-950' : 'font-medium'
+                        }`}
+                      >
+                        {item.label}
+                      </span>
+                    </span>
+                  );
+
+                  return (
+                    <li key={item.id} className="relative has-tooltip">
+                      {item.href ? (
+                        <Link href={item.href} className="contents">
+                          {content}
+                        </Link>
+                      ) : (
+                        <button onClick={() => scrollToSection(item.id)} className="contents">
+                          {content}
+                        </button>
+                      )}
+                      <div className="tooltip absolute -bottom-9 left-1/2 -translate-x-1/2 pointer-events-none px-2.5 py-1 rounded-md bg-[#0e0e13]/95 dark:bg-white text-white dark:text-neutral-900 border border-amber-400/30 text-[10px] font-mono shadow-lg whitespace-nowrap z-50 backdrop-blur-md">
                         {item.tooltip}
                       </div>
                     </li>
@@ -282,234 +397,205 @@ export default function Navbar({ onSearchChange, onOpenTaxonomy }: NavbarProps) 
               </ul>
             </nav>
 
-            {/* 3. ACTIONS */}
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              {/* Search */}
-              <div className="relative has-tooltip">
-                <button
-                  onClick={() => setIsSearchOpen(true)}
-                  aria-label="Search"
-                  className="p-2 rounded-xl dark:bg-white/[0.04] dark:hover:bg-white/[0.08] bg-surface-container hover:bg-surface-container-high dark:border-white/10 border-outline-variant/30 dark:text-neutral-300 text-on-surface hover:text-primary transition-all cursor-pointer"
-                >
-                  <Search className="w-4 h-4" />
-                </button>
-                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
-                  Search ⌘K
-                </div>
-              </div>
-
-              {/* Audio Tour */}
-              <div className="relative has-tooltip hidden sm:block">
-                <button
-                  onClick={toggleAudioTour}
-                  aria-label="Audio Commentary"
-                  className={`nav-icon-item flex items-center gap-1.5 px-2.5 py-2 rounded-xl border transition-all cursor-pointer ${
-                    isAudioTourActive
-                      ? 'border-amber-400 bg-amber-500/10 text-amber-400'
-                      : 'dark:bg-white/[0.04] dark:hover:bg-white/[0.08] bg-surface-container hover:bg-surface-container-high dark:border-white/10 border-outline-variant/30 text-on-surface-variant hover:text-primary'
-                  }`}
-                >
-                  <Headphones className="w-4 h-4 text-primary shrink-0" />
-                  {isAudioTourActive ? (
-                    <div className="flex items-center gap-0.5 h-3">
-                      <span className="sound-bar w-0.5 bg-amber-400 rounded-full inline-block" />
-                      <span className="sound-bar w-0.5 bg-amber-400 rounded-full inline-block" />
-                      <span className="sound-bar w-0.5 bg-amber-400 rounded-full inline-block" />
-                    </div>
-                  ) : null}
-                  <span
-                    className={`nav-label text-[10px] ${
-                      isAudioTourActive
-                        ? 'font-semibold text-primary'
-                        : 'font-medium text-on-surface'
-                    }`}
+            {/* ============ RIGHT: ACTION CLUSTER ============ */}
+            <div className="flex items-center gap-2 shrink-0">
+              {/* GROUP 1: Search + Theme + Language in one capsule */}
+              <div className="flex items-center gap-0.5 p-1 rounded-full dark:bg-black/50 bg-black/[0.04] dark:border dark:border-white/[0.06] border border-black/[0.04] backdrop-blur-md">
+                {/* Search */}
+                <div className="relative has-tooltip">
+                  <button
+                    onClick={() => setIsSearchOpen(true)}
+                    aria-label="Global Search"
+                    className="group relative p-2 rounded-full dark:text-neutral-300 text-[#5c5549] hover:text-primary transition-all cursor-pointer flex items-center justify-center w-9 h-9 overflow-hidden hover:bg-amber-500/10"
                   >
-                    {isAudioTourActive ? 'On' : 'Tour'}
-                  </span>
-                </button>
-                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
-                  {isAudioTourActive ? 'Voiceover Active' : 'Curator Voiceover'}
-                </div>
-              </div>
-
-              {/* Theme Toggle Button (Light & Dark Mode Switcher) */}
-              <div className="relative has-tooltip">
-                <button
-                  onClick={toggleTheme}
-                  aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
-                  className="p-2 rounded-xl dark:bg-white/[0.04] dark:hover:bg-white/[0.08] bg-surface-container hover:bg-surface-container-high dark:border-white/10 border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all cursor-pointer flex items-center justify-center group"
-                >
-                  {theme === 'dark' ? (
-                    <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-300" />
-                  ) : (
-                    <Moon className="w-4 h-4 text-amber-700 group-hover:-rotate-12 transition-transform duration-300" />
-                  )}
-                </button>
-                <div className="tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant/30 text-[10px] text-on-surface font-mono shadow-lg whitespace-nowrap z-50">
-                  {theme === 'dark' ? 'Parchment Light' : 'Nocturnal Dark'}
-                </div>
-              </div>
-
-              <div className="hidden sm:block h-5 w-px dark:bg-white/10 bg-outline-variant/40 mx-0.5" />
-
-              {/* Language Selector Dropdown (Replaced Explore Archives) */}
-              <div className="relative" ref={langDropdownRef}>
-                <button
-                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                  className="flex items-center gap-1 px-2 sm:px-3 py-2 rounded-xl dark:hover:bg-white/[0.06] hover:bg-black/[0.05] text-on-surface-variant hover:text-on-surface transition-colors text-[11px] sm:text-xs font-semibold tracking-wide cursor-pointer select-none"
-                >
-                  <span>{currentLang}</span>
-                  <ChevronDown
-                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
-
-                {/* Dropdown Menu */}
-                {isLangDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-24 bg-surface-container border border-outline-variant/30 rounded-xl shadow-xl overflow-hidden py-1 z-50 animate-fadeIn">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang}
-                        onClick={() => {
-                          setCurrentLang(lang);
-                          setIsLangDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2 text-xs font-mono transition-colors ${
-                          currentLang === lang
-                            ? 'bg-primary/10 text-primary font-bold'
-                            : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
-                        }`}
-                      >
-                        {lang}
-                      </button>
-                    ))}
+                    <Search className="w-4 h-4 relative z-10 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+                  </button>
+                  <div className="tooltip absolute -bottom-9 left-1/2 -translate-x-1/2 pointer-events-none px-2.5 py-1 rounded-md bg-[#0e0e13]/95 dark:bg-white text-white dark:text-neutral-900 border border-amber-400/30 text-[10px] font-mono shadow-lg whitespace-nowrap z-50 backdrop-blur-md">
+                    Search ⌘K
                   </div>
-                )}
+                </div>
+
+                {/* Theme */}
+                <div className="relative has-tooltip">
+                  <button
+                    onClick={toggleTheme}
+                    aria-label="Toggle Theme"
+                    className="group relative p-2 rounded-full dark:text-neutral-300 text-[#5c5549] hover:text-primary transition-all cursor-pointer flex items-center justify-center w-9 h-9 overflow-hidden hover:bg-amber-500/10"
+                  >
+                    {theme === 'dark' ? (
+                      <Sun className="w-4 h-4 text-amber-400 relative z-10 group-hover:rotate-180 transition-transform duration-700" />
+                    ) : (
+                      <Moon className="w-4 h-4 text-[#5c5549] relative z-10 group-hover:-rotate-12 transition-transform duration-500" />
+                    )}
+                  </button>
+                  <div className="tooltip absolute -bottom-9 left-1/2 -translate-x-1/2 pointer-events-none px-2.5 py-1 rounded-md bg-[#0e0e13]/95 dark:bg-white text-white dark:text-neutral-900 border border-amber-400/30 text-[10px] font-mono shadow-lg whitespace-nowrap z-50 backdrop-blur-md">
+                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <span className="w-px h-5 dark:bg-white/10 bg-black/10 mx-0.5" />
+
+                {/* Language */}
+                <div className="relative" ref={langDropdownRef}>
+                  <button
+                    onClick={() => setIsLangDropdownOpen((prev) => !prev)}
+                    className="group flex items-center gap-0.5 px-2 h-9 rounded-full dark:text-neutral-300 text-[#5c5549] hover:text-primary transition-all cursor-pointer text-[10px] font-mono font-semibold tracking-wider hover:bg-amber-500/10"
+                    aria-expanded={isLangDropdownOpen}
+                    aria-haspopup="true"
+                  >
+                    <span>{currentLang}</span>
+                    <ChevronDown
+                      className={`w-3 h-3 transition-transform duration-300 ${
+                        isLangDropdownOpen
+                          ? 'rotate-180 text-primary'
+                          : 'group-hover:translate-y-0.5'
+                      }`}
+                    />
+                  </button>
+
+                  {isLangDropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-28 rounded-xl dark:bg-[#121217] bg-white border border-amber-400/30 shadow-2xl py-1 z-50 animate-fadeIn">
+                      <div className="px-2.5 py-1 text-[9px] font-mono dark:text-neutral-500 text-neutral-400 uppercase tracking-wider border-b dark:border-white/10 border-black/5">
+                        Language
+                      </div>
+                      {languages.map((lang) => (
+                        <button
+                          key={lang}
+                          onClick={() => {
+                            setCurrentLang(lang);
+                            setIsLangDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-1.5 text-xs font-mono flex items-center justify-between hover:bg-primary/10 hover:pl-4 transition-all duration-200 ${
+                            currentLang === lang
+                              ? 'text-primary font-bold bg-primary/5'
+                              : 'dark:text-neutral-300 text-neutral-700'
+                          }`}
+                        >
+                          <span>{lang}</span>
+                          {currentLang === lang && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
+
+              {/* GROUP 2: VIRTUAL TOUR — compact beacon */}
+              <a
+                href={VIRTUAL_TOUR_MUSEUM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Launch 3D Virtual Tour Museum"
+                className="group relative flex items-center gap-2 pl-2 pr-3 h-9 rounded-full bg-gradient-to-r from-amber-500 to-amber-400 text-neutral-950 font-bold text-[11px] tracking-wide transition-all duration-300 hover:shadow-[0_0_24px_-4px_rgba(251,191,36,0.7)] hover:scale-[1.02] active:scale-95 overflow-hidden shrink-0"
+              >
+                {/* Rotating halo */}
+                <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-400/0 via-amber-400/40 to-amber-400/0 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 pointer-events-none" />
+                {/* Shine */}
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
+
+                <span className="relative z-10 flex items-center justify-center w-6 h-6 rounded-full bg-neutral-950/90">
+                  <Glasses className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" />
+                </span>
+                <span className="relative z-10 hidden sm:inline">Virtual Tour</span>
+                <ArrowUpRight className="w-3 h-3 relative z-10 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+              </a>
             </div>
           </div>
         </div>
       </header>
 
-      {/* QUICK ARCHIVE SEARCH MODAL (⌘K) */}
+      {/* ============ SEARCH MODAL — refined ============ */}
       {isSearchOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-start sm:items-center justify-center p-3 sm:p-4 pt-16 sm:pt-0 animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 bg-black/60 backdrop-blur-md animate-fadeIn"
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsSearchOpen(false);
           }}
         >
-          <div className="w-full max-w-md bg-surface-container-low dark:bg-[#121217] border border-outline-variant/40 dark:border-amber-500/30 rounded-2xl p-4 sm:p-5 shadow-2xl flex flex-col gap-3 sm:gap-4 max-h-[85vh] overflow-hidden">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex items-center gap-2 text-primary text-sm font-semibold">
-                <Search className="w-4 h-4" />
-                <span className="font-serif">Quick Archive Search</span>
-              </div>
+          <div className="w-full max-w-2xl rounded-2xl dark:bg-[#0e0e13] bg-white border dark:border-white/10 border-black/5 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] overflow-hidden animate-modalIn">
+            {/* Input row */}
+            <div className="flex items-center px-5 py-4 border-b dark:border-white/[0.08] border-black/5 gap-3">
+              <Search className="w-5 h-5 text-primary shrink-0" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  if (onSearchChange) onSearchChange(e.target.value);
+                }}
+                placeholder="Search inventions, inventors, patents…"
+                className="w-full bg-transparent dark:text-white text-neutral-900 placeholder:dark:text-neutral-500 placeholder:text-neutral-400 font-mono text-sm focus:outline-none"
+              />
+              <kbd className="hidden sm:flex items-center px-1.5 py-0.5 rounded border dark:border-white/10 border-black/10 text-[10px] font-mono dark:text-neutral-500 text-neutral-500">
+                ESC
+              </kbd>
               <button
                 onClick={() => setIsSearchOpen(false)}
-                className="w-9 h-9 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors shrink-0 cursor-pointer"
-                aria-label="Close search modal"
+                className="p-1.5 rounded-lg dark:text-neutral-500 text-neutral-400 hover:text-primary hover:bg-primary/10 transition-all duration-300 cursor-pointer"
+                aria-label="Close Search"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Search Input Box */}
-            <div className="relative">
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder="Type artifact name or era..."
-                value={searchQuery}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  setSearchQuery(val);
-                  onSearchChange?.(val);
-                }}
-                className="w-full bg-surface-container dark:bg-black/60 border border-outline-variant/40 dark:border-white/15 rounded-xl px-4 py-2.5 text-sm text-on-surface dark:text-neutral-100 placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary font-mono transition"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    onSearchChange?.('');
-                  }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary text-xs font-mono"
-                >
-                  CLEAR
-                </button>
-              )}
-            </div>
+            {/* Results */}
+            <div className="max-h-[55vh] overflow-y-auto p-2">
+              <div className="px-3 py-2 flex items-center justify-between">
+                <span className="text-[10px] font-mono uppercase tracking-[0.15em] dark:text-neutral-500 text-neutral-400">
+                  {searchQuery ? `${filteredAssets.length} results` : 'Featured'}
+                </span>
+                <span className="text-[10px] font-mono dark:text-neutral-600 text-neutral-400">
+                  ↵ to open
+                </span>
+              </div>
 
-            {/* Quick Result List */}
-            <div className="flex flex-col gap-1.5 max-h-60 overflow-y-auto">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-on-surface-variant px-1">
-                {searchQuery
-                  ? `Matching Inventions (${filteredAssets.length})`
-                  : 'Featured Inventions'}
-              </span>
-              {filteredAssets.length === 0 ? (
-                <div className="py-6 text-center text-xs font-mono text-on-surface-variant">
-                  No artifacts found matching &ldquo;{searchQuery}&rdquo;
-                </div>
+              {filteredAssets.length > 0 ? (
+                <ul className="space-y-1">
+                  {filteredAssets.map((asset) => (
+                    <li key={asset.id}>
+                      <button
+                        onClick={() => {
+                          setIsSearchOpen(false);
+                          if (typeof window !== 'undefined')
+                            window.scrollTo({ top: 0, behavior: 'instant' });
+                          router.push(`/inventions/${asset.id}`);
+                        }}
+                        className="group w-full text-left flex items-center gap-3 p-3 rounded-xl transition-all duration-200 dark:hover:bg-white/[0.05] hover:bg-black/[0.03] border border-transparent hover:border-amber-400/20"
+                      >
+                        <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-600/5 border border-amber-500/20 shrink-0">
+                          <FileText className="w-4 h-4 text-amber-500" />
+                        </span>
+                        <span className="flex-1 min-w-0">
+                          <span className="block text-sm font-serif font-semibold dark:text-neutral-100 text-neutral-900 group-hover:text-primary transition-colors truncate">
+                            {asset.title}
+                          </span>
+                          <span className="block text-[11px] font-mono dark:text-neutral-500 text-neutral-500 mt-0.5 truncate">
+                            {asset.inventor} · {asset.patent}
+                          </span>
+                        </span>
+                        <ArrowRight className="w-4 h-4 dark:text-neutral-600 text-neutral-400 group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0" />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               ) : (
-                filteredAssets.map((asset) => (
-                  <button
-                    key={asset.id}
-                    onClick={() => {
-                      setIsSearchOpen(false);
-                      router.push(`/inventions/${asset.id}`);
-                    }}
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-surface-container/60 dark:bg-white/[0.02] hover:bg-surface-container-high dark:hover:bg-white/[0.08] border border-outline-variant/20 dark:border-white/5 hover:border-primary/40 text-left transition group cursor-pointer"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg overflow-hidden bg-surface-container-highest dark:bg-neutral-900 shrink-0">
-                        <img
-                          src={asset.image}
-                          alt={asset.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <span className="text-xs font-medium text-on-surface dark:text-neutral-200 group-hover:text-primary transition-colors block">
-                          {asset.title}
-                        </span>
-                        <span className="text-[10px] font-mono text-on-surface-variant block">
-                          {asset.inventor} • {asset.patent}
-                        </span>
-                      </div>
-                    </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-on-surface-variant group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
-                  </button>
-                ))
+                <div className="py-14 text-center">
+                  <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Search className="w-5 h-5 text-primary/60" />
+                  </div>
+                  <p className="text-xs font-mono dark:text-neutral-500 text-neutral-400">
+                    No matches for &ldquo;{searchQuery}&rdquo;
+                  </p>
+                </div>
               )}
-            </div>
-
-            {/* Modal Footer Key Hint */}
-            <div className="pt-2 border-t border-outline-variant/20 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-on-surface-variant">
             </div>
           </div>
         </div>
       )}
-
-      {/* 64 Disciplines Taxonomy Modal */}
-      <TaxonomyModal
-        isOpen={isTaxonomyOpen}
-        onClose={() => setIsTaxonomyOpen(false)}
-        onSelectCategory={(category) => {
-          setIsTaxonomyOpen(false);
-          const el = document.getElementById('collection');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-          const keyword = category
-            ? category.toLowerCase().startsWith('test taxonomy')
-              ? 'Test'
-              : category.split(' ')[0]
-            : '';
-          window.dispatchEvent(new CustomEvent('heritage:filterCategory', { detail: keyword }));
-          if (onSearchChange) onSearchChange(keyword);
-        }}
-      />
     </>
   );
 }
