@@ -1,128 +1,125 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Landmark } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { THEME_FAMILIES } from '@/data/taxonomy';
+import { VIRTUAL_TOUR_MUSEUM_URL } from '@/lib/constants';
 
 export default function Footer() {
-  const [utcTime, setUtcTime] = useState<string>('00:00');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const hrs = String(now.getUTCHours()).padStart(2, '0');
-      const mins = String(now.getUTCMinutes()).padStart(2, '0');
-      setUtcTime(`${hrs}:${mins}`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 10000);
-    return () => clearInterval(interval);
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.4)] border-t border-primary/20">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-
-          {/* Col 1: Brand & Mission */}
-          <div className="flex flex-col gap-space-sm">
-            <div className="flex items-center gap-space-sm mb-space-xs">
-              <div className="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center">
-                <Landmark className="w-4 h-4 text-primary" />
-              </div>
-              <span className="font-headline-sm text-headline-sm uppercase text-on-surface">Heritage Archive</span>
-            </div>
-            <p className="font-body-md text-body-md text-on-surface-variant max-w-sm">
-              Nocturnal digital sanctuary dedicated to the forensic preservation, 3D photogrammetry, and cinematic curation of global cultural antiquities and technological inventions.
+    <footer className="w-full border-t border-outline-variant/40 dark:border-white/10 bg-surface-container-low/70 dark:bg-[#08080a] pt-12 sm:pt-14 pb-[calc(5.25rem+env(safe-area-inset-bottom))] md:pb-12 px-4 sm:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-outline-variant/30 dark:border-white/10">
+          {/* Archive Overview */}
+          <div className="lg:col-span-4 space-y-3">
+            <Link
+              href="/"
+              className="font-serif text-xl font-semibold tracking-tight text-on-surface dark:text-white inline-block"
+            >
+              Heritage Archive
+            </Link>
+            <p className="text-sm text-on-surface-variant dark:text-neutral-400 leading-relaxed max-w-sm">
+              A structured museum reference covering 90 historical inventions across 10 themes and 50 categories. Every record includes Video, 3D Model, Book, 2D Plate, and Story formats.
             </p>
-            <div className="flex items-center gap-space-xs mt-space-sm">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="font-label-sm text-label-sm text-primary uppercase">Vault Network Synchronized</span>
-            </div>
           </div>
 
-          {/* Col 2: Collections */}
-          <div className="flex flex-col gap-space-sm">
-            <span className="font-label-lg text-label-lg uppercase tracking-wider text-primary">Curatorial Collections</span>
-            <ul className="flex flex-col gap-space-xs">
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                <Link href="/#collection">Telecommunications & Acoustic Wire</Link>
+          {/* Home Page Sections */}
+          <div className="lg:col-span-2 space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-on-surface dark:text-neutral-200">
+              On This Site
+            </h3>
+            <ul className="space-y-1 text-sm text-on-surface-variant dark:text-neutral-400">
+              <li>
+                <Link href="/#whats-inside" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  5 Study Formats
+                </Link>
               </li>
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                <Link href="/#collection">Domestic Mechanical Inventions</Link>
+              <li>
+                <Link href="/#themes" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  10 Theme Directory
+                </Link>
               </li>
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                <Link href="/#collection">Wind Engines & Aquifer Pumps</Link>
+              <li>
+                <Link href="/#trending" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  Featured Inventions
+                </Link>
               </li>
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                <Link href="/#collection">Horological Gears & Astrolabes</Link>
+              <li>
+                <Link href="/#virtual-portal" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  3D Virtual Museum
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Scholarly Infrastructure */}
-          <div className="flex flex-col gap-space-sm">
-            <span className="font-label-lg text-label-lg uppercase tracking-wider text-primary">Scholarly Infrastructure</span>
-            <ul className="flex flex-col gap-space-xs">
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                IAMS Archival Protocols
-              </li>
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                Photogrammetric Point Cloud API
-              </li>
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                Institutional Access Grants
-              </li>
-              <li className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                Provenance Forensic Logs
-              </li>
+          {/* Theme Wings (5 Featured from Taxonomy) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-on-surface dark:text-neutral-200">
+              Theme Wings
+            </h3>
+            <ul className="space-y-1 text-sm text-on-surface-variant dark:text-neutral-400">
+              {THEME_FAMILIES.slice(0, 5).map((theme) => (
+                <li key={theme.slug}>
+                  <Link
+                    href={`/themes/${theme.slug}`}
+                    className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors"
+                  >
+                    {theme.number}. {theme.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 4: Preservation Controls */}
-          <div className="flex flex-col gap-space-sm">
-            <span className="font-label-lg text-label-lg uppercase tracking-wider text-primary">Preservation Controls</span>
-            <div className="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm border border-primary/15">
-              <div className="flex items-center justify-between">
-                <span className="font-label-md text-label-md uppercase text-on-surface">Nocturne Mode</span>
-                <span className="font-label-sm text-label-sm text-primary px-space-xs py-0.5 rounded bg-surface-container-high">0.5 Lux</span>
-              </div>
-              <p className="font-label-sm text-label-sm text-on-surface-variant">
-                Display calibration matched to museum vitrine anti-reflective luminescence standards.
-              </p>
-              <div className="flex items-center justify-between pt-space-xs">
-                <span className="font-label-sm text-label-sm text-on-surface-variant">Catalog Badge</span>
-                <span className="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-primary-container text-on-primary-container font-bold">IAMS-8K COMPLIANT</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md bg-surface-container-low/40 rounded-xl px-space-lg py-space-md border border-primary/10">
-          <div className="flex flex-wrap items-center gap-space-md">
-            <span className="font-label-sm text-label-sm text-on-surface-variant">
-              © 2026 Heritage Archive Consortium. All Rights Reserved.
-            </span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
-              Curatorial Ethics
-            </span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
-              Open Metadata License
-            </span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant cursor-pointer hover:text-on-surface transition-colors">
-              Security & Provenance
-            </span>
-          </div>
-          <div className="flex items-center gap-space-sm">
-            <span className="font-label-sm text-label-sm text-on-surface-variant">
-              Archival Sync: UTC {utcTime}
-            </span>
-            <div className="w-2 h-2 rounded-full bg-secondary" />
+          {/* Sample Records & External Tour */}
+          <div className="lg:col-span-3 space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-on-surface dark:text-neutral-200">
+              Sample Records
+            </h3>
+            <ul className="space-y-1 text-sm text-on-surface-variant dark:text-neutral-400">
+              <li>
+                <Link href="/inventions/HA-101" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  Early Speaking Telephone (1876)
+                </Link>
+              </li>
+              <li>
+                <Link href="/inventions/HA-102" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  Rotary Agitator Clothes Washer (1881)
+                </Link>
+              </li>
+              <li>
+                <Link href="/inventions/HA-103" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  Brush Wind Electric Turbine (1888)
+                </Link>
+              </li>
+              <li>
+                <Link href="/inventions/HA-104" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  Isochronous Pendulum Clock (1657)
+                </Link>
+              </li>
+              <li className="pt-1">
+                <a
+                  href={VIRTUAL_TOUR_MUSEUM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 py-1.5 font-medium text-[#8c5d12] dark:text-[#d4af37] hover:underline"
+                >
+                  <span>Launch 3D Museum</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
+        {/* Bottom Copyright & Honest Metadata */}
+        <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-on-surface-variant dark:text-neutral-500">
+          <p>© {currentYear} Heritage Archive. Historical invention reference collection.</p>
+          <p className="font-mono">10 Themes · 50 Categories · 90 Inventions · 5 Formats Each</p>
+        </div>
       </div>
     </footer>
   );

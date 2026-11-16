@@ -4,33 +4,26 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {
-  Box,
   RotateCw,
   Sun,
   Moon,
   Maximize2,
-  MousePointer,
-  ZoomIn,
-  Info,
   X,
   ArrowRight,
   Layers,
-  Sparkles,
-  Compass,
-  Award,
+  RotateCcw,
   Search,
   Grid2x2,
-  Check,
 } from 'lucide-react';
-import { MOCK_HISTORICAL_ASSETS, OFFICIAL_18_CATEGORIES } from '@/lib/constants';
+import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
 import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
 
 const ModelViewer3D = dynamic(() => import('@/components/viewers/ModelViewer3D'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-surface-container-lowest/80 text-on-surface-variant font-mono text-xs gap-3">
-      <div className="w-10 h-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
-      <span>INITIALIZING THREE.JS WEBGL RENDERER...</span>
+    <div className="w-full h-full flex flex-col items-center justify-center bg-neutral-950 text-neutral-300 text-xs font-mono gap-3">
+      <div className="w-7 h-7 rounded-full border-2 border-white/20 border-t-[#d4af37] animate-spin" />
+      <span>Loading interactive 3D model...</span>
     </div>
   ),
 });
@@ -43,7 +36,6 @@ interface SpatialGalleryProps {
 }
 
 export default function SpatialGallery({
-  onSelectAssetForDossier,
   selectedAssetId: externalAssetId,
   onSelectAssetId,
   category,
@@ -51,11 +43,9 @@ export default function SpatialGallery({
   const [internalAssetId, setInternalAssetId] = useState<string>('HA-107');
   const selectedAssetId = externalAssetId || internalAssetId;
 
-  // Search & Filter State
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isBrowserModalOpen, setIsBrowserModalOpen] = useState<boolean>(false);
 
-  // Sync with parent category selection
   useEffect(() => {
     if (category) {
       const catAsset = MOCK_HISTORICAL_ASSETS.find((a) => a.category === category);
@@ -71,24 +61,22 @@ export default function SpatialGallery({
     if (onSelectAssetId) onSelectAssetId(id);
   };
 
-  // Strictly filter 3D models by active category
   const featuredAssets = useMemo(() => {
     return category
       ? MOCK_HISTORICAL_ASSETS.filter((a) => a.category === category)
       : MOCK_HISTORICAL_ASSETS;
   }, [category]);
 
-  // Filter 3D Models based on active search query within the category
   const filteredAssets = useMemo(() => {
-    return featuredAssets.filter((asset) => {
-      const matchesSearch =
-        !searchQuery.trim() ||
-        asset.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        asset.inventor.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        asset.patent.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        asset.id.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesSearch;
-    });
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return featuredAssets;
+    return featuredAssets.filter(
+      (asset) =>
+        asset.title.toLowerCase().includes(q) ||
+        asset.inventor.toLowerCase().includes(q) ||
+        asset.patent.toLowerCase().includes(q) ||
+        asset.id.toLowerCase().includes(q)
+    );
   }, [featuredAssets, searchQuery]);
 
   const [isWireframe, setIsWireframe] = useState(false);
@@ -100,7 +88,10 @@ export default function SpatialGallery({
   const viewerContainerRef = useRef<HTMLDivElement>(null);
 
   const currentAsset =
-    featuredAssets.find((a) => a.id === selectedAssetId) || featuredAssets[0];
+    filteredAssets.find((a) => a.id === selectedAssetId) ||
+    featuredAssets.find((a) => a.id === selectedAssetId) ||
+    filteredAssets[0] ||
+    featuredAssets[0];
 
   const handleReset = () => {
     setZoomLevel(4.8);
@@ -112,11 +103,9 @@ export default function SpatialGallery({
   const handleToggleFullscreen = () => {
     if (!viewerContainerRef.current) return;
     if (!document.fullscreenElement) {
-      viewerContainerRef.current
-        .requestFullscreen()
-        .catch((err) => console.error('Fullscreen error:', err));
+      viewerContainerRef.current.requestFullscreen().catch(() => {});
     } else {
-      document.exitFullscreen();
+      document.exitFullscreen().catch(() => {});
     }
   };
 
@@ -126,202 +115,134 @@ export default function SpatialGallery({
     return () => document.removeEventListener('fullscreenchange', onFsChange);
   }, []);
 
+  if (!currentAsset) return null;
+
   return (
     <section
       id="gallery3d"
-      className="relative py-16 sm:py-24 bg-surface-container-lowest text-on-surface border-t border-outline-variant/20 scroll-mt-20 overflow-hidden"
+      className="scroll-mt-24 w-full py-12 sm:py-20 bg-surface-container-low/50 dark:bg-[#08080a] text-on-surface border-t border-outline-variant/40 dark:border-white/10"
     >
-      {/* Blueprint grid */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
-      {/* Radial museum glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-        {/* ================= HEADER ================= */}
-        <div className="flex flex-col gap-5 mb-8 sm:mb-10">
-          {/* --- Row 1: Title + Search (desktop) --- */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6">
-            {/* Left: Title block */}
-            <div className="min-w-0 shrink-0">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">
-                  <Sparkles className="w-3 h-3 text-primary" />
-                  <span className="text-[10px] font-mono tracking-widest text-primary uppercase">
-                    Spatial Workbench
-                  </span>
-                </span>
-              </div>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight text-on-surface font-normal leading-tight">
-                Interactive <span className="italic text-primary/90">3D</span> Model Gallery
-              </h2>
-            </div>
-
-            {/* Right: Search bar (desktop/tablet only — mobile drops below) */}
-            <div className="hidden lg:flex items-center gap-2 w-full max-w-md">
-              {/* Search Input */}
-              <div className="relative flex-1 group">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none transition-colors group-focus-within:text-primary" />
-                <input
-                  type="text"
-                  placeholder="Search model, inventor, patent ID…"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-surface-container border border-outline-variant/40 rounded-xl pl-9 pr-16 py-2.5 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-sm"
-                />
-                {searchQuery ? (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high cursor-pointer transition-colors"
-                    aria-label="Clear search"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                ) : (
-                  <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-outline-variant/40 bg-surface-container-high text-[9px] font-mono text-on-surface-variant/70 pointer-events-none select-none">
-                    ⌘K
-                  </kbd>
-                )}
-              </div>
-
-              {/* Models count button — opens modal with category models */}
-              <button
-                onClick={() => setIsBrowserModalOpen(true)}
-                className="inline-flex items-center justify-center gap-1.5 h-[38px] px-3 rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 text-xs font-mono font-medium transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95"
-                title={`View ${featuredAssets.length} 3D models in this category`}
-              >
-                <Grid2x2 className="w-4 h-4" />
-                <span className="hidden xl:inline">{featuredAssets.length}</span>
-              </button>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        {/* Clean Header + Model Selector */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 pb-6 sm:pb-8 border-b border-outline-variant/40 dark:border-white/10 mb-8">
+          <div className="max-w-2xl">
+            <h2 className="font-serif text-[clamp(24px,3vw,38px)] font-semibold tracking-[-0.02em] leading-[1.15] text-on-surface dark:text-white">
+              Interactive 3D Models
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-on-surface-variant dark:text-neutral-300 leading-relaxed">
+              Rotate, zoom, and inspect reconstructed machines from any angle directly in your browser.
+            </p>
           </div>
 
-          {/* --- Row 2 (Mobile only): Search drops below title, full-width --- */}
-          <div className="flex lg:hidden items-center gap-2">
-            <div className="relative flex-1 group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant w-4 h-4 pointer-events-none transition-colors group-focus-within:text-primary" />
+          <div className="flex items-center gap-2.5 w-full lg:w-auto">
+            <div className="relative flex-1 lg:w-64">
+              <Search className="w-4 h-4 text-on-surface-variant dark:text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
-                placeholder="Search model, inventor, patent…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-surface-container border border-outline-variant/40 rounded-xl pl-9 pr-9 py-2.5 text-xs font-mono text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                placeholder="Search 3D model..."
+                aria-label="Search 3D models in this category"
+                className="w-full min-h-[44px] pl-9 pr-9 py-2 bg-surface dark:bg-[#111114] border border-outline-variant/50 dark:border-white/15 focus:border-[#8c5d12] dark:focus:border-[#d4af37] text-sm text-on-surface dark:text-white focus:outline-none"
               />
               {searchQuery && (
                 <button
+                  type="button"
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high cursor-pointer"
-                  aria-label="Clear search"
+                  aria-label="Clear 3D model search"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 inline-flex items-center justify-center text-on-surface-variant hover:text-on-surface dark:text-neutral-400 dark:hover:text-white cursor-pointer"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X className="w-4 h-4" />
                 </button>
               )}
             </div>
 
             <button
+              type="button"
               onClick={() => setIsBrowserModalOpen(true)}
-              className="inline-flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-primary text-surface-container-lowest border border-primary hover:bg-primary/90 transition-all shrink-0 cursor-pointer shadow-md shadow-primary/20 active:scale-95"
-              title={`View ${featuredAssets.length} 3D models in this category`}
-              aria-label="View models in category"
+              className="min-h-[44px] px-4 py-2 bg-on-surface text-surface dark:bg-[#f5f3ee] dark:text-[#111114] text-xs sm:text-sm font-medium inline-flex items-center gap-2 shrink-0 hover:opacity-90 transition-opacity cursor-pointer"
             >
               <Grid2x2 className="w-4 h-4" />
+              <span>All {featuredAssets.length} Models</span>
             </button>
           </div>
-
-          {/* --- Row 3: Category tabs strip --- */}
-
         </div>
 
-        {/* ================= WORKBENCH ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          {/* ---- Main Canvas ---- */}
+        {/* Interactive 3D Workbench */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          {/* 3D Canvas Column */}
           <div
             ref={viewerContainerRef}
-            className={`lg:col-span-8 relative bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-lowest rounded-3xl border border-outline-variant/40 overflow-hidden shadow-2xl flex flex-col min-h-[420px] sm:min-h-[520px] lg:min-h-[640px] ${
-              isFullscreen ? 'rounded-none border-0' : ''
-            }`}
+            className="lg:col-span-8 flex flex-col border border-outline-variant/40 dark:border-white/15 bg-neutral-950 overflow-hidden"
           >
-            {/* Decorative corner accents */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/30 rounded-tl-3xl pointer-events-none z-10" />
-            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/30 rounded-tr-3xl pointer-events-none z-10" />
+            {/* Controls Bar */}
+            <div className="px-4 py-3 border-b border-white/10 bg-[#111114] flex flex-wrap items-center justify-between gap-2 text-white">
+              <div className="min-w-0">
+                <span className="text-sm font-serif font-medium block truncate">
+                  {currentAsset.title}
+                </span>
+                <span className="text-xs font-mono text-neutral-400 block truncate">
+                  {currentAsset.patent}
+                </span>
+              </div>
 
-            {/* ---- Top Toolbar ---- */}
-            <div className="relative z-10 p-2.5 sm:p-4 border-b border-outline-variant/20 bg-surface-container/70 backdrop-blur-xl">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="relative flex w-2 h-2 shrink-0">
-                    <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-60" />
-                    <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
-                  </span>
-                  <div className="flex flex-col min-w-0 leading-tight">
-                    <span className="text-[11px] sm:text-xs text-on-surface font-medium truncate">
-                      {currentAsset.title}
-                    </span>
-                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant font-mono truncate">
-                      {currentAsset.id} • {currentAsset.polyCount}
-                    </span>
-                  </div>
-                </div>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => setIsWireframe(!isWireframe)}
+                  aria-pressed={isWireframe}
+                  className={`min-h-[36px] px-2.5 text-xs font-mono border inline-flex items-center gap-1.5 cursor-pointer transition-colors ${
+                    isWireframe
+                      ? 'border-[#d4af37] bg-[#d4af37]/15 text-[#d4af37]'
+                      : 'border-white/15 text-neutral-300 hover:border-white/35'
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>{isWireframe ? 'Wireframe' : 'Shaded'}</span>
+                </button>
 
-                <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
-                  <button
-                    onClick={() => setIsWireframe(!isWireframe)}
-                    className={`h-8 px-2 sm:px-2.5 rounded-lg text-[10px] sm:text-[11px] font-mono border transition-all flex items-center gap-1 ${
-                      isWireframe
-                        ? 'border-primary bg-primary/15 text-primary'
-                        : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30'
-                    }`}
-                    title="Toggle wireframe"
-                  >
-                    <Layers className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">{isWireframe ? 'WIRE' : 'SHADED'}</span>
-                  </button>
+                <button
+                  type="button"
+                  onClick={() => setIsAutoRotating(!isAutoRotating)}
+                  aria-pressed={isAutoRotating}
+                  className={`min-h-[36px] px-2.5 text-xs font-mono border inline-flex items-center gap-1.5 cursor-pointer transition-colors ${
+                    isAutoRotating
+                      ? 'border-[#d4af37] bg-[#d4af37]/15 text-[#d4af37]'
+                      : 'border-white/15 text-neutral-300 hover:border-white/35'
+                  }`}
+                >
+                  <RotateCw className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">{isAutoRotating ? 'Rotating' : 'Paused'}</span>
+                </button>
 
-                  <button
-                    onClick={() => setIsAutoRotating(!isAutoRotating)}
-                    className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-all ${
-                      isAutoRotating
-                        ? 'border-primary/50 text-primary bg-primary/10'
-                        : 'border-outline-variant/40 text-on-surface-variant hover:text-on-surface'
-                    }`}
-                    title="Auto rotate"
-                  >
-                    <RotateCw className={`w-3.5 h-3.5 ${isAutoRotating ? 'animate-spin' : ''}`} />
-                  </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setLightingMode(lightingMode === 'spotlight' ? 'ambient' : 'spotlight')
+                  }
+                  aria-label="Toggle 3D lighting"
+                  className="min-w-[36px] min-h-[36px] px-2.5 border border-white/15 text-neutral-300 hover:border-white/35 inline-flex items-center justify-center cursor-pointer"
+                >
+                  {lightingMode === 'spotlight' ? (
+                    <Sun className="w-3.5 h-3.5" />
+                  ) : (
+                    <Moon className="w-3.5 h-3.5" />
+                  )}
+                </button>
 
-                  <button
-                    onClick={() =>
-                      setLightingMode(lightingMode === 'spotlight' ? 'ambient' : 'spotlight')
-                    }
-                    className="w-8 h-8 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30 flex items-center justify-center transition-all"
-                    title="Lighting"
-                  >
-                    {lightingMode === 'spotlight' ? (
-                      <Sun className="w-3.5 h-3.5" />
-                    ) : (
-                      <Moon className="w-3.5 h-3.5" />
-                    )}
-                  </button>
-
-                  <button
-                    onClick={handleToggleFullscreen}
-                    className="w-8 h-8 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:border-primary/30 flex items-center justify-center transition-all"
-                    title="Fullscreen"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleToggleFullscreen}
+                  aria-label="Toggle fullscreen"
+                  className="min-w-[36px] min-h-[36px] px-2.5 border border-white/15 text-neutral-300 hover:border-white/35 inline-flex items-center justify-center cursor-pointer"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
 
-            {/* ---- Canvas ---- */}
-            <div className="relative flex-1 w-full h-full cursor-grab active:cursor-grabbing">
+            {/* Canvas Viewport */}
+            <div className="relative h-[340px] sm:h-[460px] lg:h-[520px] w-full cursor-grab active:cursor-grabbing">
               <ModelViewer3D
                 modelType={currentAsset.modelType}
                 isWireframe={isWireframe}
@@ -329,274 +250,171 @@ export default function SpatialGallery({
                 lightingMode={lightingMode}
                 zoomLevel={zoomLevel}
                 onHotspotClick={(id) =>
-                  setActiveHotspot(`Component #${id}: Primary mechanical assembly interface`)
+                  setActiveHotspot(`Component #${id}: Primary mechanical assembly`)
                 }
               />
 
-              <div className="hidden sm:flex absolute bottom-4 left-4 pointer-events-none items-center gap-3 text-[10px] font-mono text-on-surface-variant/70 bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-outline-variant/20">
-                <span className="flex items-center gap-1.5">
-                  <MousePointer className="w-3 h-3 text-primary" /> Drag to orbit
-                </span>
-                <span className="opacity-40">·</span>
-                <span className="flex items-center gap-1.5">
-                  <ZoomIn className="w-3 h-3 text-primary" /> Scroll to zoom
-                </span>
-              </div>
-
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1 bg-surface-container-lowest/85 backdrop-blur-xl p-1.5 rounded-2xl border border-outline-variant/30 shadow-xl z-10">
-                <button
-                  onClick={() => setZoomLevel((z) => Math.min(8.0, z + 0.5))}
-                  className="w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90"
-                  title="Zoom in"
-                >
-                  -
-                </button>
-                <div className="w-5 h-[1px] bg-outline-variant/40" />
-                <button
-                  onClick={() => setZoomLevel((z) => Math.max(2.5, z - 0.5))}
-                  className="w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors text-lg font-mono active:scale-90"
-                  title="Zoom out"
-                >
-                  +
-                </button>
-                <div className="w-5 h-[1px] bg-outline-variant/40" />
-                <button
-                  onClick={handleReset}
-                  className="w-8 h-8 rounded-xl flex items-center justify-center text-primary hover:bg-primary/10 transition-colors active:scale-90"
-                  title="Reset view"
-                >
-                  <Compass className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
               {activeHotspot && (
-                <div className="absolute left-3 right-3 sm:left-auto sm:right-3 sm:top-3 sm:max-w-sm bottom-3 sm:bottom-auto z-20 animate-[slideUp_0.3s_ease-out]">
-                  <div className="p-3 rounded-xl bg-surface-container/95 backdrop-blur-xl border border-primary/40 shadow-2xl flex items-start gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
-                      <Info className="w-3.5 h-3.5 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[9px] font-mono text-primary uppercase tracking-widest block mb-0.5">
-                        Hotspot Selected
-                      </span>
-                      <span className="text-[11px] font-mono text-on-surface block leading-snug">
-                        {activeHotspot}
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => setActiveHotspot(null)}
-                      className="text-on-surface-variant hover:text-on-surface shrink-0"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+                <div className="absolute left-3 right-3 bottom-3 sm:left-4 sm:right-auto sm:max-w-sm bg-black/85 border border-white/20 p-3 flex items-start justify-between gap-2 text-xs text-white">
+                  <span>{activeHotspot}</span>
+                  <button
+                    type="button"
+                    onClick={() => setActiveHotspot(null)}
+                    aria-label="Dismiss note"
+                    className="text-neutral-400 hover:text-white shrink-0 cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
                 </div>
               )}
             </div>
 
-            <div className="relative z-10 px-3 sm:px-4 py-2 border-t border-outline-variant/20 bg-surface-container/50 backdrop-blur-md flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-on-surface-variant gap-2">
-              <div className="flex items-center gap-1.5 shrink-0">
-                <Award className="w-3 h-3 text-primary" />
-                <span className="truncate max-w-[120px] sm:max-w-none">{currentAsset.patent}</span>
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="text-primary hidden sm:inline">Three.js</span>
-                <span className="w-1 h-1 rounded-full bg-emerald-500" />
-                <span>LIVE</span>
+            {/* Bottom Zoom & Reset Bar */}
+            <div className="px-4 py-2.5 border-t border-white/10 bg-[#111114] flex flex-wrap items-center justify-between gap-2 text-xs text-neutral-400">
+              <span>Drag to rotate 360° · Scroll or use buttons to zoom</span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setZoomLevel((z) => Math.max(2.5, z - 0.5))}
+                  aria-label="Zoom in 3D model"
+                  className="min-w-[36px] min-h-[32px] border border-white/15 text-white hover:border-white/35 cursor-pointer font-mono"
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setZoomLevel((z) => Math.min(8.0, z + 0.5))}
+                  aria-label="Zoom out 3D model"
+                  className="min-w-[36px] min-h-[32px] border border-white/15 text-white hover:border-white/35 cursor-pointer font-mono"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="min-h-[32px] px-2.5 border border-white/15 text-neutral-200 hover:border-white/35 inline-flex items-center gap-1 cursor-pointer"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Reset</span>
+                </button>
               </div>
             </div>
           </div>
 
-          {/* ---- Info Sidebar (Museum Plaque) ---- */}
-          <div className="lg:col-span-4 flex flex-col bg-gradient-to-b from-surface-container-low to-surface-container rounded-3xl border border-outline-variant/40 p-5 sm:p-6 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
-
-            <div className="flex-1">
-              <div className="flex items-center justify-between mb-4">
-                <span className="px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 text-[10px] font-mono uppercase tracking-widest">
-                  {currentAsset.categoryLabel}
-                </span>
-                <span className="text-[10px] font-mono text-on-surface-variant">
-                  {currentAsset.era}
-                </span>
-              </div>
-
-              <h3 className="font-serif text-2xl sm:text-3xl text-on-surface font-normal mb-1 leading-tight">
+          {/* Right Metadata Summary */}
+          <div className="lg:col-span-4 border border-outline-variant/40 dark:border-white/10 bg-surface dark:bg-[#111114] p-5 sm:p-6 flex flex-col justify-between gap-6">
+            <div>
+              <p className="text-xs font-mono text-[#8c5d12] dark:text-[#d4af37] mb-1">
+                {currentAsset.categoryLabel} · {currentAsset.year || currentAsset.patentDate}
+              </p>
+              <h3 className="font-serif text-2xl font-semibold text-on-surface dark:text-white leading-snug">
                 {currentAsset.title}
               </h3>
-              <p className="text-[11px] font-mono text-primary mb-5">by {currentAsset.inventor}</p>
+              <p className="mt-1 text-xs font-medium text-on-surface-variant dark:text-neutral-400">
+                {currentAsset.inventor}
+              </p>
 
-              <div className="relative rounded-2xl bg-surface-container-lowest/60 border border-outline-variant/30 p-4 mb-5 space-y-2.5">
-                <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t border-l border-primary/40" />
-                <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b border-r border-primary/40" />
-
-                {[
-                  ['Patent', currentAsset.patent],
-                  ['Patented Date', currentAsset.patentDate],
-                  ['Origin', currentAsset.location],
-                  ['Material', currentAsset.medium],
-                ].map(([label, value]) => (
-                  <div
-                    key={label}
-                    className="flex items-center justify-between text-[11px] font-mono gap-2"
-                  >
-                    <span className="text-on-surface-variant uppercase tracking-wider">
-                      {label}
-                    </span>
-                    <span className="text-on-surface font-medium truncate text-right">{value}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mb-5">
-                <h4 className="text-[10px] font-mono text-on-surface-variant uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                  <Box className="w-3 h-3 text-primary" /> Historical Mechanics
-                </h4>
-                <p className="text-[12px] font-sans text-on-surface/85 leading-relaxed line-clamp-4">
-                  {currentAsset.mechanics || currentAsset.desc}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2.5 mb-5">
-                <div className="rounded-xl bg-surface-container-lowest/60 border border-outline-variant/30 p-3">
-                  <span className="text-[9px] font-mono text-on-surface-variant uppercase tracking-widest block mb-1">
-                    Geometry
-                  </span>
-                  <span className="text-xs font-mono text-on-surface font-semibold">
-                    {currentAsset.polyCount}
-                  </span>
+              <dl className="mt-5 pt-4 border-t border-outline-variant/30 dark:border-white/10 space-y-2.5 text-xs">
+                <div className="flex items-center justify-between gap-3">
+                  <dt className="text-on-surface-variant dark:text-neutral-400">Patent</dt>
+                  <dd className="font-mono text-on-surface dark:text-white text-right">
+                    {currentAsset.patentNumber || currentAsset.patent}
+                  </dd>
                 </div>
-                <div className="rounded-xl bg-surface-container-lowest/60 border border-outline-variant/30 p-3">
-                  <span className="text-[9px] font-mono text-on-surface-variant uppercase tracking-widest block mb-1">
-                    Resonance
-                  </span>
-                  <span className="text-xs font-mono text-on-surface font-semibold">
-                    {currentAsset.resonance}
-                  </span>
+                <div className="flex items-center justify-between gap-3">
+                  <dt className="text-on-surface-variant dark:text-neutral-400">Origin</dt>
+                  <dd className="text-on-surface dark:text-white text-right">
+                    {currentAsset.location}
+                  </dd>
                 </div>
-              </div>
+                <div className="flex items-start justify-between gap-3">
+                  <dt className="text-on-surface-variant dark:text-neutral-400 shrink-0">Materials</dt>
+                  <dd className="text-on-surface dark:text-white text-right">
+                    {currentAsset.medium}
+                  </dd>
+                </div>
+              </dl>
+
+              <p className="mt-5 pt-4 border-t border-outline-variant/30 dark:border-white/10 text-sm text-on-surface-variant dark:text-neutral-300 leading-relaxed line-clamp-4">
+                {currentAsset.mechanics || currentAsset.desc}
+              </p>
             </div>
 
-            <div className="pt-4 border-t border-outline-variant/30 space-y-2">
-              <Link
-                href={`/inventions/${currentAsset.id}`}
-                onClick={() => {
-                  if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'instant' });
-                }}
-                className="w-full py-3 rounded-xl bg-primary text-surface-container-lowest font-medium font-mono text-xs flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 group"
-              >
-                <span>OPEN FULL MONOGRAPH</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-
-              {onSelectAssetForDossier && (
-                <button
-                  onClick={() => onSelectAssetForDossier(currentAsset)}
-                  className="w-full py-2.5 rounded-xl border border-outline-variant/40 hover:bg-surface-container hover:border-primary/40 text-[11px] font-mono text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
-                >
-                  Quick Monograph Preview
-                </button>
-              )}
-            </div>
+            <Link
+              href={`/inventions/${currentAsset.id}`}
+              onClick={() => {
+                if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'instant' });
+              }}
+              className="w-full min-h-[44px] py-3 px-5 bg-on-surface text-surface dark:bg-[#f5f3ee] dark:text-[#111114] text-sm font-medium inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+            >
+              <span>Open Full 5-Format Record</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* ================= 3D MODEL BROWSER MODAL ================= */}
+      {/* Model Switcher Modal */}
       {isBrowserModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Choose 3D model"
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsBrowserModalOpen(false);
           }}
         >
-          <div className="w-full max-w-3xl bg-surface-container-low dark:bg-[#121217] border border-outline-variant/40 dark:border-amber-500/40 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4 max-h-[88vh] overflow-hidden">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-outline-variant/20 dark:border-white/10">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
-                  <Grid2x2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-base sm:text-lg font-bold text-on-surface dark:text-white leading-tight">
-                    Select 3D Spatial Model
-                  </h3>
-                  <span className="text-[10px] font-mono text-primary">
-                    {featuredAssets.length} Photogrammetry & CAD Models in Active Category
-                  </span>
-                </div>
+          <div className="w-full max-w-2xl bg-surface dark:bg-[#111114] border border-outline-variant/50 dark:border-white/15 p-5 sm:p-6 shadow-2xl flex flex-col gap-4 max-h-[85vh] overflow-hidden">
+            <div className="flex items-center justify-between pb-3 border-b border-outline-variant/30 dark:border-white/10">
+              <div>
+                <h3 className="font-serif text-lg sm:text-xl font-semibold text-on-surface dark:text-white">
+                  Choose a 3D Model ({featuredAssets.length})
+                </h3>
               </div>
-
               <button
+                type="button"
                 onClick={() => setIsBrowserModalOpen(false)}
-                className="w-8 h-8 rounded-xl bg-surface-container hover:bg-surface-container-high dark:bg-white/5 dark:hover:bg-white/10 text-on-surface-variant hover:text-on-surface dark:text-neutral-400 dark:hover:text-white flex items-center justify-center transition cursor-pointer"
+                aria-label="Close modal"
+                className="w-9 h-9 inline-flex items-center justify-center text-on-surface-variant hover:text-on-surface dark:text-neutral-400 dark:hover:text-white cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Grid of all 3D models */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 overflow-y-auto pr-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 overflow-y-auto">
               {featuredAssets.map((asset) => {
                 const isCurrent = currentAsset.id === asset.id;
                 return (
-                  <div
+                  <button
                     key={asset.id}
+                    type="button"
                     onClick={() => {
                       handleSelectAssetId(asset.id);
                       setIsBrowserModalOpen(false);
                     }}
-                    className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 active:scale-98 ${
+                    className={`p-3.5 text-left border transition-colors cursor-pointer ${
                       isCurrent
-                        ? 'bg-primary/15 border-primary shadow-lg shadow-primary/20'
-                        : 'bg-surface-container dark:bg-white/[0.03] border-outline-variant/30 dark:border-white/10 hover:border-primary/50'
+                        ? 'border-[#8c5d12] dark:border-[#d4af37] bg-surface-container-low dark:bg-white/[0.06]'
+                        : 'border-outline-variant/30 dark:border-white/10 hover:border-outline-variant dark:hover:border-white/25'
                     }`}
                   >
-                    <img
-                      src={asset.image}
-                      alt={asset.title}
-                      className="w-14 h-14 rounded-xl object-cover shrink-0 border border-outline-variant/30 dark:border-white/10"
-                    />
-
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-0.5">
-                        <span className="text-[10px] font-mono text-primary font-semibold truncate">
-                          {asset.id} • {asset.categoryLabel.split(' ')[0]}
-                        </span>
-                        {isCurrent && (
-                          <span className="px-1.5 py-0.5 rounded bg-primary text-neutral-950 text-[9px] font-mono font-bold">
-                            ACTIVE
-                          </span>
-                        )}
-                      </div>
-                      <h4 className="font-serif text-sm font-bold text-on-surface dark:text-white truncate">
-                        {asset.title}
-                      </h4>
-                      <p className="text-[11px] font-sans text-on-surface-variant dark:text-neutral-400 truncate">
-                        by {asset.inventor}
-                      </p>
+                    <div className="text-xs font-mono text-[#8c5d12] dark:text-[#d4af37]">
+                      {asset.year || asset.patentDate} · {asset.patentNumber || asset.patent}
                     </div>
-                  </div>
+                    <div className="mt-1 font-serif text-base font-medium text-on-surface dark:text-white truncate">
+                      {asset.title}
+                    </div>
+                    <div className="text-xs text-on-surface-variant dark:text-neutral-400 truncate">
+                      {asset.inventor}
+                    </div>
+                  </button>
                 );
               })}
             </div>
           </div>
         </div>
       )}
-
-      {/* keyframe for slide-in */}
-      <style jsx>{`
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 }

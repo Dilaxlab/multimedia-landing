@@ -12,7 +12,7 @@ export default function InventionsIndexPage() {
     if (activeCategory) {
       router.replace(`/category/${activeCategory}`);
     } else {
-      router.replace('/#disciplines');
+      router.replace('/#themes');
     }
   }, [activeCategory, router]);
 

@@ -42,13 +42,21 @@ const BentoCard = ({
   className = '',
 }: BentoCardProps) => (
   <div
+    role="button"
+    tabIndex={0}
     onClick={onClick}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onClick();
+      }
+    }}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
-    className={`group relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none select-none ${
+    className={`group relative flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 w-[84vw] max-w-[320px] shrink-0 snap-center md:w-auto md:max-w-none select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 ${
       isActive
-        ? 'dark:bg-[#0e0e14] bg-surface border-2 border-amber-400 dark:border-amber-400/90 ring-4 ring-amber-400/15 shadow-[0_15px_40px_-8px_rgba(245,158,11,0.3)] scale-[1.01] z-10'
-        : 'dark:bg-[#0A0A0C] bg-surface dark:border-white/5 border-outline-variant/30 hover:border-amber-500/40 opacity-85 hover:opacity-100 shadow-sm dark:shadow-none hover:shadow-[0_0_25px_-5px_rgba(245,158,11,0.15)]'
+        ? 'dark:bg-[#0e0e14] bg-surface border-2 border-amber-400 dark:border-amber-400/90 ring-4 ring-amber-400/15 shadow-[0_15px_40px_-8px_rgba(245,158,11,0.3)] md:scale-[1.01] z-10'
+        : 'dark:bg-[#0A0A0C] bg-surface dark:border-white/5 border border-outline-variant/30 hover:border-amber-500/40 opacity-90 hover:opacity-100 shadow-sm dark:shadow-none hover:shadow-[0_0_25px_-5px_rgba(245,158,11,0.15)]'
     } ${className}`}
   >
     {/* Visual Header Area */}
@@ -97,18 +105,18 @@ const BentoCard = ({
         </div>
       </div>
 
-      <p className="text-xs sm:text-sm dark:text-neutral-400 text-on-surface-variant leading-relaxed line-clamp-3">
+      <p className="text-sm dark:text-neutral-300 text-on-surface-variant leading-relaxed line-clamp-3">
         {description}
       </p>
 
       {/* Active Indicator Bar (Subtle bottom accent) */}
-      <div className="mt-auto pt-3 flex items-center justify-between text-[10px] font-mono">
+      <div className="mt-auto pt-3 flex items-center justify-between text-xs font-mono">
         <span
           className={`transition-colors duration-300 ${
-            isActive ? 'text-amber-500 dark:text-amber-400 font-bold' : 'text-neutral-400/60'
+            isActive ? 'text-amber-700 dark:text-amber-400 font-semibold' : 'text-on-surface-variant/70 dark:text-neutral-500'
           }`}
         >
-          {isActive ? 'ACTIVE FORMAT' : 'CLICK TO INSPECT'}
+          {isActive ? 'ACTIVE FORMAT' : 'TAP TO INSPECT'}
         </span>
         <div
           className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
@@ -280,12 +288,25 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
+  const [isSectionVisible, setIsSectionVisible] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
 
   const DURATION = 4500; // 4.5 seconds per card, like ondo.finance
   const INTERVAL = 40; // 40ms update tick for buttery smooth SVG progress arc
 
-  // Auto-advance circular progress effect (Ondo Finance style)
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSectionVisible(entry.isIntersecting),
+      { threshold: 0.25 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-advance circular progress effect only when section is paused=false
   useEffect(() => {
     if (isPaused) return;
 
@@ -302,9 +323,14 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
     return () => clearInterval(timer);
   }, [isPaused]);
 
-  // Smooth scroll active card into view on small screens
+  // Smooth scroll active card into view on small screens only while user is viewing this section
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth < 768 && cardsContainerRef.current) {
+    if (
+      isSectionVisible &&
+      typeof window !== 'undefined' &&
+      window.innerWidth < 768 &&
+      cardsContainerRef.current
+    ) {
       const container = cardsContainerRef.current;
       const cardEl = container.children[activeIndex] as HTMLElement;
       if (cardEl) {
@@ -312,7 +338,7 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
         container.scrollTo({ left: Math.max(0, offsetLeft), behavior: 'smooth' });
       }
     }
-  }, [activeIndex]);
+  }, [activeIndex, isSectionVisible]);
 
   const handleCardClick = (idx: number) => {
     setActiveIndex(idx);
@@ -321,43 +347,33 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
 
   return (
     <section
+      ref={sectionRef}
       id="whats-inside"
-      className="relative w-full py-10 sm:py-16 md:py-20 dark:bg-[#050505] bg-surface-container-low border-t dark:border-white/5 border-outline-variant/30 overflow-hidden transition-colors duration-300"
+      className="scroll-mt-20 relative w-full py-12 sm:py-16 md:py-20 dark:bg-[#050505] bg-surface-container-low border-t dark:border-white/5 border-outline-variant/30 overflow-hidden transition-colors duration-300"
     >
-      {/* Background Ambience */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/5 blur-[100px] rounded-full pointer-events-none" />
-
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-6 sm:mb-10 lg:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full dark:bg-white/5 bg-primary/10 dark:border-white/10 border-primary/20 text-primary dark:text-amber-300 text-xs font-medium tracking-wide mb-3 sm:mb-4 backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5" />
-            THE ARCHIVE EXPERIENCE
-          </div>
-
-          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl dark:text-white text-on-surface font-normal tracking-tight mb-2 sm:mb-3">
-            Five Immersive Ways to <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500">
-              Experience Ingenuity
-            </span>
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-7 sm:mb-10 lg:mb-12">
+          <h2 className="font-serif text-[clamp(26px,4vw,44px)] leading-[1.15] dark:text-white text-on-surface font-semibold tracking-tight mb-2.5 sm:mb-3">
+            Inside Every Invention Record
           </h2>
 
-          <p className="text-xs sm:text-base dark:text-neutral-400 text-on-surface-variant leading-relaxed max-w-2xl">
-            Beyond static glass. We bridge tactile 3D photogrammetry, dynamic physical simulations,
-            studio voiceover reels, and verified primary sources into one seamless digital museum.
+          <p className="text-sm sm:text-base dark:text-neutral-300 text-on-surface-variant leading-relaxed">
+            Every patent in the archive is presented in the same five formats so you can inspect it from every angle.
           </p>
         </div>
 
         {/* Bento Grid with Ondo Finance Auto-Cycling Timer Effect */}
         <div
           ref={cardsContainerRef}
-          className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory gap-3 sm:gap-5 pb-3 md:pb-0 scrollbar-none px-1 max-w-5xl mx-auto"
+          onTouchStart={() => setIsPaused(true)}
+          className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory gap-3.5 sm:gap-5 pb-3 md:pb-0 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 max-w-5xl md:mx-auto"
         >
-          {/* Card 01: Interactive 3D */}
+          {/* Card 01: 3D Models */}
           <BentoCard
             indexNumber="01"
-            title="Interactive 3D"
-            description="Manipulate tactile models with real-time CAD controls, wireframe dissection, and lighting calibration directly in your browser."
+            title="3D Models"
+            description="Rotate and zoom reconstructed models directly in your browser to see how physical parts fit together."
             icon={<Boxes className="w-4 h-4" />}
             header={<Visual3D isActive={activeIndex === 0} />}
             isActive={activeIndex === 0}
@@ -372,11 +388,11 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
             className="md:col-span-1"
           />
 
-          {/* Card 02: Kinematics */}
+          {/* Card 02: Video Animations */}
           <BentoCard
             indexNumber="02"
-            title="Kinematics"
-            description="Watch exploded assembly kinematics in action: reciprocating pistons, gear trains, and dynamo rotors in precise motion."
+            title="Video Animations"
+            description="Watch how gears, pistons, circuits, and turbines move and operate step by step."
             icon={<PlayCircle className="w-4 h-4" />}
             header={<VisualAnimation isActive={activeIndex === 1} />}
             isActive={activeIndex === 1}
@@ -391,11 +407,11 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
             className="md:col-span-1"
           />
 
-          {/* Card 03: Audio Reels */}
+          {/* Card 03: Historical Stories */}
           <BentoCard
             indexNumber="03"
-            title="Audio Reels"
-            description="Immerse in studio-grade voiceover documentary reels capturing breakthrough eurekas and laboratory struggles."
+            title="Historical Stories"
+            description="Read and hear the real story of the inventor, the problem they faced, and how it was solved."
             icon={<AudioLines className="w-4 h-4" />}
             header={<VisualAudio isActive={activeIndex === 2} />}
             isActive={activeIndex === 2}
@@ -410,11 +426,11 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
             className="md:col-span-1"
           />
 
-          {/* Card 04: Archival Blueprints */}
+          {/* Card 04: 2D Patent Plates */}
           <BentoCard
             indexNumber="04"
-            title="Archival Blueprints"
-            description="Inspect certified historical USPTO patent drawings, calibrated specification ledgers, and rare 8K forensic glass-plate scans."
+            title="2D Patent Plates"
+            description="Inspect historical patent drawings, filing numbers, dates, and technical specification plates."
             icon={<FileImage className="w-4 h-4" />}
             header={<VisualArchive isActive={activeIndex === 3} />}
             isActive={activeIndex === 3}
@@ -429,11 +445,11 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
             className="md:col-span-2"
           />
 
-          {/* Card 05: Kids' Storybooks */}
+          {/* Card 05: Archival Books */}
           <BentoCard
             indexNumber="05"
-            title="Kids' Storybooks"
-            description="Inspire young inventors through character-led graphic chronicles translating legendary breakthroughs into fun quests."
+            title="Archival Books"
+            description="Open companion illustrated books providing clear historical context for students and general readers."
             icon={<BookOpen className="w-4 h-4" />}
             header={<VisualBooks isActive={activeIndex === 4} />}
             isActive={activeIndex === 4}
@@ -449,10 +465,37 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
           />
         </div>
 
-        {/* Mobile Guidance / Status */}
-        <div className="md:hidden flex items-center justify-center gap-1.5 text-[11px] font-mono text-on-surface-variant mt-2.5 opacity-80">
-          <ArrowRight className="w-3.5 h-3.5 text-primary animate-pulse" />
-          <span>Tap or swipe to explore all 5 archival formats</span>
+        {/* Mobile 44px Tap Index Pills + Guidance */}
+        <div className="md:hidden mt-4 flex flex-col items-center gap-2.5">
+          <div className="flex items-center justify-center gap-1.5" role="tablist" aria-label="Select archive format">
+            {['01', '02', '03', '04', '05'].map((num, idx) => {
+              const selected = activeIndex === idx;
+              return (
+                <button
+                  key={num}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  aria-label={`Format ${num}`}
+                  onClick={() => {
+                    setIsPaused(true);
+                    handleCardClick(idx);
+                  }}
+                  className={`min-w-[44px] min-h-[40px] px-2.5 text-xs font-mono font-semibold border transition-colors cursor-pointer ${
+                    selected
+                      ? 'bg-amber-600 text-white border-amber-600 dark:bg-amber-400 dark:text-[#09090b] dark:border-amber-400'
+                      : 'border-outline-variant/40 dark:border-white/15 text-on-surface-variant dark:text-neutral-400'
+                  }`}
+                >
+                  {num}
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex items-center justify-center gap-1.5 text-xs text-on-surface-variant dark:text-neutral-400">
+            <ArrowRight className="w-3.5 h-3.5 text-primary" />
+            <span>Tap or swipe to inspect all 5 formats</span>
+          </div>
         </div>
       </div>
     </section>

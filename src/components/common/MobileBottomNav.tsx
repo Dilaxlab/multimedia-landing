@@ -1,248 +1,159 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import React, { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import {
+  ArrowLeft,
+  BookOpen,
+  Compass,
+  FolderKanban,
   Home,
   Layers,
-  BookOpen,
-  Boxes,
-  Film,
-  FileText,
-  ArrowLeft,
-  Sparkles,
-  TrendingUp,
+  Package,
 } from 'lucide-react';
 import { useCategory } from '@/context/CategoryContext';
-import { MOCK_HISTORICAL_ASSETS, OFFICIAL_18_CATEGORIES } from '@/lib/constants';
-
-interface MobileNavItem {
-  id: string;
-  label: string;
-  icon: React.ReactNode;
-  action: () => void;
-}
+import {
+  LAST_CATEGORY_STORAGE_KEY,
+  resolveRouteContext,
+} from '@/lib/routeContext';
 
 export default function MobileBottomNav() {
+  const pathname = usePathname() || '/';
   const router = useRouter();
-  const pathname = usePathname();
-  const { activeCategoryMeta } = useCategory();
-  const [activeId, setActiveId] = useState<string>('hero');
+  const { activeCategory } = useCategory();
+  const [lastCategorySlug, setLastCategorySlug] = useState<string | null>(null);
 
-  const isHome = pathname === '/';
-  const isTheme = pathname.startsWith('/themes/');
-  const isCategory = pathname.startsWith('/categories/') || pathname.startsWith('/category/');
-  const isAsset = pathname.startsWith('/inventions/');
-
-  const categorySlug = pathname.startsWith('/category/')
-    ? pathname.split('/category/')[1]?.split('/')[0]?.split('?')[0]?.toUpperCase()
-    : null;
-  const currentCategoryMeta = categorySlug
-    ? OFFICIAL_18_CATEGORIES.find((c) => c.key === categorySlug) || activeCategoryMeta
-    : activeCategoryMeta;
-
-  const assetId = isAsset
-    ? pathname.split('/inventions/')[1]?.split('?')[0]?.split('#')[0]
-    : null;
-  const currentAsset = assetId
-    ? MOCK_HISTORICAL_ASSETS.find(
-        (a) => a.id.toLowerCase() === assetId.toLowerCase()
-      )
-    : null;
-
-  const scrollTo = (id: string) => {
-    if (isHome && id === 'hero') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setActiveId('hero');
-      return;
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem(LAST_CATEGORY_STORAGE_KEY);
+      if (saved) setLastCategorySlug(saved);
+    } catch {
+      // ignore storage unavailable
     }
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-      setActiveId(id);
+  }, [pathname]);
+
+  const routeCtx = useMemo(
+    () => resolveRouteContext(pathname, lastCategorySlug, activeCategory),
+    [pathname, lastCategorySlug, activeCategory]
+  );
+
+  const handleHomeAnchor = (sectionId: string, fallbackHref: string) => {
+    if (routeCtx.isHome) {
+      if (sectionId === 'top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        document
+          .getElementById(sectionId)
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      router.push(fallbackHref);
     }
   };
 
-  // Scroll spy for mobile bottom nav
-  useEffect(() => {
-    let sectionIds: string[] = [];
-    if (isHome) sectionIds = ['hero', 'whats-inside', 'themes', 'trending', 'virtual-portal'];
-    else if (isTheme) sectionIds = ['overview', 'categories', 'highlights'];
-    else if (isCategory) sectionIds = ['assets', 'story', 'book', '3d', 'videos'];
-    else if (isAsset) sectionIds = ['story', 'book', '3d', 'video'];
-
-    if (sectionIds.length === 0) return;
-
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el && scrollPos >= el.offsetTop) {
-          setActiveId(sectionIds[i]);
-          return;
-        }
+  const handleContextTabClick = () => {
+    if (routeCtx.stage === 'home') {
+      handleHomeAnchor('themes', '/#themes');
+      return;
+    }
+    if (routeCtx.stage === 'theme') {
+      const el = document.getElementById('categories');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (routeCtx.activeTheme) {
+        router.push(`/themes/${routeCtx.activeTheme.slug}#categories`);
       }
-      setActiveId(sectionIds[0]);
-    };
+      return;
+    }
+    if (routeCtx.stage === 'category') {
+      const el = document.getElementById('assets');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
+    router.push(routeCtx.parentCategoryHref);
+  };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHome, isTheme, isCategory, isAsset, pathname]);
+  const middleTab = useMemo(() => {
+    if (routeCtx.stage === 'theme') {
+      return { label: 'Categories', Icon: FolderKanban };
+    }
+    if (routeCtx.stage === 'category') {
+      return { label: 'Assets', Icon: Package };
+    }
+    if (routeCtx.stage === 'asset') {
+      return {
+        label: routeCtx.parentCategoryTitle,
+        Icon: ArrowLeft,
+      };
+    }
+    return { label: 'Themes', Icon: Compass };
+  }, [routeCtx.stage, routeCtx.parentCategoryTitle]);
 
-  // Build items based on active page
-  let navItems: MobileNavItem[] = [];
-
-  if (isHome) {
-    navItems = [
-      {
-        id: 'hero',
-        label: 'Home',
-        icon: <Home className="w-4 h-4" />,
-        action: () => scrollTo('hero'),
-      },
-      {
-        id: 'whats-inside',
-        label: 'Inside',
-        icon: <Sparkles className="w-4 h-4" />,
-        action: () => scrollTo('whats-inside'),
-      },
-      {
-        id: 'themes',
-        label: 'Themes',
-        icon: <Layers className="w-4 h-4" />,
-        action: () => scrollTo('themes'),
-      },
-      {
-        id: 'trending',
-        label: 'Trending',
-        icon: <TrendingUp className="w-4 h-4" />,
-        action: () => scrollTo('trending'),
-      },
-    ];
-  } else if (isTheme) {
-    navItems = [
-      {
-        id: 'home',
-        label: 'Home',
-        icon: <Home className="w-4 h-4" />,
-        action: () => router.push('/'),
-      },
-      {
-        id: 'overview',
-        label: 'Overview',
-        icon: <Sparkles className="w-4 h-4" />,
-        action: () => scrollTo('overview'),
-      },
-      {
-        id: 'categories',
-        label: 'Categories',
-        icon: <Layers className="w-4 h-4" />,
-        action: () => scrollTo('categories'),
-      },
-      {
-        id: 'highlights',
-        label: 'Highlights',
-        icon: <TrendingUp className="w-4 h-4" />,
-        action: () => scrollTo('highlights'),
-      },
-    ];
-  } else if (isCategory) {
-    navItems = [
-      {
-        id: 'home',
-        label: 'Home',
-        icon: <Home className="w-4 h-4" />,
-        action: () => router.push('/'),
-      },
-      {
-        id: 'assets',
-        label: 'Assets',
-        icon: <Layers className="w-4 h-4" />,
-        action: () => scrollTo('assets'),
-      },
-      {
-        id: 'story',
-        label: 'Story',
-        icon: <BookOpen className="w-4 h-4" />,
-        action: () => scrollTo('story'),
-      },
-      {
-        id: 'book',
-        label: 'Books',
-        icon: <FileText className="w-4 h-4" />,
-        action: () => scrollTo('book'),
-      },
-      {
-        id: '3d',
-        label: '3D Vault',
-        icon: <Boxes className="w-4 h-4" />,
-        action: () => scrollTo('3d'),
-      },
-      {
-        id: 'videos',
-        label: 'Videos',
-        icon: <Film className="w-4 h-4" />,
-        action: () => scrollTo('videos'),
-      },
-    ];
-  } else if (isAsset) {
-    navItems = [
-      {
-        id: 'home',
-        label: 'Home',
-        icon: <Home className="w-4 h-4" />,
-        action: () => router.push('/'),
-      },
-      {
-        id: 'story',
-        label: 'Story',
-        icon: <BookOpen className="w-4 h-4" />,
-        action: () => scrollTo('story'),
-      },
-      {
-        id: 'book',
-        label: 'Books',
-        icon: <FileText className="w-4 h-4" />,
-        action: () => scrollTo('book'),
-      },
-      {
-        id: '3d',
-        label: '3D Model',
-        icon: <Boxes className="w-4 h-4" />,
-        action: () => scrollTo('3d'),
-      },
-      {
-        id: 'video',
-        label: 'Video Reel',
-        icon: <Film className="w-4 h-4" />,
-        action: () => scrollTo('video'),
-      },
-    ];
-  }
+  const MiddleIcon = middleTab.Icon;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-surface-container-high/95 backdrop-blur-xl border-t border-outline-variant/30 px-2 py-1.5 shadow-2xl">
-      <div className="flex items-center justify-around gap-1 overflow-x-auto scrollbar-none py-0.5">
-        {navItems.map((item) => {
-          const isActive = activeId === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={item.action}
-              className={`flex flex-col items-center justify-center min-w-[56px] min-h-[44px] px-2 py-1 rounded-xl transition-all ${
-                isActive
-                  ? 'text-amber-400 font-bold bg-amber-500/10'
-                  : 'text-on-surface-variant hover:text-on-surface'
-              }`}
-            >
-              <div className={isActive ? 'text-amber-400 scale-110 transition-transform' : ''}>
-                {item.icon}
-              </div>
-              <span className="text-[10px] font-mono mt-0.5">{item.label}</span>
-            </button>
-          );
-        })}
+    <nav
+      aria-label="Mobile navigation"
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-outline-variant/45 dark:border-white/[0.1] bg-surface/95 dark:bg-[#09090b]/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]"
+    >
+      <div className="grid grid-cols-4 h-14 max-w-lg mx-auto">
+        {/* Slot 1: Home */}
+        <Link
+          href="/"
+          onClick={(e) => {
+            if (routeCtx.isHome) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+          className={`flex flex-col items-center justify-center gap-1 h-full border-t-2 transition-colors ${
+            routeCtx.isHome
+              ? 'border-[#8c5d12] dark:border-[#d4af37] text-on-surface dark:text-white font-medium'
+              : 'border-transparent text-on-surface-variant dark:text-neutral-400 hover:text-on-surface dark:hover:text-white'
+          }`}
+        >
+          <Home className="w-4 h-4" />
+          <span className="text-[11px] leading-none">Home</span>
+        </Link>
+
+        {/* Slot 2: Formats */}
+        <button
+          type="button"
+          onClick={() => handleHomeAnchor('whats-inside', '/#whats-inside')}
+          className="flex flex-col items-center justify-center gap-1 h-full border-t-2 border-transparent text-on-surface-variant dark:text-neutral-400 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer"
+        >
+          <Layers className="w-4 h-4" />
+          <span className="text-[11px] leading-none">Formats</span>
+        </button>
+
+        {/* Slot 3: Progressive Context Tab (Themes -> Categories -> Assets -> Back) */}
+        <button
+          type="button"
+          onClick={handleContextTabClick}
+          className={`flex flex-col items-center justify-center gap-1 h-full px-1 border-t-2 transition-colors cursor-pointer ${
+            !routeCtx.isHome
+              ? 'border-[#8c5d12] dark:border-[#d4af37] bg-[#8c5d12]/[0.06] dark:bg-[#d4af37]/[0.08] text-[#8c5d12] dark:text-[#d4af37] font-medium'
+              : 'border-transparent bg-[#8c5d12]/[0.04] dark:bg-[#d4af37]/[0.05] text-[#8c5d12] dark:text-[#d4af37] font-medium'
+          }`}
+        >
+          <MiddleIcon className="w-4 h-4 shrink-0" />
+          <span className="text-[11px] leading-none truncate max-w-[78px]">
+            {middleTab.label}
+          </span>
+        </button>
+
+        {/* Slot 4: Featured */}
+        <button
+          type="button"
+          onClick={() => handleHomeAnchor('trending', '/#trending')}
+          className="flex flex-col items-center justify-center gap-1 h-full border-t-2 border-transparent text-on-surface-variant dark:text-neutral-400 hover:text-on-surface dark:hover:text-white transition-colors cursor-pointer"
+        >
+          <BookOpen className="w-4 h-4" />
+          <span className="text-[11px] leading-none">Featured</span>
+        </button>
       </div>
     </nav>
   );

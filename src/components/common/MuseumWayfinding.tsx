@@ -44,9 +44,9 @@ export default function MuseumWayfinding({
   ];
 
   return (
-    <div className="mb-6 sm:mb-8 py-3.5 px-4 sm:px-5 border border-outline-variant/40 dark:border-white/10 bg-surface-container-lowest/80 dark:bg-white/[0.02] flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-      {/* Engraved Wayfinding Steps */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-mono">
+    <div className="mb-6 sm:mb-8 py-3.5 px-4 sm:px-5 border border-outline-variant/40 dark:border-white/10 bg-surface-container-lowest/80 dark:bg-white/[0.02] flex flex-col lg:flex-row lg:items-center justify-between gap-2.5 sm:gap-3">
+      {/* Clean Wayfinding Steps */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs sm:text-sm font-sans">
         {steps.map((item, idx) => {
           const isDone = item.num < step;
           const isCurrent = item.num === step;
@@ -56,15 +56,15 @@ export default function MuseumWayfinding({
             <span
               className={`inline-flex items-center gap-1.5 transition-colors ${
                 isCurrent
-                  ? 'text-on-surface dark:text-white font-semibold border-b-2 border-amber-600 dark:border-amber-400 pb-0.5'
+                  ? 'text-on-surface dark:text-white font-semibold border-b-2 border-[#8c5d12] dark:border-[#d4af37] pb-0.5'
                   : isDone
-                    ? 'text-amber-700 dark:text-amber-400 hover:underline'
-                    : 'text-on-surface-variant/60 dark:text-neutral-500'
+                    ? 'text-[#8c5d12] dark:text-[#d4af37] hover:underline'
+                    : 'text-on-surface-variant/75 dark:text-neutral-400'
               }`}
             >
-              <span>{item.num}.</span>
-              <span className="truncate max-w-[180px] sm:max-w-[220px]">{text}</span>
-              {isDone && <Check className="w-3 h-3 shrink-0" />}
+              <span className="font-mono text-xs">{item.num}.</span>
+              <span>{text}</span>
+              {isDone && <Check className="w-3.5 h-3.5 shrink-0" />}
             </span>
           );
 

@@ -9,8 +9,6 @@ import { CategoryProvider } from '@/context/CategoryContext';
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   viewportFit: 'cover',
   themeColor: '#0c0d12',
 };
@@ -81,7 +79,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-surface text-on-surface antialiased flex flex-col selection:bg-primary selection:text-surface-container-lowest pb-24 md:pb-0 transition-colors duration-300"
+        className="min-h-screen bg-surface text-on-surface antialiased flex flex-col selection:bg-primary selection:text-surface-container-lowest transition-colors duration-300"
       >
         <ThemeProvider>
           <CategoryProvider>

@@ -7,7 +7,7 @@ export default function DisciplinesPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/#disciplines');
+    router.replace('/#themes');
   }, [router]);
 
   return null;

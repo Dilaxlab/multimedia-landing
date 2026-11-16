@@ -15,41 +15,46 @@ export default function VideoCard({ vignette, video, onPlay }: VideoCardProps) {
   if (!item) return null;
 
   return (
-    <div
+    <button
+      type="button"
       onClick={() => onPlay(item)}
-      className="p-2.5 sm:p-3.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between gap-2 sm:gap-3 cursor-pointer group border border-outline-variant/20 hover:border-primary/50 shadow-md"
+      className="group w-full text-left border border-outline-variant/40 dark:border-white/10 bg-surface-container-lowest dark:bg-[#111114] hover:border-[#8c5d12]/60 dark:hover:border-[#d4af37]/60 transition-colors flex flex-col justify-between overflow-hidden cursor-pointer"
     >
-      <div className="w-full aspect-[16/10] sm:aspect-auto sm:h-36 rounded-lg overflow-hidden relative bg-black">
-        <img
-          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-          alt={item.title}
-          src={item.thumbnailUrl}
-        />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-          <span className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary text-neutral-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-            <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+      <div>
+        <div className="aspect-[16/10] w-full overflow-hidden relative bg-neutral-900 border-b border-outline-variant/30 dark:border-white/10">
+          <img
+            src={item.thumbnailUrl}
+            alt={item.title}
+            loading="lazy"
+            className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.03] opacity-90 group-hover:opacity-100"
+          />
+          <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors flex items-center justify-center">
+            <span className="w-11 h-11 rounded-full bg-on-surface text-surface dark:bg-[#f5f3ee] dark:text-[#111114] flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
+              <Play className="w-4 h-4 fill-current ml-0.5" />
+            </span>
+          </div>
+          <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 bg-black/80 text-white font-mono text-xs">
+            {item.duration}
           </span>
         </div>
-        <span className="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 px-1.5 sm:px-2 py-0.5 rounded bg-black/80 font-mono text-[9px] sm:text-[10px] text-primary font-medium">
-          {item.duration}
-        </span>
+
+        <div className="p-4 sm:p-5">
+          <p className="text-xs font-mono text-[#8c5d12] dark:text-[#d4af37] truncate">
+            {item.inventor}
+          </p>
+          <h4 className="mt-1 font-serif text-base sm:text-lg font-medium text-on-surface dark:text-white group-hover:text-[#8c5d12] dark:group-hover:text-[#d4af37] transition-colors line-clamp-2 leading-snug">
+            {item.title}
+          </h4>
+          <p className="mt-2 text-sm text-on-surface-variant dark:text-neutral-300 line-clamp-2 leading-relaxed">
+            {item.shortDesc}
+          </p>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-1 sm:gap-1.5 flex-1 min-w-0">
-        <h4 className="font-serif text-xs sm:text-sm text-on-surface group-hover:text-primary transition-colors line-clamp-1 font-medium">
-          {item.title}
-        </h4>
-        <span className="font-mono text-[10px] sm:text-[11px] text-primary truncate">
-          {item.inventor}
-        </span>
-        <p className="font-sans text-[11px] sm:text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
-          {item.shortDesc}
-        </p>
+      <div className="px-4 sm:px-5 py-3 border-t border-outline-variant/30 dark:border-white/10 flex items-center justify-between text-xs font-medium text-on-surface dark:text-neutral-200 group-hover:text-[#8c5d12] dark:group-hover:text-[#d4af37]">
+        <span>Watch documentary clip</span>
+        <Play className="w-3.5 h-3.5 shrink-0" />
       </div>
-
-      <div className="pt-1.5 sm:pt-2 border-t border-outline-variant/15 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-on-surface-variant">
-        <span className="text-primary group-hover:translate-x-0.5 transition-transform">PLAY REEL →</span>
-      </div>
-    </div>
+    </button>
   );
 }

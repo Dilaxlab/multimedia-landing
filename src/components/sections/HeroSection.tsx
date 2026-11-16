@@ -157,14 +157,15 @@ export default function HeroSection({
 
             {/* Main Headline: Large Serif Display Typography */}
             <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight dark:text-white text-on-surface leading-[1.18]">
-              Explore History <br />
-              <span className="text-primary font-serif italic">Beyond the Museum</span>
+              Discover the ideas <br />
+              <span className="text-primary font-serif italic">That shaped everyday life</span>
             </h1>
 
             {/* Subtitle: Muted Text */}
             <p className="font-sans text-on-surface-variant text-xs sm:text-base leading-relaxed max-w-xl">
-              Discover historical inventions through immersive 3D models, cinematic stories, and
-              interactive digital experiences.
+              Explore historic inventions, patent models and artifacts through images, 3D models,
+              films, audio and books. Turn each one in your hands. Then learn the human story behind
+              it.
             </p>
 
             {/* Action Buttons - Mobile Full-Width Touch Friendly */}
@@ -307,7 +308,9 @@ export default function HeroSection({
                 <Cog className="w-4 h-4 sm:w-6 sm:h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">500+</span>
+                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">
+                  500+
+                </span>
                 <span className="font-sans text-[11px] sm:text-xs text-on-surface-variant mt-0.5">
                   Historical Inventions
                 </span>
@@ -320,7 +323,9 @@ export default function HeroSection({
                 <Layers className="w-4 h-4 sm:w-6 sm:h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">18</span>
+                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">
+                  18
+                </span>
                 <span className="font-sans text-[11px] sm:text-xs text-on-surface-variant mt-0.5">
                   Invention Categories
                 </span>
@@ -333,7 +338,9 @@ export default function HeroSection({
                 <Film className="w-4 h-4 sm:w-6 sm:h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">30s</span>
+                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">
+                  30s
+                </span>
                 <span className="font-sans text-[11px] sm:text-xs text-on-surface-variant mt-0.5">
                   3-Scene Documentaries
                 </span>
@@ -346,7 +353,9 @@ export default function HeroSection({
                 <ShieldCheck className="w-4 h-4 sm:w-6 sm:h-6 stroke-[1.8]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">100%</span>
+                <span className="font-serif text-lg sm:text-2xl font-bold dark:text-white text-on-surface leading-tight">
+                  100%
+                </span>
                 <span className="font-sans text-[11px] sm:text-xs text-on-surface-variant mt-0.5">
                   Verified Patent Archives
                 </span>
