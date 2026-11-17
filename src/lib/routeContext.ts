@@ -11,7 +11,7 @@ import {
 } from '@/lib/constants';
 import { HistoricalAsset } from '@/types/asset';
 
-export type FunnelStage = 'home' | 'theme' | 'category' | 'asset';
+export type FunnelStage = 'home' | 'theme' | 'category' | 'asset' | 'media';
 
 export const LAST_CATEGORY_STORAGE_KEY = 'ha_last_category_slug';
 
@@ -157,6 +157,16 @@ export function resolveRouteContext(
       parentCategoryHref,
       parentCategoryTitle,
       backFallbackHref: parentCategoryHref,
+    };
+  }
+
+  if (segments[0] === 'media') {
+    return {
+      stage: 'media',
+      isHome: false,
+      parentCategoryHref: '/media',
+      parentCategoryTitle: 'Media Library',
+      backFallbackHref: '/',
     };
   }
 

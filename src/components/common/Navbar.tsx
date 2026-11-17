@@ -310,6 +310,14 @@ function ContextDropdownPanel({
         </div>
 
         <div className="sm:hidden mt-2.5 pt-2.5 border-t border-outline-variant/30 dark:border-white/10">
+          <Link
+            href="/media"
+            onClick={onNavigateItem}
+            className="flex items-center justify-between px-2.5 py-2 text-xs font-medium text-on-surface dark:text-neutral-200 hover:text-[#8c5d12] dark:hover:text-[#d4af37]"
+          >
+            <span>Media Library</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
           <a
             href={VIRTUAL_TOUR_MUSEUM_URL}
             target="_blank"
@@ -375,6 +383,14 @@ function ContextDropdownPanel({
       </div>
 
       <div className="sm:hidden mt-2.5 pt-2.5 border-t border-outline-variant/30 dark:border-white/10">
+        <Link
+          href="/media"
+          onClick={onNavigateItem}
+          className="flex items-center justify-between px-2.5 py-2 text-xs font-medium text-on-surface dark:text-neutral-200 hover:text-[#8c5d12] dark:hover:text-[#d4af37]"
+        >
+          <span>Media Library</span>
+          <ChevronRight className="w-3.5 h-3.5" />
+        </Link>
         <a
           href={VIRTUAL_TOUR_MUSEUM_URL}
           target="_blank"
@@ -594,7 +610,7 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
 
   const handleSlot3LabelClick = useCallback(() => {
     setDropdownSource(null);
-    if (routeCtx.stage === 'home') {
+    if (routeCtx.stage === 'home' || routeCtx.stage === 'media') {
       handleHomeAnchor('themes', '/#themes');
     } else if (routeCtx.stage === 'theme') {
       scrollToElementId(
@@ -610,7 +626,9 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
 
   const isDropdownOpen = dropdownSource !== null;
   const hasDropdownForStage =
-    routeCtx.stage === 'home' || routeCtx.stage === 'theme';
+    routeCtx.stage === 'home' ||
+    routeCtx.stage === 'theme' ||
+    routeCtx.stage === 'media';
 
   const fixedNavLinkClass = (active: boolean) =>
     `inline-flex items-center h-16 px-1 text-sm whitespace-nowrap border-b-2 transition-colors cursor-pointer ${
@@ -705,10 +723,10 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
             )}
           </div>
 
-          {/* CENTER (Desktop md+): Locked 4-Slot Spatial Anchor Navigation */}
+          {/* CENTER (Desktop md+): Locked Spatial Anchor Navigation */}
           <nav
             aria-label="Primary archive navigation"
-            className="hidden md:flex items-center gap-5 lg:gap-8"
+            className="hidden md:flex items-center gap-4 lg:gap-7"
           >
             {/* Slot 1: Home */}
             <button
@@ -741,7 +759,7 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
               onMouseLeave={
                 hasDropdownForStage ? handleDesktopHoverLeave : undefined
               }
-              className="relative flex items-center justify-center min-w-[132px] lg:min-w-[162px]"
+              className="relative flex items-center justify-center min-w-[122px] lg:min-w-[152px]"
             >
               {hasDropdownForStage ? (
                 <div className="inline-flex items-center border border-[#8c5d12]/40 dark:border-[#d4af37]/40 border-b-2 border-b-[#8c5d12] dark:border-b-[#d4af37] bg-[#8c5d12]/[0.06] dark:bg-[#d4af37]/[0.08] text-[#8c5d12] dark:text-[#d4af37]">
@@ -803,6 +821,15 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
                 </div>
               )}
             </div>
+
+            {/* Media Library */}
+            <Link
+              href="/media"
+              onClick={() => setDropdownSource(null)}
+              className={fixedNavLinkClass(routeCtx.stage === 'media')}
+            >
+              Media
+            </Link>
 
             {/* Slot 4: Featured */}
             <button
@@ -923,6 +950,15 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
                     <ChevronRight className="w-3.5 h-3.5 opacity-55 shrink-0" />
                     <span className="font-medium text-on-surface dark:text-white truncate max-w-[180px] sm:max-w-[320px]">
                       {routeCtx.activeAsset.title}
+                    </span>
+                  </>
+                )}
+
+                {routeCtx.stage === 'media' && (
+                  <>
+                    <ChevronRight className="w-3.5 h-3.5 opacity-55 shrink-0" />
+                    <span className="font-medium text-on-surface dark:text-white">
+                      Media Library
                     </span>
                   </>
                 )}

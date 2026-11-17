@@ -34,6 +34,13 @@
       "skillPath": "skills/frontend-design/SKILL.md",
       "computedHash": "83485963700bcf11d5bf78118facb301676b69d918fee2e45a95e7f1a2840f6c"
     },
+    "image-media-patterns": {
+      "source": "phazurlabs/sumi",
+      "commit": "3a3693b02c0968ef2d299044119faef8f3a24624",
+      "sourceType": "github",
+      "skillPath": "skills/image-media-patterns/SKILL.md",
+      "computedHash": "4095975dc3446063323176bb84858b62907614841a7e23864fa9468c1322ea24"
+    },
     "impeccable": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",

@@ -516,7 +516,7 @@ export default function HeroSectionThree({
         </div>
 
         {/* Interactive Format Filter Bar */}
-      
+
 
         {/* Quiet Archival Provenance Row */}
         <div className="mt-7 pt-5 border-t border-outline-variant/30 dark:border-white/[0.08] flex flex-col sm:flex-row sm:items-center gap-x-5 gap-y-1.5 text-xs text-on-surface-variant dark:text-neutral-400">

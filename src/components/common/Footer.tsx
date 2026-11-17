@@ -48,6 +48,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/media" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  Media Library
+                </Link>
+              </li>
+              <li>
                 <Link href="/#virtual-portal" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
                   3D Virtual Museum
                 </Link>
