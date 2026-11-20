@@ -93,7 +93,7 @@ export function isLocalMockEnabled(): boolean {
 }
 
 export function getApiBaseUrl(): string {
-  return (process.env.NEXT_PUBLIC_API_BASE_URL || '').replace(/\/+$/, '');
+  return (process.env.NEXT_PUBLIC_API_BASE_URL || '/api').replace(/\/+$/, '');
 }
 
 export function unwrapApiData<T>(payload: unknown): T {
