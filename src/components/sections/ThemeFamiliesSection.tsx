@@ -272,33 +272,6 @@ export default function ThemeFamiliesSection({
                       {theme.description}
                     </p>
 
-                    <ul className="divide-y divide-outline-variant/20 dark:divide-white/5 border-t border-outline-variant/30 dark:border-white/10 pt-2">
-                      {theme.categories.map((cat) => (
-                        <li key={cat.slug}>
-                          <Link
-                            href={
-                              lockedTeaser
-                                ? `/login?next=${encodeURIComponent(`/categories/${cat.slug}`)}`
-                                : `/categories/${cat.slug}`
-                            }
-                            className="flex items-center justify-between gap-2 min-h-[44px] py-2.5 text-sm text-on-surface dark:text-neutral-200 hover:text-[#8c5d12] dark:hover:text-[#d4af37]"
-                          >
-                            <span className="leading-snug">
-                              <span className="font-mono text-xs text-on-surface-variant dark:text-neutral-500 mr-2">
-                                {cat.number}
-                              </span>
-                              {cat.title}
-                            </span>
-                            {lockedTeaser ? (
-                              <Lock className="w-3.5 h-3.5 shrink-0 opacity-70" />
-                            ) : (
-                              <ArrowRight className="w-4 h-4 shrink-0 opacity-60" />
-                            )}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-
                     <Link
                       href={
                         lockedTeaser
