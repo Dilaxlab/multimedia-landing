@@ -54,6 +54,7 @@ export interface HeroSectionThreeProps {
   defaultDirection?: HeroThreeDirection;
   showStageControls?: boolean;
   monochrome?: boolean;
+  lockedTeaser?: boolean;
   onExploreCollection?: () => void;
   onWatchStories?: () => void;
   onExploreAsset?: (id: string, format?: HeroThreeOutputType) => void;
@@ -304,27 +305,26 @@ function getResponsiveCardDimensions(viewportWidth: number): CardDimensions {
  */
 export default function HeroSectionThree({
   headingTag = 'h1',
-  eyebrow = '',
-  titleLine1 = '90 Historical Inventions,',
-  titleLine2 = 'Documented Five Ways.',
-  subtitle = 'Explore landmark patents across 10 themes and 50 categories. Each invention includes a Video, 3D Model, Book, 2D Plate, and Story.',
-  primaryCtaLabel = 'Browse Collections',
-  secondaryCtaLabel = 'How Formats Work',
-  vaultsLabel = 'Archival Sources',
+  eyebrow = 'Heritage × Innovation × Commerce',
+  titleLine1 = '1,000 Patent Models.',
+  titleLine2 = 'Many Ways to Tell Every Story.',
+  subtitle = 'Turn rare physical patent models and historical artifacts into 3D reconstructions, archival plates, narrated stories, films, and illustrated books across 10 themes and 50 categories.',
+  primaryCtaLabel = 'Explore 10 Theme Families',
+  secondaryCtaLabel = 'See the 5 Media Formats',
+  vaultsLabel = 'Archival Provenance',
   vaults = DEFAULT_VAULTS,
   columns = DEFAULT_COLUMNS,
   defaultColumns = 3,
   defaultPerspective = 'tilted',
   defaultDirection = 'alternate',
   monochrome = false,
+  lockedTeaser = false,
   onExploreCollection,
   onWatchStories,
   onExploreAsset,
 }: HeroSectionThreeProps) {
   const router = useRouter();
-  const [cardDims, setCardDims] = useState<CardDimensions>(() =>
-    getResponsiveCardDimensions(1440)
-  );
+  const [cardDims, setCardDims] = useState<CardDimensions>(() => getResponsiveCardDimensions(1440));
   const [isDesktop, setIsDesktop] = useState(true);
   const [isHoverPaused, setIsHoverPaused] = useState(false);
   const [activeFormat, setActiveFormat] = useState<HeroThreeOutputType | null>(null);
@@ -341,10 +341,7 @@ export default function HeroSectionThree({
   pausedRef.current = isHoverPaused;
   reducedMotionRef.current = prefersReducedMotion;
 
-  const activeColumns = useMemo(
-    () => columns.slice(0, defaultColumns),
-    [columns, defaultColumns]
-  );
+  const activeColumns = useMemo(() => columns.slice(0, defaultColumns), [columns, defaultColumns]);
 
   const mobileCards = useMemo(() => {
     const interleaved: HeroThreeCard[] = [];
@@ -418,8 +415,7 @@ export default function HeroSectionThree({
           if (col.length === 0) return;
           const cycleHeight = col.length * stride;
           const speed = COLUMN_SPEEDS[idx % COLUMN_SPEEDS.length];
-          const sign =
-            mode === 'down' ? 1 : mode === 'up' ? -1 : idx % 2 === 0 ? 1 : -1;
+          const sign = mode === 'down' ? 1 : mode === 'up' ? -1 : idx % 2 === 0 ? 1 : -1;
           const next = (phasesRef.current[idx] + sign * speed * dt) % cycleHeight;
           phasesRef.current[idx] = next < 0 ? next + cycleHeight : next;
         });
@@ -455,6 +451,11 @@ export default function HeroSectionThree({
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
+    if (lockedTeaser) {
+      const hash = OUTPUT_META[card.outputType].hash;
+      router.push(`/login?next=${encodeURIComponent(`/inventions/${card.assetId}#${hash}`)}`);
+      return;
+    }
     if (onExploreAsset) {
       onExploreAsset(card.assetId, card.outputType);
       return;
@@ -484,9 +485,7 @@ export default function HeroSectionThree({
         <HeadingTag className="font-serif text-[clamp(30px,5.2vw,52px)] leading-[1.08] tracking-[-0.02em] font-semibold text-on-surface dark:text-white mb-3.5 sm:mb-4 max-w-[520px]">
           <span className="block">{titleLine1}</span>
           {titleLine2 ? (
-            <span className="block mt-1 text-on-surface dark:text-white">
-              {titleLine2}
-            </span>
+            <span className="block mt-1 text-on-surface dark:text-white">{titleLine2}</span>
           ) : null}
         </HeadingTag>
 
@@ -516,7 +515,6 @@ export default function HeroSectionThree({
         </div>
 
         {/* Interactive Format Filter Bar */}
-
 
         {/* Quiet Archival Provenance Row */}
         <div className="mt-7 pt-5 border-t border-outline-variant/30 dark:border-white/[0.08] flex flex-col sm:flex-row sm:items-center gap-x-5 gap-y-1.5 text-xs text-on-surface-variant dark:text-neutral-400">
@@ -557,7 +555,7 @@ export default function HeroSectionThree({
                   style={{ objectPosition: card.imagePosition || 'center' }}
                   className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03] ${
                     monochrome ? 'grayscale contrast-[1.08]' : ''
-                  }`}
+                  } ${lockedTeaser ? 'blur-[4px] brightness-75' : ''}`}
                 />
                 <div
                   aria-hidden="true"
@@ -643,8 +641,8 @@ export default function HeroSectionThree({
                             isSelected
                               ? 'border-[#d4af37]/80 shadow-[0_18px_40px_rgba(0,0,0,0.45)]'
                               : isDimmed
-                              ? 'border-white/[0.06] opacity-25 shadow-none'
-                              : 'border-black/10 dark:border-white/[0.1] shadow-[0_16px_36px_rgba(0,0,0,0.2)] dark:shadow-[0_18px_42px_rgba(0,0,0,0.7)] hover:border-black/25 dark:hover:border-white/25'
+                                ? 'border-white/[0.06] opacity-25 shadow-none'
+                                : 'border-black/10 dark:border-white/[0.1] shadow-[0_16px_36px_rgba(0,0,0,0.2)] dark:shadow-[0_18px_42px_rgba(0,0,0,0.7)] hover:border-black/25 dark:hover:border-white/25'
                           }`}
                           style={{
                             width: `${cardDims.width}px`,
@@ -658,7 +656,7 @@ export default function HeroSectionThree({
                             style={{ objectPosition: card.imagePosition || 'center' }}
                             className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04] ${
                               monochrome ? 'grayscale contrast-[1.08]' : ''
-                            }`}
+                            } ${lockedTeaser ? 'blur-[4px] brightness-75' : ''}`}
                           />
 
                           {/* Clean Bottom Readability Vignette */}

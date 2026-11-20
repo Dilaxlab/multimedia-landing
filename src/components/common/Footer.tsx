@@ -2,9 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
 import { THEME_FAMILIES } from '@/data/taxonomy';
-import { VIRTUAL_TOUR_MUSEUM_URL } from '@/lib/constants';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -22,7 +20,7 @@ export default function Footer() {
               Heritage Archive
             </Link>
             <p className="text-sm text-on-surface-variant dark:text-neutral-400 leading-relaxed max-w-sm">
-              A structured museum reference covering 90 historical inventions across 10 themes and 50 categories. Every record includes Video, 3D Model, Book, 2D Plate, and Story formats.
+              A cross-platform classification and multimedia framework built for 1,000 historical patent models and artifacts across 10 theme families, 50 categories, and 150 promotional taglines.
             </p>
           </div>
 
@@ -34,27 +32,22 @@ export default function Footer() {
             <ul className="space-y-1 text-sm text-on-surface-variant dark:text-neutral-400">
               <li>
                 <Link href="/#whats-inside" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
-                  5 Study Formats
+                  5 Reusable Formats
                 </Link>
               </li>
               <li>
                 <Link href="/#themes" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
-                  10 Theme Directory
+                  10 Theme Families
                 </Link>
               </li>
               <li>
                 <Link href="/#trending" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
-                  Featured Inventions
+                  Milestone Patent Models
                 </Link>
               </li>
               <li>
                 <Link href="/media" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
                   Media Library
-                </Link>
-              </li>
-              <li>
-                <Link href="/#virtual-portal" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
-                  3D Virtual Museum
                 </Link>
               </li>
             </ul>
@@ -105,25 +98,14 @@ export default function Footer() {
                   Isochronous Pendulum Clock (1657)
                 </Link>
               </li>
-              <li className="pt-1">
-                <a
-                  href={VIRTUAL_TOUR_MUSEUM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 py-1.5 font-medium text-[#8c5d12] dark:text-[#d4af37] hover:underline"
-                >
-                  <span>Launch 3D Museum</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Copyright & Honest Metadata */}
         <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-on-surface-variant dark:text-neutral-500">
-          <p>© {currentYear} Heritage Archive. Historical invention reference collection.</p>
-          <p className="font-mono">10 Themes · 50 Categories · 90 Inventions · 5 Formats Each</p>
+          <p>© {currentYear} Heritage Archive · Linkay Technologies Inc. | Linkay Ventures Inc.</p>
+          <p className="font-mono">1,000 Target Artifacts · 10 Themes · 50 Categories · 150 Taglines · 4 Channels</p>
         </div>
       </div>
     </footer>

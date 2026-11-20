@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import Navbar from '@/components/common/Navbar';
-import Footer from '@/components/common/Footer';
-import MobileBottomNav from '@/components/common/MobileBottomNav';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
+import { AuthProvider } from '@/context/AuthContext';
 import { CategoryProvider } from '@/context/CategoryContext';
+import PublicChrome from '@/components/common/PublicChrome';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -15,23 +14,24 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'Heritage Archive – Interactive Multimedia Gallery',
+  title: 'Heritage Archive | 1,000 Historical Patent Models & Artifacts',
   description:
-    'Discover historical inventions through immersive 3D models, cinematic stories, and interactive digital experiences. A premium digital museum combining historical storytelling with modern interactive technology.',
+    'Explore 1,000 target historical patent models and artifacts across 10 theme families, 50 categories, and 150 promotional taglines. Interactive 3D models, 2D plates, narrated stories, films, and illustrated books.',
   keywords: [
+    'Historical Patent Models',
     'Digital Museum',
-    'Historical Inventions',
-    'Alexander Graham Bell',
-    'Caroline Fleming',
-    'Henry Beville',
-    'Three.js 3D Models',
-    'Historical Documentaries',
-    'Patents',
+    'IAMIS Heritage Archive',
+    'Linkay Technologies',
+    '3D Patent Reconstructions',
+    'Thematic Inventions',
+    'Archival Plates',
+    'STEM History',
   ],
-  authors: [{ name: 'Heritage Archive Consortium' }],
+  authors: [{ name: 'Linkay Technologies Inc. | Linkay Ventures Inc.' }],
   openGraph: {
-    title: 'Heritage Archive – Interactive Multimedia Gallery',
-    description: 'Explore History Beyond the Museum through 3D models and cinematic narration documentaries.',
+    title: 'Heritage Archive | 1,000 Historical Patent Models & Artifacts',
+    description:
+      'One collection, many stories, four channels. Explore historical patent models in 3D, video, illustrated books, 2D plates, and narrated stories.',
     siteName: 'Heritage Archive',
     images: [
       {
@@ -82,19 +82,11 @@ export default function RootLayout({
         className="min-h-screen bg-surface text-on-surface antialiased flex flex-col selection:bg-primary selection:text-surface-container-lowest transition-colors duration-300"
       >
         <ThemeProvider>
-          <CategoryProvider>
-            {/* Navigation Bar */}
-            <Navbar />
-
-            {/* Main Content Viewport */}
-            <main className="flex-1 w-full">{children}</main>
-
-            {/* Mobile Multimedia App Bottom Navigation Bar */}
-            <MobileBottomNav />
-
-            {/* Museum Footer */}
-            <Footer />
-          </CategoryProvider>
+          <AuthProvider>
+            <CategoryProvider>
+              <PublicChrome>{children}</PublicChrome>
+            </CategoryProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

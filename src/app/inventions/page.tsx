@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ALL_50_CATEGORIES } from '@/data/taxonomy';
 import { useCategory } from '@/context/CategoryContext';
 
 export default function InventionsIndexPage() {
@@ -9,11 +10,10 @@ export default function InventionsIndexPage() {
   const { activeCategory } = useCategory();
 
   useEffect(() => {
-    if (activeCategory) {
-      router.replace(`/category/${activeCategory}`);
-    } else {
-      router.replace('/#themes');
-    }
+    const matched = activeCategory
+      ? ALL_50_CATEGORIES.find((c) => c.legacyCategoryKeys?.includes(activeCategory))
+      : undefined;
+    router.replace(matched ? `/categories/${matched.slug}` : '/#themes');
   }, [activeCategory, router]);
 
   return null;

@@ -5,10 +5,7 @@ import {
   getThemeBySlug,
   ThemeFamily,
 } from '@/data/taxonomy';
-import {
-  MOCK_HISTORICAL_ASSETS,
-  OFFICIAL_18_CATEGORIES,
-} from '@/lib/constants';
+import { OFFICIAL_18_CATEGORIES } from '@/lib/constants';
 import { HistoricalAsset } from '@/types/asset';
 
 export type FunnelStage = 'home' | 'theme' | 'category' | 'asset' | 'media';
@@ -28,13 +25,14 @@ export interface RouteContext {
 }
 
 /**
- * Resolves the active 4-stage funnel state (Home -> Theme -> Category -> Asset)
- * from the current pathname, persisted session category, and active discipline key.
+ * Resolves the active funnel stage (Home -> Theme -> Category -> Asset / Media)
+ * from the pathname without pulling restricted full-asset datasets into client bundles.
  */
 export function resolveRouteContext(
   pathname: string,
   lastCategorySlug: string | null,
-  activeLegacyKey: string
+  activeLegacyKey: string,
+  liveAsset?: HistoricalAsset | null
 ): RouteContext {
   const cleanPath = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
   const segments = cleanPath.split('/').filter(Boolean);
@@ -99,9 +97,10 @@ export function resolveRouteContext(
 
   if (segments[0] === 'inventions' && segments[1]) {
     const assetId = decodeURIComponent(segments[1]);
-    const activeAsset = MOCK_HISTORICAL_ASSETS.find(
-      (a) => a.id.toLowerCase() === assetId.toLowerCase()
-    );
+    const activeAsset: HistoricalAsset | undefined =
+      liveAsset && liveAsset.id.toLowerCase() === assetId.toLowerCase()
+        ? liveAsset
+        : undefined;
 
     const sessionMatch = lastCategorySlug
       ? getCategoryBySlug(lastCategorySlug)
@@ -140,9 +139,7 @@ export function resolveRouteContext(
 
     const parentCategoryHref = resolvedCategory
       ? `/categories/${resolvedCategory.slug}`
-      : legacyCategory
-        ? `/category/${legacyCategory.key}`
-        : '/#themes';
+      : '/#themes';
 
     const parentCategoryTitle =
       resolvedCategory?.title ?? legacyCategory?.label ?? 'Collection';

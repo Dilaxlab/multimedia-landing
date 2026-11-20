@@ -1,10 +1,6 @@
 import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
 import { VideoVignette, BlueprintMedia } from '@/types/media';
 
-/** External 3D Virtual Tour Museum Website URL (configurable via .env.local) */
-export const VIRTUAL_TOUR_MUSEUM_URL =
-  process.env.NEXT_PUBLIC_VIRTUAL_TOUR_URL || 'https://your-external-website.com';
-
 export interface CategoryMeta {
   key: CategoryFilterType;
   label: string;

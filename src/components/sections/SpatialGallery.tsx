@@ -15,7 +15,8 @@ import {
   Search,
   Grid2x2,
 } from 'lucide-react';
-import { MOCK_HISTORICAL_ASSETS } from '@/lib/constants';
+import { assetService } from '@/services/assetService';
+import { useAuth } from '@/context/AuthContext';
 import { HistoricalAsset, CategoryFilterType } from '@/types/asset';
 
 const ModelViewer3D = dynamic(() => import('@/components/viewers/ModelViewer3D'), {
@@ -29,6 +30,7 @@ const ModelViewer3D = dynamic(() => import('@/components/viewers/ModelViewer3D')
 });
 
 interface SpatialGalleryProps {
+  assets?: HistoricalAsset[];
   onSelectAssetForDossier?: (asset: HistoricalAsset) => void;
   selectedAssetId?: string;
   onSelectAssetId?: (id: string) => void;
@@ -36,25 +38,50 @@ interface SpatialGalleryProps {
 }
 
 export default function SpatialGallery({
+  assets: providedAssets,
   selectedAssetId: externalAssetId,
   onSelectAssetId,
   category,
 }: SpatialGalleryProps) {
-  const [internalAssetId, setInternalAssetId] = useState<string>('HA-107');
+  const { isAuthenticated } = useAuth();
+  const [liveAssets, setLiveAssets] = useState<HistoricalAsset[]>(providedAssets || []);
+  const [internalAssetId, setInternalAssetId] = useState<string>('');
   const selectedAssetId = externalAssetId || internalAssetId;
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isBrowserModalOpen, setIsBrowserModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (category) {
-      const catAsset = MOCK_HISTORICAL_ASSETS.find((a) => a.category === category);
-      if (catAsset) {
-        setInternalAssetId(catAsset.id);
-        if (onSelectAssetId) onSelectAssetId(catAsset.id);
-      }
+    if (providedAssets) {
+      setLiveAssets(providedAssets);
+      return;
     }
-  }, [category, onSelectAssetId]);
+    if (!isAuthenticated) {
+      setLiveAssets([]);
+      return;
+    }
+
+    let cancelled = false;
+    assetService
+      .getAssets(category && category !== 'ALL' ? { category: String(category) } : {})
+      .then((res) => {
+        if (!cancelled) setLiveAssets(res);
+      })
+      .catch(() => {
+        if (!cancelled) setLiveAssets([]);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [providedAssets, category, isAuthenticated]);
+
+  useEffect(() => {
+    if (liveAssets.length > 0 && !selectedAssetId) {
+      setInternalAssetId(liveAssets[0].id);
+      if (onSelectAssetId) onSelectAssetId(liveAssets[0].id);
+    }
+  }, [liveAssets, selectedAssetId, onSelectAssetId]);
 
   const handleSelectAssetId = (id: string) => {
     setInternalAssetId(id);
@@ -62,10 +89,10 @@ export default function SpatialGallery({
   };
 
   const featuredAssets = useMemo(() => {
-    return category
-      ? MOCK_HISTORICAL_ASSETS.filter((a) => a.category === category)
-      : MOCK_HISTORICAL_ASSETS;
-  }, [category]);
+    return category && category !== 'ALL'
+      ? liveAssets.filter((a) => !a.category || a.category === category)
+      : liveAssets;
+  }, [liveAssets, category]);
 
   const filteredAssets = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();

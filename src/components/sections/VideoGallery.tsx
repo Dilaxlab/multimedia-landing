@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Play } from 'lucide-react';
-import { MOCK_VIDEO_VIGNETTES } from '@/lib/constants';
+import { mediaService } from '@/services/mediaService';
+import { useAuth } from '@/context/AuthContext';
 import { VideoVignette } from '@/types/media';
 import { CategoryFilterType } from '@/types/asset';
 import VideoCard from '@/components/cards/VideoCard';
@@ -10,17 +11,45 @@ import VideoPlayerModal from '@/components/viewers/VideoPlayerModal';
 
 interface VideoGalleryProps {
   category?: CategoryFilterType;
+  videos?: VideoVignette[];
 }
 
-export default function VideoGallery({ category }: VideoGalleryProps = {}) {
+export default function VideoGallery({ category, videos }: VideoGalleryProps = {}) {
+  const { isAuthenticated } = useAuth();
   const [selectedVideo, setSelectedVideo] = useState<VideoVignette | null>(null);
+  const [liveVideos, setLiveVideos] = useState<VideoVignette[]>(videos || []);
+
+  useEffect(() => {
+    if (videos) {
+      setLiveVideos(videos);
+      return;
+    }
+    if (!isAuthenticated) {
+      setLiveVideos([]);
+      return;
+    }
+
+    let cancelled = false;
+    mediaService
+      .getDocumentaries(category && category !== 'ALL' ? String(category) : undefined)
+      .then((res) => {
+        if (!cancelled) setLiveVideos(res);
+      })
+      .catch(() => {
+        if (!cancelled) setLiveVideos([]);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [category, videos, isAuthenticated]);
 
   const filteredVideos =
     category && category !== 'ALL'
-      ? MOCK_VIDEO_VIGNETTES.filter((v) => v.categoryId === category)
-      : MOCK_VIDEO_VIGNETTES;
+      ? liveVideos.filter((v) => !v.categoryId || v.categoryId === category)
+      : liveVideos;
 
-  const displayVideos = filteredVideos.length > 0 ? filteredVideos : MOCK_VIDEO_VIGNETTES;
+  const displayVideos = filteredVideos.length > 0 ? filteredVideos : liveVideos;
   const featuredVideo = displayVideos[0];
 
   return (

@@ -47,6 +47,13 @@
       "skillPath": ".agents/skills/impeccable/SKILL.md",
       "computedHash": "ef491197f40a60e4e6b2ef7b71b7959bd919d9f173a4e591e6212b3ec8037b04"
     },
+    "interface-design": {
+      "source": "Dammyjay93/interface-design",
+      "commit": "2f9be3206855bcb2d1d0af262c8bae25cba6658d",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/interface-design/SKILL.md",
+      "computedHash": "1491bb966a2c289550e0d6eb25c19b0570ead479240f6b2ba5766d94599ea744"
+    },
     "navigation-patterns": {
       "source": "Owl-Listener/designer-skills",
       "sourceType": "github",
@@ -58,6 +65,27 @@
       "sourceType": "github",
       "skillPath": "plugins/ui-design/skills/responsive-design/SKILL.md",
       "computedHash": "3ff2c1acd7067b5fbd30dc370364054f7d470d26e288cf3d454fed457478cdc0"
+    },
+    "route-handlers": {
+      "source": "davepoon/buildwithclaude",
+      "commit": "bc1fd2cc6e048f0139f9bde530e09bca4ae6f64c",
+      "sourceType": "github",
+      "skillPath": "plugins/nextjs-expert/skills/route-handlers/SKILL.md",
+      "computedHash": "142ff8eb46ff320859e13b9915af0118284b9e952c4475a9068c4bc0d3ee7a94"
+    },
+    "session-management": {
+      "source": "secondsky/claude-skills",
+      "commit": "88378361314f558fb719aec0af9fd898ab36f0b2",
+      "sourceType": "github",
+      "skillPath": "plugins/session-management/skills/session-management/SKILL.md",
+      "computedHash": "3ab8cad40446a399aa195b1748403e8c726c749c21562b1398b3f6d34406f70a"
+    },
+    "ui-craft-dense-dashboard": {
+      "source": "educlopez/ui-craft",
+      "commit": "c1e556ed843b5aad057678f9a152fbcf756eb62c",
+      "sourceType": "github",
+      "skillPath": "skills/ui-craft-dense-dashboard/SKILL.md",
+      "computedHash": "966301437243347e91c0e74dc9d70638542b304e4c5184883d0a2b1b69b23ad3"
     },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
@@ -71,6 +99,13 @@
       "sourceType": "github",
       "skillPath": "web-typography/SKILL.md",
       "computedHash": "dec11effdd7686fbbf0efda5e41ce2a5681a2f83b339bcec9ca41bf855b1841f"
+    },
+    "zod-validation-expert": {
+      "source": "davila7/claude-code-templates",
+      "commit": "ce1cbd39fc3abfdcbfc49bddd1009fd8236b1268",
+      "sourceType": "github",
+      "skillPath": "cli-tool/components/skills/web-development/zod-validation-expert/SKILL.md",
+      "computedHash": "be257924a077c5b487f9dd13fd5e23d5a566241a0651ca2a1abe77560d3f9446"
     }
   }
 }

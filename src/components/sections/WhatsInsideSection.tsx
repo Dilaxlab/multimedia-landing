@@ -281,10 +281,15 @@ const VisualBooks = ({ isActive }: { isActive: boolean }) => (
    MAIN SECTION
    ========================================================================= */
 interface WhatsInsideSectionProps {
+  title?: string;
+  subtitle?: string;
   onExploreDisciplines?: () => void;
 }
 
-export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInsideSectionProps = {}) {
+export default function WhatsInsideSection({
+  title = 'One Authoritative Record. Five Reusable Formats.',
+  subtitle = 'Every historical patent model carries one persistent IAMIS asset ID linked to five curated formats, ready for museum halls, classrooms, and collector editions.',
+}: WhatsInsideSectionProps = {}) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -355,11 +360,11 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
         {/* Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-7 sm:mb-10 lg:mb-12">
           <h2 className="font-serif text-[clamp(26px,4vw,44px)] leading-[1.15] dark:text-white text-on-surface font-semibold tracking-tight mb-2.5 sm:mb-3">
-            Inside Every Invention Record
+            {title}
           </h2>
 
           <p className="text-sm sm:text-base dark:text-neutral-300 text-on-surface-variant leading-relaxed">
-            Every patent in the archive is presented in the same five formats so you can inspect it from every angle.
+            {subtitle}
           </p>
         </div>
 
@@ -372,8 +377,8 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
           {/* Card 01: 3D Models */}
           <BentoCard
             indexNumber="01"
-            title="3D Models"
-            description="Rotate and zoom reconstructed models directly in your browser to see how physical parts fit together."
+            title="3D Patent Models"
+            description="Orbit, zoom, and inspect reconstructed mechanisms in your browser to see how every brass gear, shaft, and housing fits together."
             icon={<Boxes className="w-4 h-4" />}
             header={<Visual3D isActive={activeIndex === 0} />}
             isActive={activeIndex === 0}
@@ -391,8 +396,8 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
           {/* Card 02: Video Animations */}
           <BentoCard
             indexNumber="02"
-            title="Video Animations"
-            description="Watch how gears, pistons, circuits, and turbines move and operate step by step."
+            title="Video & Motion Studies"
+            description="Watch short visual demonstrations and documentary cuts showing how steam valves, coils, looms, and turbines operate in motion."
             icon={<PlayCircle className="w-4 h-4" />}
             header={<VisualAnimation isActive={activeIndex === 1} />}
             isActive={activeIndex === 1}
@@ -410,8 +415,8 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
           {/* Card 03: Historical Stories */}
           <BentoCard
             indexNumber="03"
-            title="Historical Stories"
-            description="Read and hear the real story of the inventor, the problem they faced, and how it was solved."
+            title="Narrated Stories"
+            description="Read and listen to the inventor's breakthrough, the engineering problem they faced, and how the mechanism reshaped daily life."
             icon={<AudioLines className="w-4 h-4" />}
             header={<VisualAudio isActive={activeIndex === 2} />}
             isActive={activeIndex === 2}
@@ -429,8 +434,8 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
           {/* Card 04: 2D Patent Plates */}
           <BentoCard
             indexNumber="04"
-            title="2D Patent Plates"
-            description="Inspect historical patent drawings, filing numbers, dates, and technical specification plates."
+            title="2D Patent Plates & Prints"
+            description="Examine high-resolution historical patent drawings, filing numbers, provenance records, and figure callouts prepared for study and print editions."
             icon={<FileImage className="w-4 h-4" />}
             header={<VisualArchive isActive={activeIndex === 3} />}
             isActive={activeIndex === 3}
@@ -448,8 +453,8 @@ export default function WhatsInsideSection({ onExploreDisciplines }: WhatsInside
           {/* Card 05: Archival Books */}
           <BentoCard
             indexNumber="05"
-            title="Archival Books"
-            description="Open companion illustrated books providing clear historical context for students and general readers."
+            title="Illustrated Books"
+            description="Open age-tailored companion books spanning ages 3–6 adventures, STEM engineering editions, and collector heritage volumes."
             icon={<BookOpen className="w-4 h-4" />}
             header={<VisualBooks isActive={activeIndex === 4} />}
             isActive={activeIndex === 4}

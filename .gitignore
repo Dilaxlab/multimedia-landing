@@ -16,9 +16,16 @@ build/
 # TypeScript Build Cache
 *.tsbuildinfo
 
+# Local Master v5 Archive Store & Uploads
+/db/*.json
+/public/uploads/*
+
 # Debug Logs
 npm-debug.log*
 
 # OS Files
 .DS_Store
 Thumbs.db
+
+#skill
+.agents/

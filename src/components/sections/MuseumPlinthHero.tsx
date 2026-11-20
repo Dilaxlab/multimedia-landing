@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 
@@ -14,6 +14,8 @@ export interface PlinthFeaturedAsset {
 export interface MuseumPlinthHeroProps {
   /** Theme slug used to load /images/themes/<themeSlug>.jpg */
   themeSlug: string;
+  /** Optional category or custom hero image override */
+  heroImage?: string;
   /** Retained for caller compatibility */
   backLabel?: string;
   backFallbackHref?: string;
@@ -44,6 +46,7 @@ export interface MuseumPlinthHeroProps {
 
 export function MuseumPlinthHero({
   themeSlug,
+  heroImage,
   classificationTag,
   title,
   description,
@@ -53,7 +56,13 @@ export function MuseumPlinthHero({
   featuredAsset,
   badgeText,
 }: MuseumPlinthHeroProps) {
-  const dioramaSrc = `/images/themes/${themeSlug}.jpg`;
+  const fallbackSrc = `/images/themes/${themeSlug}.jpg`;
+  const preferredSrc = featuredAsset?.image || heroImage || fallbackSrc;
+  const [imgSrc, setImgSrc] = useState(preferredSrc);
+
+  useEffect(() => {
+    setImgSrc(preferredSrc);
+  }, [preferredSrc]);
 
   return (
     <section
@@ -106,8 +115,11 @@ export function MuseumPlinthHero({
           <div className="order-first lg:order-last lg:col-span-6 border border-outline-variant/40 dark:border-white/10 bg-surface-container-lowest dark:bg-[#0b0b0e] overflow-hidden">
             <div className="aspect-[16/9] sm:aspect-[16/10] w-full overflow-hidden bg-neutral-200 dark:bg-neutral-900">
               <img
-                src={dioramaSrc}
-                alt={`${title} exhibition wing`}
+                src={imgSrc}
+                alt={featuredAsset ? `${featuredAsset.title} — ${title}` : `${title} exhibition wing`}
+                onError={() => {
+                  if (imgSrc !== fallbackSrc) setImgSrc(fallbackSrc);
+                }}
                 className="w-full h-full object-cover"
               />
             </div>

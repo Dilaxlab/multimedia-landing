@@ -6,25 +6,26 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   ArrowDown,
   ArrowLeft,
-  ArrowUpRight,
   ChevronDown,
   ChevronRight,
+  Lock,
+  LogOut,
   Moon,
   Search,
+  Shield,
   Sun,
   X,
 } from 'lucide-react';
 import { useTheme } from '@/components/common/ThemeProvider';
 import { useCategory } from '@/context/CategoryContext';
+import { useAuth } from '@/context/AuthContext';
+import { assetService } from '@/services/assetService';
+import { HistoricalAsset } from '@/types/asset';
 import {
   ALL_50_CATEGORIES,
   THEME_FAMILIES,
   ThemeFamily,
 } from '@/data/taxonomy';
-import {
-  MOCK_HISTORICAL_ASSETS,
-  VIRTUAL_TOUR_MUSEUM_URL,
-} from '@/lib/constants';
 import {
   FunnelStage,
   LAST_CATEGORY_STORAGE_KEY,
@@ -50,12 +51,16 @@ function SearchArchiveModal({
   onSearchChange,
 }: SearchModalProps) {
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
+  const [matchingAssets, setMatchingAssets] = useState<HistoricalAsset[]>([]);
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
       setQuery('');
+      setMatchingAssets([]);
       return;
     }
     const timer = window.setTimeout(() => {
@@ -64,34 +69,49 @@ function SearchArchiveModal({
     return () => window.clearTimeout(timer);
   }, [isOpen]);
 
-  const { matchingCategories, matchingAssets } = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) {
-      return {
-        matchingCategories: ALL_50_CATEGORIES.slice(0, 4),
-        matchingAssets: MOCK_HISTORICAL_ASSETS.slice(0, 6),
-      };
+  useEffect(() => {
+    if (!isOpen || !isAuthenticated) {
+      setMatchingAssets([]);
+      return;
     }
 
-    const categories = ALL_50_CATEGORIES.filter(
+    let cancelled = false;
+    const debounce = window.setTimeout(async () => {
+      setSearching(true);
+      try {
+        const res = await assetService.getAssets(
+          query.trim() ? { q: query.trim() } : {}
+        );
+        if (!cancelled) {
+          setMatchingAssets(res.slice(0, 8));
+        }
+      } catch {
+        if (!cancelled) setMatchingAssets([]);
+      } finally {
+        if (!cancelled) setSearching(false);
+      }
+    }, 200);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(debounce);
+    };
+  }, [isOpen, isAuthenticated, query]);
+
+  const matchingCategories = useMemo(() => {
+    if (!isAuthenticated) return [];
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      return ALL_50_CATEGORIES.slice(0, 4);
+    }
+
+    return ALL_50_CATEGORIES.filter(
       (cat) =>
         cat.title.toLowerCase().includes(q) ||
         cat.quote.toLowerCase().includes(q) ||
         cat.number.includes(q)
     ).slice(0, 4);
-
-    const assets = MOCK_HISTORICAL_ASSETS.filter(
-      (asset) =>
-        asset.title.toLowerCase().includes(q) ||
-        asset.inventor.toLowerCase().includes(q) ||
-        asset.patent.toLowerCase().includes(q) ||
-        asset.era.toLowerCase().includes(q) ||
-        asset.id.toLowerCase().includes(q) ||
-        asset.tags?.some((t) => t.toLowerCase().includes(q))
-    ).slice(0, 8);
-
-    return { matchingCategories: categories, matchingAssets: assets };
-  }, [query]);
+  }, [query, isAuthenticated]);
 
   const handleNavigate = useCallback(
     (href: string) => {
@@ -166,72 +186,97 @@ function SearchArchiveModal({
         </form>
 
         <div className="max-h-[65vh] overflow-y-auto p-4 space-y-5">
-          {matchingCategories.length > 0 && (
-            <div>
-              <div className="px-1 pb-2 text-xs font-medium text-on-surface-variant dark:text-neutral-400">
-                Categories ({ALL_50_CATEGORIES.length})
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                {matchingCategories.map((cat) => (
-                  <button
-                    key={cat.slug}
-                    type="button"
-                    onClick={() => handleNavigate(`/categories/${cat.slug}`)}
-                    className="flex items-center justify-between gap-2 px-3 py-2 text-left hover:bg-surface-container-low dark:hover:bg-white/[0.05] border border-outline-variant/25 dark:border-white/[0.08] transition-colors cursor-pointer"
-                  >
-                    <div className="min-w-0">
-                      <div className="text-xs font-medium text-on-surface dark:text-white truncate">
-                        {cat.number}. {cat.title}
-                      </div>
-                      <div className="text-xs text-on-surface-variant dark:text-neutral-400 truncate mt-0.5">
-                        {cat.quote}
-                      </div>
-                    </div>
-                    <ChevronRight className="w-3.5 h-3.5 text-on-surface-variant dark:text-neutral-500 shrink-0" />
-                  </button>
-                ))}
-              </div>
+          {!isAuthenticated ? (
+            <div className="py-10 px-4 text-center space-y-3 border border-dashed border-outline-variant/45 dark:border-white/15">
+              <Lock className="w-5 h-5 mx-auto text-[#8c5d12] dark:text-[#d4af37]" />
+              <p className="font-serif text-lg font-medium text-on-surface dark:text-white">
+                Sign in to search the Heritage Archive
+              </p>
+              <p className="text-xs text-on-surface-variant dark:text-neutral-400 max-w-sm mx-auto">
+                Asset metadata, patent dossiers, and restricted archival plates require Sanctum authentication.
+              </p>
+              <button
+                type="button"
+                onClick={() => handleNavigate('/login')}
+                className="inline-flex items-center gap-2 min-h-[40px] px-4 py-2 bg-on-surface text-surface dark:bg-[#f5f3ee] dark:text-[#111114] text-xs font-medium cursor-pointer"
+              >
+                Sign In to Search
+              </button>
             </div>
-          )}
+          ) : (
+            <>
+              {matchingCategories.length > 0 && (
+                <div>
+                  <div className="px-1 pb-2 text-xs font-medium text-on-surface-variant dark:text-neutral-400">
+                    Categories ({ALL_50_CATEGORIES.length})
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                    {matchingCategories.map((cat) => (
+                      <button
+                        key={cat.slug}
+                        type="button"
+                        onClick={() => handleNavigate(`/categories/${cat.slug}`)}
+                        className="flex items-center justify-between gap-2 px-3 py-2 text-left hover:bg-surface-container-low dark:hover:bg-white/[0.05] border border-outline-variant/25 dark:border-white/[0.08] transition-colors cursor-pointer"
+                      >
+                        <div className="min-w-0">
+                          <div className="text-xs font-medium text-on-surface dark:text-white truncate">
+                            {cat.number}. {cat.title}
+                          </div>
+                          <div className="text-xs text-on-surface-variant dark:text-neutral-400 truncate mt-0.5">
+                            {cat.quote}
+                          </div>
+                        </div>
+                        <ChevronRight className="w-3.5 h-3.5 text-on-surface-variant dark:text-neutral-500 shrink-0" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-          <div>
-            <div className="px-1 pb-2 text-xs font-medium text-on-surface-variant dark:text-neutral-400">
-              {query.trim() ? 'Matching Records' : 'Featured Records'}
-            </div>
-            {matchingAssets.length === 0 && matchingCategories.length === 0 ? (
-              <div className="px-3 py-8 text-center text-sm text-on-surface-variant dark:text-neutral-400">
-                No archival records match &ldquo;{query}&rdquo;.
-              </div>
-            ) : (
-              <div className="divide-y divide-outline-variant/25 dark:divide-white/[0.08] border border-outline-variant/25 dark:border-white/[0.08]">
-                {matchingAssets.map((asset) => (
-                  <button
-                    key={asset.id}
-                    type="button"
-                    onClick={() => handleNavigate(`/inventions/${asset.id}`)}
-                    className="w-full flex items-center justify-between gap-3 px-3.5 py-2.5 text-left hover:bg-surface-container-low dark:hover:bg-white/[0.05] transition-colors cursor-pointer"
-                  >
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono text-[#8c5d12] dark:text-[#d4af37]">
-                          {asset.id}
+              <div>
+                <div className="px-1 pb-2 text-xs font-medium text-on-surface-variant dark:text-neutral-400">
+                  {searching
+                    ? 'Searching archive...'
+                    : query.trim()
+                      ? 'Matching Records'
+                      : 'Featured Records'}
+                </div>
+                {matchingAssets.length === 0 && matchingCategories.length === 0 ? (
+                  <div className="px-3 py-8 text-center text-sm text-on-surface-variant dark:text-neutral-400">
+                    No archival records match &ldquo;{query}&rdquo;.
+                  </div>
+                ) : (
+                  <div className="divide-y divide-outline-variant/25 dark:divide-white/[0.08] border border-outline-variant/25 dark:border-white/[0.08]">
+                    {matchingAssets.map((asset) => (
+                      <button
+                        key={asset.id}
+                        type="button"
+                        onClick={() => handleNavigate(`/inventions/${asset.id}`)}
+                        className="w-full flex items-center justify-between gap-3 px-3.5 py-2.5 text-left hover:bg-surface-container-low dark:hover:bg-white/[0.05] transition-colors cursor-pointer"
+                      >
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-mono text-[#8c5d12] dark:text-[#d4af37]">
+                              {asset.id}
+                            </span>
+                            <span className="text-sm font-medium text-on-surface dark:text-white truncate">
+                              {asset.title}
+                            </span>
+                          </div>
+                          <div className="text-xs text-on-surface-variant dark:text-neutral-400 truncate">
+                            {asset.inventor} · {asset.patent}
+                          </div>
+                        </div>
+                        <span className="text-xs font-mono text-on-surface-variant dark:text-neutral-400 shrink-0">
+                          {asset.year || asset.era.slice(0, 4)}
                         </span>
-                        <span className="text-sm font-medium text-on-surface dark:text-white truncate">
-                          {asset.title}
-                        </span>
-                      </div>
-                      <div className="text-xs text-on-surface-variant dark:text-neutral-400 truncate">
-                        {asset.inventor} · {asset.patent}
-                      </div>
-                    </div>
-                    <span className="text-xs font-mono text-on-surface-variant dark:text-neutral-400 shrink-0">
-                      {asset.year || asset.era.slice(0, 4)}
-                    </span>
-                  </button>
-                ))}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </>
+          )}
         </div>
 
         <div className="px-4 py-2.5 border-t border-outline-variant/30 dark:border-white/10 bg-surface-container-low/60 dark:bg-white/[0.02] flex items-center justify-between text-xs text-on-surface-variant dark:text-neutral-400">
@@ -318,15 +363,6 @@ function ContextDropdownPanel({
             <span>Media Library</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
-          <a
-            href={VIRTUAL_TOUR_MUSEUM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-between px-2.5 py-2 text-xs font-medium text-on-surface dark:text-neutral-200 hover:text-[#8c5d12] dark:hover:text-[#d4af37]"
-          >
-            <span>Open 3D Virtual Museum</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
         </div>
       </div>
     );
@@ -391,15 +427,6 @@ function ContextDropdownPanel({
           <span>Media Library</span>
           <ChevronRight className="w-3.5 h-3.5" />
         </Link>
-        <a
-          href={VIRTUAL_TOUR_MUSEUM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-between px-2.5 py-2 text-xs font-medium text-on-surface dark:text-neutral-200 hover:text-[#8c5d12] dark:hover:text-[#d4af37]"
-        >
-          <span>Open 3D Virtual Museum</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </a>
       </div>
     </div>
   );
@@ -410,6 +437,7 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const { activeCategory } = useCategory();
+  const { user, roles, isAuthenticated, canAccessAdmin, logout } = useAuth();
 
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -436,7 +464,7 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
   }, []);
 
   const routeCtx = useMemo(
-    () => resolveRouteContext(pathname, lastCategorySlug, activeCategory),
+    () => resolveRouteContext(pathname, lastCategorySlug, activeCategory || 'ALL'),
     [pathname, lastCategorySlug, activeCategory]
   );
 
@@ -878,15 +906,45 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
               )}
             </button>
 
-            <a
-              href={VIRTUAL_TOUR_MUSEUM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 h-9 px-3.5 bg-on-surface text-surface dark:bg-[#f5f3ee] dark:text-[#111114] hover:opacity-90 text-xs font-medium whitespace-nowrap transition-opacity"
-            >
-              <span>Virtual Tour</span>
-              <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
-            </a>
+
+
+            {isAuthenticated && user ? (
+              <div className="flex items-center gap-1.5">
+               
+
+                <span
+                  title={`${user.name} (${roles[0] || user.clearance_level})`}
+                  className="hidden xl:inline-flex items-center gap-1.5 h-9 px-2.5 border border-outline-variant/35 dark:border-white/15 text-xs font-mono text-on-surface-variant dark:text-neutral-300"
+                >
+                  <span className="truncate max-w-[110px]">{user.name}</span>
+                  <span className="px-1.5 py-0.5 text-[10px] bg-surface-container-low dark:bg-white/10 text-[#8c5d12] dark:text-[#d4af37]">
+                    {roles[0] || user.clearance_level}
+                  </span>
+                </span>
+
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await logout();
+                    router.push('/');
+                    router.refresh();
+                  }}
+                  aria-label="Sign out"
+                  title="Sign out"
+                  className="inline-flex items-center justify-center min-w-[38px] min-h-[38px] border border-outline-variant/40 dark:border-white/15 text-on-surface-variant hover:text-on-surface dark:text-neutral-300 dark:hover:text-white cursor-pointer"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="inline-flex items-center gap-1.5 h-9 px-3.5 bg-on-surface text-surface dark:bg-[#f5f3ee] dark:text-[#111114] hover:opacity-90 text-xs font-medium whitespace-nowrap transition-opacity"
+              >
+                <Lock className="w-3.5 h-3.5 shrink-0" />
+                <span>Sign In</span>
+              </Link>
+            )}
           </div>
         </div>
 

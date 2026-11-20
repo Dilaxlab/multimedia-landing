@@ -2,63 +2,156 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
-import {
-  ThemeFamily,
-  THEME_FAMILIES,
-  getAssetsForCategory,
-  getAssetsForTheme,
-} from '@/data/taxonomy';
-import { MOCK_HISTORICAL_ASSETS, VIRTUAL_TOUR_MUSEUM_URL } from '@/lib/constants';
+import { ArrowLeft, ArrowRight, Plus } from 'lucide-react';
+import { taxonomyService } from '@/services/taxonomyService';
+import { assetService } from '@/services/assetService';
+import { useAuth } from '@/context/AuthContext';
+import { ThemeRecord } from '@/types/taxonomy';
+import { HistoricalAsset } from '@/types/asset';
 import MuseumWayfinding from '@/components/common/MuseumWayfinding';
 import { MuseumPlinthHero } from '@/components/sections/MuseumPlinthHero';
+import AuthUnlockGate from '@/components/common/AuthUnlockGate';
 
 interface ThemeViewClientProps {
-  theme: ThemeFamily;
+  themeSlug: string;
 }
 
-export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
+export default function ThemeViewClient({ themeSlug }: ThemeViewClientProps) {
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+  const [theme, setTheme] = useState<ThemeRecord | null>(null);
+  const [allThemes, setAllThemes] = useState<ThemeRecord[]>([]);
+  const [themeAssets, setThemeAssets] = useState<HistoricalAsset[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<unknown>(null);
   const [activeCatIdx, setActiveCatIdx] = useState(0);
 
   useEffect(() => {
     setActiveCatIdx(0);
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [theme.slug]);
+  }, [themeSlug]);
 
-  const themeAssets = getAssetsForTheme(theme, MOCK_HISTORICAL_ASSETS);
+  useEffect(() => {
+    if (authLoading) return;
+    if (!isAuthenticated) {
+      setTheme(null);
+      setThemeAssets([]);
+      setLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+
+    Promise.all([
+      taxonomyService.getThemeBySlug(themeSlug),
+      taxonomyService.getThemes().catch(() => [] as ThemeRecord[]),
+      assetService.getAssets({ theme_slug: themeSlug }).catch(() => [] as HistoricalAsset[]),
+    ])
+      .then(([loadedTheme, themesList, assetsList]) => {
+        if (cancelled) return;
+        setTheme(loadedTheme);
+        setAllThemes(
+          [...themesList].sort((a, b) => a.theme_slot - b.theme_slot)
+        );
+        setThemeAssets(assetsList);
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setError(err);
+          setTheme(null);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authLoading, isAuthenticated, themeSlug]);
+
+  if (!authLoading && !isAuthenticated) {
+    return (
+      <div className="min-h-screen w-full bg-surface dark:bg-[#050505] px-4 sm:px-8 py-12">
+        <AuthUnlockGate nextPath={`/themes/${themeSlug}`} />
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen w-full bg-surface dark:bg-[#050505] px-4 sm:px-8 py-16">
+        <div className="max-w-7xl mx-auto space-y-6">
+          <div className="h-56 bg-surface-container-low dark:bg-[#0e0e12] animate-pulse border border-outline-variant/30 dark:border-white/10" />
+          <div className="h-96 bg-surface-container-low dark:bg-[#0e0e12] animate-pulse border border-outline-variant/30 dark:border-white/10" />
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !theme) {
+    return (
+      <div className="min-h-screen w-full bg-surface dark:bg-[#050505] px-4 sm:px-8 py-12">
+        <AuthUnlockGate nextPath={`/themes/${themeSlug}`} error={error} />
+      </div>
+    );
+  }
+
+  const categories = [...(theme.categories || [])].sort(
+    (a, b) => a.category_slot - b.category_slot
+  );
   const sampleRecords = themeAssets.slice(0, 6);
-
-  const currentIdx = THEME_FAMILIES.findIndex((t) => t.slug === theme.slug);
-  const prevTheme = currentIdx > 0 ? THEME_FAMILIES[currentIdx - 1] : null;
+  const currentIdx = allThemes.findIndex((t) => t.slug === theme.slug);
+  const prevTheme = currentIdx > 0 ? allThemes[currentIdx - 1] : null;
   const nextTheme =
-    currentIdx >= 0 && currentIdx < THEME_FAMILIES.length - 1
-      ? THEME_FAMILIES[currentIdx + 1]
+    currentIdx >= 0 && currentIdx < allThemes.length - 1
+      ? allThemes[currentIdx + 1]
       : null;
+
+  const publicAttrs = (theme.attributes || []).filter((a) => a.is_public);
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-surface dark:bg-[#050505] selection:bg-primary/30">
-      {/* =====================================================================
-          1. CLEAN THEME OVERVIEW HERO
-         ===================================================================== */}
       <MuseumPlinthHero
         themeSlug={theme.slug}
-        classificationTag={`Theme ${theme.number} of 10 · ${theme.categories.length} Categories · ${themeAssets.length} Inventions`}
+        classificationTag={`Theme ${String(theme.theme_slot).padStart(2, '0')} of 10 · ${categories.length} Categories · ${themeAssets.length} Inventions`}
         title={theme.title}
         description={theme.description}
         primaryCta={{
-          label: `Browse ${theme.categories.length} Categories`,
+          label: `Browse ${categories.length} Categories`,
           href: '#categories',
         }}
         secondaryCta={{
           label: 'Sample Inventions',
           href: '#highlights',
         }}
-        badgeText={`${theme.categoryRange} · All Formats Included`}
+        badgeText={`${theme.category_range} · All Formats Included`}
       />
 
-      {/* =====================================================================
-          2. THE 5 CATEGORIES IN THIS THEME (Clear Exhibition Catalog Index)
-         ===================================================================== */}
+
+      {publicAttrs.length > 0 && (
+        <div className="w-full border-b border-outline-variant/35 dark:border-white/10 bg-surface-container-low/50 dark:bg-[#0b0b0e] px-4 sm:px-8 py-3">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center gap-3">
+            {publicAttrs.map((attr) => (
+              <span
+                key={attr.id}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-outline-variant/40 dark:border-white/15 bg-surface dark:bg-[#111114] text-xs font-mono"
+              >
+                <span className="text-on-surface-variant dark:text-neutral-400">
+                  {attr.attr_label}:
+                </span>
+                <span className="text-on-surface dark:text-white font-medium">
+                  {attr.attr_value}
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* THE 5 CATEGORIES IN THIS THEME */}
       <section
         id="categories"
         className="scroll-mt-28 w-full py-12 sm:py-20 px-4 sm:px-8 bg-surface dark:bg-[#050505]"
@@ -67,14 +160,14 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-outline-variant/40 dark:border-white/10 mb-6">
             <div className="max-w-2xl">
               <h2 className="font-serif text-[clamp(24px,3vw,38px)] font-semibold tracking-[-0.02em] leading-[1.15] text-on-surface dark:text-white [text-wrap:balance]">
-                {theme.categories.length} Categories in This Theme
+                {categories.length} Thematic Categories
               </h2>
               <p className="mt-2.5 text-sm sm:text-base text-on-surface-variant dark:text-neutral-300 leading-relaxed">
-                Pick a category below to see every invention grouped under it. Each invention record opens with Video, 3D Model, Book, 2D Plate, and Story study tabs.
+                Select any category below to explore its curated taglines, historical patent models, interactive 3D reconstructions, archival plates, and illustrated stories.
               </p>
             </div>
             <p className="text-xs sm:text-sm font-mono text-on-surface-variant dark:text-neutral-400 shrink-0">
-              {theme.categoryRange}
+              {theme.category_range}
             </p>
           </div>
 
@@ -84,12 +177,10 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
             themeTitle={theme.title}
           />
 
-          {/* tZERO-Exact Horizontal Accordion (Desktop) / Vertical Accordion (Mobile & Tablet) */}
           <div className="flex flex-col lg:flex-row gap-4 lg:h-[540px] w-full">
-            {theme.categories.map((cat, idx) => {
+            {categories.map((cat, idx) => {
               const isActive = idx === activeCatIdx;
-              const catAssets = getAssetsForCategory(cat, MOCK_HISTORICAL_ASSETS);
-              const coverImage = catAssets[0]?.image;
+              const coverImage = cat.image || theme.diorama_image_url;
 
               return (
                 <div
@@ -110,44 +201,39 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
                       : 'h-16 md:h-20 lg:h-full lg:flex-[0.9] lg:max-w-[165px] bg-gradient-to-b from-amber-500/[0.12] to-stone-500/[0.08] dark:from-slate-300/[0.16] dark:to-neutral-400/[0.10] border border-outline-variant/50 dark:border-white/25 hover:border-amber-500/60'
                   }`}
                 >
-                  {/* COLLAPSED STATE */}
                   {!isActive && (
                     <div className="w-full h-full flex flex-row lg:flex-col items-center justify-between px-5 lg:py-7 lg:px-3">
-                      {/* Title (left on mobile, bottom rotated -90deg on desktop) */}
                       <span className="lg:order-2 font-serif font-semibold text-sm sm:text-base lg:text-lg text-on-surface dark:text-white truncate lg:overflow-visible lg:whitespace-nowrap lg:-rotate-90 lg:mb-16 lg:w-8 lg:flex lg:items-center lg:justify-start">
-                        {cat.title}
+                        {cat.name}
                       </span>
-
-                      {/* Plus Icon (right on mobile, top center on desktop) */}
                       <span className="lg:order-1 w-7 h-7 flex items-center justify-center text-on-surface dark:text-white shrink-0">
                         <Plus className="w-6 h-6 stroke-[1.75]" />
                       </span>
                     </div>
                   )}
 
-                  {/* EXPANDED STATE */}
                   {isActive && (
                     <div className="w-full h-full flex flex-col justify-between p-5 sm:p-6 lg:p-7 animate-in fade-in duration-300">
-                      {/* Top Image + Badge */}
                       <div className="relative w-full h-40 sm:h-48 lg:h-52 rounded-lg overflow-hidden bg-neutral-100 shrink-0">
                         {coverImage && (
                           <img
                             src={coverImage}
-                            alt={cat.title}
+                            alt={cat.cover_alt_text || cat.name}
                             className="w-full h-full object-cover object-center"
                           />
                         )}
                         <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-amber-300 text-xs font-mono">
-                          <span>{cat.emoji}</span>
-                          <span>{catAssets.length} Assets</span>
+                          <span>#{String(cat.global_number).padStart(2, '0')}</span>
+                          {typeof cat.assets_count === 'number' && (
+                            <span>· {cat.assets_count} Assets</span>
+                          )}
                         </div>
                       </div>
 
-                      {/* Middle Title + Divider + Description */}
                       <div className="mt-4 lg:mt-5 flex-1 flex flex-col justify-between">
                         <div>
                           <h3 className="font-serif text-xl sm:text-2xl font-bold text-neutral-900 leading-snug">
-                            {cat.title}
+                            {cat.name}
                           </h3>
                           <div className="my-3 h-px w-full bg-neutral-200" />
                           <p className="font-serif italic text-sm text-amber-700">
@@ -178,9 +264,7 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
         </div>
       </section>
 
-      {/* =====================================================================
-          3. SAMPLE INVENTIONS IN THIS THEME (Typographic Specimen Cards)
-         ===================================================================== */}
+      {/* SAMPLE INVENTIONS */}
       <section
         id="highlights"
         className="scroll-mt-28 w-full py-12 sm:py-20 px-4 sm:px-8 border-t border-outline-variant/40 dark:border-white/10 bg-surface-container-low/50 dark:bg-[#0b0b0e]"
@@ -192,19 +276,9 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
                 Sample Inventions from This Theme
               </h2>
               <p className="mt-2.5 text-sm sm:text-base text-on-surface-variant dark:text-neutral-300 leading-relaxed">
-                Open any record directly below to inspect its 2D patent plate, historical story, archival book, 3D model, and video walkthrough.
+                Open any record directly below to inspect its 2D patent plate, historical story, archival book, 3D model, and signed video walkthrough.
               </p>
             </div>
-
-            <a
-              href={VIRTUAL_TOUR_MUSEUM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="min-h-[44px] inline-flex items-center gap-1.5 text-sm font-medium text-[#8c5d12] dark:text-[#d4af37] hover:underline shrink-0"
-            >
-              <span>Walk through 3D museum</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
@@ -212,31 +286,42 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
               <Link
                 key={asset.id}
                 href={`/inventions/${asset.id}`}
-                className="group flex flex-col justify-between p-5 sm:p-6 border border-outline-variant/40 dark:border-white/10 bg-surface dark:bg-[#111114] hover:border-[#8c5d12]/60 dark:hover:border-[#d4af37]/60 transition-colors"
+                className="group flex flex-col border border-outline-variant/40 dark:border-white/10 bg-surface dark:bg-[#111114] hover:border-[#8c5d12]/60 dark:hover:border-[#d4af37]/60 transition-colors overflow-hidden"
               >
-                <div>
-                  <div className="flex items-center justify-between gap-2 text-xs font-mono text-on-surface-variant dark:text-neutral-400">
-                    <span>{asset.year || asset.patentDate}</span>
-                    <span>{asset.patentNumber || asset.patent}</span>
-                  </div>
-
-                  <h3 className="mt-3 font-serif text-lg sm:text-xl font-semibold leading-snug text-on-surface dark:text-white group-hover:text-[#8c5d12] dark:group-hover:text-[#d4af37] transition-colors">
-                    {asset.title}
-                  </h3>
-
-                  <p className="mt-1 text-xs font-medium text-on-surface-variant dark:text-neutral-400">
-                    {asset.inventor}
-                    {asset.location ? ` · ${asset.location}` : ''}
-                  </p>
-
-                  <p className="mt-3 text-sm text-on-surface-variant dark:text-neutral-300 leading-relaxed line-clamp-3">
-                    {asset.desc}
-                  </p>
+                <div className="aspect-[16/10] w-full overflow-hidden bg-neutral-200 dark:bg-neutral-900 border-b border-outline-variant/30 dark:border-white/10">
+                  <img
+                    src={asset.thumbnail || asset.image}
+                    alt={asset.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-outline-variant/30 dark:border-white/10 flex items-center justify-between text-xs font-medium text-on-surface dark:text-neutral-200 group-hover:text-[#8c5d12] dark:group-hover:text-[#d4af37] transition-colors">
-                  <span>Open 5-format record</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 text-xs font-mono text-on-surface-variant dark:text-neutral-400">
+                      <span>{asset.year || asset.patentDate}</span>
+                      <span>{asset.patentNumber || asset.patent}</span>
+                    </div>
+
+                    <h3 className="mt-2.5 font-serif text-lg sm:text-xl font-semibold leading-snug text-on-surface dark:text-white group-hover:text-[#8c5d12] dark:group-hover:text-[#d4af37] transition-colors">
+                      {asset.title}
+                    </h3>
+
+                    <p className="mt-1 text-xs font-medium text-on-surface-variant dark:text-neutral-400">
+                      {asset.inventor}
+                      {asset.location ? ` · ${asset.location}` : ''}
+                    </p>
+
+                    <p className="mt-2.5 text-sm text-on-surface-variant dark:text-neutral-300 leading-relaxed line-clamp-2">
+                      {asset.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-4 border-t border-outline-variant/30 dark:border-white/10 flex items-center justify-between text-xs font-medium text-on-surface dark:text-neutral-200 group-hover:text-[#8c5d12] dark:group-hover:text-[#d4af37] transition-colors">
+                    <span>Open 5-format record</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </div>
                 </div>
               </Link>
             ))}
@@ -244,9 +329,7 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
         </div>
       </section>
 
-      {/* =====================================================================
-          4. NEIGHBORING THEMES & RETURN TO DIRECTORY
-         ===================================================================== */}
+      {/* NEIGHBORING THEMES */}
       <section className="w-full py-8 sm:py-10 px-4 sm:px-8 border-t border-outline-variant/40 dark:border-white/10 bg-surface dark:bg-[#050505]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
           {prevTheme ? (
@@ -260,7 +343,7 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
                   Previous Theme
                 </span>
                 <span className="font-serif font-medium text-on-surface dark:text-white truncate block">
-                  {prevTheme.number}. {prevTheme.title}
+                  {String(prevTheme.theme_slot).padStart(2, '0')}. {prevTheme.title}
                 </span>
               </div>
             </Link>
@@ -285,7 +368,7 @@ export default function ThemeViewClient({ theme }: ThemeViewClientProps) {
                   Next Theme
                 </span>
                 <span className="font-serif font-medium text-on-surface dark:text-white truncate block">
-                  {nextTheme.number}. {nextTheme.title}
+                  {String(nextTheme.theme_slot).padStart(2, '0')}. {nextTheme.title}
                 </span>
               </div>
               <ArrowRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
