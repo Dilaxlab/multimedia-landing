@@ -50,6 +50,11 @@ export default function Footer() {
                   Media Library
                 </Link>
               </li>
+              <li>
+                <Link href="/stories" className="inline-block py-1.5 hover:text-on-surface dark:hover:text-white transition-colors">
+                  Stories &amp; Digital Books
+                </Link>
+              </li>
             </ul>
           </div>
 

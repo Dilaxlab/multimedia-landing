@@ -5,7 +5,7 @@ const TOKEN_COOKIE = 'ha_sanctum_token';
 
 /**
  * Next.js 16 route proxy enforcing authentication gate on sensitive routes
- * (/admin, /media, /themes, /categories, /category, /inventions) while keeping
+ * (/admin, /media, /stories, /themes, /categories, /inventions) while keeping
  * / (Landing teaser_with_auth_unlock), /login, and /forgot-password accessible.
  */
 export function proxy(request: NextRequest) {
@@ -28,6 +28,7 @@ export const config = {
   matcher: [
     '/admin/:path*',
     '/media/:path*',
+    '/stories/:path*',
     '/themes/:path*',
     '/categories/:path*',
     '/inventions/:path*',

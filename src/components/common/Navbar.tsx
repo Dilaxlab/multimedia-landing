@@ -87,7 +87,7 @@ const FORMAT_ITEMS = [
     title: 'Illustrated Books',
     subtitle: 'Age-tailored editions & archival folios',
     icon: BookOpen,
-    href: '/#whats-inside',
+    href: '/stories',
   },
   {
     id: 'library',
@@ -512,10 +512,10 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
   };
 
   const navPillClass = (active: boolean) =>
-    `inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] font-medium whitespace-nowrap transition-all duration-200 cursor-pointer ${
+    `inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] font-medium whitespace-nowrap transition-all duration-200 cursor-pointer border ${
       active
-        ? 'bg-neutral-900/10 text-neutral-950 dark:bg-white/15 dark:text-white'
-        : 'text-neutral-600 hover:text-neutral-950 hover:bg-neutral-900/[0.05] dark:text-neutral-300 dark:hover:text-white dark:hover:bg-white/[0.08]'
+        ? 'bg-neutral-900/10 text-neutral-950 border-neutral-900/15 dark:bg-[#d4af37]/15 dark:text-[#f2ca50] dark:border-[#d4af37]/35'
+        : 'border-transparent text-neutral-600 hover:text-neutral-950 hover:bg-neutral-900/[0.05] dark:text-neutral-300 dark:hover:text-[#f2ca50] dark:hover:bg-white/[0.06]'
     }`;
 
   return (
@@ -525,12 +525,12 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
           ref={navShellRef}
           className={`pointer-events-auto mx-auto transition-all duration-300 rounded-2xl border backdrop-blur-2xl ${
             activePanel === 'themes' || activePanel === 'formats'
-              ? 'max-w-[740px]'
-              : 'max-w-[700px]'
+              ? 'max-w-[860px]'
+              : 'max-w-[820px]'
           } ${
             scrolled || activePanel
-              ? 'bg-white/85 dark:bg-[#14161b]/88 border-black/[0.1] dark:border-white/[0.15] shadow-[0_14px_40px_-10px_rgba(0,0,0,0.18)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.65)]'
-              : 'bg-white/75 dark:bg-[#14161b]/75 border-black/[0.08] dark:border-white/[0.12] shadow-[0_8px_28px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_36px_-10px_rgba(0,0,0,0.45)]'
+              ? 'bg-white/90 dark:bg-[#0e0e12]/95 border-black/[0.1] dark:border-[#d4af37]/25 shadow-[0_14px_40px_-10px_rgba(0,0,0,0.18)] dark:shadow-[0_16px_48px_-12px_rgba(0,0,0,0.85)]'
+              : 'bg-white/80 dark:bg-[#0e0e12]/85 border-black/[0.08] dark:border-[#d4af37]/15 shadow-[0_8px_28px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_36px_-10px_rgba(0,0,0,0.65)]'
           }`}
         >
           {/* TOP COMPACT BAR */}
@@ -540,12 +540,12 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
               href="/"
               onClick={() => setActivePanel(null)}
               aria-label="Heritage Archive Home"
-              className="flex items-center gap-2 pl-1 pr-1.5 py-1 rounded-full hover:bg-black/[0.04] dark:hover:bg-white/[0.08] transition-colors shrink-0"
+              className="flex items-center gap-2 pl-1 pr-1.5 py-1 rounded-full hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors shrink-0"
             >
-              <span className="w-7 h-7 rounded-full bg-neutral-900 dark:bg-white/15 text-white flex items-center justify-center border border-black/10 dark:border-white/20">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span className="w-7 h-7 rounded-full bg-neutral-900 dark:bg-[#d4af37]/15 text-white flex items-center justify-center border border-black/10 dark:border-[#d4af37]/40">
+                <Sparkles className="w-3.5 h-3.5 text-[#f2ca50] dark:text-[#d4af37]" />
               </span>
-              <span className="hidden sm:inline font-serif text-sm font-semibold tracking-tight text-neutral-900 dark:text-white">
+              <span className="hidden sm:inline font-serif text-sm font-semibold tracking-tight text-neutral-900 dark:text-[#f6f3eb]">
                 Heritage
               </span>
             </Link>
@@ -626,6 +626,16 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
                 Media
               </Link>
 
+              <Link
+                href="/stories"
+                onClick={() => setActivePanel(null)}
+                className={navPillClass(
+                  pathname.startsWith('/stories') && !activePanel
+                )}
+              >
+                Stories
+              </Link>
+
               <button
                 type="button"
                 onClick={() => handleHomeAnchor('trending', '/#trending')}
@@ -697,7 +707,7 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
                 <Link
                   href="/login"
                   onClick={() => setActivePanel(null)}
-                  className="inline-flex items-center gap-1.5 h-8 px-3.5 rounded-full bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white/15 dark:hover:bg-white/25 dark:text-white border border-transparent dark:border-white/20 text-xs font-medium whitespace-nowrap transition-colors"
+                  className="inline-flex items-center gap-1.5 h-8 px-3.5 rounded-full bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-[#d4af37] dark:hover:bg-[#f2ca50] dark:text-[#1a1500] text-xs font-semibold whitespace-nowrap transition-colors"
                 >
                   <span>Sign In</span>
                 </Link>
@@ -914,12 +924,19 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
                 >
                   Media
                 </Link>
+                <Link
+                  href="/stories"
+                  onClick={() => setActivePanel(null)}
+                  className="px-3 py-2.5 rounded-xl text-left text-xs font-medium text-neutral-900 dark:text-white bg-black/[0.04] dark:bg-white/[0.07]"
+                >
+                  Stories &amp; Books
+                </Link>
                 <button
                   type="button"
                   onClick={() => handleHomeAnchor('trending', '/#trending')}
-                  className="col-span-2 px-3 py-2.5 rounded-xl text-left text-xs font-medium text-neutral-900 dark:text-white bg-black/[0.04] dark:bg-white/[0.07]"
+                  className="px-3 py-2.5 rounded-xl text-left text-xs font-medium text-neutral-900 dark:text-white bg-black/[0.04] dark:bg-white/[0.07]"
                 >
-                  Featured Patent Models
+                  Featured
                 </button>
               </div>
             </div>
@@ -928,7 +945,7 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
 
         {/* SLIM SUB-PAGE BREADCRUMB PILL (Hidden on Home) */}
         {!routeCtx.isHome && (
-          <div className="pointer-events-auto max-w-[700px] mx-auto mt-1.5 px-3 py-1.5 rounded-xl border border-black/[0.08] dark:border-white/[0.1] bg-white/80 dark:bg-[#14161b]/80 backdrop-blur-xl flex items-center justify-between gap-2 text-xs">
+          <div className="pointer-events-auto max-w-[820px] mx-auto mt-1.5 px-3 py-1.5 rounded-xl border border-black/[0.08] dark:border-[#d4af37]/20 bg-white/85 dark:bg-[#0e0e12]/90 backdrop-blur-xl flex items-center justify-between gap-2 text-xs">
             <nav
               aria-label="Breadcrumb"
               className="flex-1 min-w-0 flex items-center gap-1 text-neutral-500 dark:text-neutral-400 overflow-x-auto scrollbar-none whitespace-nowrap"
@@ -992,9 +1009,21 @@ export default function Navbar({ onSearchChange }: NavbarProps) {
               {routeCtx.stage === 'media' && (
                 <>
                   <ChevronRight className="w-3 h-3 opacity-55 shrink-0" />
-                  <span className="font-medium text-neutral-900 dark:text-white">
+                  <span className="font-medium text-neutral-900 dark:text-[#f2ca50]">
                     Media Library
                   </span>
+                </>
+              )}
+
+              {pathname.startsWith('/stories') && (
+                <>
+                  <ChevronRight className="w-3 h-3 opacity-55 shrink-0" />
+                  <Link
+                    href="/stories"
+                    className="font-medium text-neutral-900 dark:text-[#f2ca50] hover:underline"
+                  >
+                    Stories &amp; Digital Books
+                  </Link>
                 </>
               )}
             </nav>
